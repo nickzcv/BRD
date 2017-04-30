@@ -1,0 +1,72 @@
+/* Header styles
+-------------------------------------------------- */
+header {
+  background: $main-dark;
+
+  .logo {
+    padding: 0;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      height: 80px;
+      width: 115px;
+      text-indent: -9999px;
+      background: url(../img/zakuski.svg) no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+  .hamburger {
+    font-size: 35px;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+
+    &.closeBtn span:before {
+      content: "\f2d7";
+    }
+  }
+
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+    .logo {
+      float: left;
+      a {
+        display: inline-block;
+        text-indent: -9999px;
+        height: 50px;
+        width: 130px;
+        background: url(../img/zakuski.svg) no-repeat;
+        background-position: center;
+        margin-left: 25px;
+      }
+    }
+
+  }
+
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+    .logo a{
+      display: inline-block;
+      text-indent: -9999px;
+      width: 160px;
+      background: url(../img/zakuski.svg) no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+  }
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 1200px) {
+    .logo {
+      text-align: left;
+    }
+  }
+
+}

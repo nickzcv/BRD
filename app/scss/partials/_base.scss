@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700&subset=cyrillic-ext');
+/* Base styles
+-------------------------------------------------- */
+// Color schema
+$main: #000;
+$main-dark: #202124;
+$omen-dark: #666;
+$text-gray: #999;
+$gray-light: #fcfbf9;
+$gray-dark: #ededed;
+$orange: #e8500e;
+$gold: #ffd953;
+
+html {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #000;
+  position: relative;
+  font-size: 1rem;
+  min-height: 100%;
+  min-width: 320px;
+}
+body {
+  margin-bottom: 100px; /* Margin bottom by footer height */
+}
+
+a {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Form elements
+.form-control, .btn {
+  border-radius: 2px;
+}
+
+// Style the Autocomplete widget
+.pac-container {
+  .pac-item {
+    cursor: pointer;
+    padding: 0 8px;
+    line-height: 40px;
+    font-size: 0.8rem;
+
+    .pac-icon {
+      background-image: none!important;
+
+      &::before {
+        content: "\f455";
+        font-family: "Ionicons";
+        font-size: 1.4rem;
+        position: relative;
+        top: -5px;
+      }
+    }
+    .pac-item-query {
+      font-size: 1rem;
+    }
+
+  }
+}

@@ -1,0 +1,39 @@
+/* Welcome-section styles
+-------------------------------------------------- */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3rem; /* Set the fixed height of the footer here */
+  background-color: $gray-light;
+
+  .copyright {
+    float: right;
+    padding: 1rem;
+    font-weight: bold;
+    .glyphicon-copyright-mark {
+      font-size: 0.7rem;
+    }
+  }
+
+
+
+  /* SmartPhones */
+  @media only screen and (min-width: 450px) {
+
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+}
