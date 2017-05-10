@@ -1,7 +1,7 @@
 /* Header styles
 -------------------------------------------------- */
 header {
-  background: $main-dark;
+  background: transparent;
 
   .logo {
     padding: 0;
@@ -12,7 +12,7 @@ header {
       height: 80px;
       width: 115px;
       text-indent: -9999px;
-      background: url(../img/logo.svg) no-repeat;
+      background: url(../img/blue-logo.svg) no-repeat;
       background-size: contain;
       background-position: center;
     }
@@ -41,7 +41,7 @@ header {
         text-indent: -9999px;
         height: 50px;
         width: 130px;
-        background: url(../img/zakuski.svg) no-repeat;
+        background: url(../img/blue-logo.svg) no-repeat;
         background-position: center;
         margin-left: 25px;
       }
@@ -52,11 +52,14 @@ header {
 
   /* Desktop */
   @media only screen and (min-width: 992px) {
+    height: 100px;
+
     .logo a{
       display: inline-block;
       text-indent: -9999px;
-      width: 160px;
-      background: url(../img/zakuski.svg) no-repeat;
+      height: 70px;
+      width: 70px;
+      background: url(../img/blue-logo.svg) no-repeat;
       background-size: contain;
       background-position: center;
     }

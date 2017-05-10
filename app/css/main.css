@@ -19,32 +19,10 @@ a {
 a:hover {
   text-decoration: none; }
 
-.form-control, .btn {
-  border-radius: 2px; }
-
-.pac-container .pac-item {
-  cursor: pointer;
-  padding: 0 8px;
-  line-height: 40px;
-  font-size: 0.8rem; }
-
-.pac-container .pac-item .pac-icon {
-  background-image: none !important; }
-
-.pac-container .pac-item .pac-icon::before {
-  content: "\f455";
-  font-family: "Ionicons";
-  font-size: 1.4rem;
-  position: relative;
-  top: -5px; }
-
-.pac-container .pac-item .pac-item-query {
-  font-size: 1rem; }
-
 /* Header styles
 -------------------------------------------------- */
 header {
-  background: #202124;
+  background: transparent;
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
@@ -58,7 +36,7 @@ header .logo a {
   height: 80px;
   width: 115px;
   text-indent: -9999px;
-  background: url(../img/zakuski.svg) no-repeat;
+  background: url(../img/blue-logo.svg) no-repeat;
   background-size: contain;
   background-position: center; }
 
@@ -81,16 +59,19 @@ header .hamburger.closeBtn span:before {
     text-indent: -9999px;
     height: 50px;
     width: 130px;
-    background: url(../img/zakuski.svg) no-repeat;
+    background: url(../img/blue-logo.svg) no-repeat;
     background-position: center;
     margin-left: 25px; } }
 
 @media only screen and (min-width: 992px) {
+  header {
+    height: 100px; }
   header .logo a {
     display: inline-block;
     text-indent: -9999px;
-    width: 160px;
-    background: url(../img/zakuski.svg) no-repeat;
+    height: 70px;
+    width: 70px;
+    background: url(../img/blue-logo.svg) no-repeat;
     background-size: contain;
     background-position: center; } }
 
@@ -106,7 +87,7 @@ header .hamburger.closeBtn span:before {
   width: 100%;
   height: 3rem;
   /* Set the fixed height of the footer here */
-  background-color: #fcfbf9;
+  background-color: #f5f8fa;
   /* SmartPhones */
   /* Tablets */
   /* Desktop and larger */ }
@@ -137,7 +118,7 @@ nav.navigation ul li {
   text-transform: uppercase; }
 
 nav.navigation ul li a {
-  color: #fff;
+  color: #000;
   font-weight: bold;
   text-decoration: none; }
 
@@ -145,7 +126,7 @@ nav.navigation ul li a:hover {
   color: #ccc; }
 
 nav.navigation ul li a.active {
-  border-bottom: 3px solid #e8500e; }
+  border-bottom: 3px solid #669999; }
 
 @media only screen and (min-width: 768px) {
   nav.navigation.hidden {

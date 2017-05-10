@@ -11,14 +11,14 @@ nav.navigation {
       font-size: 16px;
       text-transform: uppercase;
       a {
-        color: #fff;
+        color: #000;
         font-weight: bold;
         text-decoration: none;
         &:hover {
           color: #ccc;
         }
         &.active {
-          border-bottom: 3px solid $orange;
+          border-bottom: 3px solid $blue-dark;
         }
       }
     }
