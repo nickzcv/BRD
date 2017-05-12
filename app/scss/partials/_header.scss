@@ -4,14 +4,15 @@ header {
   background: transparent;
 
   .logo {
-    padding: 0;
+
     text-align: center;
+    padding: 1rem 0;
 
     a {
       display: inline-block;
-      height: 80px;
-      width: 115px;
       text-indent: -9999px;
+      height: 50px;
+      width: 130px;
       background: url(../img/blue-logo.svg) no-repeat;
       background-size: contain;
       background-position: center;
@@ -22,7 +23,7 @@ header {
     position: absolute;
     top: 1rem;
     right: 1.5rem;
-    color: #fff;
+    color: #000;
     cursor: pointer;
 
     &.closeBtn span:before {
@@ -37,12 +38,9 @@ header {
     .logo {
       float: left;
       a {
-        display: inline-block;
-        text-indent: -9999px;
         height: 50px;
         width: 130px;
-        background: url(../img/blue-logo.svg) no-repeat;
-        background-position: center;
+        background-position: left;
         margin-left: 25px;
       }
     }
@@ -54,15 +52,16 @@ header {
   @media only screen and (min-width: 992px) {
     height: 100px;
 
-    .logo a{
-      display: inline-block;
-      text-indent: -9999px;
-      height: 70px;
-      width: 70px;
-      background: url(../img/blue-logo.svg) no-repeat;
-      background-size: contain;
-      background-position: center;
+    .logo {
+      text-align: left;
+      a {
+        height: 70px;
+        width: 70px;
+        background-size: contain;
+        background-position: center;
+      }
     }
+
   }
 
   /* Desktop and larger */

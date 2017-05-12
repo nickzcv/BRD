@@ -7,18 +7,32 @@ nav.navigation {
     text-align: right;
     list-style: none;
     li {
-      margin: 5px 0;
-      font-size: 16px;
-      text-transform: uppercase;
+      margin: 1rem 0;
+      font-size: 1rem;
+
       a {
         color: #000;
-        font-weight: bold;
         text-decoration: none;
+        cursor: pointer;
+        padding: 5px 0;
+
         &:hover {
-          color: #ccc;
+          border-bottom: 2px solid $blue-dark;
         }
         &.active {
-          border-bottom: 3px solid $blue-dark;
+          border-bottom: 2px solid $blue-dark;
+        }
+      }
+      .btn {
+        font-size: 1rem;
+        &.btn-success {
+          background-color: $blue-dark;
+          border-color: $blue-dark;
+          &:hover {
+            background-color: $blue-light;
+            border-color: $blue-light;
+          }
+
         }
       }
     }
@@ -32,7 +46,6 @@ nav.navigation {
     }
     ul {
       li {
-        font-weight: 600;
         margin: 10px 10px 7px;
         display: inline-block;
         a {

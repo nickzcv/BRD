@@ -28,14 +28,14 @@ header {
   /* Desktop and larger */ }
 
 header .logo {
-  padding: 0;
-  text-align: center; }
+  text-align: center;
+  padding: 1rem 0; }
 
 header .logo a {
   display: inline-block;
-  height: 80px;
-  width: 115px;
   text-indent: -9999px;
+  height: 50px;
+  width: 130px;
   background: url(../img/blue-logo.svg) no-repeat;
   background-size: contain;
   background-position: center; }
@@ -45,7 +45,7 @@ header .hamburger {
   position: absolute;
   top: 1rem;
   right: 1.5rem;
-  color: #fff;
+  color: #000;
   cursor: pointer; }
 
 header .hamburger.closeBtn span:before {
@@ -55,23 +55,19 @@ header .hamburger.closeBtn span:before {
   header .logo {
     float: left; }
   header .logo a {
-    display: inline-block;
-    text-indent: -9999px;
     height: 50px;
     width: 130px;
-    background: url(../img/blue-logo.svg) no-repeat;
-    background-position: center;
+    background-position: left;
     margin-left: 25px; } }
 
 @media only screen and (min-width: 992px) {
   header {
     height: 100px; }
+  header .logo {
+    text-align: left; }
   header .logo a {
-    display: inline-block;
-    text-indent: -9999px;
     height: 70px;
     width: 70px;
-    background: url(../img/blue-logo.svg) no-repeat;
     background-size: contain;
     background-position: center; } }
 
@@ -113,27 +109,37 @@ nav.navigation ul {
   list-style: none; }
 
 nav.navigation ul li {
-  margin: 5px 0;
-  font-size: 16px;
-  text-transform: uppercase; }
+  margin: 1rem 0;
+  font-size: 1rem; }
 
 nav.navigation ul li a {
   color: #000;
-  font-weight: bold;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer;
+  padding: 5px 0; }
 
 nav.navigation ul li a:hover {
-  color: #ccc; }
+  border-bottom: 2px solid #559797; }
 
 nav.navigation ul li a.active {
-  border-bottom: 3px solid #669999; }
+  border-bottom: 2px solid #559797; }
+
+nav.navigation ul li .btn {
+  font-size: 1rem; }
+
+nav.navigation ul li .btn.btn-success {
+  background-color: #559797;
+  border-color: #559797; }
+
+nav.navigation ul li .btn.btn-success:hover {
+  background-color: #74BDC1;
+  border-color: #74BDC1; }
 
 @media only screen and (min-width: 768px) {
   nav.navigation.hidden {
     display: block !important;
     /* must be here for hamburger menu */ }
   nav.navigation ul li {
-    font-weight: 600;
     margin: 10px 10px 7px;
     display: inline-block; }
   nav.navigation ul li a {
@@ -151,6 +157,16 @@ nav.navigation ul li a.active {
     background: green; }
   nav.navigation .languages .bel {
     background: red; } }
+
+/* Sections styles
+-------------------------------------------------- */
+.section {
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.section.home {
+  height: 10rem;
+  background: #f5f8fa; }
 
 /* icons
   'partials/icons/_ionicons-variables',
