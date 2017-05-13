@@ -71,10 +71,6 @@ header .hamburger.closeBtn span:before {
     background-size: contain;
     background-position: center; } }
 
-@media only screen and (min-width: 1200px) {
-  header .logo {
-    text-align: left; } }
-
 /* Welcome-section styles
 -------------------------------------------------- */
 .footer {
@@ -164,9 +160,50 @@ nav.navigation ul li .btn.btn-success:hover {
   /* Tablets */
   /* Desktop and larger */ }
 
-.section.home {
-  height: 10rem;
+.section.home-banner {
+  height: 3px;
   background: #f5f8fa; }
+
+.section.home {
+  padding: 1rem; }
+
+.section.home .ads-item {
+  position: relative;
+  overflow: hidden;
+  max-height: 7rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
+
+.section.home .ads-item .type {
+  position: absolute;
+  top: 0.1rem;
+  left: 0.1rem;
+  font-size: 0.7rem;
+  background: green;
+  padding: 2px;
+  color: #fff; }
+
+.section.home .ads-item .photo {
+  float: left;
+  height: 7rem;
+  width: 7rem;
+  background: #ccc;
+  margin-right: 0.5rem; }
+
+.section.home .ads-item .title {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem;
+  white-space: nowrap; }
+
+.section.home .ads-item .subtitle {
+  padding: 0.5rem; }
+
+.section.home .ads-item .item-footer {
+  width: 100%;
+  line-height: 1.5rem; }
 
 /* icons
   'partials/icons/_ionicons-variables',

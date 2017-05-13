@@ -4,7 +4,6 @@ header {
   background: transparent;
 
   .logo {
-
     text-align: center;
     padding: 1rem 0;
 
@@ -18,6 +17,7 @@ header {
       background-position: center;
     }
   }
+
   .hamburger {
     font-size: 35px;
     position: absolute;
@@ -30,7 +30,6 @@ header {
       content: "\f2d7";
     }
   }
-
 
 
   /* Tablets */
@@ -66,9 +65,7 @@ header {
 
   /* Desktop and larger */
   @media only screen and (min-width: 1200px) {
-    .logo {
-      text-align: left;
-    }
+
   }
 
 }
