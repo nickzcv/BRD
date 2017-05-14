@@ -33,7 +33,7 @@
         <li><a>Информация</a></li>
         <li>
           <button type="button" class="btn btn-default">Регистрация</button>
-          <button type="button" class="btn btn-success">Войти</button>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#login">Войти</button>
         </li>
       </ul>
       <div class="languages">
@@ -70,7 +70,7 @@
         </div>
       </div>
       <!-- /end ads-item -->
- 
+
     </div>
 <div class="col-md-2"></div>
   </div>
@@ -88,28 +88,46 @@
 
 
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
+<div class="modal fade" id="login"  tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Вход</h4>
       </div>
       <div class="modal-body">
-        <p>Looks like no places in your current location...</p>
-        <p>Would you like to <a>add place</a>?</p>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email адрес">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Запомнить пароль.
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <a class="forgot-password">Забыли пароль?</a>
+            </div>
+          </div>
+          <button type="button" class="btn btn-default login-btn">Войти</button>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="no-account">
+          У вас нет аккаунта? <a class="register-link">Зарегистрируйтесь</a> &mdash; это бесплатно!
+        </div>
       </div>
-    </div>
-    <!-- /end Modal content-->
-  </div>
-</div>
-<!-- /end Modal -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 

@@ -205,6 +205,37 @@ nav.navigation ul li .btn.btn-success:hover {
   width: 100%;
   line-height: 1.5rem; }
 
+/* Modal styles
+-------------------------------------------------- */
+.modal {
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.modal#login .no-account {
+  font-size: 0.7rem;
+  text-align: right; }
+
+.modal#login .login-btn {
+  margin: 1rem 0;
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  background-color: #559797;
+  color: #fff; }
+
+.modal#login .login-btn:hover {
+  background-color: #74BDC1; }
+
+.modal#login .forgot-password {
+  position: relative;
+  display: block;
+  margin: 10px 0;
+  text-align: right; }
+
+@media only screen and (min-width: 768px) {
+  .modal#login .no-account {
+    font-size: 0.8rem; } }
+
 /* icons
   'partials/icons/_ionicons-variables',
   'partials/icons/_ionicons-font',

@@ -1,0 +1,48 @@
+/* Modal styles
+-------------------------------------------------- */
+.modal {
+
+  // Login form
+  &#login {
+
+    .no-account {
+      font-size: 0.7rem;
+      text-align: right;
+    }
+    .login-btn {
+      margin: 1rem 0;
+      width: 100%;
+      font-size: 1rem;
+      padding: 1rem;
+      background-color: $blue-dark;
+      color: #fff;
+      &:hover {
+        background-color: $blue-light;
+      }
+    }
+    .forgot-password {
+      position: relative;
+      display: block;
+      margin: 10px 0;
+      text-align: right;
+    }
+
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+    &#login {
+      .no-account {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+}
