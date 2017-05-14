@@ -2,6 +2,13 @@
 -------------------------------------------------- */
 .modal {
 
+  .modal-header {
+    background-color: $gray-light;
+  }
+  .modal-content {
+    border-radius: 0;
+  }
+
   // Login form
   &#login {
 

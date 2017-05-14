@@ -167,22 +167,23 @@ nav.navigation ul li .btn.btn-success:hover {
 .section.home {
   padding: 1rem; }
 
+.section.home .filters {
+  height: 10rem;
+  background: #f5f8fa; }
+
 .section.home .ads-item {
   position: relative;
   overflow: hidden;
   max-height: 7rem;
   margin-bottom: 1rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
 .section.home .ads-item .type {
   position: absolute;
-  top: 0.1rem;
-  left: 0.1rem;
   font-size: 0.7rem;
-  background: green;
-  padding: 2px;
+  background: #559797;
+  padding: 2px 4px;
   color: #fff; }
 
 .section.home .ads-item .photo {
@@ -193,7 +194,8 @@ nav.navigation ul li .btn.btn-success:hover {
   margin-right: 0.5rem; }
 
 .section.home .ads-item .title {
-  background-color: #f5f5f5;
+  font-size: 1rem;
+  background-color: #f5f8fa;
   border-bottom: 1px solid #ddd;
   padding: 0.5rem;
   white-space: nowrap; }
@@ -205,11 +207,21 @@ nav.navigation ul li .btn.btn-success:hover {
   width: 100%;
   line-height: 1.5rem; }
 
+.section.home .rside {
+  background: #f5f8fa;
+  height: 10rem; }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {
   /* Tablets */
   /* Desktop and larger */ }
+
+.modal .modal-header {
+  background-color: #f5f8fa; }
+
+.modal .modal-content {
+  border-radius: 0; }
 
 .modal#login .no-account {
   font-size: 0.7rem;
