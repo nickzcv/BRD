@@ -31,3 +31,10 @@ a {
   }
 }
 
+// Forms
+
+input {
+  &.form-control {
+    border-radius: 0;
+  }
+}

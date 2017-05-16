@@ -1,7 +1,13 @@
 /* Header styles
 -------------------------------------------------- */
 header {
-  background: transparent;
+  .gradient {
+    background-image:
+      linear-gradient(
+          to bottom,
+          $gray-light, #fff
+      );
+  }
 
   .logo {
     text-align: center;

@@ -19,13 +19,18 @@ a {
 a:hover {
   text-decoration: none; }
 
+input.form-control {
+  border-radius: 0; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
-  background: transparent;
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
+
+header .gradient {
+  background-image: linear-gradient(to bottom, #f5f8fa, #fff); }
 
 header .logo {
   text-align: center;
@@ -161,15 +166,11 @@ nav.navigation ul li .btn.btn-success:hover {
   /* Desktop and larger */ }
 
 .section.home-banner {
-  height: 3px;
+  height: 1px;
   background: #f5f8fa; }
 
 .section.home {
   padding: 1rem; }
-
-.section.home .filters {
-  height: 10rem;
-  background: #f5f8fa; }
 
 .section.home .ads-item {
   position: relative;
@@ -177,6 +178,7 @@ nav.navigation ul li .btn.btn-success:hover {
   max-height: 7rem;
   margin-bottom: 1rem;
   border: 1px solid #ddd;
+  border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
 .section.home .ads-item .type {
