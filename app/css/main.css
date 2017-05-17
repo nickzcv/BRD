@@ -136,6 +136,13 @@ nav.navigation ul li .btn.btn-success:hover {
   background-color: #74BDC1;
   border-color: #74BDC1; }
 
+nav.navigation ul li .btn.btn-default {
+  background-color: transparent;
+  border-color: #586262; }
+
+nav.navigation ul li .btn.btn-default:hover {
+  border-color: #ccc; }
+
 @media only screen and (min-width: 768px) {
   nav.navigation.hidden {
     display: block !important;
@@ -210,8 +217,13 @@ nav.navigation ul li .btn.btn-success:hover {
   line-height: 1.5rem; }
 
 .section.home .rside {
-  background: #f5f8fa;
-  height: 10rem; }
+  display: none; }
+
+@media only screen and (min-width: 992px) {
+  .section.home .rside {
+    display: block;
+    background: #f5f8fa;
+    height: 10rem; } }
 
 /* Modal styles
 -------------------------------------------------- */
