@@ -11,16 +11,26 @@
     .actions {
       background: $gray-light;
       border-bottom: 1px solid #fff;
-      padding: 1rem;
+      padding: 1rem 2rem;
+
+      .btn {
+        background-color: #559797;
+        border-color: #559797;
+        color: #fff;
+        width: 100%;
+      }
     }
     .filters {
       background: $gray-light;
       border-top: 1px solid #eee;
-      height: 10rem;
-      padding: 1rem;
+      padding: 1rem 2rem;
 
       .line-breaker {
         border-top: 1px solid #eee;
+        border-bottom: 1px solid #fff;
+      }
+      .form-group {
+        margin: 1rem 0;
       }
     }
     .content-filter {
@@ -92,7 +102,7 @@
   @media only screen and (min-width: 768px) {
     &.home {
       .content-filter {
-        padding: 1rem 0;
+        padding: 1.3rem 0;
 
         .search {
           float: left;

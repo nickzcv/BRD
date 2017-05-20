@@ -19,7 +19,7 @@ a {
 a:hover {
   text-decoration: none; }
 
-input.form-control {
+input.form-control, select.form-control {
   border-radius: 0; }
 
 /* Header styles
@@ -178,16 +178,25 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home .actions {
   background: #f5f8fa;
   border-bottom: 1px solid #fff;
-  padding: 1rem; }
+  padding: 1rem 2rem; }
+
+.section.home .actions .btn {
+  background-color: #559797;
+  border-color: #559797;
+  color: #fff;
+  width: 100%; }
 
 .section.home .filters {
   background: #f5f8fa;
   border-top: 1px solid #eee;
-  height: 10rem;
-  padding: 1rem; }
+  padding: 1rem 2rem; }
 
 .section.home .filters .line-breaker {
-  border-top: 1px solid #eee; }
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff; }
+
+.section.home .filters .form-group {
+  margin: 1rem 0; }
 
 .section.home .content-filter {
   overflow: hidden; }
@@ -241,7 +250,7 @@ nav.navigation ul li .btn.btn-default:hover {
 
 @media only screen and (min-width: 768px) {
   .section.home .content-filter {
-    padding: 1rem 0; }
+    padding: 1.3rem 0; }
   .section.home .content-filter .search {
     float: left;
     width: 50%; }
