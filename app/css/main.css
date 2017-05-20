@@ -172,19 +172,42 @@ nav.navigation ul li .btn.btn-default:hover {
   /* Tablets */
   /* Desktop and larger */ }
 
-.section.home-banner {
-  height: 1px;
-  background: #f5f8fa; }
-
 .section.home {
+  padding: 1rem 0; }
+
+.section.home .actions {
+  background: #f5f8fa;
+  border-bottom: 1px solid #fff;
   padding: 1rem; }
+
+.section.home .filters {
+  background: #f5f8fa;
+  border-top: 1px solid #eee;
+  height: 10rem;
+  padding: 1rem; }
+
+.section.home .filters .line-breaker {
+  border-top: 1px solid #eee; }
+
+.section.home .content-filter {
+  overflow: hidden; }
+
+.section.home .content-filter .search .form-control {
+  height: 36px; }
+
+.section.home .content-filter .btn i:before {
+  font-size: 1.2rem; }
+
+.section.home .ads-list {
+  overflow: hidden;
+  margin: 1rem; }
 
 .section.home .ads-item {
   position: relative;
   overflow: hidden;
   max-height: 7rem;
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #eeeeee;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
@@ -205,7 +228,7 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home .ads-item .title {
   font-size: 1rem;
   background-color: #f5f8fa;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eeeeee;
   padding: 0.5rem;
   white-space: nowrap; }
 
@@ -216,10 +239,18 @@ nav.navigation ul li .btn.btn-default:hover {
   width: 100%;
   line-height: 1.5rem; }
 
-.section.home .rside {
-  display: none; }
+@media only screen and (min-width: 768px) {
+  .section.home .content-filter {
+    padding: 1rem 0; }
+  .section.home .content-filter .search {
+    float: left;
+    width: 50%; }
+  .section.home .content-filter .btn-toolbar {
+    float: right; } }
 
 @media only screen and (min-width: 992px) {
+  .section.home .ads-list {
+    margin: 1rem 0; }
   .section.home .rside {
     display: block;
     background: #f5f8fa;

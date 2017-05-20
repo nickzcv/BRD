@@ -53,26 +53,69 @@
 <section class="container-fluid section home-banner">
 </section>
 
-<!-- Ads list  -->
+
 <section class="container-fluid section home">
   <div class="row">
     <div class="col-md-3">
+      <div class="actions">
+        <button type="button" class="btn btn-default ">Новое объявление</button>
+      </div>
       <div class="filters">
+        <div class="checkbox">
+          <label><input type="checkbox" value="">Спрос</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">Предложение</label>
+        </div>
+        <div class="line-breaker"></div>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">Товар</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" value="">Услуга</label>
+        </div>
 
       </div>
     </div>
-    <div class="col-md-7 ads-list">
-      <!-- ads-item -->
-      <div class="ads-item">
-        <div class="type">Продам</div>
-        <div class="photo"></div>
-        <div class="title">Паллетная заготовка, 1-2 сорт</div>
-        <div class="subtitle">
-          Продам Паллетная заготовка. Все в наличии. Хвоя.
+    <div class="col-md-7">
+      <div class="content-filter">
+        <div class="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Искать">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button"><i class="ion-search"></i></button>
+            </span>
+          </div><!-- /input-group -->
         </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group" role="group" aria-label="First group">
+            <button type="button" class="btn btn-default"><i class="ion-image"></i></button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Second group">
+            <button type="button" class="btn btn-default"><i class="ion-contrast"></i></button>
+            <button type="button" class="btn btn-default"><i class="ion-grid"></i></button>
+            <button type="button" class="btn btn-default"><i class="ion-arrow-move"></i></button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Third group">
+            <button type="button" class="btn btn-default"><i class="ion-refresh"></i></button>
+          </div>
+        </div><!-- /btn-toolbar -->
       </div>
-      <!-- /end ads-item -->
 
+      <!-- Ads list  -->
+      <div class="ads-list">
+        <!-- ads-item -->
+        <div class="ads-item">
+          <div class="type">Продам</div>
+          <div class="photo"></div>
+          <div class="title">Паллетная заготовка, 1-2 сорт</div>
+          <div class="subtitle">
+            Продам Паллетная заготовка. Все в наличии. Хвоя.
+          </div>
+        </div>
+        <!-- /end ads-item -->
+      </div>
+      <!-- /end ads-list -->
     </div>
     <div class="col-md-2">
       <div class="rside">
@@ -82,7 +125,7 @@
   </div>
 
 </section>
-<!-- /end Ads list -->
+
 
 <!-- Footer -->
 <footer class="footer">

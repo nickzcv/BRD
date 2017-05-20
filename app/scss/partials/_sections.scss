@@ -2,18 +2,46 @@
 -------------------------------------------------- */
 .section {
   &.home-banner {
-    height: 1px;
-    background: $gray-light;
+
   }
 
   &.home {
-    padding: 1rem;
+    padding: 1rem 0;
 
+    .actions {
+      background: $gray-light;
+      border-bottom: 1px solid #fff;
+      padding: 1rem;
+    }
     .filters {
+      background: $gray-light;
+      border-top: 1px solid #eee;
+      height: 10rem;
+      padding: 1rem;
 
+      .line-breaker {
+        border-top: 1px solid #eee;
+      }
+    }
+    .content-filter {
+      overflow: hidden;
+
+      .search {
+        .form-control {
+          height: 36px;
+        }
+
+      }
+      .btn-toolbar {
+
+      }
+      .btn i:before {
+        font-size: 1.2rem;
+      }
     }
     .ads-list {
-
+      overflow: hidden;
+      margin: 1rem;
     }
     .ads-item {
       position: relative;
@@ -54,7 +82,7 @@
       }
     }
     .rside {
-      display: none;
+
     }
 
   }
@@ -62,7 +90,20 @@
 
   /* Tablets */
   @media only screen and (min-width: 768px) {
+    &.home {
+      .content-filter {
+        padding: 1rem 0;
 
+        .search {
+          float: left;
+          width: 50%;
+        }
+        .btn-toolbar {
+          float: right;
+
+        }
+      }
+    }
 
   }
 
@@ -70,6 +111,9 @@
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
     &.home {
+      .ads-list {
+        margin: 1rem 0;
+      }
       .rside {
         display: block;
         background: $gray-light;
