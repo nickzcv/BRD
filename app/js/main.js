@@ -11,6 +11,17 @@ $(function() {
     $('.navigation').toggleClass('hidden');
   });
 
+  /*
+   * Mobile filter handler
+   *
+   */
+  $('.mobile-filter-btn .btn').on('click', function() {
+    $('.filters').toggleClass('visible');
+  });
+
+  $('a.close-btn').on('click', function() {
+    $('.filters').removeClass('visible');
+  });
 
 
 

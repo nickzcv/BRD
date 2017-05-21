@@ -170,7 +170,8 @@ nav.navigation ul li .btn.btn-default:hover {
 -------------------------------------------------- */
 .section {
   /* Tablets */
-  /* Desktop and larger */ }
+  /* Desktop */
+  /* Large screens */ }
 
 .section.home {
   padding: 0 1rem; }
@@ -191,6 +192,18 @@ nav.navigation ul li .btn.btn-default:hover {
   border-top: 1px solid #eee;
   padding: 1rem 1.5rem; }
 
+.section.home .filters.visible {
+  display: block !important; }
+
+.section.home .filters .close-btn {
+  position: absolute;
+  right: 2rem;
+  cursor: pointer;
+  color: #ccc; }
+
+.section.home .filters .close-btn:hover {
+  color: #000; }
+
 .section.home .filters .line-breaker {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #fff; }
@@ -201,15 +214,26 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home .content-filter {
   overflow: hidden; }
 
-.section.home .content-filter .search .form-control {
-  height: 36px; }
+.section.home .content-filter .mobile-filter-btn {
+  overflow: hidden;
+  float: left;
+  background: #f5f8fa; }
+
+.section.home .content-filter .mobile-filter-btn .btn {
+  margin: 0.5rem; }
+
+.section.home .content-filter .search .input-group {
+  padding: 0.5rem; }
+
+.section.home .content-filter .btn-toolbar {
+  padding: 0.5rem; }
 
 .section.home .content-filter .btn i:before {
   font-size: 1.2rem; }
 
 .section.home .ads-list {
   overflow: hidden;
-  margin: 1rem; }
+  margin: 1rem 0; }
 
 .section.home .ads-item {
   position: relative;
@@ -249,8 +273,6 @@ nav.navigation ul li .btn.btn-default:hover {
   line-height: 1.5rem; }
 
 @media only screen and (min-width: 768px) {
-  .section.home .content-filter {
-    padding: 1.3rem 0; }
   .section.home .content-filter .search {
     float: left;
     width: 50%; }
@@ -265,7 +287,25 @@ nav.navigation ul li .btn.btn-default:hover {
   .section.home .rside {
     display: block;
     background: #f5f8fa;
-    height: 10rem; } }
+    height: 10rem; }
+  .section.home .actions {
+    padding: 1rem; }
+  .section.home .actions .btn {
+    font-size: 0.9rem; }
+  .section.home .filters {
+    padding: 1rem; }
+  .section.home .content-filter {
+    padding: 1.3rem 0; }
+  .section.home .content-filter .search .input-group, .section.home .content-filter .btn-toolbar {
+    padding: 0; } }
+
+@media only screen and (min-width: 1200px) {
+  .section.home .actions {
+    padding: 1rem 2rem; }
+  .section.home .actions .btn {
+    font-size: 1rem; }
+  .section.home .filters {
+    padding: 1rem 1.5rem; } }
 
 /* Modal styles
 -------------------------------------------------- */

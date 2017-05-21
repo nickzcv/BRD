@@ -44,7 +44,7 @@
     <!-- /end navigation -->
   </div>
   <div class="hamburger visible-xs">
-    <span class="icon ion-navicon"></span>
+    <span class="ion-navicon"></span>
   </div>
 
 </header>
@@ -60,7 +60,8 @@
       <div class="actions">
         <button type="button" class="btn btn-default btn-lg disabled">Добавить объявление</button>
       </div>
-      <div class="filters">
+      <div class="filters hidden-xs hidden-sm">
+        <a class="close-btn visible-xs visible-sm"><span class="ion-close"></span></a>
         <div class="checkbox">
           <label><input type="checkbox" value="">Спрос</label>
         </div>
@@ -102,31 +103,34 @@
         </div>
         <div class="line-breaker"></div>
         <div class="form-group">
-          <button type="button" class="btn btn-default disabled">Сбросить фильтр <i class="ion-refresh"></i></button>
+          <button type="button" class="btn btn-default disabled">Сбросить фильтр <span class="ion-refresh"></span></button>
         </div>
       </div>
     </div>
     <div class="col-md-7">
       <div class="content-filter">
+        <div class="btn-group mobile-filter-btn visible-xs visible-sm" role="group" aria-label="First group">
+          <button type="button" class="btn btn-default"><span class="ion-ios-settings-strong"></span></button>
+        </div>
         <div class="search">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Искать">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="ion-search"></i></button>
+              <button class="btn btn-default" type="button"><span class="ion-search"></span></button>
             </span>
           </div><!-- /input-group -->
         </div>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-toolbar hidden-xs" role="toolbar" aria-label="Toolbar with button groups">
           <div class="btn-group" role="group" aria-label="First group">
-            <button type="button" class="btn btn-default"><i class="ion-image"></i></button>
+            <button type="button" class="btn btn-default"><span class="ion-image"></span></button>
           </div>
           <div class="btn-group" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-default"><i class="ion-contrast"></i></button>
-            <button type="button" class="btn btn-default"><i class="ion-grid"></i></button>
-            <button type="button" class="btn btn-default"><i class="ion-arrow-move"></i></button>
+            <button type="button" class="btn btn-default"><span class="ion-contrast"></span></button>
+            <button type="button" class="btn btn-default"><span class="ion-grid"></span></button>
+            <button type="button" class="btn btn-default"><span class="ion-arrow-move"></span></button>
           </div>
           <div class="btn-group" role="group" aria-label="Third group">
-            <button type="button" class="btn btn-default"><i class="ion-refresh"></i></button>
+            <button type="button" class="btn btn-default"><span class="ion-refresh"></span></button>
           </div>
         </div><!-- /btn-toolbar -->
       </div>

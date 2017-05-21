@@ -25,6 +25,18 @@
       border-top: 1px solid #eee;
       padding: 1rem 1.5rem;
 
+      &.visible {
+        display: block!important;
+      }
+      .close-btn {
+        position: absolute;
+        right: 2rem;
+        cursor: pointer;
+        color: $gray-dark;
+        &:hover {
+          color: #000;
+        }
+      }
       .line-breaker {
         border-top: 1px solid #eee;
         border-bottom: 1px solid #fff;
@@ -36,14 +48,20 @@
     .content-filter {
       overflow: hidden;
 
-      .search {
-        .form-control {
-          height: 36px;
-        }
+      .mobile-filter-btn {
+        overflow: hidden;
+        float: left;
+        background: $gray-light;
 
+        .btn{
+          margin: 0.5rem;
+        }
+      }
+      .search .input-group{
+        padding: 0.5rem;
       }
       .btn-toolbar {
-
+        padding: 0.5rem;
       }
       .btn i:before {
         font-size: 1.2rem;
@@ -51,7 +69,7 @@
     }
     .ads-list {
       overflow: hidden;
-      margin: 1rem;
+      margin: 1rem 0;
     }
     .ads-item {
       position: relative;
@@ -102,7 +120,7 @@
   @media only screen and (min-width: 768px) {
     &.home {
       .content-filter {
-        padding: 1.3rem 0;
+
 
         .search {
           float: left;
@@ -118,7 +136,7 @@
   }
 
 
-  /* Desktop and larger */
+  /* Desktop */
   @media only screen and (min-width: 992px) {
     &.home {
       padding: 0 2rem;
@@ -130,6 +148,38 @@
         display: block;
         background: $gray-light;
         height: 10rem;
+      }
+      .actions {
+        padding: 1rem;
+        .btn{
+          font-size: 0.9rem;
+        }
+      }
+      .filters {
+        padding: 1rem;
+      }
+      .content-filter {
+        padding: 1.3rem 0;
+
+        .search .input-group, .btn-toolbar{
+          padding: 0;
+        }
+      }
+    }
+
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1200px) {
+    &.home {
+      .actions {
+        padding: 1rem 2rem;
+        .btn {
+          font-size: 1rem;
+        }
+      }
+      .filters {
+        padding: 1rem 1.5rem;
       }
     }
 
