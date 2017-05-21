@@ -173,7 +173,7 @@ nav.navigation ul li .btn.btn-default:hover {
   /* Desktop and larger */ }
 
 .section.home {
-  padding: 1rem 0; }
+  padding: 0 1rem; }
 
 .section.home .actions {
   background: #f5f8fa;
@@ -189,7 +189,7 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home .filters {
   background: #f5f8fa;
   border-top: 1px solid #eee;
-  padding: 1rem 2rem; }
+  padding: 1rem 1.5rem; }
 
 .section.home .filters .line-breaker {
   border-top: 1px solid #eee;
@@ -258,6 +258,8 @@ nav.navigation ul li .btn.btn-default:hover {
     float: right; } }
 
 @media only screen and (min-width: 992px) {
+  .section.home {
+    padding: 0 2rem; }
   .section.home .ads-list {
     margin: 1rem 0; }
   .section.home .rside {
