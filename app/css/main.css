@@ -257,7 +257,8 @@ nav.navigation ul li .btn.btn-default:hover {
   height: 7rem;
   width: 7rem;
   background: #ccc;
-  margin-right: 0.5rem; }
+  margin-right: 0.5rem;
+  background-size: cover; }
 
 .section.home .ads-item .title {
   font-size: 1rem;
@@ -274,8 +275,18 @@ nav.navigation ul li .btn.btn-default:hover {
   right: 0;
   bottom: 0;
   width: 100%;
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 7rem; }
+
+.section.home .ads-item .item-footer .date, .section.home .ads-item .item-footer .organization, .section.home .ads-item .item-footer .location {
+  display: inline-block;
   line-height: 1.5rem;
-  text-align: right; }
+  padding: 0 1rem;
+  background: #f9f9f9; }
+
+.section.home .ads-item .item-footer .more {
+  margin: 0 0.3rem 0 2rem; }
 
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {

@@ -94,6 +94,7 @@
         width: 7rem;
         background: $gray-dark;
         margin-right: 0.5rem;
+        background-size: cover;
       }
       .title {
         font-size: 1rem;
@@ -110,8 +111,20 @@
         right: 0;
         bottom: 0;
         width: 100%;
-        line-height: 1.5rem;
+
         text-align: right;
+        white-space: nowrap;
+        padding-left: 7rem;
+
+        .date, .organization, .location {
+          display: inline-block;
+          line-height: 1.5rem;
+          padding: 0 1rem;
+          background: #f9f9f9;
+        }
+        .more{
+          margin: 0 0.3rem 0 2rem;
+        }
       }
     }
     .rside {
