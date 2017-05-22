@@ -28,7 +28,9 @@ body {
 
 a {
   text-decoration: underline;
+
   &:hover {
+    cursor: pointer;
     text-decoration: none;
   }
 }
@@ -36,6 +38,7 @@ a {
 // Forms
 
 input, select {
+
   &.form-control {
     border-radius: 0;
   }

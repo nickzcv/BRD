@@ -17,6 +17,7 @@ a {
   text-decoration: underline; }
 
 a:hover {
+  cursor: pointer;
   text-decoration: none; }
 
 input.form-control, select.form-control {
@@ -269,8 +270,12 @@ nav.navigation ul li .btn.btn-default:hover {
   padding: 0.5rem; }
 
 .section.home .ads-item .item-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  line-height: 1.5rem; }
+  line-height: 1.5rem;
+  text-align: right; }
 
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {

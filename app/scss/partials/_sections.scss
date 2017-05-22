@@ -1,6 +1,7 @@
 /* Sections styles
 -------------------------------------------------- */
 .section {
+
   &.home-banner {
 
   }
@@ -105,8 +106,12 @@
         padding: 0.5rem;
       }
       .item-footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
         width: 100%;
         line-height: 1.5rem;
+        text-align: right;
       }
     }
     .rside {
