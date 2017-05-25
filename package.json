@@ -8,6 +8,8 @@
     "express": "4.15.3",
     "body-parser": "latest",
     "winston": "latest",
+    "passport": "latest",
+    "passport-http": "latest"
   },
   "devDependencies": {
     "gulp": "latest",

@@ -3,7 +3,7 @@ const port = process.env.PORT || 80;
 const app = express();
 const bodyParser = require('body-parser');
 const winston = require('winston');
-// const mongoose = require('mongoose');
+const routes = require('./routes/index');
 
 app.use(bodyParser.json());
 // root directory from which the static assets are to be served.
@@ -20,10 +20,7 @@ app.use(function (req, res, next) {
 });
 
 
-app.get('*', function (req, res) {
-  res.sendFile(__dirname + '/app/index.html');
-});
-
+app.use('/', routes);
 
 app.listen(port);
 console.log('Server started on port: ' + port);
