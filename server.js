@@ -3,6 +3,8 @@ const port = process.env.PORT || 80;
 const app = express();
 const bodyParser = require('body-parser');
 const winston = require('winston');
+const passport = require('passport');
+
 const routes = require('./routes/index');
 
 app.use(bodyParser.json());
@@ -19,7 +21,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+app.use(passport.initialize());
 app.use('/', routes);
 
 app.listen(port);
