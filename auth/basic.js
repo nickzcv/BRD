@@ -3,14 +3,13 @@ const BasicStrategy = require('passport-http').BasicStrategy;
 
 var authenticate = function (username, password, callback) {
   if (username === "nick") {
-    callback(null, {
+    return callback(null, {
       username: 'Nick',
       displayName: 'Nick Z'
     });
   } else {
     return callback(null, false);
   }
-
   return callback({
     message: 'Error'
   });

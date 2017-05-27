@@ -1,15 +1,40 @@
 const express = require('express');
 const port = process.env.PORT || 80;
-const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const winston = require('winston');
 const passport = require('passport');
+const session = require('express-session');
+//const database = require('./config/database');
+const routes = require("./config/routes");
 
-const routes = require('./routes/index');
+const app = express();
 
+// Uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser.json());
-// root directory from which the static assets are to be served.
-app.use(express.static('./app'));
+// Root directory from which the static assets are to be served.
+app.use(express.static(path.join(__dirname, 'app')));
+
+app.use(session({
+  secret: "tank and spank",
+  resave: true,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//database.connect();
+app.use(routes);
+
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
 // Set up a logger.
 app.locals.logger = new winston.Logger();
 app.locals.logger.add(winston.transports.Console, {
@@ -21,8 +46,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(passport.initialize());
-app.use('/', routes);
 
 app.listen(port);
 console.log('Server started on port: ' + port);

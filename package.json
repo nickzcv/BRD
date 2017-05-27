@@ -5,11 +5,16 @@
   "main": "server.js",
   "author": "Zaicev Nick",
   "dependencies": {
-    "express": "4.15.3",
+    "bcrypt-nodejs": "",
     "body-parser": "latest",
-    "winston": "latest",
+    "express": "latest",
+    "express-session" : "",
     "passport": "latest",
-    "passport-http": "latest"
+    "passport-http": "latest",
+    "mongoose": "^4.0.2",
+    "passport-local": "",
+    "serve-favicon": "~2.1.3",
+    "winston": "latest"
   },
   "devDependencies": {
     "gulp": "latest",
