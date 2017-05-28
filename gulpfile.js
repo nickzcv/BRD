@@ -1,9 +1,14 @@
-var gulp = require("gulp"),//http://gulpjs.com/
-    util = require("gulp-util"),//https://github.com/gulpjs/gulp-util
-    sass = require("gulp-sass"),//https://www.npmjs.org/package/gulp-sass
-    minifycss = require('gulp-clean-css'),//https://www.npmjs.org/package/gulp-minify-css
-    rename = require('gulp-rename'),//https://www.npmjs.org/package/gulp-rename
+var gulp = require("gulp"),
+    util = require("gulp-util"),
+    sass = require("gulp-sass"),
+    minifycss = require('gulp-clean-css'),
+    rename = require('gulp-rename'),
     log = util.log;
+
+var handlebars = require('gulp-handlebars');
+var wrap = require('gulp-wrap');
+var declare = require('gulp-declare');
+var concat = require('gulp-concat');
 
 
 gulp.task("sass", function(){
@@ -15,6 +20,19 @@ gulp.task("sass", function(){
   .pipe(rename({suffix: '.min'}))
   .pipe(minifycss())
   .pipe(gulp.dest('app/css'));
+});
+
+gulp.task('templates', function(){
+  log("Generate .hbs files " + (new Date()).toString());
+  gulp.src('app/templates/*.hbs')
+  .pipe(handlebars())
+  .pipe(wrap('Handlebars.template(<%= contents %>)'))
+  .pipe(declare({
+    namespace: 'brd.templates',
+    noRedeclare: true // Avoid duplicate declarations
+  }))
+  .pipe(concat('templates.js'))
+  .pipe(gulp.dest('app/js'));
 });
 
 gulp.task("watch", function(){

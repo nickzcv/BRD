@@ -1,0 +1,4 @@
+var brd = {
+  templates: {}
+};
+

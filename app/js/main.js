@@ -1,40 +1,42 @@
-const MyModel = Backbone.Model.extend();
-
-const MyView = Backbone.Marionette.View.extend({
-  template: _.template('<h1><%= title %></h1>')
-});
-
-const App = Backbone.Marionette.Application.extend({
-  region: '#form',
-
-  onBeforeStart: function(app, options) {
-    this.model = new MyModel(options.data);
-  },
-
-  onStart: function(app, options) {
-    this.showView(new MyView({
-      model: this.model
-    }));
-    Backbone.history.start();
-  }
-});
-
-const app = new App();
-
-app.start({
-  data: {
-    title: 'Marionette says hello!'
-  }
-});
-
-
-
-
-
-
 
 
 $(function() {
+
+
+  const MyModel = Backbone.Model.extend();
+
+  const MyView = Backbone.Marionette.View.extend({
+    template: brd.templates.main
+  });
+
+  const App = Backbone.Marionette.Application.extend({
+    region: '#app',
+
+    onBeforeStart: function(app, options) {
+      this.model = new MyModel(options.data);
+    },
+
+    onStart: function(app, options) {
+      this.showView(new MyView({
+        model: this.model
+      }));
+      Backbone.history.start();
+    }
+  });
+
+  const app = new App();
+
+  app.start({
+    data: {
+      title: 'Marionette says hello!'
+    }
+  });
+
+
+
+
+
+
   /*
    * Mobile navigation handler (hamburger)
    *

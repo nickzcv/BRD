@@ -21,6 +21,10 @@
     "gulp-clean-css": "latest",
     "gulp-util": "latest",
     "gulp-rename": "latest",
-    "gulp-sass": "latest"
+    "gulp-sass": "latest",
+    "gulp-handlebars": "4.0.0",
+    "gulp-wrap": "latest",
+    "gulp-declare": "latest",
+    "gulp-concat": "latest"
   }
 }
