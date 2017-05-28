@@ -18,7 +18,29 @@ var app = (function() {
   };
 
   objApp.init = function() {
-    console.log('app.init');
+    // console.log('app.init');
+    const App = Backbone.Marionette.Application.extend({
+      region: '#app',
+
+      onBeforeStart: function(application, options) {
+        this.model = new app.models.MainModel(options.data);
+      },
+
+      onStart: function(application, options) {
+        this.showView(new app.views.MainView({
+          model: this.model
+        }));
+        Backbone.history.start();
+      }
+    });
+
+    const application = new App();
+
+    application.start({
+      data: {
+        title: 'Marionette says hello!'
+      }
+    });
   };
 
   return objApp;
@@ -30,30 +52,6 @@ var app = (function() {
  ******************************************/
 $(document).ready(function() {
   app.init();
-
-  const App = Backbone.Marionette.Application.extend({
-    region: '#app',
-
-    onBeforeStart: function(app2, options) {
-      this.model = new app.models.MainModel(options.data);
-    },
-
-    onStart: function(app2, options) {
-      this.showView(new app.views.MainView({
-        model: this.model
-      }));
-      Backbone.history.start();
-    }
-  });
-
-  const app2 = new App();
-
-  app2.start({
-    data: {
-      title: 'Marionette says hello!'
-    }
-  });
-
 });
 
 
