@@ -3,7 +3,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
   regions: {
     header: 'header',
-    sections: 'sections',
     footer: 'footer'
   },
 

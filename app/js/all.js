@@ -61,17 +61,6 @@ $(document).ready(function() {
 
 
 
-
-
-  /*
-   * Mobile navigation handler (hamburger)
-   *
-   */
-  $('.hamburger').on('click', function() {
-    $(this).toggleClass('closeBtn');
-    $('.navigation').toggleClass('hidden');
-  });
-
   /*
    * Mobile filter handler
    *
@@ -99,14 +88,33 @@ app.views.FooterView = Backbone.Marionette.View.extend({
   template: brd.templates.footer
 });
 app.views.HeaderView = Backbone.Marionette.View.extend({
-  template: brd.templates.header
+  template: brd.templates.header,
+
+  ui: {
+    hamburger: '.hamburger',
+    navigation: '.navigation'
+  },
+
+  events: {
+    'click @ui.hamburger': 'toggleMobileMenu'
+  },
+
+
+  /*
+   * Mobile navigation handler (hamburger)
+   *
+   */
+  toggleMobileMenu: function () {
+    this.ui.hamburger.toggleClass('closeBtn');
+    this.ui.navigation.toggleClass('hidden');
+  }
+
 });
 app.views.MainView = Backbone.Marionette.View.extend({
   template: brd.templates.main,
 
   regions: {
     header: 'header',
-    sections: 'sections',
     footer: 'footer'
   },
 
