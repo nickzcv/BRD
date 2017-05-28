@@ -35,6 +35,18 @@ gulp.task('templates', function(){
   .pipe(gulp.dest('app/js'));
 });
 
+gulp.task('js', function() {
+  return gulp.src([
+    'app/js/app.js',
+    'app/js/collections/*.js',
+    'app/js/models/*.js',
+    'app/js/routers/*.js',
+    'app/js/views/*.js'
+  ])
+  .pipe(concat('all.js'))
+  .pipe(gulp.dest('app/js'));
+});
+
 gulp.task("watch", function(){
   log("Watching scss files for modifications");
   gulp.watch('app/scss/partials/*.scss', ["sass"]);
