@@ -11,7 +11,6 @@ var gulp = require('gulp'),
 
 
 gulp.task('sass', function(){
-  log('Generate CSS files ' + (new Date()).toString());
   gulp.src('app/scss/main.scss')
   .pipe(sass({ includePaths : ['_/partials/'] }))
   .pipe(sass({ style: 'expanded' }))
@@ -22,12 +21,11 @@ gulp.task('sass', function(){
 });
 
 gulp.task('templates', function(){
-  log('Generate .hbs files ' + (new Date()).toString());
   gulp.src('app/templates/*.hbs')
   .pipe(handlebars())
   .pipe(wrap('Handlebars.template(<%= contents %>)'))
   .pipe(declare({
-    namespace: 'brd.templates',
+    namespace: 'tpl.templates',
     noRedeclare: true // Avoid duplicate declarations
   }))
   .pipe(concat('templates.js'))

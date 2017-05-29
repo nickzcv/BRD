@@ -1,6 +1,6 @@
 app.views.MainView = Backbone.Marionette.View.extend({
 
-  template: brd.templates.main,
+  template: tpl.templates.main,
 
   regions: {
     header: 'header',

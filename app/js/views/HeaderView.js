@@ -1,6 +1,6 @@
 app.views.HeaderView = Backbone.Marionette.View.extend({
 
-  template: brd.templates.header,
+  template: tpl.templates.header,
 
   ui: {
     hamburger: '.hamburger',

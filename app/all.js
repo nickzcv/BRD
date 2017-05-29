@@ -58,16 +58,16 @@ $(document).ready(function() {
 app.models.MainModel = Backbone.Model.extend();
 app.views.FilterView = Backbone.Marionette.View.extend({
 
-  template: brd.templates.filter,
+  template: tpl.templates.filter,
 
 
 });
 app.views.FooterView = Backbone.Marionette.View.extend({
-  template: brd.templates.footer
+  template: tpl.templates.footer
 });
 app.views.HeaderView = Backbone.Marionette.View.extend({
 
-  template: brd.templates.header,
+  template: tpl.templates.header,
 
   ui: {
     hamburger: '.hamburger',
@@ -104,7 +104,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 });
 app.views.MainView = Backbone.Marionette.View.extend({
 
-  template: brd.templates.main,
+  template: tpl.templates.main,
 
   regions: {
     header: 'header',
