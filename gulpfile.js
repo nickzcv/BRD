@@ -1,29 +1,28 @@
-var gulp = require("gulp"),
-    util = require("gulp-util"),
-    sass = require("gulp-sass"),
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
     minifycss = require('gulp-clean-css'),
     rename = require('gulp-rename'),
+    handlebars = require('gulp-handlebars'),
+    wrap = require('gulp-wrap'),
+    declare = require('gulp-declare'),
+    concat = require('gulp-concat'),
+    util = require('gulp-util'),
     log = util.log;
 
-var handlebars = require('gulp-handlebars');
-var wrap = require('gulp-wrap');
-var declare = require('gulp-declare');
-var concat = require('gulp-concat');
 
-
-gulp.task("sass", function(){
-  log("Generate CSS files " + (new Date()).toString());
+gulp.task('sass', function(){
+  log('Generate CSS files ' + (new Date()).toString());
   gulp.src('app/scss/main.scss')
   .pipe(sass({ includePaths : ['_/partials/'] }))
   .pipe(sass({ style: 'expanded' }))
-  .pipe(gulp.dest("app/css"))
+  .pipe(gulp.dest('app/css'))
   .pipe(rename({suffix: '.min'}))
   .pipe(minifycss())
   .pipe(gulp.dest('app/css'));
 });
 
 gulp.task('templates', function(){
-  log("Generate .hbs files " + (new Date()).toString());
+  log('Generate .hbs files ' + (new Date()).toString());
   gulp.src('app/templates/*.hbs')
   .pipe(handlebars())
   .pipe(wrap('Handlebars.template(<%= contents %>)'))
@@ -32,7 +31,7 @@ gulp.task('templates', function(){
     noRedeclare: true // Avoid duplicate declarations
   }))
   .pipe(concat('templates.js'))
-  .pipe(gulp.dest('app/js'));
+  .pipe(gulp.dest('app'));
 });
 
 gulp.task('js', function() {
@@ -44,10 +43,15 @@ gulp.task('js', function() {
     'app/js/views/*.js'
   ])
   .pipe(concat('all.js'))
-  .pipe(gulp.dest('app/js'));
+  .pipe(gulp.dest('app'));
 });
 
-gulp.task("watch", function(){
-  log("Watching scss files for modifications");
-  gulp.watch('app/scss/partials/*.scss', ["sass"]);
+gulp.task('watch', function(){
+  log('Watching for changes...'+ (new Date()).toString());
+  // Watch for CSS changes
+  gulp.watch('app/scss/partials/*.scss', {interval: 1000}, ['sass']);
+  // Watch for Handlebars template changes
+  gulp.watch('app/templates/*.hbs', {interval: 1000}, ['templates']);
+  // Watch for JS changes
+  gulp.watch('app/js/**/*.js', {interval: 1000}, ['js']);
 });

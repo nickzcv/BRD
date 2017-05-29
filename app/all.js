@@ -1,5 +1,3 @@
-// app.js
-
 /*******************************************************************************
  APP
  *******************************************************************************/
@@ -38,7 +36,7 @@ var app = (function() {
 
     application.start({
       data: {
-        title: 'Marionette says hello!'
+        title: 'test!'
       }
     });
   };
@@ -57,48 +55,32 @@ $(document).ready(function() {
 
 
 
-
-
-
-
-  /*
-   * Mobile filter handler
-   *
-   */
-  $('.mobile-filter-btn .btn').on('click', function() {
-    $('.filters').toggleClass('visible');
-  });
-
-  $('a.close-btn').on('click', function() {
-    $('.filters').removeClass('visible');
-  });
-
-
-  $('.register-link').on('click', function() {
-    $('#login').modal('hide');
-    $('#registration').modal('show');
-  });
-
-
-
-
-
 app.models.MainModel = Backbone.Model.extend();
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: brd.templates.filter,
+
+
+});
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: brd.templates.footer
 });
 app.views.HeaderView = Backbone.Marionette.View.extend({
+
   template: brd.templates.header,
 
   ui: {
     hamburger: '.hamburger',
-    navigation: '.navigation'
+    navigation: '.navigation',
+    loginModal: '#login',
+    registrationModal: '#registration',
+    registrationLink: '.register-link'
   },
 
   events: {
-    'click @ui.hamburger': 'toggleMobileMenu'
+    'click @ui.hamburger': 'toggleMobileMenu',
+    'click @ui.registrationLink': 'switchModal'
   },
-
 
   /*
    * Mobile navigation handler (hamburger)
@@ -107,19 +89,45 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
   toggleMobileMenu: function () {
     this.ui.hamburger.toggleClass('closeBtn');
     this.ui.navigation.toggleClass('hidden');
+  },
+
+  /*
+   * Switch from login to registration modal dialog
+   *
+   */
+  switchModal: function () {
+    this.ui.loginModal.modal('hide');
+    this.ui.registrationModal.modal('show');
   }
 
 });
 app.views.MainView = Backbone.Marionette.View.extend({
+
   template: brd.templates.main,
 
   regions: {
     header: 'header',
+    filter: '.filter',
     footer: 'footer'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function () {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function () {
+      $('.filters').removeClass('visible');
+    }
   },
 
   onRender: function() {
     this.showChildView('header', new app.views.HeaderView());
+    this.showChildView('filter', new app.views.FilterView());
     this.showChildView('footer', new app.views.FooterView());
   }
 

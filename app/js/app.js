@@ -1,5 +1,3 @@
-// app.js
-
 /*******************************************************************************
  APP
  *******************************************************************************/
@@ -38,7 +36,7 @@ var app = (function() {
 
     application.start({
       data: {
-        title: 'Marionette says hello!'
+        title: 'test!'
       }
     });
   };
@@ -53,32 +51,6 @@ var app = (function() {
 $(document).ready(function() {
   app.init();
 });
-
-
-
-
-
-
-
-
-  /*
-   * Mobile filter handler
-   *
-   */
-  $('.mobile-filter-btn .btn').on('click', function() {
-    $('.filters').toggleClass('visible');
-  });
-
-  $('a.close-btn').on('click', function() {
-    $('.filters').removeClass('visible');
-  });
-
-
-  $('.register-link').on('click', function() {
-    $('#login').modal('hide');
-    $('#registration').modal('show');
-  });
-
 
 
 
