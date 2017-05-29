@@ -23,9 +23,10 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    this.showChildView('header', new app.views.HeaderView());
-    this.showChildView('filter', new app.views.FilterView());
-    this.showChildView('footer', new app.views.FooterView());
+    var thisView = this;
+    thisView.showChildView('header', new app.views.HeaderView());
+    thisView.showChildView('filter', new app.views.FilterView());
+    thisView.showChildView('footer', new app.views.FooterView());
   }
 
 });

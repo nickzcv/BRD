@@ -8,7 +8,6 @@
   <nav class="col-md-9 navigation hidden">
     <ul>
       <li><a class="active">Главная</a></li>
-      <li><a>Каталог</a></li>
       <li><a>Информация</a></li>
       <li>
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#registration">Регистрация</button>
@@ -64,6 +63,31 @@
         <div class="no-account">
           У вас нет аккаунта? <a class="register-link">Зарегистрируйтесь</a> &mdash; это бесплатно.
         </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Forgot modal -->
+<div class="modal fade" id="forgot"  tabindex="-1" role="dialog" aria-labelledby="forgotModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="forgotModalLabel">Восстановление пароля</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email адрес">
+          </div>
+
+          <button type="button" class="btn btn-default login-btn">Выслать пароль</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

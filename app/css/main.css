@@ -335,11 +335,11 @@ nav.navigation ul li .btn.btn-default:hover {
 .modal .modal-content {
   border-radius: 0; }
 
-.modal#login .no-account, .modal#registration .no-account {
+.modal#login .no-account, .modal#registration .no-account, .modal#forgot .no-account {
   font-size: 0.7rem;
   text-align: right; }
 
-.modal#login .login-btn, .modal#registration .login-btn {
+.modal#login .login-btn, .modal#registration .login-btn, .modal#forgot .login-btn {
   margin: 1rem 0;
   width: 100%;
   font-size: 1rem;
@@ -347,10 +347,10 @@ nav.navigation ul li .btn.btn-default:hover {
   background-color: #559797;
   color: #fff; }
 
-.modal#login .login-btn:hover, .modal#registration .login-btn:hover {
+.modal#login .login-btn:hover, .modal#registration .login-btn:hover, .modal#forgot .login-btn:hover {
   background-color: #74BDC1; }
 
-.modal#login .forgot-password, .modal#registration .forgot-password {
+.modal#login .forgot-password, .modal#registration .forgot-password, .modal#forgot .forgot-password {
   position: relative;
   display: block;
   margin: 10px 0;
