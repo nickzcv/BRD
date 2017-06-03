@@ -21,7 +21,7 @@ gulp.task('sass', function(){
 });
 
 gulp.task('templates', function(){
-  gulp.src('app/templates/*.hbs')
+  gulp.src('app/templates/**/*.hbs')
   .pipe(handlebars())
   .pipe(wrap('Handlebars.template(<%= contents %>)'))
   .pipe(declare({
@@ -38,7 +38,7 @@ gulp.task('js', function() {
     'app/js/collections/*.js',
     'app/js/models/*.js',
     'app/js/routers/*.js',
-    'app/js/views/*.js'
+    'app/js/views/**/*.js'
   ])
   .pipe(concat('all.js'))
   .pipe(gulp.dest('app'));
@@ -49,7 +49,7 @@ gulp.task('watch', function(){
   // Watch for CSS changes
   gulp.watch('app/scss/partials/*.scss', {interval: 1000}, ['sass']);
   // Watch for Handlebars template changes
-  gulp.watch('app/templates/*.hbs', {interval: 1000}, ['templates']);
+  gulp.watch('app/templates/**/*.hbs', {interval: 1000}, ['templates']);
   // Watch for JS changes
   gulp.watch('app/js/**/*.js', {interval: 1000}, ['js']);
 });

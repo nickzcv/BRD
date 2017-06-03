@@ -2,26 +2,33 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.header,
 
+  regions: {
+    modalSection: '.modal-section'
+  },
+
   ui: {
     hamburger: '.hamburger',
     navigation: '.navigation',
-    loginModal: '#login',
-    forgotPassword: '.forgot-password',
-    registrationModal: '#registration',
-    forgotPasswordModal: '#forgot',
-    registrationLink: '.register-link'
+    registrationBtn: '.registration',
+    loginBtn: '.login'
   },
 
   events: {
     'click @ui.hamburger': 'toggleMobileMenu',
-    'click @ui.registrationLink': function () {
-      this.ui.loginModal.modal('hide');
-      this.ui.registrationModal.modal('show');
-    },
-    'click @ui.forgotPassword': function () {
-      this.ui.loginModal.modal('hide');
-      this.ui.forgotPasswordModal.modal('show');
-    }
+    'click @ui.registrationBtn': 'showRegistrationView',
+    'click @ui.loginBtn': 'showLoginView'
+  },
+
+  showRegistrationView: function () {
+    this.showChildView('modalSection', new app.views.RegistrationView({
+      model: new app.models.RegistrationModel
+    }));
+  },
+
+  showLoginView: function () {
+    this.showChildView('modalSection', new app.views.LoginView({
+      model: new app.models.MainModel
+    }));
   },
 
   /*
