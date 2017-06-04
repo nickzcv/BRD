@@ -17,6 +17,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Root directory from which the static assets are to be served.
 app.use(express.static(path.join(__dirname, 'app')));
 
+
+// Set up a logger.
+app.locals.logger = new winston.Logger();
+app.locals.logger.add(winston.transports.Console, {
+  colorize: true
+});
+// Log every request.
+app.use(function (req, res, next) {
+  req.app.locals.logger.info('[' + req.method + ']', req.url);
+  next();
+});
+
+/*
 app.use(session({
   secret: "jamesbondagentzerozeroseven",
   resave: true,
@@ -24,8 +37,10 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+*/
 database.connect();
+var user = require(path.join(__dirname, 'routes/user'));
+app.use('/api', user);
 app.use(routes);
 
 
@@ -38,16 +53,7 @@ app.use(function (req, res, next) {
 });
 */
 
-// Set up a logger.
-app.locals.logger = new winston.Logger();
-app.locals.logger.add(winston.transports.Console, {
-  colorize: true
-});
-// Log every request.
-app.use(function (req, res, next) {
-  req.app.locals.logger.info('[' + req.method + ']', req.url);
-  next();
-});
+
 
 
 app.listen(port);
