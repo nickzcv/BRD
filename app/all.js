@@ -58,7 +58,7 @@ $(document).ready(function() {
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
 
-  urlRoot: 'api/user/',
+  urlRoot: 'api/users',
 
   defaults: {
     email: null,

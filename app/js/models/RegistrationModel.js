@@ -1,6 +1,6 @@
 app.models.RegistrationModel = Backbone.Model.extend({
 
-  urlRoot: 'api/user/',
+  urlRoot: 'api/users',
 
   defaults: {
     email: null,
