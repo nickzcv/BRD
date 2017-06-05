@@ -2,7 +2,7 @@
 /* Base styles
 -------------------------------------------------- */
 // Color schema
-$main-bg: #F7F6F2;
+$main-bg: #fcfbf7;
 $black: #000;
 $main-dark: #202124;
 
@@ -21,7 +21,6 @@ $blue-light: #74BDC1;
 html {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: #000;
-  background: $main-bg;
   position: relative;
   font-size: 1rem;
   min-height: 100%;
@@ -29,6 +28,7 @@ html {
 }
 body {
   margin-bottom: 3rem; /* Margin bottom by footer height */
+  background: $main-bg;
 }
 
 a {
