@@ -32,7 +32,7 @@ header {
   /* Desktop and larger */ }
 
 header .header-wrapper {
-  background: #373737; }
+  background: #202124; }
 
 header .logo {
   text-align: center;
@@ -101,7 +101,11 @@ nav.navigation ul li a {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
-  padding: 5px 0; }
+  padding: 3px 0;
+  border-bottom: 1px solid #777777; }
+
+nav.navigation ul li a:hover {
+  border-bottom-color: #ccc; }
 
 nav.navigation ul li .help-btn {
   font-size: 1.5rem; }
@@ -134,7 +138,7 @@ nav.navigation ul li .btn.btn-default:hover {
     margin: 10px 10px 7px;
     display: inline-block; }
   nav.navigation ul li a {
-    padding: 7px 0; } }
+    padding: 3px 0; } }
 
 @media only screen and (min-width: 992px) {
   nav.navigation .languages .flag {
@@ -155,6 +159,12 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home {
   padding: 0; }
 
+.section.home .home-wrapper {
+  margin: 0; }
+
+.section.home .filter {
+  padding: 0; }
+
 .section.home .actions {
   background: #F2F2EA;
   border-bottom: 1px solid #fff;
@@ -162,11 +172,12 @@ nav.navigation ul li .btn.btn-default:hover {
 
 .section.home .actions .btn {
   background-color: #777777;
+  border-color: #777777;
   color: #fff;
   width: 100%; }
 
 .section.home .actions .btn:hover {
-  border-color: #000; }
+  background-color: #373737; }
 
 .section.home .filters {
   font-size: 1rem;

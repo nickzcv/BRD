@@ -9,6 +9,14 @@
   &.home {
     padding: 0;
 
+    .home-wrapper {
+      margin: 0;
+    }
+
+    .filter {
+      padding: 0;
+    }
+
     .actions {
       background: $gray-light;
       border-bottom: 1px solid #fff;
@@ -16,11 +24,11 @@
 
       .btn {
         background-color: $gray-dark2;
-
+        border-color: $gray-dark2;
         color: #fff;
         width: 100%;
         &:hover {
-          border-color: #000;
+          background-color: $header-dark;
         }
       }
     }

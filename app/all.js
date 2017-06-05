@@ -220,9 +220,49 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
   onRender: function() {
     this.ui.registrationModal.modal('show');
+    this.formAddValidation();
+    console.log('onRender');
+
   },
 
-  send: function(e) {
+  formAddValidation: function() {
+    console.log('app.views.formAddLearnValidation');
+    console.log($('#registration-form'));
+    var currentView = this;
+    $('#registration-form').validate({
+      rules: {
+        email: {
+          required: true,
+          minlength: 2
+        },
+        password: {
+          maxlength: 1000
+        }
+      },
+      messages: {
+        eventName: {
+          required: "Enter an event name",
+          minlength: "Enter an event name"
+        },
+        comments: {
+          maxlength: "Comments may not exceed 1000 characters",
+        }
+      },
+
+      submitHandler: function() {
+        currentView.handleSubmitClick();
+      }
+    });
+  },
+
+  handleSubmitClick: function() {
+    console.log('handleSubmitClick');
+  },
+
+  /*
+  * Send form
+  */
+  send: function() {
     var thisView = this;
 
     thisView.model.set({
@@ -231,14 +271,14 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       repassword: thisView.ui.repassword.val()
     });
 
-    thisView.model.save({
+/*    thisView.model.save({
       success: function() {
         console.log('success')
       },
       fail: function() {
         console.log('fail')
       }
-    });
+    });*/
   }
 
 

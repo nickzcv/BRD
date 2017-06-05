@@ -14,8 +14,11 @@ nav.navigation {
         color: #fff;
         text-decoration: none;
         cursor: pointer;
-        padding: 5px 0;
-
+        padding: 3px 0;
+        border-bottom: 1px solid $gray-dark2;
+        &:hover {
+          border-bottom-color: $gray-dark;
+        }
       }
       .help-btn {
         font-size: 1.5rem;
@@ -54,7 +57,7 @@ nav.navigation {
         margin: 10px 10px 7px;
         display: inline-block;
         a {
-          padding: 7px 0;
+          padding: 3px 0;
         }
       }
     }
