@@ -7,21 +7,18 @@ nav.navigation {
     text-align: right;
     list-style: none;
     li {
-      margin: 1rem 0;
+      margin: 10px 10px 7px;
       font-size: 1rem;
 
       a {
-        color: #000;
+        color: #fff;
         text-decoration: none;
         cursor: pointer;
         padding: 5px 0;
 
-        &:hover {
-          border-bottom: 2px solid $blue-dark;
-        }
-        &.active {
-          border-bottom: 2px solid $blue-dark;
-        }
+      }
+      .help-btn {
+        font-size: 1.5rem;
       }
       .btn {
         font-size: 1rem;
@@ -34,9 +31,11 @@ nav.navigation {
           }
         }
         &.btn-default {
+          color: $gray-dark;
           background-color: transparent;
           border-color: $gray-dark2;
           &:hover {
+            color: #fff;
             border-color: $gray-dark;
           }
         }
@@ -65,12 +64,6 @@ nav.navigation {
 
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
-    ul {
-      margin: 0;
-      li {
-        margin: 1rem;
-      }
-    }
     .languages {
       .flag {
         width: 50px;

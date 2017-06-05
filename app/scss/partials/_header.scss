@@ -1,12 +1,8 @@
 /* Header styles
 -------------------------------------------------- */
 header {
-  .gradient {
-    background-image:
-      linear-gradient(
-          to bottom,
-          $gray-light, #fff
-      );
+  .header-wrapper {
+    background: $header-dark;
   }
 
   .logo {
@@ -14,22 +10,17 @@ header {
     padding: 1rem 0;
 
     a {
-      display: inline-block;
-      text-indent: -9999px;
-      height: 50px;
-      width: 130px;
-      background: url(../img/blue-logo.svg) no-repeat;
-      background-size: contain;
-      background-position: center;
+      color: #fff;
+      text-decoration: none;
     }
   }
 
   .hamburger {
     font-size: 35px;
     position: absolute;
-    top: 1rem;
+    top: 0;
     right: 1.5rem;
-    color: #000;
+    color: #fff;
     cursor: pointer;
 
     &.closeBtn span:before {
@@ -42,11 +33,9 @@ header {
   @media only screen and (min-width: 768px) {
     .logo {
       float: left;
+      text-align: left;
       a {
-        height: 50px;
-        width: 130px;
-        background-position: left;
-        margin-left: 25px;
+        margin-left: 1.5rem;
       }
     }
 
@@ -55,17 +44,6 @@ header {
 
   /* Desktop */
   @media only screen and (min-width: 992px) {
-    height: 100px;
-
-    .logo {
-      text-align: left;
-      a {
-        height: 70px;
-        width: 70px;
-        background-size: contain;
-        background-position: center;
-      }
-    }
 
   }
 

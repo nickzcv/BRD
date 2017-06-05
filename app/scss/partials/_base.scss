@@ -2,13 +2,17 @@
 /* Base styles
 -------------------------------------------------- */
 // Color schema
+$main-bg: #F7F6F2;
 $black: #000;
 $main-dark: #202124;
 
-$gray-light: #f5f8fa;
+$header-dark: #373737;
+$header-dark-hover: #272727;
+
+$gray-light: #F2F2EA;
 $gray: #eeeeee;
 $gray-dark: #ccc;
-$gray-dark2: #586262;
+$gray-dark2: #777777;
 
 $blue-dark: #559797;
 $blue-light: #74BDC1;
@@ -17,6 +21,7 @@ $blue-light: #74BDC1;
 html {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: #000;
+  background: $main-bg;
   position: relative;
   font-size: 1rem;
   min-height: 100%;

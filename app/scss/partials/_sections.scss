@@ -7,7 +7,7 @@
   }
 
   &.home {
-    padding: 0 1rem;
+    padding: 0;
 
     .actions {
       background: $gray-light;
@@ -15,13 +15,17 @@
       padding: 1rem 2rem;
 
       .btn {
-        background-color: #559797;
-        border-color: #559797;
+        background-color: $gray-dark2;
+
         color: #fff;
         width: 100%;
+        &:hover {
+          border-color: #000;
+        }
       }
     }
     .filters {
+      font-size: 1rem;
       background: $gray-light;
       border-top: 1px solid #eee;
       padding: 1rem 1.5rem;
@@ -157,7 +161,7 @@
   /* Desktop */
   @media only screen and (min-width: 992px) {
     &.home {
-      padding: 0 2rem;
+      padding: 0;
 
       .ads-list {
         margin: 1rem 0;
