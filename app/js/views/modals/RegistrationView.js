@@ -6,45 +6,71 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     registrationModal: '#registration',
     email: '#email',
     password: '#password',
-    repassword: '#repassword',
-    button: 'button'
+    confirmPassword: '#confirm_password'
   },
 
   events: {
     'hide.bs.modal' : function () {
       this.destroy();
-    },
-    'click @ui.button': 'send'
+    }
   },
 
   onRender: function() {
     this.ui.registrationModal.modal('show');
     this.formAddValidation();
-    console.log('onRender');
-
   },
 
+  /*
+   * Validation rules for the Registration form.
+   *
+   */
   formAddValidation: function() {
-    console.log('app.views.formAddLearnValidation');
-    console.log($('#registration-form'));
-    var currentView = this;
-    $('#registration-form').validate({
+    var currentView = this,
+        $form = currentView.$el.find('#registration-form');
+
+    $form.validate({
       rules: {
         email: {
           required: true,
-          minlength: 2
+          email: true,
+          maxlength: 120,
+          minlength: 4
         },
         password: {
-          maxlength: 1000
+          required: true,
+          maxlength: 120,
+          minlength: 5
+        },
+        confirm_password: {
+          required: true,
+          equalTo: '#password',
+          maxlength: 120,
+          minlength: 5
+        },
+        confirm: {
+          required: true
         }
       },
       messages: {
-        eventName: {
-          required: "Enter an event name",
-          minlength: "Enter an event name"
+        email: {
+          required: 'Введите e-mail',
+          email: 'Проверьте правильность ввода e-mail',
+          maxlength: 'E-mail слишком длинный',
+          minlength: 'E-mail слишком короткий'
         },
-        comments: {
-          maxlength: "Comments may not exceed 1000 characters",
+        password: {
+          required: 'Введите пароль',
+          maxlength: 'Пароль слишком длинный',
+          minlength: 'Пароль слишком короткий'
+        },
+        confirm_password: {
+          required: 'Введите пароль еще раз',
+          equalTo: 'Пароль не совпадает с введеным выше значением',
+          maxlength: 'Пароль слишком длинный',
+          minlength: 'Пароль слишком короткий'
+        },
+        confirm: {
+          required: 'Ознакомьтесь с правилами'
         }
       },
 
@@ -54,32 +80,31 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     });
   },
 
+  /*
+   * Send form
+   *
+   */
   handleSubmitClick: function() {
     console.log('handleSubmitClick');
-  },
 
-  /*
-  * Send form
-  */
-  send: function() {
+    event.preventDefault();
     var thisView = this;
 
     thisView.model.set({
       email: thisView.ui.email.val(),
       password: thisView.ui.password.val(),
-      repassword: thisView.ui.repassword.val()
+      confirmPassword: thisView.ui.confirmPassword.val()
     });
 
-/*    thisView.model.save({
-      success: function() {
-        console.log('success')
-      },
-      fail: function() {
-        console.log('fail')
-      }
-    });*/
+    /*    thisView.model.save({
+     success: function() {
+     console.log('success')
+     },
+     fail: function() {
+     console.log('fail')
+     }
+     });*/
   }
-
 
 
 });

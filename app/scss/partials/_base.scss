@@ -16,6 +16,7 @@ $gray-dark2: #777777;
 
 $blue-dark: #559797;
 $blue-light: #74BDC1;
+$error: #a80200;
 
 
 html {
@@ -47,4 +48,12 @@ input, select {
   &.form-control {
     border-radius: 0;
   }
+
+  &.error {
+    border: 1px solid $error;
+  }
+}
+
+label.error {
+  color: $error;
 }

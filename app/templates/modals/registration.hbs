@@ -10,22 +10,22 @@
         <form id="registration-form">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email адрес">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email адрес" required="required">
           </div>
           <div class="form-group">
             <label for="password">Пароль</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="Выберите пароль">
           </div>
           <div class="form-group">
-            <label for="repassword">Пароль еще раз</label>
-            <input type="password" class="form-control" name="repassword" id="repassword" placeholder="Подтвердите выбранный пароль">
+            <label for="confirm_password">Пароль еще раз</label>
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Подтвердите выбранный пароль">
           </div>
           <div class="form-group checkbox">
             <label>
-              <input type="checkbox"> Я соглашаюсь с правилами ресурса.
+              <input type="checkbox" name="confirm" id="confirm"> Я соглашаюсь с правилами ресурса.
             </label>
           </div>
-          <button type="button" class="btn btn-default registration-submit">Зарегистрироваться</button>
+          <button type="submit" class="btn btn-default registration-submit">Зарегистрироваться</button>
         </form>
       </div>
       <div class="modal-footer">

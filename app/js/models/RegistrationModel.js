@@ -5,7 +5,7 @@ app.models.RegistrationModel = Backbone.Model.extend({
   defaults: {
     email: null,
     password: null,
-    repassword: null
+    confirmPassword: null
   }
 
 
