@@ -85,25 +85,24 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    *
    */
   handleSubmitClick: function() {
-    console.log('handleSubmitClick');
-
     event.preventDefault();
     var thisView = this;
 
+    // TODO: check if email exist before set
     thisView.model.set({
       email: thisView.ui.email.val(),
       password: thisView.ui.password.val(),
       confirmPassword: thisView.ui.confirmPassword.val()
     });
 
-    /*    thisView.model.save({
+    thisView.model.save(null, {
      success: function() {
-     console.log('success')
+      console.log('success')
      },
      fail: function() {
-     console.log('fail')
+      console.log('fail')
      }
-     });*/
+    });
   }
 
 
