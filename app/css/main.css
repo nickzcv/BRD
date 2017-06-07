@@ -370,6 +370,15 @@ nav.navigation ul li .btn.btn-default:hover {
   line-height: 23rem;
   text-align: center; }
 
+.modal .alert {
+  display: none; }
+
+.modal .checkmark {
+  display: none;
+  color: #008023;
+  font-size: 5rem;
+  text-align: center; }
+
 /* icons
   'partials/icons/_ionicons-variables',
   'partials/icons/_ionicons-font',

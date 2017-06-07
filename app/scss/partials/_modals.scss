@@ -39,6 +39,17 @@
     }
   }
 
+  .alert {
+    display: none;
+  }
+
+  .checkmark {
+    display: none;
+    color: $success;
+    font-size: 5rem;
+    text-align: center;
+  }
+
 
 
 

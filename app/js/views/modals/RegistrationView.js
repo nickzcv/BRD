@@ -8,7 +8,10 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     password: '#password',
     confirmPassword: '#confirm_password',
     form: '#registration-form',
-    loader: '.loader-wrapper'
+    loader: '.loader-wrapper',
+    danger: '.alert-danger',
+    success: '.alert-success',
+    checkmark: '.checkmark'
   },
 
   events: {
@@ -93,12 +96,17 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     // Check if email already exist
     thisView.model.isEmailExist(thisView.ui.email.val()).then(function(data) {
       if (data.exist) {
-        // user exist
+        thisView.ui.loader.hide();
+        thisView.ui.form.fadeIn();
+        thisView.ui.danger.html('E-mail занят.').fadeIn();
       } else {
         thisView.saveUser();
       }
     }, function (error) {
-      console.log(error)
+      thisView.ui.loader.hide();
+      thisView.ui.form.fadeIn();
+      thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+      console.log(error);
     });
 
   },
@@ -118,10 +126,16 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
     thisView.model.save(null, {
       success: function() {
-        console.log('success')
+        console.log('success');
+        thisView.ui.loader.hide();
+        thisView.ui.danger.hide();
+        thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();
+        thisView.ui.checkmark.fadeIn(1000);
       },
       error: function() {
-        console.log('error')
+        thisView.ui.loader.hide();
+        thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+        thisView.ui.form.fadeIn();
       }
     });
   }
