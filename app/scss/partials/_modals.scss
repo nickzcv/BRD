@@ -12,11 +12,7 @@
   // Login form
   &#login, &#registration, &#forgot {
 
-    .no-account {
-      font-size: 0.7rem;
-      text-align: right;
-    }
-    .login-btn {
+    .login-btn, .registration-submit {
       margin: 1rem 0;
       width: 100%;
       font-size: 1rem;
@@ -36,14 +32,15 @@
 
   }
 
+  .loader-wrapper {
+    line-height: 15rem;
+    text-align: center;
+  }
+
 
   /* Tablets */
   @media only screen and (min-width: 768px) {
-    &#login {
-      .no-account {
-        font-size: 0.8rem;
-      }
-    }
+
   }
 
 

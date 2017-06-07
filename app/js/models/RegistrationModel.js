@@ -5,17 +5,24 @@ app.models.RegistrationModel = Backbone.Model.extend({
   defaults: {
     email: null,
     password: null,
-    confirmPassword: null
+    confirmPassword: null,
+    loader: false
   },
 
-  validate: function(attrs) {
-    // console.log(attrs);
+  initialize: function() {
+    console.log('initialize RegistrationModel');
+    this.on('invalid', function(model, error){
+      console.log(error);
+    });
+  },
 
-    if (!attrs.email) {
-      return 'Need email';
+  validate: function(attributes) {
+    if (!attributes.email) {
+      return 'empty email.';
     }
-
-
+    if (!attributes.password) {
+      return 'empty password.';
+    }
   }
 
 

@@ -41,8 +41,7 @@ a {
   }
 }
 
-// Forms
-
+// Form elements
 input, select {
 
   &.form-control {
@@ -56,4 +55,20 @@ input, select {
 
 label.error {
   color: $error;
+}
+
+// Loader
+.loader {
+  display: inline-block;
+  border: 5px solid $gray-light;
+  border-top: 5px solid $header-dark;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

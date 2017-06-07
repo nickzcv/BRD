@@ -30,6 +30,21 @@ input.error, select.error {
 label.error {
   color: #a80200; }
 
+.loader {
+  display: inline-block;
+  border: 5px solid #F2F2EA;
+  border-top: 5px solid #373737;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -333,11 +348,7 @@ nav.navigation ul li .btn.btn-default:hover {
 .modal .modal-content {
   border-radius: 0; }
 
-.modal#login .no-account, .modal#registration .no-account, .modal#forgot .no-account {
-  font-size: 0.7rem;
-  text-align: right; }
-
-.modal#login .login-btn, .modal#registration .login-btn, .modal#forgot .login-btn {
+.modal#login .login-btn, .modal#login .registration-submit, .modal#registration .login-btn, .modal#registration .registration-submit, .modal#forgot .login-btn, .modal#forgot .registration-submit {
   margin: 1rem 0;
   width: 100%;
   font-size: 1rem;
@@ -345,7 +356,7 @@ nav.navigation ul li .btn.btn-default:hover {
   background-color: #559797;
   color: #fff; }
 
-.modal#login .login-btn:hover, .modal#registration .login-btn:hover, .modal#forgot .login-btn:hover {
+.modal#login .login-btn:hover, .modal#login .registration-submit:hover, .modal#registration .login-btn:hover, .modal#registration .registration-submit:hover, .modal#forgot .login-btn:hover, .modal#forgot .registration-submit:hover {
   background-color: #74BDC1; }
 
 .modal#login .forgot-password, .modal#registration .forgot-password, .modal#forgot .forgot-password {
@@ -354,9 +365,9 @@ nav.navigation ul li .btn.btn-default:hover {
   margin: 10px 0;
   text-align: right; }
 
-@media only screen and (min-width: 768px) {
-  .modal#login .no-account {
-    font-size: 0.8rem; } }
+.modal .loader-wrapper {
+  line-height: 15rem;
+  text-align: center; }
 
 /* icons
   'partials/icons/_ionicons-variables',

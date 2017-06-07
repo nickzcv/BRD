@@ -29,6 +29,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         $form = currentView.$el.find('#registration-form');
 
     $form.validate({
+      /*
       rules: {
         email: {
           required: true,
@@ -73,11 +74,18 @@ app.views.RegistrationView = app.views.HeaderView.extend({
           required: 'Ознакомьтесь с правилами'
         }
       },
+      */
 
       submitHandler: function() {
         currentView.handleSubmitClick();
       }
     });
+  },
+
+  modelEvents: {
+    'change:loader': function() {
+      console.log('attribute was changed');
+    }
   },
 
   /*
@@ -87,6 +95,9 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   handleSubmitClick: function() {
     event.preventDefault();
     var thisView = this;
+    console.log( thisView.model.get('loader') );
+    thisView.model.set({loader: true});
+    console.log( thisView.model.get('loader') );
 
     // TODO: check if email exist before set
     thisView.model.set({
@@ -94,15 +105,16 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       password: thisView.ui.password.val(),
       confirmPassword: thisView.ui.confirmPassword.val()
     });
-
+/*
     thisView.model.save(null, {
-     success: function() {
-      console.log('success')
-     },
-     fail: function() {
-      console.log('fail')
-     }
+      success: function() {
+        console.log('success')
+      },
+      error: function() {
+        console.log('error')
+      }
     });
+    */
   }
 
 
