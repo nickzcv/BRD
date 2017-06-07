@@ -23,7 +23,7 @@ router.route('/users')
 		// save the user and check for errors
 		user.save(function(err) {
 			if (err)
-				res.send(err);
+				res.json(err);
 
 			res.json({ message: 'User created!' });
 		});
@@ -31,9 +31,9 @@ router.route('/users')
 	})
 	// get all the users (accessed at GET /api/users)
 	.get(function(req, res) {
-    User.find(function(err, user) {
+    User.find({}, function(err, user) {
       if (err)
-        res.send(err);
+        res.json(err);
 
       res.json(user);
     });
@@ -46,7 +46,7 @@ router.route('/user/:user_id')
 	.get(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
 			if (err)
-				res.send(err);
+				res.json(err);
 
 			res.json(user);
 		});
@@ -56,7 +56,7 @@ router.route('/user/:user_id')
 		User.findById(req.params.user_id, function(err, user) {
 
 			if (err)
-				res.send(err);
+				res.json(err);
 
       user.email = req.body.email;
       user.password = req.body.password;
@@ -72,7 +72,7 @@ router.route('/user/:user_id')
 
 			user.save(function(err) {
 				if (err)
-					res.send(err);
+					res.json(err);
 
 				res.json({ message: 'User updated!' });
 			});
@@ -85,10 +85,24 @@ router.route('/user/:user_id')
 			_id: req.params.user_id
 		}, function(err, user) {
 			if (err)
-				res.send(err);
+				res.json(err);
 
 			res.json({ message: 'Successfully deleted' });
 		});
 	});
+
+router.route('/user-email-check/')
+  .get(function(req, res) {
+    User.findOne({'email': req.query.email}, function(err, email) {
+      if (err)
+        res.json(err);
+
+      if (email) {
+        res.json({exist: true});
+      } else {
+        res.json({exist: false});
+      }
+    });
+  });
 
 module.exports = router;

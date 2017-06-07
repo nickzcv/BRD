@@ -7,32 +7,32 @@
         <h4 class="modal-title" id="registrationModalLabel">Регистрация</h4>
       </div>
       <div class="modal-body">
-        {{#if loader}}
-          <div class="loader-wrapper">
-            <div class="loader"></div>
+
+        <form id="registration-form">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email адрес" required="required">
           </div>
-        {{else}}
-          <form id="registration-form">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="Email адрес" required="required">
-            </div>
-            <div class="form-group">
-              <label for="password">Пароль</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Выберите пароль">
-            </div>
-            <div class="form-group">
-              <label for="confirm_password">Пароль еще раз</label>
-              <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Подтвердите выбранный пароль">
-            </div>
-            <div class="form-group checkbox">
-              <label>
-                <input type="checkbox" name="confirm" id="confirm"> Я соглашаюсь с правилами ресурса.
-              </label>
-            </div>
-            <button type="submit" class="btn btn-default registration-submit">Зарегистрироваться</button>
-          </form>
-        {{/if}}
+          <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Выберите пароль">
+          </div>
+          <div class="form-group">
+            <label for="confirm_password">Пароль еще раз</label>
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Подтвердите выбранный пароль">
+          </div>
+          <div class="form-group checkbox">
+            <label>
+              <input type="checkbox" name="confirm" id="confirm"> Я соглашаюсь с правилами ресурса.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default registration-submit">Зарегистрироваться</button>
+        </form>
+
+        <div class="loader-wrapper">
+          <div class="loader"></div>
+        </div>
+
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

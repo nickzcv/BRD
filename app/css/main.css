@@ -365,8 +365,9 @@ nav.navigation ul li .btn.btn-default:hover {
   margin: 10px 0;
   text-align: right; }
 
-.modal .loader-wrapper {
-  line-height: 15rem;
+.modal#registration .loader-wrapper {
+  display: none;
+  line-height: 23rem;
   text-align: center; }
 
 /* icons

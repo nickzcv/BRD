@@ -5,8 +5,7 @@ app.models.RegistrationModel = Backbone.Model.extend({
   defaults: {
     email: null,
     password: null,
-    confirmPassword: null,
-    loader: false
+    confirmPassword: null
   },
 
   initialize: function() {
@@ -23,6 +22,19 @@ app.models.RegistrationModel = Backbone.Model.extend({
     if (!attributes.password) {
       return 'empty password.';
     }
+  },
+
+  /*
+  * Check by email if user exist
+  *
+  */
+  isEmailExist: function(email) {
+    return $.ajax({
+      url: 'api/user-email-check/',
+      data: {
+        email: email
+      }
+    });
   }
 
 

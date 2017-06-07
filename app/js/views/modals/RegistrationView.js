@@ -6,7 +6,9 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     registrationModal: '#registration',
     email: '#email',
     password: '#password',
-    confirmPassword: '#confirm_password'
+    confirmPassword: '#confirm_password',
+    form: '#registration-form',
+    loader: '.loader-wrapper'
   },
 
   events: {
@@ -25,11 +27,8 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    *
    */
   formAddValidation: function() {
-    var currentView = this,
-        $form = currentView.$el.find('#registration-form');
-
-    $form.validate({
-      /*
+    var thisView = this;
+    thisView.ui.form.validate({
       rules: {
         email: {
           required: true,
@@ -39,13 +38,13 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         },
         password: {
           required: true,
-          maxlength: 120,
+          maxlength: 100,
           minlength: 5
         },
         confirm_password: {
           required: true,
           equalTo: '#password',
-          maxlength: 120,
+          maxlength: 100,
           minlength: 5
         },
         confirm: {
@@ -56,56 +55,67 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         email: {
           required: 'Введите e-mail',
           email: 'Проверьте правильность ввода e-mail',
-          maxlength: 'E-mail слишком длинный',
-          minlength: 'E-mail слишком короткий'
+          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
         },
         password: {
           required: 'Введите пароль',
-          maxlength: 'Пароль слишком длинный',
-          minlength: 'Пароль слишком короткий'
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
         },
         confirm_password: {
           required: 'Введите пароль еще раз',
           equalTo: 'Пароль не совпадает с введеным выше значением',
-          maxlength: 'Пароль слишком длинный',
-          minlength: 'Пароль слишком короткий'
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
         },
         confirm: {
           required: 'Ознакомьтесь с правилами'
         }
       },
-      */
 
       submitHandler: function() {
-        currentView.handleSubmitClick();
+        thisView.handleSubmitClick();
       }
     });
   },
 
-  modelEvents: {
-    'change:loader': function() {
-      console.log('attribute was changed');
-    }
-  },
-
   /*
-   * Send form
+   * Check form data before save
    *
    */
   handleSubmitClick: function() {
-    event.preventDefault();
     var thisView = this;
-    console.log( thisView.model.get('loader') );
-    thisView.model.set({loader: true});
-    console.log( thisView.model.get('loader') );
+    event.preventDefault();
+    // Show loader
+    thisView.ui.form.hide();
+    thisView.ui.loader.show();
+    // Check if email already exist
+    thisView.model.isEmailExist(thisView.ui.email.val()).then(function(data) {
+      if (data.exist) {
+        // user exist
+      } else {
+        thisView.saveUser();
+      }
+    }, function (error) {
+      console.log(error)
+    });
 
-    // TODO: check if email exist before set
+  },
+
+  /*
+   * Save user
+   *
+   */
+  saveUser: function() {
+    var thisView = this;
+
     thisView.model.set({
       email: thisView.ui.email.val(),
       password: thisView.ui.password.val(),
       confirmPassword: thisView.ui.confirmPassword.val()
     });
-/*
+
     thisView.model.save(null, {
       success: function() {
         console.log('success')
@@ -114,7 +124,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         console.log('error')
       }
     });
-    */
   }
 
 

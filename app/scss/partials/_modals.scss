@@ -29,13 +29,17 @@
       margin: 10px 0;
       text-align: right;
     }
-
   }
 
-  .loader-wrapper {
-    line-height: 15rem;
-    text-align: center;
+  &#registration {
+    .loader-wrapper {
+      display: none;
+      line-height: 23rem;
+      text-align: center;
+    }
   }
+
+
 
 
   /* Tablets */
