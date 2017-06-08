@@ -18,6 +18,7 @@ var app = (function() {
   objApp.init = function() {
     // console.log('app.init');
     const App = Backbone.Marionette.Application.extend({
+
       region: '#app',
 
       onBeforeStart: function(application, options) {
@@ -28,8 +29,10 @@ var app = (function() {
         this.showView(new app.views.MainView({
           model: this.model
         }));
+
         Backbone.history.start();
       }
+
     });
 
     const application = new App();
@@ -97,12 +100,6 @@ app.models.RegistrationModel = Backbone.Model.extend({
 
 
 });
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter,
-
-
-});
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: tpl.templates.footer
 });
@@ -156,8 +153,32 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
   regions: {
     header: 'header',
-    filter: '.filter',
+    content: '.content',
     footer: 'footer'
+  },
+
+  onRender: function() {
+    var thisView = this;
+    thisView.showChildView('header', new app.views.HeaderView());
+    thisView.showChildView('content', new app.views.HomeView());
+    thisView.showChildView('footer', new app.views.FooterView());
+  }
+
+});
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter,
+
+
+});
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
   },
 
   ui: {
@@ -176,9 +197,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
   onRender: function() {
     var thisView = this;
-    thisView.showChildView('header', new app.views.HeaderView());
     thisView.showChildView('filter', new app.views.FilterView());
-    thisView.showChildView('footer', new app.views.FooterView());
   }
 
 });

@@ -18,6 +18,7 @@ var app = (function() {
   objApp.init = function() {
     // console.log('app.init');
     const App = Backbone.Marionette.Application.extend({
+
       region: '#app',
 
       onBeforeStart: function(application, options) {
@@ -28,8 +29,10 @@ var app = (function() {
         this.showView(new app.views.MainView({
           model: this.model
         }));
+
         Backbone.history.start();
       }
+
     });
 
     const application = new App();
