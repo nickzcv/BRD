@@ -22,13 +22,15 @@ var app = (function() {
       region: '#app',
 
       onBeforeStart: function(application, options) {
-        this.model = new app.models.MainModel(options.data);
+        brd.model = new app.models.MainModel(options.data);
+        brd.router = new app.router();
       },
 
       onStart: function(application, options) {
-        this.showView(new app.views.MainView({
-          model: this.model
-        }));
+        // Save main region namespace
+        brd.regions.mainRegion = this.getRegion();
+        // Show loading while router take handle
+        // this.getRegion().show(new app.views.loading());
 
         Backbone.history.start();
       }
@@ -57,6 +59,49 @@ $(document).ready(function() {
 
 
 
+
+var brd = {
+
+  model: {},
+  router: {},
+  regions: {}
+
+};
+app.router = Marionette.AppRouter.extend({
+
+  routes: {
+    '': 'showMainPage',
+    'test': 'test',
+    'email/:email': 'showEmail'
+  },
+
+  initialize: function() {
+
+  },
+
+  showMainPage: function() {
+    console.log('router - showMainPage');
+    brd.regions.mainRegion.show(new app.views.MainView({}));
+    brd.regions.bodyRegion.show(new app.views.HomeView({}));
+
+  },
+
+  test: function() {
+    console.log('router - test');
+
+    brd.regions.mainRegion.show(new app.views.MainView({}));
+    //brd.regions.bodyRegion.show(new app.views.HomeView({}));
+  },
+
+  showProfilePage: function() {
+    console.log(email)
+  },
+
+  showEmail: function(email) {
+    console.log(email)
+  }
+
+});
 
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
@@ -152,16 +197,19 @@ app.views.MainView = Backbone.Marionette.View.extend({
   template: tpl.templates.main,
 
   regions: {
-    header: 'header',
-    content: '.content',
-    footer: 'footer'
+    headerRegion: 'header',
+    bodyRegion: '.content',
+    footerRegion: 'footer'
+  },
+
+  initialize: function() {
+    brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
   onRender: function() {
     var thisView = this;
-    thisView.showChildView('header', new app.views.HeaderView());
-    thisView.showChildView('content', new app.views.HomeView());
-    thisView.showChildView('footer', new app.views.FooterView());
+    thisView.showChildView('headerRegion', new app.views.HeaderView());
+    thisView.showChildView('footerRegion', new app.views.FooterView());
   }
 
 });

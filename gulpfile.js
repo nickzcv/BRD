@@ -35,6 +35,8 @@ gulp.task('templates', function(){
 gulp.task('js', function() {
   return gulp.src([
     'app/js/app.js',
+    'app/js/brd.js',
+    'app/js/router.js',
     'app/js/collections/*.js',
     'app/js/models/*.js',
     'app/js/routers/*.js',

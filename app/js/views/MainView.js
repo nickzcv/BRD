@@ -3,16 +3,19 @@ app.views.MainView = Backbone.Marionette.View.extend({
   template: tpl.templates.main,
 
   regions: {
-    header: 'header',
-    content: '.content',
-    footer: 'footer'
+    headerRegion: 'header',
+    bodyRegion: '.content',
+    footerRegion: 'footer'
+  },
+
+  initialize: function() {
+    brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
   onRender: function() {
     var thisView = this;
-    thisView.showChildView('header', new app.views.HeaderView());
-    thisView.showChildView('content', new app.views.HomeView());
-    thisView.showChildView('footer', new app.views.FooterView());
+    thisView.showChildView('headerRegion', new app.views.HeaderView());
+    thisView.showChildView('footerRegion', new app.views.FooterView());
   }
 
 });

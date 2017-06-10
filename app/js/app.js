@@ -22,13 +22,15 @@ var app = (function() {
       region: '#app',
 
       onBeforeStart: function(application, options) {
-        this.model = new app.models.MainModel(options.data);
+        brd.model = new app.models.MainModel(options.data);
+        brd.router = new app.router();
       },
 
       onStart: function(application, options) {
-        this.showView(new app.views.MainView({
-          model: this.model
-        }));
+        // Save main region namespace
+        brd.regions.mainRegion = this.getRegion();
+        // Show loading while router take handle
+        // this.getRegion().show(new app.views.loading());
 
         Backbone.history.start();
       }
