@@ -32,7 +32,7 @@ label.error {
 
 .loader {
   display: inline-block;
-  border: 5px solid #F2F2EA;
+  border: 5px solid #fcfcf4;
   border-top: 5px solid #373737;
   border-radius: 50%;
   width: 50px;
@@ -53,14 +53,16 @@ header {
   /* Desktop and larger */ }
 
 header .header-wrapper {
-  background: #202124; }
+  background: #202124;
+  height: 4rem; }
 
 header .logo {
+  font-size: 1.2rem;
   text-align: center;
   padding: 1rem 0; }
 
 header .logo a {
-  color: #fff;
+  color: #ccc;
   text-decoration: none; }
 
 header .hamburger {
@@ -89,7 +91,7 @@ header .hamburger.closeBtn span:before {
   width: 100%;
   height: 3rem;
   /* Set the fixed height of the footer here */
-  background-color: #F2F2EA;
+  background-color: #fcfcf4;
   /* SmartPhones */
   /* Tablets */
   /* Desktop and larger */ }
@@ -187,7 +189,7 @@ nav.navigation ul li .btn.btn-default:hover {
   padding: 0; }
 
 .section.home .actions {
-  background: #F2F2EA;
+  background: #fcfcf4;
   border-bottom: 1px solid #fff;
   padding: 1rem 2rem; }
 
@@ -202,7 +204,7 @@ nav.navigation ul li .btn.btn-default:hover {
 
 .section.home .filters {
   font-size: 1rem;
-  background: #F2F2EA;
+  background: #fcfcf4;
   border-top: 1px solid #eee;
   padding: 1rem 1.5rem; }
 
@@ -231,7 +233,7 @@ nav.navigation ul li .btn.btn-default:hover {
 .section.home .content-filter .mobile-filter-btn {
   overflow: hidden;
   float: left;
-  background: #F2F2EA; }
+  background: #fcfcf4; }
 
 .section.home .content-filter .mobile-filter-btn .btn {
   margin: 0.5rem; }
@@ -254,7 +256,7 @@ nav.navigation ul li .btn.btn-default:hover {
   overflow: hidden;
   max-height: 7rem;
   margin-bottom: 1rem;
-  border: 1px solid #eeeeee;
+  border: 1px solid #E5E3D4;
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
@@ -275,8 +277,8 @@ nav.navigation ul li .btn.btn-default:hover {
 
 .section.home .ads-item .title {
   font-size: 1rem;
-  background-color: #F2F2EA;
-  border-bottom: 1px solid #eeeeee;
+  background-color: #fcfcf4;
+  border-bottom: 1px solid #E5E3D4;
   padding: 0.5rem;
   white-space: nowrap; }
 
@@ -315,7 +317,7 @@ nav.navigation ul li .btn.btn-default:hover {
     margin: 1rem 0; }
   .section.home .rside {
     display: block;
-    background: #F2F2EA;
+    background: #fcfcf4;
     height: 10rem; }
   .section.home .actions {
     padding: 1rem; }
@@ -336,6 +338,71 @@ nav.navigation ul li .btn.btn-default:hover {
   .section.home .filters {
     padding: 1rem 1.5rem; } }
 
+/* Left navigation styles
+-------------------------------------------------- */
+.left-navigation {
+  float: left;
+  width: 16rem;
+  padding: 0;
+  background: #fcfcf4;
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.left-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+.left-navigation ul li {
+  border: 1px solid #E5E3D4;
+  border-top: 0; }
+
+.left-navigation ul li .link {
+  display: block;
+  color: #777777;
+  text-decoration: none; }
+
+.left-navigation ul li .link:hover {
+  color: #373737;
+  background: #fcfbf7; }
+
+.left-navigation ul li .link.active {
+  color: #373737; }
+
+.left-navigation ul li .link.active .icon {
+  background: #777777;
+  color: #fcfcf4; }
+
+.left-navigation ul li .icon {
+  line-height: 4rem;
+  font-size: 1.5rem;
+  width: 4rem;
+  text-align: center;
+  border-right: 1px solid #E5E3D4;
+  display: inline-block; }
+
+.left-navigation ul li .nav-item {
+  display: inline-block;
+  font-size: 1.1rem;
+  padding: 0 0 0 1rem; }
+
+/* Content
+-------------------------------------------------- */
+.content {
+  /* SmartPhones */
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.content .title {
+  border-top: 5px solid #ccc;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #CECCC0;
+  line-height: 5rem; }
+
+.content .title .icon {
+  padding: 0 1rem 0 2rem;
+  color: #777777; }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {
@@ -343,7 +410,7 @@ nav.navigation ul li .btn.btn-default:hover {
   /* Desktop and larger */ }
 
 .modal .modal-header {
-  background-color: #F2F2EA; }
+  background-color: #fcfcf4; }
 
 .modal .modal-content {
   border-radius: 0; }
@@ -354,10 +421,12 @@ nav.navigation ul li .btn.btn-default:hover {
   font-size: 1rem;
   padding: 1rem;
   background-color: #559797;
-  color: #fff; }
+  color: #fff;
+  border-color: #559797; }
 
 .modal#login .login-btn:hover, .modal#login .registration-submit:hover, .modal#registration .login-btn:hover, .modal#registration .registration-submit:hover, .modal#forgot .login-btn:hover, .modal#forgot .registration-submit:hover {
-  background-color: #74BDC1; }
+  background-color: #74BDC1;
+  border-color: #ccc; }
 
 .modal#login .forgot-password, .modal#registration .forgot-password, .modal#forgot .forgot-password {
   position: relative;

@@ -3,10 +3,12 @@ app.views.LoginView = app.views.HeaderView.extend({
   template: tpl.templates.login,
 
   ui: {
-    loginModal: '#login'
+    loginModal: '#login',
+    loginButton: '.login-btn'
   },
 
   events: {
+    'click @ui.loginButton' : 'loginHandler',
     'hide.bs.modal' : function () {
       this.destroy();
     },
@@ -21,7 +23,12 @@ app.views.LoginView = app.views.HeaderView.extend({
     this.ui.loginModal.modal('show');
   },
 
-  showForgotView: function () {
+  loginHandler: function() {
+    brd.router.navigate('#settings',{trigger:true});
+    brd.controllers.hideModalBack();
+  },
+
+  showForgotView: function() {
     // this.showChildView('modalSection', new app.views.ForgotView());
   }
 

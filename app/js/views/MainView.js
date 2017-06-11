@@ -9,6 +9,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   initialize: function() {
+    // Initialize main content region
     brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 

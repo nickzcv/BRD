@@ -10,22 +10,26 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     hamburger: '.hamburger',
     navigation: '.navigation',
     registrationBtn: '.registration',
-    loginBtn: '.login'
+    loginBtn: '.login',
+    homeLink: '.home-link'
   },
 
   events: {
     'click @ui.hamburger': 'toggleMobileMenu',
     'click @ui.registrationBtn': 'showRegistrationView',
-    'click @ui.loginBtn': 'showLoginView'
+    'click @ui.loginBtn': 'showLoginView',
+    'click @ui.homeLink': function () {
+      brd.router.navigate('#',{trigger:true});
+    }
   },
 
-  showRegistrationView: function () {
+  showRegistrationView: function() {
     this.showChildView('modalSection', new app.views.RegistrationView({
       model: new app.models.RegistrationModel
     }));
   },
 
-  showLoginView: function () {
+  showLoginView: function() {
     this.showChildView('modalSection', new app.views.LoginView({
       model: new app.models.MainModel
     }));
@@ -35,7 +39,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
    * Mobile navigation handler (hamburger)
    *
    */
-  toggleMobileMenu: function () {
+  toggleMobileMenu: function() {
     this.ui.hamburger.toggleClass('closeBtn');
     this.ui.navigation.toggleClass('hidden');
   }

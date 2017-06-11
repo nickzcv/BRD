@@ -2,6 +2,12 @@ var brd = {
 
   model: {},
   router: {},
-  regions: {}
+  regions: {},
+  controllers: {
+    hideModalBack: function () {
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+    }
+  }
 
 };

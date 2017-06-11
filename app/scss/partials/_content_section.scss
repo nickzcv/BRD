@@ -1,0 +1,37 @@
+/* Content
+-------------------------------------------------- */
+.content {
+
+  .title {
+    border-top: 5px solid $gray-dark;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #CECCC0;
+    line-height: 5rem;
+
+    .icon {
+      padding: 0 1rem 0 2rem;
+      color: $gray-dark2;
+    }
+  }
+
+
+
+  /* SmartPhones */
+  @media only screen and (min-width: 450px) {
+
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+}

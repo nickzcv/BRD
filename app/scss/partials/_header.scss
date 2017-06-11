@@ -1,16 +1,20 @@
 /* Header styles
 -------------------------------------------------- */
 header {
+
+
   .header-wrapper {
     background: $main-dark;
+    height: 4rem;
   }
 
   .logo {
+    font-size: 1.2rem;
     text-align: center;
     padding: 1rem 0;
 
     a {
-      color: #fff;
+      color: $gray-dark;
       text-decoration: none;
     }
   }

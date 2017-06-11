@@ -64,14 +64,20 @@ var brd = {
 
   model: {},
   router: {},
-  regions: {}
+  regions: {},
+  controllers: {
+    hideModalBack: function () {
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
+    }
+  }
 
 };
 app.router = Marionette.AppRouter.extend({
 
   routes: {
     '': 'showMainPage',
-    'profile': 'showProfilePage'
+    'settings': 'showSettingsPage'
   },
 
   initialize: function() {
@@ -85,11 +91,10 @@ app.router = Marionette.AppRouter.extend({
 
   },
 
-  showProfilePage: function() {
-    console.log('router - showProfilePage');
-
+  showSettingsPage: function() {
+    console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
-    brd.regions.bodyRegion.show(new app.views.ProfileView({}));
+    brd.regions.bodyRegion.show(new app.views.SettingsView({}));
   }
 
 
@@ -153,22 +158,26 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     hamburger: '.hamburger',
     navigation: '.navigation',
     registrationBtn: '.registration',
-    loginBtn: '.login'
+    loginBtn: '.login',
+    homeLink: '.home-link'
   },
 
   events: {
     'click @ui.hamburger': 'toggleMobileMenu',
     'click @ui.registrationBtn': 'showRegistrationView',
-    'click @ui.loginBtn': 'showLoginView'
+    'click @ui.loginBtn': 'showLoginView',
+    'click @ui.homeLink': function () {
+      brd.router.navigate('#',{trigger:true});
+    }
   },
 
-  showRegistrationView: function () {
+  showRegistrationView: function() {
     this.showChildView('modalSection', new app.views.RegistrationView({
       model: new app.models.RegistrationModel
     }));
   },
 
-  showLoginView: function () {
+  showLoginView: function() {
     this.showChildView('modalSection', new app.views.LoginView({
       model: new app.models.MainModel
     }));
@@ -178,7 +187,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
    * Mobile navigation handler (hamburger)
    *
    */
-  toggleMobileMenu: function () {
+  toggleMobileMenu: function() {
     this.ui.hamburger.toggleClass('closeBtn');
     this.ui.navigation.toggleClass('hidden');
   }
@@ -196,6 +205,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   initialize: function() {
+    // Initialize main content region
     brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
@@ -206,9 +216,9 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-app.views.ProfileView = Backbone.Marionette.View.extend({
+app.views.SettingsView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.profile,
+  template: tpl.templates.settings,
 
   regions: {
 
@@ -284,10 +294,12 @@ app.views.LoginView = app.views.HeaderView.extend({
   template: tpl.templates.login,
 
   ui: {
-    loginModal: '#login'
+    loginModal: '#login',
+    loginButton: '.login-btn'
   },
 
   events: {
+    'click @ui.loginButton' : 'loginHandler',
     'hide.bs.modal' : function () {
       this.destroy();
     },
@@ -302,7 +314,12 @@ app.views.LoginView = app.views.HeaderView.extend({
     this.ui.loginModal.modal('show');
   },
 
-  showForgotView: function () {
+  loginHandler: function() {
+    brd.router.navigate('#settings',{trigger:true});
+    brd.controllers.hideModalBack();
+  },
+
+  showForgotView: function() {
     // this.showChildView('modalSection', new app.views.ForgotView());
   }
 

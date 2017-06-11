@@ -19,8 +19,10 @@
       padding: 1rem;
       background-color: $blue-dark;
       color: #fff;
+      border-color: $blue-dark;
       &:hover {
         background-color: $blue-light;
+        border-color: $gray-dark;
       }
     }
     .forgot-password {

@@ -1,0 +1,64 @@
+/* Left navigation styles
+-------------------------------------------------- */
+.left-navigation {
+  float: left;
+  width: 16rem;
+  padding: 0;
+  background: $gray-light;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      border: 1px solid #E5E3D4;
+      border-top: 0;
+      .link {
+        display: block;
+        color: $gray-dark2;
+        text-decoration: none;
+        &:hover {
+          color: $header-dark;
+          background: $main-bg;
+        }
+        &.active {
+          color: $header-dark;
+
+          .icon {
+            background: $gray-dark2;
+            color: $gray-light;
+          }
+        }
+      }
+
+      .icon {
+        line-height: 4rem;
+        font-size: 1.5rem;
+        width: 4rem;
+        text-align: center;
+        border-right: 1px solid #E5E3D4;
+        display: inline-block;
+      }
+      .nav-item {
+        display: inline-block;
+        font-size: 1.1rem;
+        padding: 0 0 0 1rem;
+      }
+
+    }
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+}
