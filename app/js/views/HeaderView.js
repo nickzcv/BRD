@@ -19,7 +19,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.registrationBtn': 'showRegistrationView',
     'click @ui.loginBtn': 'showLoginView',
     'click @ui.homeLink': function () {
-      brd.router.navigate('#',{trigger:true});
+      brd.router.navigate('#', {trigger:true});
     }
   },
 

@@ -89,19 +89,20 @@ app.router = Marionette.AppRouter.extend({
     console.log('router - showMainPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.HomeView({}));
-
   },
 
   showDashboardPage: function() {
     console.log('router - showDashboardPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.DashboardView({}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({}));
   },
 
   showSettingsPage: function() {
     console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.SettingsView({}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({settings:true}));
   }
 
 
@@ -109,7 +110,7 @@ app.router = Marionette.AppRouter.extend({
 });
 
 // Profile left navigation
-Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
+// Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
 
@@ -176,7 +177,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.registrationBtn': 'showRegistrationView',
     'click @ui.loginBtn': 'showLoginView',
     'click @ui.homeLink': function () {
-      brd.router.navigate('#',{trigger:true});
+      brd.router.navigate('#', {trigger:true});
     }
   },
 
@@ -463,7 +464,7 @@ app.views.DashboardView = Backbone.Marionette.View.extend({
   template: tpl.templates.dashboard,
 
   regions: {
-
+    leftNavRegion: '.left-navigation'
   },
 
   ui: {
@@ -472,8 +473,45 @@ app.views.DashboardView = Backbone.Marionette.View.extend({
 
   events: {
 
+  },
+
+  initialize: function() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
   }
 
+
+});
+app.views.LeftNavigation = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.left_navigation,
+
+  ui: {
+    dashboard: '.dashboard',
+    ads: '.ads',
+    companies: '.companies',
+    messages: '.messages',
+    favorite: '.favorite',
+    settings: '.settings'
+  },
+
+  events: {
+    'click @ui.dashboard': function () {
+      brd.router.navigate('#dashboard', {trigger:true});
+    },
+    'click @ui.settings': function () {
+      brd.router.navigate('#settings', {trigger:true});
+    },
+  },
+
+  initialize: function (options){
+    console.log(options);
+    this.activePage = options;
+    console.log(this.activePage.settings);
+
+    this.test = 123;
+    console.log(this);
+  }
 
 
 });
@@ -482,7 +520,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings,
 
   regions: {
-
+    leftNavRegion: '.left-navigation'
   },
 
   ui: {
@@ -491,8 +529,12 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
 
-  }
+  },
 
+  initialize: function() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  }
 
 
 });

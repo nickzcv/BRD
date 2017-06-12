@@ -3,7 +3,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings,
 
   regions: {
-
+    leftNavRegion: '.left-navigation'
   },
 
   ui: {
@@ -12,8 +12,12 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
 
-  }
+  },
 
+  initialize: function() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  }
 
 
 });
