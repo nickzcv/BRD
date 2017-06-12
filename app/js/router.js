@@ -2,6 +2,7 @@ app.router = Marionette.AppRouter.extend({
 
   routes: {
     '': 'showMainPage',
+    'dashboard': 'showDashboardPage',
     'settings': 'showSettingsPage'
   },
 
@@ -14,6 +15,12 @@ app.router = Marionette.AppRouter.extend({
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.HomeView({}));
 
+  },
+
+  showDashboardPage: function() {
+    console.log('router - showDashboardPage');
+    brd.regions.mainRegion.show(new app.views.MainView({}));
+    brd.regions.bodyRegion.show(new app.views.DashboardView({}));
   },
 
   showSettingsPage: function() {
