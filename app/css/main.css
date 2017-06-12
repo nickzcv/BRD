@@ -426,6 +426,16 @@ nav.navigation ul li .btn.btn-default:hover {
   /* Tablets */
   /* Desktop and larger */ }
 
+.settings .save {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.7rem 2rem;
+  margin-top: 2rem;
+  border-color: #777777; }
+
+.settings .save:hover {
+  background: #74BDC1; }
+
 @media only screen and (min-width: 992px) {
   .settings .page {
     max-width: 70rem; }

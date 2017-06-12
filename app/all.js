@@ -101,6 +101,8 @@ app.router = Marionette.AppRouter.extend({
 
 });
 
+// Profile left navigation
+Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
 
@@ -214,25 +216,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
     thisView.showChildView('headerRegion', new app.views.HeaderView());
     thisView.showChildView('footerRegion', new app.views.FooterView());
   }
-
-});
-app.views.SettingsView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings,
-
-  regions: {
-
-  },
-
-  ui: {
-
-  },
-
-  events: {
-
-  }
-
-
 
 });
 app.views.FilterView = Backbone.Marionette.View.extend({
@@ -465,6 +448,25 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       }
     });
   }
+
+
+});
+app.views.SettingsView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings,
+
+  regions: {
+
+  },
+
+  ui: {
+
+  },
+
+  events: {
+
+  }
+
 
 
 });

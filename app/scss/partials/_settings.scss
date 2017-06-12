@@ -2,6 +2,18 @@
 -------------------------------------------------- */
 .settings {
 
+  .save {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.7rem 2rem;
+    margin-top: 2rem;
+    border-color: $gray-dark2;
+
+    &:hover {
+      background: $blue-light;
+    }
+  }
+
   /* SmartPhones */
   @media only screen and (min-width: 450px) {
 
