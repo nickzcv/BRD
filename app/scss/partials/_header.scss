@@ -5,13 +5,13 @@ header {
 
   .header-wrapper {
     background: $main-dark;
-    height: 4rem;
+
   }
 
   .logo {
     font-size: 1.2rem;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
 
     a {
       color: $gray-dark;
@@ -22,7 +22,7 @@ header {
   .hamburger {
     font-size: 35px;
     position: absolute;
-    top: 0;
+    top: 0.5rem;
     right: 1.5rem;
     color: #fff;
     cursor: pointer;

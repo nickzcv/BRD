@@ -53,13 +53,12 @@ header {
   /* Desktop and larger */ }
 
 header .header-wrapper {
-  background: #202124;
-  height: 4rem; }
+  background: #202124; }
 
 header .logo {
   font-size: 1.2rem;
   text-align: center;
-  padding: 1rem 0; }
+  padding: 1.5rem 0; }
 
 header .logo a {
   color: #ccc;
@@ -68,7 +67,7 @@ header .logo a {
 header .hamburger {
   font-size: 35px;
   position: absolute;
-  top: 0;
+  top: 0.5rem;
   right: 1.5rem;
   color: #fff;
   cursor: pointer; }
@@ -112,7 +111,7 @@ nav.navigation {
 
 nav.navigation ul {
   margin: 0;
-  padding: 0;
+  padding: 0.5rem 0 0 0;
   text-align: right;
   list-style: none; }
 
@@ -388,18 +387,18 @@ nav.navigation ul li .btn.btn-default:hover {
 
 /* Content
 -------------------------------------------------- */
-.content {
+.profile {
   /* SmartPhones */
   /* Tablets */
   /* Desktop and larger */ }
 
-.content .title {
+.profile .title {
   border-top: 5px solid #ccc;
   font-size: 1.3rem;
   border-bottom: 1px solid #CECCC0;
   line-height: 5rem; }
 
-.content .title .icon {
+.profile .title .icon {
   padding: 0 1rem 0 2rem;
   color: #777777; }
 
