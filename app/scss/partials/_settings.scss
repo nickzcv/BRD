@@ -1,0 +1,34 @@
+/* Content
+-------------------------------------------------- */
+.settings {
+
+  /* SmartPhones */
+  @media only screen and (min-width: 450px) {
+
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+    .page {
+      max-width: 70rem;
+
+      .form-group.short {
+        width: 300px;
+      }
+      .form-group.row {
+        height: 4rem;
+      }
+
+    }
+
+  }
+
+}

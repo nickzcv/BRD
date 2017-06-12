@@ -2,7 +2,7 @@
 -------------------------------------------------- */
 .left-navigation {
   float: left;
-  width: 16rem;
+  width: 65px;
   padding: 0;
   background: $gray-light;
 
@@ -23,25 +23,27 @@
           background: $main-bg;
         }
         &.active {
+          cursor: default;
+          background: #f0eedf;
           color: $header-dark;
 
           .icon {
-            background: $gray-dark2;
+            background: $blue-dark;
             color: $gray-light;
           }
         }
       }
 
       .icon {
+        display: inline-block;
         line-height: 4rem;
         font-size: 1.5rem;
         width: 4rem;
         text-align: center;
         border-right: 1px solid #E5E3D4;
-        display: inline-block;
       }
       .nav-item {
-        display: inline-block;
+        display: none;
         font-size: 1.1rem;
         padding: 0 0 0 1rem;
       }
@@ -58,6 +60,20 @@
 
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
+    width: 16rem;
+
+    ul {
+
+      li {
+
+        .nav-item {
+          display: inline-block;
+          font-size: 1.1rem;
+          padding: 0 0 0 1rem;
+        }
+
+      }
+    }
 
   }
 
