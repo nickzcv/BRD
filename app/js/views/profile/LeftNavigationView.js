@@ -20,13 +20,11 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
     },
   },
 
-  initialize: function (options){
-    console.log(options);
-    this.activePage = options;
-    console.log(this.activePage.settings);
 
-    this.test = 123;
-    console.log(this);
+  templateContext: function() {
+    return {
+      activePage: this.getOption('page')
+    }
   }
 
 

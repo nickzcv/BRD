@@ -20,14 +20,14 @@ app.router = Marionette.AppRouter.extend({
     console.log('router - showDashboardPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.DashboardView({}));
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'dashboard'}));
   },
 
   showSettingsPage: function() {
     console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.SettingsView({}));
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({settings:true}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'settings'}));
   }
 
 

@@ -95,14 +95,14 @@ app.router = Marionette.AppRouter.extend({
     console.log('router - showDashboardPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.DashboardView({}));
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'dashboard'}));
   },
 
   showSettingsPage: function() {
     console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView({}));
     brd.regions.bodyRegion.show(new app.views.SettingsView({}));
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({settings:true}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'settings'}));
   }
 
 
@@ -111,6 +111,14 @@ app.router = Marionette.AppRouter.extend({
 
 // Profile left navigation
 // Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
+
+
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
+  if(a == b)
+    return opts.fn(this);
+  else
+    return opts.inverse(this);
+});
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
 
@@ -223,42 +231,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
     var thisView = this;
     thisView.showChildView('headerRegion', new app.views.HeaderView());
     thisView.showChildView('footerRegion', new app.views.FooterView());
-  }
-
-});
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter,
-
-
-});
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function () {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function () {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
   }
 
 });
@@ -459,6 +431,42 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
 
 });
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter,
+
+
+});
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function () {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function () {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
+  }
+
+});
 app.views.DashboardView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.dashboard,
@@ -504,13 +512,11 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
     },
   },
 
-  initialize: function (options){
-    console.log(options);
-    this.activePage = options;
-    console.log(this.activePage.settings);
 
-    this.test = 123;
-    console.log(this);
+  templateContext: function() {
+    return {
+      activePage: this.getOption('page')
+    }
   }
 
 
