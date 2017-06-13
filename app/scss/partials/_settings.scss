@@ -8,7 +8,7 @@
 
     .tab {
       position: relative;
-      font-size: 1rem;
+      font-size: 0.8rem;
       color: gray;
       background: #EAEAE2;
       border: 1px solid $gray;
@@ -53,6 +53,19 @@
     }
   }
 
+  .lbl {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .lead {
+    margin-bottom: 0;
+  }
+  .lbl2 {
+    color: $gray-dark2;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
   /* SmartPhones */
   @media only screen and (min-width: 450px) {
 
@@ -68,14 +81,20 @@
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
 
+    .tabs {
+      .tab {
+        font-size: 1rem;
+      }
+    }
+
     .page {
       max-width: 70rem;
 
       .form-group.short {
-        width: 300px;
+        width: 25rem;
       }
       .form-group.row {
-        height: 4rem;
+
       }
 
     }

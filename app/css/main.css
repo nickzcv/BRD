@@ -433,7 +433,7 @@ nav.navigation ul li .btn.btn-default:hover {
 
 .settings .tabs .tab {
   position: relative;
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: gray;
   background: #EAEAE2;
   border: 1px solid #E5E3D4;
@@ -473,13 +473,25 @@ nav.navigation ul li .btn.btn-default:hover {
 .settings .save:hover {
   background: #74BDC1; }
 
+.settings .lbl {
+  font-weight: bold;
+  font-size: 0.9rem; }
+
+.settings .lead {
+  margin-bottom: 0; }
+
+.settings .lbl2 {
+  color: #777777;
+  font-size: 0.8rem;
+  margin-bottom: 20px; }
+
 @media only screen and (min-width: 992px) {
+  .settings .tabs .tab {
+    font-size: 1rem; }
   .settings .page {
     max-width: 70rem; }
   .settings .page .form-group.short {
-    width: 300px; }
-  .settings .page .form-group.row {
-    height: 4rem; } }
+    width: 25rem; } }
 
 /* Modal styles
 -------------------------------------------------- */
