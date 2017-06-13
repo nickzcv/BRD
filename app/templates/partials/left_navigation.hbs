@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <a class="link dashboard {{#if_eq activePage 'dashboard'}}active{{/if_eq}}">
+    <a class="link dashboard {{#compare activePage '===' 'dashboard'}}active{{/compare}}">
       <span class="icon ion-person"></span>
       <span class="nav-item">Мой кабинет</span>
     </a>
@@ -30,7 +30,7 @@
     </a>
   </li>
   <li>
-    <a class="link settings {{#if_eq activePage 'settings'}}active{{/if_eq}}">
+    <a class="link settings {{#compare activePage '===' 'settings'}}active{{/compare}}">
       <span class="icon ion-settings"></span>
       <span class="nav-item">Настройки</span>
     </a>

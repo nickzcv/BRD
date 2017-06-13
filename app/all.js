@@ -87,21 +87,21 @@ app.router = Marionette.AppRouter.extend({
 
   showMainPage: function() {
     console.log('router - showMainPage');
-    brd.regions.mainRegion.show(new app.views.MainView({}));
-    brd.regions.bodyRegion.show(new app.views.HomeView({}));
+    brd.regions.mainRegion.show(new app.views.MainView());
+    brd.regions.bodyRegion.show(new app.views.HomeView());
   },
 
   showDashboardPage: function() {
     console.log('router - showDashboardPage');
-    brd.regions.mainRegion.show(new app.views.MainView({}));
-    brd.regions.bodyRegion.show(new app.views.DashboardView({}));
+    brd.regions.mainRegion.show(new app.views.MainView());
+    brd.regions.bodyRegion.show(new app.views.DashboardView());
     brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'dashboard'}));
   },
 
   showSettingsPage: function() {
     console.log('router - showSettingsPage');
-    brd.regions.mainRegion.show(new app.views.MainView({}));
-    brd.regions.bodyRegion.show(new app.views.SettingsView({}));
+    brd.regions.mainRegion.show(new app.views.MainView());
+    brd.regions.bodyRegion.show(new app.views.SettingsView());
     brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'settings'}));
   }
 
@@ -113,11 +113,61 @@ app.router = Marionette.AppRouter.extend({
 // Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
 
 
-Handlebars.registerHelper('if_eq', function(a, b, opts) {
-  if(a == b)
-    return opts.fn(this);
-  else
-    return opts.inverse(this);
+
+/**
+ * Compare two values
+ *
+ * @param {Number} lvalue Left value to compare
+ * @param {String} operator Operator to apply while comparing
+ * @param {Number} rvalue Right value to compare
+ * @param {Object} options
+ * @property {Function} options.fn
+ * @property {Function} options.inverse
+ *
+ * @todo Clarify parameters' types and descriptions.
+ * @function external:HandlebarsHelper#compare
+ */
+/* jshint ignore:start */
+/* eslint-disable */
+Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options) {
+  var operators, result;
+  if (arguments.length < 3) {
+    throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+  }
+  if (options === undefined) {
+    options = rvalue;
+    rvalue = operator;
+    operator = "===";
+  }
+  operators = {
+    '==': function(l, r) {
+      return l == r; },
+    '===': function(l, r) {
+      return l === r; },
+    '!=': function(l, r) {
+      return l != r; },
+    '!==': function(l, r) {
+      return l !== r; },
+    '<': function(l, r) {
+      return l < r; },
+    '>': function(l, r) {
+      return l > r; },
+    '<=': function(l, r) {
+      return l <= r; },
+    '>=': function(l, r) {
+      return l >= r; },
+    'typeof': function(l, r) {
+      return typeof l == r; }
+  };
+  if (!operators[operator]) {
+    throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+  }
+  result = operators[operator](lvalue, rvalue);
+  if (result) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
 });
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
@@ -231,6 +281,78 @@ app.views.MainView = Backbone.Marionette.View.extend({
     var thisView = this;
     thisView.showChildView('headerRegion', new app.views.HeaderView());
     thisView.showChildView('footerRegion', new app.views.FooterView());
+  }
+
+});
+app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_account_section,
+
+  regions: {
+
+  },
+
+  initialize: function() {
+
+  },
+
+  onRender: function() {
+    console.log('++ SettingsAccountSectionView onRender')
+  }
+
+
+});
+app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_profile_section,
+
+  regions: {
+
+  },
+
+  initialize: function() {
+
+  },
+
+  onRender: function() {
+    console.log('-- SettingsProfileSectionView onRender')
+  }
+
+
+});
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter,
+
+
+});
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function () {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function () {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
   }
 
 });
@@ -431,42 +553,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
 
 });
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter,
-
-
-});
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function () {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function () {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
-  }
-
-});
 app.views.DashboardView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.dashboard,
@@ -526,20 +612,37 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings,
 
   regions: {
-    leftNavRegion: '.left-navigation'
+    leftNavRegion: '.left-navigation',
+    page: '.page'
   },
 
   ui: {
-
+    profileSettings: '.profile-settings-link',
+    accountSettings: '.account-settings-link'
   },
 
   events: {
-
+    'click @ui.profileSettings': function () {
+      this.showChildView('page', new app.views.SettingsProfileSectionView());
+      this.ui.profileSettings.addClass('active');
+      this.ui.accountSettings.removeClass('active');
+    },
+    'click @ui.accountSettings': function () {
+      this.showChildView('page', new app.views.SettingsAccountSectionView());
+      this.ui.accountSettings.addClass('active');
+      this.ui.profileSettings.removeClass('active');
+    }
   },
 
   initialize: function() {
     // Initialize left navigation region
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  },
+
+  onRender: function() {
+    this.showChildView('page', new app.views.SettingsProfileSectionView());
+    this.ui.profileSettings.addClass('active');
+    this.ui.accountSettings.removeClass('active');
   }
 
 

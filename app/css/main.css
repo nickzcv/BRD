@@ -427,6 +427,42 @@ nav.navigation ul li .btn.btn-default:hover {
   /* Tablets */
   /* Desktop and larger */ }
 
+.settings .tabs {
+  background: gray;
+  overflow: hidden; }
+
+.settings .tabs .tab {
+  position: relative;
+  font-size: 1rem;
+  color: gray;
+  background: #EAEAE2;
+  border: 1px solid #E5E3D4;
+  padding: 1rem;
+  float: left;
+  width: 50%;
+  text-align: center;
+  cursor: pointer; }
+
+.settings .tabs .tab.active {
+  border: none;
+  background: #fcfdfb;
+  color: #373737;
+  cursor: default; }
+
+.settings .tabs .tab.active:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #808080;
+  bottom: 0;
+  left: 50%; }
+
+.settings .tabs .tab:hover {
+  color: #373737; }
+
 .settings .save {
   font-size: 1rem;
   font-weight: bold;
