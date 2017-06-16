@@ -2,16 +2,17 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 80;
 const path = require('path');
+const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const winston = require('winston');
 const passport = require('passport');
 const session = require('express-session');
 const database = require('./config/database');
-const routes = require("./config/routes");
 
 
-// Uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/app/img/favicon.ico'));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Root directory from which the static assets are to be served.
@@ -29,19 +30,26 @@ app.use(function (req, res, next) {
   next();
 });
 
-/*
+
 app.use(session({
-  secret: "jamesbondagentzerozeroseven",
+  secret: "agentzerozeroseven",
   resave: true,
   saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-*/
+
 database.connect();
+
 var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
-app.use(routes);
+
+// Otherwise render the index.html page for the Backbone SPA
+// This means we don't have to map all of the SPA routes in Express
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, 'app/index.html'));
+});
+
 
 
 // catch 404 and forward to error handler
