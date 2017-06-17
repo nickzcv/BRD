@@ -9,6 +9,7 @@
     "cookie-parser": "latest",
     "express": "latest",
     "express-session" : "",
+    "express-jwt" : "",
     "jsonwebtoken": "^5.0.4",
     "mongoose": "^4.0.2",
     "passport": "latest",

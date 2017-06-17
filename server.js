@@ -40,6 +40,8 @@ database.connect();
 // API
 var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
+var admin = require(path.join(__dirname, 'routes/admin'));
+app.use('/api', admin);
 
 // Otherwise render the index.html page for the Backbone SPA
 // This means we don't have to map all of the SPA routes in Express
@@ -47,7 +49,14 @@ app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'app/index.html'));
 });
 
-
+// error handlers
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 
 
 

@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
 var userSchema = new mongoose.Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  hash: String, // The hash is created by combining the password provided by the user and the salt, and then applying one-way encryption.
-  salt: String, // The salt is a string of characters unique to each user.
   name: String,
   phone: String,
   location: String,
@@ -18,14 +15,9 @@ var userSchema = new mongoose.Schema({
   isActive: {type: Boolean, default: false}
 });
 
-userSchema.methods.setPassword = function(password) {
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-};
 
 userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-  return this.hash === hash;
+  return this.password === password;
 };
 
 userSchema.methods.generateJwt = function() {
@@ -41,4 +33,4 @@ userSchema.methods.generateJwt = function() {
 };
 
 
-mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

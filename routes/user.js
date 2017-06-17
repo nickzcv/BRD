@@ -3,6 +3,15 @@ const router = express.Router();              // get an instance of the express 
 //Define mongoose Schema
 var User = require('../models/user');
 
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
+var ctrlAuth = require('../controllers/authentication');
+router.post('/login', ctrlAuth.login);
+
+
 router.route('/users')
 	// create a User (accessed at POST /api/users)
 	.post(function(req, res) {
@@ -30,7 +39,7 @@ router.route('/users')
 
 	})
 	// get all the users (accessed at GET /api/users)
-	.get(function(req, res) {
+	.get(/*auth, */function(req, res) {
     User.find({}, function(err, user) {
       if (err)
         res.json(err);
