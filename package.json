@@ -10,9 +10,9 @@
     "express": "latest",
     "express-session" : "",
     "jsonwebtoken": "^5.0.4",
+    "mongoose": "^4.0.2",
     "passport": "latest",
     "passport-http": "latest",
-    "mongoose": "^4.0.2",
     "passport-local": "",
     "serve-favicon": "latest",
     "winston": "latest"

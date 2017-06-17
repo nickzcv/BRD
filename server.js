@@ -9,6 +9,7 @@ const winston = require('winston');
 const passport = require('passport');
 const session = require('express-session');
 const database = require('./config/database');
+require('./config/passport');
 
 
 app.use(favicon(__dirname + '/app/img/favicon.ico'));
@@ -31,16 +32,12 @@ app.use(function (req, res, next) {
 });
 
 
-app.use(session({
-  secret: "agentzerozeroseven",
-  resave: true,
-  saveUninitialized: false
-}));
 app.use(passport.initialize());
-app.use(passport.session());
 
+// DB connect
 database.connect();
 
+// API
 var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
 
@@ -51,26 +48,6 @@ app.use(function(req, res) {
 });
 
 
-
-// catch 404 and forward to error handler
-/*
-app.use(function(req, res, next){
-  res.status(404);
-  res.json({
-    error: 'Not found'
-  });
-  return;
-});
-*/
-
-// error handlers
-/*app.use(function(err, req, res, next){
-  res.status(err.status || 500);
-  res.json({
-    error: err.message
-  });
-  return;
-});*/
 
 
 
