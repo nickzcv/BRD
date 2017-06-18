@@ -5,7 +5,7 @@ module.exports.login = function(req, res) {
 
    if(!req.body.email || !req.body.password) {
      res.json({
-       "error" : 'errrrr'
+       "error" : 'no mail or pass'
      });
      return;
    }
