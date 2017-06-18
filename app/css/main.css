@@ -529,6 +529,11 @@ nav.navigation ul li .btn.btn-default:hover {
   line-height: 23rem;
   text-align: center; }
 
+.modal#login .loader-wrapper {
+  display: none;
+  line-height: 16rem;
+  text-align: center; }
+
 .modal .alert {
   display: none; }
 

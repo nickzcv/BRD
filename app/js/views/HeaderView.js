@@ -31,7 +31,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 
   showLoginView: function() {
     this.showChildView('modalSection', new app.views.LoginView({
-      model: new app.models.MainModel
+      model: new app.models.LoginModel
     }));
   },
 

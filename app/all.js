@@ -66,11 +66,41 @@ var brd = {
   router: {},
   regions: {},
   controllers: {
-    hideModalBack: function () {
+    /*
+     * Fully hide modal window
+     *
+     */
+    hideModalFully: function () {
       $('body').removeClass('modal-open');
       $('.modal-backdrop').remove();
+    },
+
+    /*
+     * Save token in localStorage
+     *
+     */
+    saveToken: function (token) {
+      localStorage.setItem('token', token);
+    },
+
+    /*
+     * Get token from localStorage
+     *
+     */
+    getToken: function () {
+      return localStorage.getItem('token');
+    },
+
+    /*
+     * Remove token from localStorage
+     *
+     */
+    logout: function () {
+      localStorage.removeItem('token');
     }
-  }
+
+  },
+  userProfile: {}
 
 };
 app.router = Marionette.AppRouter.extend({
@@ -169,6 +199,48 @@ Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options)
     return options.inverse(this);
   }
 });
+app.models.LoginModel = Backbone.Model.extend({
+
+  urlRoot: 'api/login',
+
+  defaults: {
+    email: null,
+    password: null
+  },
+
+  initialize: function() {
+    // console.log('initialize Login Model');
+    this.on('invalid', function(model, error){
+      console.log(error);
+    });
+  },
+
+  validate: function(attributes) {
+    if (!attributes.email) {
+      return 'empty email.';
+    }
+    if (!attributes.password) {
+      return 'empty password.';
+    }
+  },
+
+  /*
+   * Login request
+   *
+   */
+  login: function() {
+    return $.ajax({
+      url: 'api/login/',
+      method: 'POST',
+      data: {
+        email: this.get('email'),
+        password: this.get('password')
+      }
+    });
+  }
+
+
+});
 app.models.MainModel = Backbone.Model.extend();
 app.models.RegistrationModel = Backbone.Model.extend({
 
@@ -247,7 +319,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 
   showLoginView: function() {
     this.showChildView('modalSection', new app.views.LoginView({
-      model: new app.models.MainModel
+      model: new app.models.LoginModel
     }));
   },
 
@@ -380,11 +452,14 @@ app.views.LoginView = app.views.HeaderView.extend({
 
   ui: {
     loginModal: '#login',
-    loginButton: '.login-btn'
+    loginForm: '#login-form',
+    email: '#email',
+    password: '#password',
+    loader: '.loader-wrapper',
+    danger: '.alert-danger'
   },
 
   events: {
-    'click @ui.loginButton' : 'loginHandler',
     'hide.bs.modal' : function () {
       this.destroy();
     },
@@ -396,12 +471,74 @@ app.views.LoginView = app.views.HeaderView.extend({
   },
 
   onRender: function() {
-    this.ui.loginModal.modal('show');
+    var thisView = this;
+    thisView.ui.loginModal.modal('show');
+    thisView.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the Login form.
+   *
+   */
+  formAddValidation: function() {
+    var thisView = this;
+    thisView.ui.loginForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true,
+          maxlength: 120,
+          minlength: 4
+        },
+        password: {
+          required: true,
+          maxlength: 100,
+          minlength: 5
+        }
+      },
+      messages: {
+        email: {
+          required: 'Введите e-mail',
+          email: 'Проверьте правильность ввода e-mail',
+          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
+        },
+        password: {
+          required: 'Введите пароль',
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        }
+      },
+
+      submitHandler: function() {
+        thisView.loginHandler();
+      }
+    });
   },
 
   loginHandler: function() {
-    brd.router.navigate('#settings',{trigger:true});
-    brd.controllers.hideModalBack();
+    var thisView = this;
+    // Show loader
+    thisView.ui.loginForm.hide();
+    thisView.ui.loader.show();
+    thisView.model.set({
+      email: thisView.ui.email.val(),
+      password: thisView.ui.password.val()
+    });
+    // Login request to the server
+    thisView.model.login().then(function(data) {
+      // Destroy modal
+      thisView.destroy();
+      brd.controllers.hideModalFully();
+      // Save token
+      brd.userProfile.token = data.token;
+      brd.router.navigate('#settings',{trigger:true});
+
+    }, function () {
+      thisView.ui.loader.hide();
+      thisView.ui.loginForm.fadeIn();
+      thisView.ui.danger.html('Ошибка! Неверный email или пароль.').fadeIn();
+    });
   },
 
   showForgotView: function() {
@@ -500,7 +637,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    */
   handleSubmitClick: function() {
     var thisView = this;
-    event.preventDefault();
     // Show loader
     thisView.ui.form.hide();
     thisView.ui.loader.show();
@@ -517,7 +653,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       thisView.ui.loader.hide();
       thisView.ui.form.fadeIn();
       thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
-      console.log(error);
     });
 
   },
@@ -537,7 +672,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
     thisView.model.save(null, {
       success: function() {
-        console.log('success');
         thisView.ui.loader.hide();
         thisView.ui.danger.hide();
         thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();

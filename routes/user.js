@@ -39,7 +39,7 @@ router.route('/users')
 
 	})
 	// get all the users (accessed at GET /api/users)
-	.get(/*auth, */function(req, res) {
+	.get(auth, function(req, res) {
     User.find({}, function(err, user) {
       if (err)
         res.json(err);

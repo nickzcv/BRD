@@ -89,7 +89,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    */
   handleSubmitClick: function() {
     var thisView = this;
-    event.preventDefault();
     // Show loader
     thisView.ui.form.hide();
     thisView.ui.loader.show();
@@ -106,7 +105,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       thisView.ui.loader.hide();
       thisView.ui.form.fadeIn();
       thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
-      console.log(error);
     });
 
   },
@@ -126,7 +124,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 
     thisView.model.save(null, {
       success: function() {
-        console.log('success');
         thisView.ui.loader.hide();
         thisView.ui.danger.hide();
         thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();

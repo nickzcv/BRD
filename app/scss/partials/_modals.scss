@@ -41,6 +41,14 @@
     }
   }
 
+  &#login {
+    .loader-wrapper {
+      display: none;
+      line-height: 16rem;
+      text-align: center;
+    }
+  }
+
   .alert {
     display: none;
   }
