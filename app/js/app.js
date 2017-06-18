@@ -24,13 +24,13 @@ var app = (function() {
       onBeforeStart: function(application, options) {
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
+
+        console.log(brd.controllers.isLoggedIn());
       },
 
       onStart: function(application, options) {
         // Save main region namespace
         brd.regions.mainRegion = this.getRegion();
-        // Show loading while router take handle
-        // this.getRegion().show(new app.views.loading());
 
         Backbone.history.start();
       }

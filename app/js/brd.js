@@ -35,9 +35,27 @@ var brd = {
      */
     logout: function () {
       localStorage.removeItem('token');
+    },
+
+    /*
+     * Check token validity
+     *
+     */
+    isLoggedIn: function() {
+      var token = this.getToken();
+      var payload;
+
+      if(token){
+        payload = token.split('.')[1];
+        payload = atob(payload);
+        payload = JSON.parse(payload);
+
+        return payload.exp > Date.now() / 1000;
+      } else {
+        return false;
+      }
     }
 
-  },
-  userProfile: {}
+  }
 
 };

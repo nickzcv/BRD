@@ -83,7 +83,8 @@ app.views.LoginView = app.views.HeaderView.extend({
       thisView.destroy();
       brd.controllers.hideModalFully();
       // Save token
-      brd.userProfile.token = data.token;
+      brd.controllers.saveToken(data.token);
+      // Open setting page
       brd.router.navigate('#settings',{trigger:true});
 
     }, function () {

@@ -24,13 +24,13 @@ var app = (function() {
       onBeforeStart: function(application, options) {
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
+
+        console.log(brd.controllers.isLoggedIn());
       },
 
       onStart: function(application, options) {
         // Save main region namespace
         brd.regions.mainRegion = this.getRegion();
-        // Show loading while router take handle
-        // this.getRegion().show(new app.views.loading());
 
         Backbone.history.start();
       }
@@ -97,10 +97,28 @@ var brd = {
      */
     logout: function () {
       localStorage.removeItem('token');
+    },
+
+    /*
+     * Check token validity
+     *
+     */
+    isLoggedIn: function() {
+      var token = this.getToken();
+      var payload;
+
+      if(token){
+        payload = token.split('.')[1];
+        payload = atob(payload);
+        payload = JSON.parse(payload);
+
+        return payload.exp > Date.now() / 1000;
+      } else {
+        return false;
+      }
     }
 
-  },
-  userProfile: {}
+  }
 
 };
 app.router = Marionette.AppRouter.extend({
@@ -531,7 +549,8 @@ app.views.LoginView = app.views.HeaderView.extend({
       thisView.destroy();
       brd.controllers.hideModalFully();
       // Save token
-      brd.userProfile.token = data.token;
+      brd.controllers.saveToken(data.token);
+      // Open setting page
       brd.router.navigate('#settings',{trigger:true});
 
     }, function () {
