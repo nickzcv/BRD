@@ -1,3 +1,5 @@
+'use strict';
+
 /*******************************************************************************
  APP
  *******************************************************************************/
@@ -55,6 +57,8 @@ var app = function () {
 $(document).ready(function () {
   app.init();
 });
+'use strict';
+
 var brd = {
 
   model: {},
@@ -117,6 +121,8 @@ var brd = {
   }
 
 };
+'use strict';
+
 app.router = Marionette.AppRouter.extend({
 
   routes: {
@@ -148,6 +154,8 @@ app.router = Marionette.AppRouter.extend({
   }
 
 });
+"use strict";
+
 var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 // Profile left navigation
@@ -219,6 +227,8 @@ Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options
     return options.inverse(this);
   }
 });
+'use strict';
+
 app.models.LoginModel = Backbone.Model.extend({
 
   urlRoot: 'api/login',
@@ -260,7 +270,11 @@ app.models.LoginModel = Backbone.Model.extend({
   }
 
 });
+"use strict";
+
 app.models.MainModel = Backbone.Model.extend();
+'use strict';
+
 app.models.RegistrationModel = Backbone.Model.extend({
 
   urlRoot: 'api/users',
@@ -301,9 +315,13 @@ app.models.RegistrationModel = Backbone.Model.extend({
   }
 
 });
+"use strict";
+
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: tpl.templates.footer
 });
+'use strict';
+
 app.views.HeaderView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.header,
@@ -351,6 +369,8 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.MainView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.main,
@@ -373,6 +393,8 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings_account_section,
@@ -386,6 +408,8 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings_profile_section,
@@ -399,11 +423,15 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   }
 
 });
+"use strict";
+
 app.views.FilterView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.filter
 
 });
+'use strict';
+
 app.views.HomeView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.home,
@@ -434,6 +462,8 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.ForgotView = app.views.HeaderView.extend({
 
   template: tpl.templates.forgot,
@@ -450,6 +480,8 @@ app.views.ForgotView = app.views.HeaderView.extend({
   }
 
 });
+'use strict';
+
 app.views.LoginView = app.views.HeaderView.extend({
 
   template: tpl.templates.login,
@@ -550,6 +582,8 @@ app.views.LoginView = app.views.HeaderView.extend({
   }
 
 });
+'use strict';
+
 app.views.RegistrationView = app.views.HeaderView.extend({
 
   template: tpl.templates.registration,
@@ -689,6 +723,8 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
+'use strict';
+
 app.views.DashboardView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.dashboard,
@@ -707,6 +743,8 @@ app.views.DashboardView = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.LeftNavigation = Backbone.Marionette.View.extend({
 
   template: tpl.templates.left_navigation,
@@ -736,6 +774,8 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
   }
 
 });
+'use strict';
+
 app.views.SettingsView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings,

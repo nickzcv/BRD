@@ -45,7 +45,7 @@ gulp.task('js', function() {
     'app/js/views/**/*.js'
   ])
   .pipe(babel({
-    presets: [["es2015", {modules: false}]]
+    presets: [["es2015"]]
   }))
   .pipe(concat('all.js'))
   .pipe(gulp.dest('app'));

@@ -8,7 +8,7 @@ let brd = {
      * Fully hide modal window
      *
      */
-    hideModalFully: function () {
+    hideModalFully: function() {
       $('body').removeClass('modal-open');
       $('.modal-backdrop').remove();
     },
@@ -17,7 +17,7 @@ let brd = {
      * Save token in localStorage
      *
      */
-    saveToken: function (token) {
+    saveToken: function(token) {
       localStorage.setItem('token', token);
     },
 
@@ -25,7 +25,7 @@ let brd = {
      * Get token from localStorage
      *
      */
-    getToken: () => {
+    getToken: function() {
       console.log('test');
       return localStorage.getItem('token');
     },
@@ -34,7 +34,7 @@ let brd = {
      * Remove token from localStorage
      *
      */
-    logout: function () {
+    logout: function() {
       localStorage.removeItem('token');
     },
 
