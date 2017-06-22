@@ -12,10 +12,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
     let thisView = this;
     // Initialize main content region
     brd.regions.bodyRegion = thisView.getRegion('bodyRegion');
-    // Listen to any router change
-    thisView.listenTo(Backbone.history, 'route', () => {
-      console.log('/router changed')
-    })
   },
 
   onRender: function() {

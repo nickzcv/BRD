@@ -27,18 +27,12 @@ var app = function () {
       region: '#app',
 
       onBeforeStart: function onBeforeStart(application, options) {
-        var test = 'user NOT authenticated';
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
 
         console.log('Is logged in: ' + brd.controllers.isLoggedIn());
-        // If user already logged in
-        if (brd.controllers.isLoggedIn()) {
-          test = 'user authenticated';
-          app.userObject.isLoggedIn = true;
-        }
-
-        console.log(test);
+        // Check user status
+        app.userObject.isLoggedIn = brd.controllers.isLoggedIn();
         console.log(app.userObject.isLoggedIn);
       },
 
@@ -393,10 +387,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
     var thisView = this;
     // Initialize main content region
     brd.regions.bodyRegion = thisView.getRegion('bodyRegion');
-    // Listen to any router change
-    thisView.listenTo(Backbone.history, 'route', function () {
-      console.log('/router changed');
-    });
   },
 
   onRender: function onRender() {
