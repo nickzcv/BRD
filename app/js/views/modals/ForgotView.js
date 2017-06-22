@@ -11,8 +11,8 @@ app.views.ForgotView = app.views.HeaderView.extend({
   },
 
   onRender: function() {
-    console.log('onRender forgotPasswordModal');
-    this.ui.forgotPasswordModal.modal('show');
+    //console.log('onRender forgotPasswordModal');
+    //this.ui.forgotPasswordModal.modal('show');
   }
 
 });

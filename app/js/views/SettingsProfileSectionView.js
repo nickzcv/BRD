@@ -11,7 +11,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    console.log('-- SettingsProfileSectionView onRender')
+
   }
 
 

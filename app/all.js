@@ -14,7 +14,10 @@ var app = function () {
     collections: {},
     models: {},
     router: {},
-    views: {}
+    views: {},
+    userObject: {
+      isLoggedIn: false
+    }
   };
 
   objApp.init = function () {
@@ -24,10 +27,19 @@ var app = function () {
       region: '#app',
 
       onBeforeStart: function onBeforeStart(application, options) {
+        var test = 'user NOT authenticated';
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
 
-        console.log(brd.controllers.isLoggedIn());
+        console.log('Is logged in: ' + brd.controllers.isLoggedIn());
+        // If user already logged in
+        if (brd.controllers.isLoggedIn()) {
+          test = 'user authenticated';
+          app.userObject.isLoggedIn = true;
+        }
+
+        console.log(test);
+        console.log(app.userObject.isLoggedIn);
       },
 
       onStart: function onStart(application, options) {
@@ -87,7 +99,6 @@ var brd = {
      *
      */
     getToken: function getToken() {
-      console.log('test');
       return localStorage.getItem('token');
     },
 
@@ -134,20 +145,17 @@ app.router = Marionette.AppRouter.extend({
   initialize: function initialize() {},
 
   showMainPage: function showMainPage() {
-    console.log('router - showMainPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.HomeView());
   },
 
   showDashboardPage: function showDashboardPage() {
-    console.log('router - showDashboardPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.DashboardView());
     brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'dashboard' }));
   },
 
   showSettingsPage: function showSettingsPage() {
-    console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.SettingsView());
     brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'settings' }));
@@ -382,8 +390,13 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   initialize: function initialize() {
+    var thisView = this;
     // Initialize main content region
-    brd.regions.bodyRegion = this.getRegion('bodyRegion');
+    brd.regions.bodyRegion = thisView.getRegion('bodyRegion');
+    // Listen to any router change
+    thisView.listenTo(Backbone.history, 'route', function () {
+      console.log('/router changed');
+    });
   },
 
   onRender: function onRender() {
@@ -393,7 +406,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
@@ -403,12 +416,10 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {},
 
-  onRender: function onRender() {
-    console.log('++ SettingsAccountSectionView onRender');
-  }
+  onRender: function onRender() {}
 
 });
-'use strict';
+"use strict";
 
 app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
@@ -418,9 +429,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {},
 
-  onRender: function onRender() {
-    console.log('-- SettingsProfileSectionView onRender');
-  }
+  onRender: function onRender() {}
 
 });
 "use strict";
@@ -475,8 +484,8 @@ app.views.ForgotView = app.views.HeaderView.extend({
   events: {},
 
   onRender: function onRender() {
-    console.log('onRender forgotPasswordModal');
-    this.ui.forgotPasswordModal.modal('show');
+    //console.log('onRender forgotPasswordModal');
+    //this.ui.forgotPasswordModal.modal('show');
   }
 
 });

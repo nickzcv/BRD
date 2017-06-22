@@ -26,7 +26,6 @@ let brd = {
      *
      */
     getToken: function() {
-      console.log('test');
       return localStorage.getItem('token');
     },
 

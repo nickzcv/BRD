@@ -11,7 +11,7 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    console.log('++ SettingsAccountSectionView onRender')
+
   }
 
 
