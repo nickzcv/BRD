@@ -6,9 +6,9 @@
  *
  * @class app
  */
-var app = (function() {
+let app = (function() {
 
-  var objApp = {
+  let objApp = {
     collections: {},
     models: {},
     router: {},

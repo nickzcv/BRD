@@ -1,13 +1,14 @@
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    minifycss = require('gulp-clean-css'),
-    rename = require('gulp-rename'),
-    handlebars = require('gulp-handlebars'),
-    wrap = require('gulp-wrap'),
-    declare = require('gulp-declare'),
-    concat = require('gulp-concat'),
-    util = require('gulp-util'),
-    log = util.log;
+const gulp = require('gulp'),
+      babel = require('gulp-babel'),
+      sass = require('gulp-sass'),
+      minifycss = require('gulp-clean-css'),
+      rename = require('gulp-rename'),
+      handlebars = require('gulp-handlebars'),
+      wrap = require('gulp-wrap'),
+      declare = require('gulp-declare'),
+      concat = require('gulp-concat'),
+      util = require('gulp-util'),
+      log = util.log;
 
 
 gulp.task('sass', function(){
@@ -43,6 +44,9 @@ gulp.task('js', function() {
     'app/js/routers/*.js',
     'app/js/views/**/*.js'
   ])
+  .pipe(babel({
+    presets: [["es2015", {modules: false}]]
+  }))
   .pipe(concat('all.js'))
   .pipe(gulp.dest('app'));
 });

@@ -30,7 +30,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    *
    */
   formAddValidation: function() {
-    var thisView = this;
+    let thisView = this;
     thisView.ui.form.validate({
       rules: {
         email: {
@@ -88,7 +88,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    *
    */
   handleSubmitClick: function() {
-    var thisView = this;
+    let thisView = this;
     // Show loader
     thisView.ui.form.hide();
     thisView.ui.loader.show();
@@ -114,7 +114,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    *
    */
   saveUser: function() {
-    var thisView = this;
+    let thisView = this;
 
     thisView.model.set({
       email: thisView.ui.email.val(),

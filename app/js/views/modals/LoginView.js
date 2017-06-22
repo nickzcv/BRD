@@ -23,7 +23,7 @@ app.views.LoginView = app.views.HeaderView.extend({
   },
 
   onRender: function() {
-    var thisView = this;
+    let thisView = this;
     thisView.ui.loginModal.modal('show');
     thisView.formAddValidation();
   },
@@ -33,7 +33,7 @@ app.views.LoginView = app.views.HeaderView.extend({
    *
    */
   formAddValidation: function() {
-    var thisView = this;
+    let thisView = this;
     thisView.ui.loginForm.validate({
       rules: {
         email: {
@@ -69,7 +69,7 @@ app.views.LoginView = app.views.HeaderView.extend({
   },
 
   loginHandler: function() {
-    var thisView = this;
+    let thisView = this;
     // Show loader
     thisView.ui.loginForm.hide();
     thisView.ui.loader.show();

@@ -1,4 +1,4 @@
-var brd = {
+let brd = {
 
   model: {},
   router: {},
@@ -25,7 +25,8 @@ var brd = {
      * Get token from localStorage
      *
      */
-    getToken: function () {
+    getToken: () => {
+      console.log('test');
       return localStorage.getItem('token');
     },
 
@@ -42,8 +43,8 @@ var brd = {
      *
      */
     isLoggedIn: function() {
-      var token = this.getToken();
-      var payload;
+      let token = this.getToken();
+      let payload;
 
       if(token){
         payload = token.split('.')[1];

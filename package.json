@@ -27,6 +27,8 @@
     "gulp-handlebars": "4.0.0",
     "gulp-wrap": "latest",
     "gulp-declare": "latest",
-    "gulp-concat": "latest"
+    "gulp-concat": "latest",
+    "babel-preset-es2015": "",
+    "gulp-babel": ""
   }
 }

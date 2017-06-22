@@ -6,7 +6,7 @@
  *
  * @class app
  */
-var app = (function() {
+var app = function () {
 
   var objApp = {
     collections: {},
@@ -15,20 +15,20 @@ var app = (function() {
     views: {}
   };
 
-  objApp.init = function() {
+  objApp.init = function () {
     // console.log('app.init');
-    const App = Backbone.Marionette.Application.extend({
+    var App = Backbone.Marionette.Application.extend({
 
       region: '#app',
 
-      onBeforeStart: function(application, options) {
+      onBeforeStart: function onBeforeStart(application, options) {
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
 
         console.log(brd.controllers.isLoggedIn());
       },
 
-      onStart: function(application, options) {
+      onStart: function onStart(application, options) {
         // Save main region namespace
         brd.regions.mainRegion = this.getRegion();
 
@@ -37,7 +37,7 @@ var app = (function() {
 
     });
 
-    const application = new App();
+    var application = new App();
 
     application.start({
       data: {
@@ -47,19 +47,14 @@ var app = (function() {
   };
 
   return objApp;
-})();
-
+}();
 
 /*****************************************
  Initialize the application
  ******************************************/
-$(document).ready(function() {
+$(document).ready(function () {
   app.init();
 });
-
-
-
-
 var brd = {
 
   model: {},
@@ -70,7 +65,7 @@ var brd = {
      * Fully hide modal window
      *
      */
-    hideModalFully: function () {
+    hideModalFully: function hideModalFully() {
       $('body').removeClass('modal-open');
       $('.modal-backdrop').remove();
     },
@@ -79,7 +74,7 @@ var brd = {
      * Save token in localStorage
      *
      */
-    saveToken: function (token) {
+    saveToken: function saveToken(token) {
       localStorage.setItem('token', token);
     },
 
@@ -87,7 +82,8 @@ var brd = {
      * Get token from localStorage
      *
      */
-    getToken: function () {
+    getToken: function getToken() {
+      console.log('test');
       return localStorage.getItem('token');
     },
 
@@ -95,7 +91,7 @@ var brd = {
      * Remove token from localStorage
      *
      */
-    logout: function () {
+    logout: function logout() {
       localStorage.removeItem('token');
     },
 
@@ -103,11 +99,11 @@ var brd = {
      * Check token validity
      *
      */
-    isLoggedIn: function() {
+    isLoggedIn: function isLoggedIn() {
       var token = this.getToken();
-      var payload;
+      var payload = void 0;
 
-      if(token){
+      if (token) {
         payload = token.split('.')[1];
         payload = atob(payload);
         payload = JSON.parse(payload);
@@ -129,37 +125,33 @@ app.router = Marionette.AppRouter.extend({
     'settings': 'showSettingsPage'
   },
 
-  initialize: function() {
+  initialize: function initialize() {},
 
-  },
-
-  showMainPage: function() {
+  showMainPage: function showMainPage() {
     console.log('router - showMainPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.HomeView());
   },
 
-  showDashboardPage: function() {
+  showDashboardPage: function showDashboardPage() {
     console.log('router - showDashboardPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.DashboardView());
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'dashboard'}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'dashboard' }));
   },
 
-  showSettingsPage: function() {
+  showSettingsPage: function showSettingsPage() {
     console.log('router - showSettingsPage');
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.SettingsView());
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'settings'}));
+    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'settings' }));
   }
 
-
-
 });
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 // Profile left navigation
 // Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
-
 
 
 /**
@@ -177,8 +169,9 @@ app.router = Marionette.AppRouter.extend({
  */
 /* jshint ignore:start */
 /* eslint-disable */
-Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options) {
-  var operators, result;
+Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options) {
+  var operators = void 0,
+      result = void 0;
   if (arguments.length < 3) {
     throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
   }
@@ -188,24 +181,33 @@ Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options)
     operator = "===";
   }
   operators = {
-    '==': function(l, r) {
-      return l == r; },
-    '===': function(l, r) {
-      return l === r; },
-    '!=': function(l, r) {
-      return l != r; },
-    '!==': function(l, r) {
-      return l !== r; },
-    '<': function(l, r) {
-      return l < r; },
-    '>': function(l, r) {
-      return l > r; },
-    '<=': function(l, r) {
-      return l <= r; },
-    '>=': function(l, r) {
-      return l >= r; },
-    'typeof': function(l, r) {
-      return typeof l == r; }
+    '==': function _(l, r) {
+      return l == r;
+    },
+    '===': function _(l, r) {
+      return l === r;
+    },
+    '!=': function _(l, r) {
+      return l != r;
+    },
+    '!==': function _(l, r) {
+      return l !== r;
+    },
+    '<': function _(l, r) {
+      return l < r;
+    },
+    '>': function _(l, r) {
+      return l > r;
+    },
+    '<=': function _(l, r) {
+      return l <= r;
+    },
+    '>=': function _(l, r) {
+      return l >= r;
+    },
+    'typeof': function _typeof(l, r) {
+      return (typeof l === "undefined" ? "undefined" : _typeof2(l)) == r;
+    }
   };
   if (!operators[operator]) {
     throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
@@ -226,14 +228,14 @@ app.models.LoginModel = Backbone.Model.extend({
     password: null
   },
 
-  initialize: function() {
+  initialize: function initialize() {
     // console.log('initialize Login Model');
-    this.on('invalid', function(model, error){
+    this.on('invalid', function (model, error) {
       console.log(error);
     });
   },
 
-  validate: function(attributes) {
+  validate: function validate(attributes) {
     if (!attributes.email) {
       return 'empty email.';
     }
@@ -246,7 +248,7 @@ app.models.LoginModel = Backbone.Model.extend({
    * Login request
    *
    */
-  login: function() {
+  login: function login() {
     return $.ajax({
       url: 'api/login/',
       method: 'POST',
@@ -256,7 +258,6 @@ app.models.LoginModel = Backbone.Model.extend({
       }
     });
   }
-
 
 });
 app.models.MainModel = Backbone.Model.extend();
@@ -270,14 +271,14 @@ app.models.RegistrationModel = Backbone.Model.extend({
     confirmPassword: null
   },
 
-  initialize: function() {
+  initialize: function initialize() {
     console.log('initialize RegistrationModel');
-    this.on('invalid', function(model, error){
+    this.on('invalid', function (model, error) {
       console.log(error);
     });
   },
 
-  validate: function(attributes) {
+  validate: function validate(attributes) {
     if (!attributes.email) {
       return 'empty email.';
     }
@@ -290,7 +291,7 @@ app.models.RegistrationModel = Backbone.Model.extend({
   * Check by email if user exist
   *
   */
-  isEmailExist: function(email) {
+  isEmailExist: function isEmailExist(email) {
     return $.ajax({
       url: 'api/user-email-check/',
       data: {
@@ -298,7 +299,6 @@ app.models.RegistrationModel = Backbone.Model.extend({
       }
     });
   }
-
 
 });
 app.views.FooterView = Backbone.Marionette.View.extend({
@@ -324,20 +324,20 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.hamburger': 'toggleMobileMenu',
     'click @ui.registrationBtn': 'showRegistrationView',
     'click @ui.loginBtn': 'showLoginView',
-    'click @ui.homeLink': function () {
-      brd.router.navigate('#', {trigger:true});
+    'click @ui.homeLink': function clickUiHomeLink() {
+      brd.router.navigate('#', { trigger: true });
     }
   },
 
-  showRegistrationView: function() {
+  showRegistrationView: function showRegistrationView() {
     this.showChildView('modalSection', new app.views.RegistrationView({
-      model: new app.models.RegistrationModel
+      model: new app.models.RegistrationModel()
     }));
   },
 
-  showLoginView: function() {
+  showLoginView: function showLoginView() {
     this.showChildView('modalSection', new app.views.LoginView({
-      model: new app.models.LoginModel
+      model: new app.models.LoginModel()
     }));
   },
 
@@ -345,11 +345,10 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
    * Mobile navigation handler (hamburger)
    *
    */
-  toggleMobileMenu: function() {
+  toggleMobileMenu: function toggleMobileMenu() {
     this.ui.hamburger.toggleClass('closeBtn');
     this.ui.navigation.toggleClass('hidden');
   }
-
 
 });
 app.views.MainView = Backbone.Marionette.View.extend({
@@ -362,12 +361,12 @@ app.views.MainView = Backbone.Marionette.View.extend({
     footerRegion: 'footer'
   },
 
-  initialize: function() {
+  initialize: function initialize() {
     // Initialize main content region
     brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
-  onRender: function() {
+  onRender: function onRender() {
     var thisView = this;
     thisView.showChildView('headerRegion', new app.views.HeaderView());
     thisView.showChildView('footerRegion', new app.views.FooterView());
@@ -378,42 +377,31 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings_account_section,
 
-  regions: {
+  regions: {},
 
-  },
+  initialize: function initialize() {},
 
-  initialize: function() {
-
-  },
-
-  onRender: function() {
-    console.log('++ SettingsAccountSectionView onRender')
+  onRender: function onRender() {
+    console.log('++ SettingsAccountSectionView onRender');
   }
-
 
 });
 app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings_profile_section,
 
-  regions: {
+  regions: {},
 
-  },
+  initialize: function initialize() {},
 
-  initialize: function() {
-
-  },
-
-  onRender: function() {
-    console.log('-- SettingsProfileSectionView onRender')
+  onRender: function onRender() {
+    console.log('-- SettingsProfileSectionView onRender');
   }
-
 
 });
 app.views.FilterView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.filter,
-
+  template: tpl.templates.filter
 
 });
 app.views.HomeView = Backbone.Marionette.View.extend({
@@ -432,15 +420,15 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.mobileFilterBtn': function () {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
       $('.filters').toggleClass('visible');
     },
-    'click @ui.closeFilter': function () {
+    'click @ui.closeFilter': function clickUiCloseFilter() {
       $('.filters').removeClass('visible');
     }
   },
 
-  onRender: function() {
+  onRender: function onRender() {
     var thisView = this;
     thisView.showChildView('filter', new app.views.FilterView());
   }
@@ -454,11 +442,9 @@ app.views.ForgotView = app.views.HeaderView.extend({
     forgotPasswordModal: '#forgot'
   },
 
-  events: {
+  events: {},
 
-  },
-
-  onRender: function() {
+  onRender: function onRender() {
     console.log('onRender forgotPasswordModal');
     this.ui.forgotPasswordModal.modal('show');
   }
@@ -478,17 +464,17 @@ app.views.LoginView = app.views.HeaderView.extend({
   },
 
   events: {
-    'hide.bs.modal' : function () {
+    'hide.bs.modal': function hideBsModal() {
       this.destroy();
     },
-    'click .forgot-password' : function () {
+    'click .forgot-password': function clickForgotPassword() {
       this.ui.loginModal.modal('hide');
       this.destroy();
       this.showForgotView();
     }
   },
 
-  onRender: function() {
+  onRender: function onRender() {
     var thisView = this;
     thisView.ui.loginModal.modal('show');
     thisView.formAddValidation();
@@ -498,7 +484,7 @@ app.views.LoginView = app.views.HeaderView.extend({
    * Validation rules for the Login form.
    *
    */
-  formAddValidation: function() {
+  formAddValidation: function formAddValidation() {
     var thisView = this;
     thisView.ui.loginForm.validate({
       rules: {
@@ -528,13 +514,13 @@ app.views.LoginView = app.views.HeaderView.extend({
         }
       },
 
-      submitHandler: function() {
+      submitHandler: function submitHandler() {
         thisView.loginHandler();
       }
     });
   },
 
-  loginHandler: function() {
+  loginHandler: function loginHandler() {
     var thisView = this;
     // Show loader
     thisView.ui.loginForm.hide();
@@ -544,15 +530,14 @@ app.views.LoginView = app.views.HeaderView.extend({
       password: thisView.ui.password.val()
     });
     // Login request to the server
-    thisView.model.login().then(function(data) {
+    thisView.model.login().then(function (data) {
       // Destroy modal
       thisView.destroy();
       brd.controllers.hideModalFully();
       // Save token
       brd.controllers.saveToken(data.token);
       // Open setting page
-      brd.router.navigate('#settings',{trigger:true});
-
+      brd.router.navigate('#settings', { trigger: true });
     }, function () {
       thisView.ui.loader.hide();
       thisView.ui.loginForm.fadeIn();
@@ -560,7 +545,7 @@ app.views.LoginView = app.views.HeaderView.extend({
     });
   },
 
-  showForgotView: function() {
+  showForgotView: function showForgotView() {
     // this.showChildView('modalSection', new app.views.ForgotView());
   }
 
@@ -582,12 +567,12 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   },
 
   events: {
-    'hide.bs.modal' : function () {
+    'hide.bs.modal': function hideBsModal() {
       this.destroy();
     }
   },
 
-  onRender: function() {
+  onRender: function onRender() {
     this.ui.registrationModal.modal('show');
     this.formAddValidation();
   },
@@ -596,7 +581,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    * Validation rules for the Registration form.
    *
    */
-  formAddValidation: function() {
+  formAddValidation: function formAddValidation() {
     var thisView = this;
     thisView.ui.form.validate({
       rules: {
@@ -644,7 +629,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         }
       },
 
-      submitHandler: function() {
+      submitHandler: function submitHandler() {
         thisView.handleSubmitClick();
       }
     });
@@ -654,13 +639,13 @@ app.views.RegistrationView = app.views.HeaderView.extend({
    * Check form data before save
    *
    */
-  handleSubmitClick: function() {
+  handleSubmitClick: function handleSubmitClick() {
     var thisView = this;
     // Show loader
     thisView.ui.form.hide();
     thisView.ui.loader.show();
     // Check if email already exist
-    thisView.model.isEmailExist(thisView.ui.email.val()).then(function(data) {
+    thisView.model.isEmailExist(thisView.ui.email.val()).then(function (data) {
       if (data.exist) {
         thisView.ui.loader.hide();
         thisView.ui.form.fadeIn();
@@ -673,14 +658,13 @@ app.views.RegistrationView = app.views.HeaderView.extend({
       thisView.ui.form.fadeIn();
       thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
     });
-
   },
 
   /*
    * Save user
    *
    */
-  saveUser: function() {
+  saveUser: function saveUser() {
     var thisView = this;
 
     thisView.model.set({
@@ -690,20 +674,19 @@ app.views.RegistrationView = app.views.HeaderView.extend({
     });
 
     thisView.model.save(null, {
-      success: function() {
+      success: function success() {
         thisView.ui.loader.hide();
         thisView.ui.danger.hide();
         thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();
         thisView.ui.checkmark.fadeIn(1000);
       },
-      error: function() {
+      error: function error() {
         thisView.ui.loader.hide();
         thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
         thisView.ui.form.fadeIn();
       }
     });
   }
-
 
 });
 app.views.DashboardView = Backbone.Marionette.View.extend({
@@ -714,19 +697,14 @@ app.views.DashboardView = Backbone.Marionette.View.extend({
     leftNavRegion: '.left-navigation'
   },
 
-  ui: {
+  ui: {},
 
-  },
+  events: {},
 
-  events: {
-
-  },
-
-  initialize: function() {
+  initialize: function initialize() {
     // Initialize left navigation region
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
   }
-
 
 });
 app.views.LeftNavigation = Backbone.Marionette.View.extend({
@@ -743,21 +721,19 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.dashboard': function () {
-      brd.router.navigate('#dashboard', {trigger:true});
+    'click @ui.dashboard': function clickUiDashboard() {
+      brd.router.navigate('#dashboard', { trigger: true });
     },
-    'click @ui.settings': function () {
-      brd.router.navigate('#settings', {trigger:true});
-    },
+    'click @ui.settings': function clickUiSettings() {
+      brd.router.navigate('#settings', { trigger: true });
+    }
   },
 
-
-  templateContext: function() {
+  templateContext: function templateContext() {
     return {
       activePage: this.getOption('page')
-    }
+    };
   }
-
 
 });
 app.views.SettingsView = Backbone.Marionette.View.extend({
@@ -775,28 +751,27 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.profileSettings': function () {
+    'click @ui.profileSettings': function clickUiProfileSettings() {
       this.showChildView('page', new app.views.SettingsProfileSectionView());
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
-    'click @ui.accountSettings': function () {
+    'click @ui.accountSettings': function clickUiAccountSettings() {
       this.showChildView('page', new app.views.SettingsAccountSectionView());
       this.ui.accountSettings.addClass('active');
       this.ui.profileSettings.removeClass('active');
     }
   },
 
-  initialize: function() {
+  initialize: function initialize() {
     // Initialize left navigation region
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
   },
 
-  onRender: function() {
+  onRender: function onRender() {
     this.showChildView('page', new app.views.SettingsProfileSectionView());
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }
-
 
 });

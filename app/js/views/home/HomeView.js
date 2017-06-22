@@ -23,7 +23,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    var thisView = this;
+    let thisView = this;
     thisView.showChildView('filter', new app.views.FilterView());
   }
 
