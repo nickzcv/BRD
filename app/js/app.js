@@ -14,6 +14,7 @@ let app = (function() {
     router: {},
     views: {},
     userObject: {
+      // By default user is not authenticated
       isLoggedIn: false
     }
   };
@@ -28,10 +29,9 @@ let app = (function() {
         brd.model = new app.models.MainModel(options.data);
         brd.router = new app.router();
 
-        console.log('Is logged in: '+brd.controllers.isLoggedIn());
-        // Check user status
+        // Check user auth status
         app.userObject.isLoggedIn = brd.controllers.isLoggedIn();
-        console.log(app.userObject.isLoggedIn);
+        console.log(`Is logged in: ${app.userObject.isLoggedIn}`);
       },
 
       onStart: function(application, options) {
