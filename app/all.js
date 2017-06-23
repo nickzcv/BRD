@@ -15,10 +15,7 @@ var app = function () {
     models: {},
     router: {},
     views: {},
-    userObject: {
-      // By default user is not authenticated
-      isLoggedIn: false
-    }
+    userObject: null
   };
 
   objApp.init = function () {
@@ -28,12 +25,14 @@ var app = function () {
       region: '#app',
 
       onBeforeStart: function onBeforeStart(application, options) {
-        brd.model = new app.models.MainModel(options.data);
+        // Init router
         brd.router = new app.router();
-
         // Check user auth status
-        app.userObject.isLoggedIn = brd.controllers.isLoggedIn();
-        console.log('Is logged in: ' + app.userObject.isLoggedIn);
+        if (brd.controllers.isLoggedIn()) {
+          app.userObject = new app.models.UserModel();
+        }
+
+        console.log(app.userObject);
       },
 
       onStart: function onStart(application, options) {
@@ -46,12 +45,7 @@ var app = function () {
     });
 
     var application = new App();
-
-    application.start({
-      data: {
-        title: 'test!'
-      }
-    });
+    application.start();
   };
 
   return objApp;
@@ -272,9 +266,6 @@ app.models.LoginModel = Backbone.Model.extend({
   }
 
 });
-"use strict";
-
-app.models.MainModel = Backbone.Model.extend();
 'use strict';
 
 app.models.RegistrationModel = Backbone.Model.extend({
@@ -316,6 +307,21 @@ app.models.RegistrationModel = Backbone.Model.extend({
     });
   }
 
+});
+'use strict';
+
+app.models.UserModel = Backbone.Model.extend({
+
+  urlRoot: 'api/login',
+
+  defaults: {
+    email: null,
+    password: null
+  },
+
+  initialize: function initialize() {
+    console.log('initialize UserModel');
+  }
 });
 "use strict";
 

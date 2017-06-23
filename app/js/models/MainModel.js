@@ -1,1 +1,0 @@
-app.models.MainModel = Backbone.Model.extend();

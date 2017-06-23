@@ -13,10 +13,7 @@ let app = (function() {
     models: {},
     router: {},
     views: {},
-    userObject: {
-      // By default user is not authenticated
-      isLoggedIn: false
-    }
+    userObject: null
   };
 
   objApp.init = function() {
@@ -26,12 +23,15 @@ let app = (function() {
       region: '#app',
 
       onBeforeStart: function(application, options) {
-        brd.model = new app.models.MainModel(options.data);
+        // Init router
         brd.router = new app.router();
-
         // Check user auth status
-        app.userObject.isLoggedIn = brd.controllers.isLoggedIn();
-        console.log(`Is logged in: ${app.userObject.isLoggedIn}`);
+        if (brd.controllers.isLoggedIn()) {
+          app.userObject = new app.models.UserModel();
+        }
+
+        console.log(app.userObject);
+
       },
 
       onStart: function(application, options) {
@@ -44,12 +44,7 @@ let app = (function() {
     });
 
     const application = new App();
-
-    application.start({
-      data: {
-        title: 'test!'
-      }
-    });
+    application.start();
   };
 
   return objApp;
