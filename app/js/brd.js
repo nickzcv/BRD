@@ -4,6 +4,7 @@ let brd = {
   router: {},
   regions: {},
   controllers: {
+
     /*
      * Fully hide modal window
      *
@@ -53,6 +54,22 @@ let brd = {
         return payload.exp > Date.now() / 1000;
       } else {
         return false;
+      }
+    },
+
+    /*
+     * Get current user id
+     *
+     */
+    getUserId: function() {
+      let token = this.getToken();
+      let payload;
+
+      if(token){
+        payload = token.split('.')[1];
+        payload = atob(payload);
+        payload = JSON.parse(payload);
+        return payload._id
       }
     }
 

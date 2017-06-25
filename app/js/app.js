@@ -13,7 +13,7 @@ let app = (function() {
     models: {},
     router: {},
     views: {},
-    userObject: null
+    user: null
   };
 
   objApp.init = function() {
@@ -23,14 +23,24 @@ let app = (function() {
       region: '#app',
 
       onBeforeStart: function(application, options) {
-        // Init router
-        brd.router = new app.router();
-        // Check user auth status
+        // Check If user already logged in
         if (brd.controllers.isLoggedIn()) {
-          app.userObject = new app.models.UserModel();
+          let useId = brd.controllers.getUserId();
+          app.user = new app.models.UserModel({id: useId});
+
+          console.log(app.user.attributes);
+
+          app.user.fetch().then(() => {
+            console.log('SUCCESS');
+            console.log(app.user.attributes);
+          },() => {
+            console.log('FAIL');
+            console.log(app.user.attributes);
+          });
         }
 
-        console.log(app.userObject);
+        // Init router
+        brd.router = new app.router();
 
       },
 

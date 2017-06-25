@@ -23,6 +23,15 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     }
   },
 
+  initialize: function() {
+    let thisView = this;
+    thisView.listenTo(app.user, 'change', () => {
+      thisView.model.updateUser();
+      thisView.render();
+    });
+
+  },
+
   showRegistrationView: function() {
     this.showChildView('modalSection', new app.views.RegistrationView({
       model: new app.models.RegistrationModel

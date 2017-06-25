@@ -1,6 +1,6 @@
 app.models.UserModel = Backbone.Model.extend({
 
-  urlRoot: 'api/login',
+  urlRoot: 'api/user/',
 
   defaults: {
     email: null,
@@ -9,5 +9,6 @@ app.models.UserModel = Backbone.Model.extend({
 
   initialize: function() {
     console.log('initialize UserModel');
+
   },
 });

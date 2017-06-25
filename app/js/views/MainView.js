@@ -16,7 +16,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
   onRender: function() {
     let thisView = this;
-    thisView.showChildView('headerRegion', new app.views.HeaderView());
+    thisView.showChildView('headerRegion', new app.views.HeaderView({model: new app.models.HeaderModel}));
     thisView.showChildView('footerRegion', new app.views.FooterView());
   }
 

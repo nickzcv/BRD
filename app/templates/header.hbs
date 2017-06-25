@@ -11,8 +11,12 @@
       <li><a>Компании</a></li>
       <li><a>FAQ</a></li>
       <li>
-        <button type="button" class="btn btn-default registration">Регистрация</button>
-        <button type="button" class="btn btn-success login">Войти</button>
+        {{#if user}}
+          {{this.user.email}}
+        {{else}}
+          <button type="button" class="btn btn-default registration">Регистрация</button>
+          <button type="button" class="btn btn-success login">Войти</button>
+        {{/if}}
       </li>
     </ul>
   </nav>

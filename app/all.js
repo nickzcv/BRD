@@ -15,7 +15,7 @@ var app = function () {
     models: {},
     router: {},
     views: {},
-    userObject: null
+    user: null
   };
 
   objApp.init = function () {
@@ -25,14 +25,24 @@ var app = function () {
       region: '#app',
 
       onBeforeStart: function onBeforeStart(application, options) {
-        // Init router
-        brd.router = new app.router();
-        // Check user auth status
+        // Check If user already logged in
         if (brd.controllers.isLoggedIn()) {
-          app.userObject = new app.models.UserModel();
+          var useId = brd.controllers.getUserId();
+          app.user = new app.models.UserModel({ id: useId });
+
+          console.log(app.user.attributes);
+
+          app.user.fetch().then(function () {
+            console.log('SUCCESS');
+            console.log(app.user.attributes);
+          }, function () {
+            console.log('FAIL');
+            console.log(app.user.attributes);
+          });
         }
 
-        console.log(app.userObject);
+        // Init router
+        brd.router = new app.router();
       },
 
       onStart: function onStart(application, options) {
@@ -65,6 +75,7 @@ var brd = {
   router: {},
   regions: {},
   controllers: {
+
     /*
      * Fully hide modal window
      *
@@ -114,6 +125,22 @@ var brd = {
         return payload.exp > Date.now() / 1000;
       } else {
         return false;
+      }
+    },
+
+    /*
+     * Get current user id
+     *
+     */
+    getUserId: function getUserId() {
+      var token = this.getToken();
+      var payload = void 0;
+
+      if (token) {
+        payload = token.split('.')[1];
+        payload = atob(payload);
+        payload = JSON.parse(payload);
+        return payload._id;
       }
     }
 
@@ -225,6 +252,30 @@ Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options
 });
 'use strict';
 
+app.models.HeaderModel = Backbone.Model.extend({
+
+  defaults: {
+    user: null
+  },
+
+  initialize: function initialize() {
+    console.log('initialize Header Model');
+
+    if (app.user) {
+      this.updateUser();
+    } else {
+      console.log('NO app user');
+    }
+  },
+
+  updateUser: function updateUser() {
+    this.set({ user: app.user.attributes });
+    console.log(this.attributes.user);
+  }
+
+});
+'use strict';
+
 app.models.LoginModel = Backbone.Model.extend({
 
   urlRoot: 'api/login',
@@ -312,7 +363,7 @@ app.models.RegistrationModel = Backbone.Model.extend({
 
 app.models.UserModel = Backbone.Model.extend({
 
-  urlRoot: 'api/login',
+  urlRoot: 'api/user/',
 
   defaults: {
     email: null,
@@ -353,6 +404,14 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.homeLink': function clickUiHomeLink() {
       brd.router.navigate('#', { trigger: true });
     }
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    thisView.listenTo(app.user, 'change', function () {
+      thisView.model.updateUser();
+      thisView.render();
+    });
   },
 
   showRegistrationView: function showRegistrationView() {
@@ -397,7 +456,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     var thisView = this;
-    thisView.showChildView('headerRegion', new app.views.HeaderView());
+    thisView.showChildView('headerRegion', new app.views.HeaderView({ model: new app.models.HeaderModel() }));
     thisView.showChildView('footerRegion', new app.views.FooterView());
   }
 

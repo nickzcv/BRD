@@ -7,7 +7,7 @@ app.router = Marionette.AppRouter.extend({
   },
 
   initialize: function() {
-
+    
   },
 
   showMainPage: function() {
