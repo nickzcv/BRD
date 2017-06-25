@@ -7,7 +7,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   initialize: function() {
-
+    let thisView = this;
+    thisView.listenTo(app.user, 'change', () => {
+      thisView.model.update();
+      thisView.render();
+    });
   },
 
   onRender: function() {
