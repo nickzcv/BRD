@@ -47,10 +47,14 @@ let brd = {
       let payload;
 
       if(token){
-        payload = token.split('.')[1];
-        payload = atob(payload);
-        payload = JSON.parse(payload);
-
+        try {
+          payload = token.split('.')[1];
+          payload = atob(payload);
+          payload = JSON.parse(payload);
+        } catch(e) {
+          console.log(e);
+          return false;
+        }
         return payload.exp > Date.now() / 1000;
       } else {
         return false;
@@ -66,10 +70,15 @@ let brd = {
       let payload;
 
       if(token){
-        payload = token.split('.')[1];
-        payload = atob(payload);
-        payload = JSON.parse(payload);
+        try {
+          payload = token.split('.')[1];
+          payload = atob(payload);
+          payload = JSON.parse(payload);
         return payload._id
+        } catch(e) {
+          console.log(e);
+          return false;
+        }
       }
     }
 

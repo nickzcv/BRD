@@ -30,7 +30,7 @@ var app = function () {
           var useId = brd.controllers.getUserId();
           app.user = new app.models.UserModel({ id: useId });
 
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
 
           app.user.fetch().then(function () {
             console.log('SUCCESS');
@@ -118,10 +118,14 @@ var brd = {
       var payload = void 0;
 
       if (token) {
-        payload = token.split('.')[1];
-        payload = atob(payload);
-        payload = JSON.parse(payload);
-
+        try {
+          payload = token.split('.')[1];
+          payload = atob(payload);
+          payload = JSON.parse(payload);
+        } catch (e) {
+          console.log(e);
+          return false;
+        }
         return payload.exp > Date.now() / 1000;
       } else {
         return false;
@@ -137,10 +141,15 @@ var brd = {
       var payload = void 0;
 
       if (token) {
-        payload = token.split('.')[1];
-        payload = atob(payload);
-        payload = JSON.parse(payload);
-        return payload._id;
+        try {
+          payload = token.split('.')[1];
+          payload = atob(payload);
+          payload = JSON.parse(payload);
+          return payload._id;
+        } catch (e) {
+          console.log(e);
+          return false;
+        }
       }
     }
 
@@ -270,7 +279,6 @@ app.models.HeaderModel = Backbone.Model.extend({
 
   updateUser: function updateUser() {
     this.set({ user: app.user.attributes });
-    console.log(this.attributes.user);
   }
 
 });
@@ -361,6 +369,29 @@ app.models.RegistrationModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.SettingsModel = Backbone.Model.extend({
+
+  defaults: {
+    user: null
+  },
+
+  initialize: function initialize() {
+    console.log('-- initialize SettingsModel');
+
+    if (app.user) {
+      this.update();
+    } else {
+      console.log('NO app user');
+    }
+  },
+
+  update: function update() {
+    this.set({ user: app.user.attributes });
+  }
+
+});
+'use strict';
+
 app.models.UserModel = Backbone.Model.extend({
 
   urlRoot: 'api/user/',
@@ -394,6 +425,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     navigation: '.navigation',
     registrationBtn: '.registration',
     loginBtn: '.login',
+    logout: '.logout',
     homeLink: '.home-link'
   },
 
@@ -402,6 +434,10 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.registrationBtn': 'showRegistrationView',
     'click @ui.loginBtn': 'showLoginView',
     'click @ui.homeLink': function clickUiHomeLink() {
+      brd.router.navigate('#', { trigger: true });
+    },
+    'click @ui.logout': function clickUiLogout() {
+      brd.controllers.logout();
       brd.router.navigate('#', { trigger: true });
     }
   },
@@ -474,7 +510,7 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
   onRender: function onRender() {}
 
 });
-"use strict";
+'use strict';
 
 app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
@@ -482,7 +518,13 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   regions: {},
 
-  initialize: function initialize() {},
+  initialize: function initialize() {
+    var thisView = this;
+    thisView.listenTo(app.user, 'change', function () {
+      thisView.model.update();
+      thisView.render();
+    });
+  },
 
   onRender: function onRender() {}
 
@@ -632,7 +674,21 @@ app.views.LoginView = app.views.HeaderView.extend({
       brd.controllers.hideModalFully();
       // Save token
       brd.controllers.saveToken(data.token);
+      // Duplicate from app.js ---
       // Open setting page
+      if (brd.controllers.isLoggedIn()) {
+        var useId = brd.controllers.getUserId();
+        app.user = new app.models.UserModel({ id: useId });
+
+        app.user.fetch().then(function () {
+          console.log('SUCCESS');
+          console.log(app.user.attributes);
+        }, function () {
+          console.log('FAIL');
+          console.log(app.user.attributes);
+        });
+      }
+      // ---
       brd.router.navigate('#settings', { trigger: true });
     }, function () {
       thisView.ui.loader.hide();
@@ -856,7 +912,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.profileSettings': function clickUiProfileSettings() {
-      this.showChildView('page', new app.views.SettingsProfileSectionView());
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel() }));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
@@ -873,7 +929,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('page', new app.views.SettingsProfileSectionView());
+    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel() }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }

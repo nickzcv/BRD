@@ -12,7 +12,16 @@
       <li><a>FAQ</a></li>
       <li>
         {{#if user}}
-          {{this.user.email}}
+
+          <div class="user">
+            <div class="border">
+              <i class="ion-person"></i>
+            </div>
+            {{this.user.name}}
+
+            <span class="ion-android-exit logout"></span>
+          </div>
+
         {{else}}
           <button type="button" class="btn btn-default registration">Регистрация</button>
           <button type="button" class="btn btn-success login">Войти</button>

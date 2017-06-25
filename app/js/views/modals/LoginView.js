@@ -84,7 +84,21 @@ app.views.LoginView = app.views.HeaderView.extend({
       brd.controllers.hideModalFully();
       // Save token
       brd.controllers.saveToken(data.token);
+      // Duplicate from app.js ---
       // Open setting page
+      if (brd.controllers.isLoggedIn()) {
+        let useId = brd.controllers.getUserId();
+        app.user = new app.models.UserModel({id: useId});
+
+        app.user.fetch().then(() => {
+          console.log('SUCCESS');
+          console.log(app.user.attributes);
+        },() => {
+          console.log('FAIL');
+          console.log(app.user.attributes);
+        });
+      }
+      // ---
       brd.router.navigate('#settings',{trigger:true});
     }, function () {
       thisView.ui.loader.hide();

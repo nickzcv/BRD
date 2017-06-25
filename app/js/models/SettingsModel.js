@@ -1,21 +1,21 @@
-app.models.HeaderModel = Backbone.Model.extend({
+app.models.SettingsModel = Backbone.Model.extend({
 
   defaults: {
     user: null
   },
 
   initialize: function() {
-    console.log('initialize Header Model');
+    console.log('-- initialize SettingsModel');
 
     if (app.user) {
-      this.updateUser();
+      this.update();
     } else {
       console.log('NO app user');
     }
 
   },
 
-  updateUser: function () {
+  update: function () {
     this.set({user: app.user.attributes});
   }
 

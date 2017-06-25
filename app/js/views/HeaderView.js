@@ -11,6 +11,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     navigation: '.navigation',
     registrationBtn: '.registration',
     loginBtn: '.login',
+    logout: '.logout',
     homeLink: '.home-link'
   },
 
@@ -19,6 +20,10 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.registrationBtn': 'showRegistrationView',
     'click @ui.loginBtn': 'showLoginView',
     'click @ui.homeLink': function () {
+      brd.router.navigate('#', {trigger:true});
+    },
+    'click @ui.logout': function () {
+      brd.controllers.logout();
       brd.router.navigate('#', {trigger:true});
     }
   },
@@ -29,7 +34,6 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
       thisView.model.updateUser();
       thisView.render();
     });
-
   },
 
   showRegistrationView: function() {

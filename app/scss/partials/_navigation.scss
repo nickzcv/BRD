@@ -46,9 +46,37 @@ nav.navigation {
     }
   }
 
+  .user {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    padding-left: 5rem;
+
+    .border {
+      display: inline-block;
+      position: relative;
+      top: 5px;
+      height: 1.2rem;
+      width: 1.2rem;
+      border: 1px solid #fff;
+      border-radius: 50%;
+    }
+    .ion-person {
+      position: absolute;
+      top: -10px;
+      left: 2px;
+    }
+    .logout {
+      padding: 0 1rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
 
   /* Tablets */
   @media only screen and (min-width: 768px) {
+    line-height: 2.5rem;
+
     &.hidden {
       display: block !important; /* must be here for hamburger menu */
     }
@@ -67,6 +95,7 @@ nav.navigation {
 
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
+
     .languages {
       .flag {
         width: 50px;

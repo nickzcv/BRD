@@ -28,7 +28,7 @@ let app = (function() {
           let useId = brd.controllers.getUserId();
           app.user = new app.models.UserModel({id: useId});
 
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
 
           app.user.fetch().then(() => {
             console.log('SUCCESS');

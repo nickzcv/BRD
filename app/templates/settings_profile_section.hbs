@@ -11,28 +11,28 @@
     </div>
     <div class="col-md-7">
       <div class="form-group ">
-        <label for="secondname">Фамилия</label>
-        <input type="text" class="form-control" id="secondname" placeholder="Фамилия">
+        <label for="lastName">Фамилия</label>
+        <input type="text" class="form-control" id="lastName" {{#if user.lastName}}value="{{user.lastName}}"{{else}} placeholder="Фамилия"{{/if}}>
       </div>
       <div class="form-group ">
-        <label for="firstname">Имя</label>
-        <input type="text" class="form-control" id="firstname" placeholder="Имя">
+        <label for="name">Имя</label>
+        <input type="text" class="form-control" id="name" {{#if user.name}}value="{{user.name}}"{{else}} placeholder="Имя"{{/if}}>
       </div>
       <div class="form-group ">
-        <label for="lastname">Отчество</label>
-        <input type="text" class="form-control" id="lastname" placeholder="Отчество">
+        <label for="middleName">Отчество</label>
+        <input type="text" class="form-control" id="middleName" {{#if user.middleName}}value="{{user.middleName}}"{{else}} placeholder="Отчество"{{/if}}>
       </div>
     </div>
   </div>
 
   <div class="form-group">
     <label for="work">Место работы</label>
-    <input type="text" class="form-control" id="work" placeholder="" >
+    <input type="text" class="form-control" id="work" {{#if user.work}}value="{{user.work}}"{{/if}}>
   </div>
 
   <div class="form-group">
     <label for="position">Должность</label>
-    <input type="text" class="form-control" id="position" placeholder="" >
+    <input type="text" class="form-control" id="position" {{#if user.position}}value="{{user.position}}"{{/if}}>
   </div>
 
   <p class="lbl">Ваше местоположение</p>

@@ -12,9 +12,9 @@ this["tpl"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.
 this["tpl"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "          "
-    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.email : stack1), depth0))
-    + "\r\n";
+  return "\r\n          <div class=\"user\">\r\n            <div class=\"border\">\r\n              <i class=\"ion-person\"></i>\r\n            </div>\r\n            "
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1), depth0))
+    + "\r\n\r\n            <span class=\"ion-android-exit logout\"></span>\r\n          </div>\r\n\r\n";
 },"3":function(depth0,helpers,partials,data) {
     return "          <button type=\"button\" class=\"btn btn-default registration\">Регистрация</button>\r\n          <button type=\"button\" class=\"btn btn-success login\">Войти</button>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -40,8 +40,56 @@ this["tpl"]["templates"]["settings"] = Handlebars.template({"compiler":[6,">= 2.
 this["tpl"]["templates"]["settings_account_section"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<form>\r\n  <div class=\"form-group short\">\r\n    <label for=\"email\">Email</label>\r\n    <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"example@mail.com\" disabled>\r\n  </div>\r\n  <div class=\"form-group short\">\r\n    <label for=\"password\">Пароль</label>\r\n    <input type=\"password\" class=\"form-control\" id=\"password\" placeholder=\"********\" disabled>\r\n  </div>\r\n\r\n  <button type=\"button\" class=\"btn btn-default save\">Сохранить</button>\r\n</form>";
 },"useData":true});
-this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<form>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-5\">\r\n      <div class=\"image-upload\">\r\n        <label for=\"file-input\">\r\n          <img src=\"img/profile_placeholder.png\"/>\r\n        </label>\r\n\r\n        <input id=\"file-input\" type=\"file\"/>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n      <div class=\"form-group \">\r\n        <label for=\"secondname\">Фамилия</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"secondname\" placeholder=\"Фамилия\">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"firstname\">Имя</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"firstname\" placeholder=\"Имя\">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"lastname\">Отчество</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"lastname\" placeholder=\"Отчество\">\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"work\">Место работы</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"work\" placeholder=\"\" >\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"position\">Должность</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"position\" placeholder=\"\" >\r\n  </div>\r\n\r\n  <p class=\"lbl\">Ваше местоположение</p>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Страна</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Город</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <p class=\"lead\">Контактные данные</p>\r\n  <p class=\"lbl2\">Будут отображаться в объявлениях</p>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\" id=\"basic-addon1\">@</span>\r\n      <input type=\"text\" class=\"form-control\" placeholder=\"example@mail.com\" aria-describedby=\"basic-addon1\">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\" id=\"basic-addon1\"><i class=\"ion-android-call\"></i></span>\r\n      <input type=\"text\" class=\"form-control\" placeholder=\"+375 00 0000000\" aria-describedby=\"basic-addon1\">\r\n    </div>\r\n  </div>\r\n\r\n  <button type=\"button\" class=\"btn btn-default save\">Сохранить</button>\r\n</form>";
+this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1), depth0))
+    + "\"";
+},"3":function(depth0,helpers,partials,data) {
+    return " placeholder=\"Фамилия\"";
+},"5":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1), depth0))
+    + "\"";
+},"7":function(depth0,helpers,partials,data) {
+    return " placeholder=\"Имя\"";
+},"9":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.middleName : stack1), depth0))
+    + "\"";
+},"11":function(depth0,helpers,partials,data) {
+    return " placeholder=\"Отчество\"";
+},"13":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.work : stack1), depth0))
+    + "\"";
+},"15":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.position : stack1), depth0))
+    + "\"";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<form>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-5\">\r\n      <div class=\"image-upload\">\r\n        <label for=\"file-input\">\r\n          <img src=\"img/profile_placeholder.png\"/>\r\n        </label>\r\n\r\n        <input id=\"file-input\" type=\"file\"/>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n      <div class=\"form-group \">\r\n        <label for=\"lastName\">Фамилия</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"lastName\" "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.lastName : stack1),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + ">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"name\">Имя</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"name\" "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(7, data, 0),"data":data})) != null ? stack1 : "")
+    + ">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"middleName\">Отчество</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"middleName\" "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.middleName : stack1),{"name":"if","hash":{},"fn":this.program(9, data, 0),"inverse":this.program(11, data, 0),"data":data})) != null ? stack1 : "")
+    + ">\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"work\">Место работы</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"work\" "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.work : stack1),{"name":"if","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"position\">Должность</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"position\" "
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.position : stack1),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">\r\n  </div>\r\n\r\n  <p class=\"lbl\">Ваше местоположение</p>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Страна</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Город</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <p class=\"lead\">Контактные данные</p>\r\n  <p class=\"lbl2\">Будут отображаться в объявлениях</p>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\" id=\"basic-addon1\">@</span>\r\n      <input type=\"text\" class=\"form-control\" placeholder=\"example@mail.com\" aria-describedby=\"basic-addon1\">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\" id=\"basic-addon1\"><i class=\"ion-android-call\"></i></span>\r\n      <input type=\"text\" class=\"form-control\" placeholder=\"+375 00 0000000\" aria-describedby=\"basic-addon1\">\r\n    </div>\r\n  </div>\r\n\r\n  <button type=\"button\" class=\"btn btn-default save\">Сохранить</button>\r\n</form>";
 },"useData":true});
 this["tpl"]["templates"]["forgot"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"forgot\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"forgotModalLabel\">Восстановление пароля</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <label for=\"exampleInputEmail1\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email адрес\">\r\n          </div>\r\n\r\n          <button type=\"button\" class=\"btn btn-default login-btn\">Выслать пароль</button>\r\n        </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";

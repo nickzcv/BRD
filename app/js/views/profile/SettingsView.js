@@ -14,7 +14,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.profileSettings': function () {
-      this.showChildView('page', new app.views.SettingsProfileSectionView());
+      this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.SettingsModel}));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
@@ -31,7 +31,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    this.showChildView('page', new app.views.SettingsProfileSectionView());
+    this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.SettingsModel}));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }

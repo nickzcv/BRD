@@ -152,7 +152,34 @@ nav.navigation ul li .btn.btn-default:hover {
   color: #fff;
   border-color: #ccc; }
 
+nav.navigation .user {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  padding-left: 5rem; }
+
+nav.navigation .user .border {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  height: 1.2rem;
+  width: 1.2rem;
+  border: 1px solid #fff;
+  border-radius: 50%; }
+
+nav.navigation .user .ion-person {
+  position: absolute;
+  top: -10px;
+  left: 2px; }
+
+nav.navigation .user .logout {
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  cursor: pointer; }
+
 @media only screen and (min-width: 768px) {
+  nav.navigation {
+    line-height: 2.5rem; }
   nav.navigation.hidden {
     display: block !important;
     /* must be here for hamburger menu */ }

@@ -20,8 +20,13 @@ router.route('/users')
 		user.email = req.body.email;
 		user.password = req.body.password;
     user.name = null;
+    user.middleName = null;
+    user.lastName = null;
     user.phone = null;
-    user.location = null;
+    user.country = null;
+    user.city = null;
+    user.work = null;
+    user.position = null;
     user.photo = null;
     user.created_at = new Date();
     user.updated_at = new Date();
@@ -67,17 +72,19 @@ router.route('/user/:user_id')
 			if (err)
 				res.json(err);
 
-      user.email = req.body.email;
-      user.password = req.body.password;
-      user.name = null;
-      user.phone = null;
-      user.location = null;
-      user.photo = null;
-      user.created_at = new Date();
+      user.name = req.body.name;
+      user.middleName = req.body.middleName;
+      user.lastName = req.body.lastName;
+      user.phone = req.body.phone;
+      user.country = req.body.country;
+      user.city = req.body.city;
+      user.work = req.body.work;
+      user.position = req.body.position;
+      user.photo = req.body.photo;
       user.updated_at = new Date();
       user.notes = null;
-      user.status = 'NEW';
-      user.isActive = false;
+      user.status = 'UPDATED';
+      user.isActive = true;
 
 			user.save(function(err) {
 				if (err)
