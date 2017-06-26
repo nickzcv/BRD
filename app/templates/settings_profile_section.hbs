@@ -27,12 +27,12 @@
 
   <div class="form-group">
     <label for="work">Место работы</label>
-    <input type="text" class="form-control" id="work" {{#if user.work}}value="{{user.work}}"{{/if}}>
+    <input type="text" class="form-control" id="work" {{#if work}}value="{{work}}"{{/if}}>
   </div>
 
   <div class="form-group">
     <label for="position">Должность</label>
-    <input type="text" class="form-control" id="position" {{#if user.position}}value="{{user.position}}"{{/if}}>
+    <input type="text" class="form-control" id="position" {{#if position}}value="{{position}}"{{/if}}>
   </div>
 
   <p class="lbl">Ваше местоположение</p>
@@ -62,13 +62,13 @@
   <div class="form-group short">
     <div class="input-group">
       <span class="input-group-addon">@</span>
-      <input type="text" class="form-control" placeholder="example@mail.com">
+      <input type="text" class="form-control" id="workEmail" {{#if workEmail}}value="{{workEmail}}"{{else}} placeholder="example@mail.com"{{/if}}>
     </div>
   </div>
   <div class="form-group short">
     <div class="input-group">
       <span class="input-group-addon"><i class="ion-android-call"></i></span>
-      <input type="text" class="form-control" placeholder="+375 00 0000000">
+      <input type="text" class="form-control" id="phone" {{#if phone}}value="{{phone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
     </div>
   </div>
 

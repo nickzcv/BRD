@@ -52,24 +52,43 @@ nav.navigation {
     color: #fff;
     padding-left: 5rem;
 
+    .user-profile {
+      display: inherit;
+      cursor: pointer;
+      color: $gray;
+      &:hover {
+        color: #fff;
+      }
+    }
     .border {
-      display: inline-block;
+      display: inherit;
       position: relative;
-      top: 5px;
-      height: 1.2rem;
-      width: 1.2rem;
+      top: 6px;
+      height: 1.5rem;
+      width: 1.5rem;
       border: 1px solid #fff;
       border-radius: 50%;
+      margin-right: 0.5rem;
     }
     .ion-person {
       position: absolute;
-      top: -10px;
-      left: 2px;
+      top: -7px;
+      left: 3px;
+      font-size: 1.3rem;
     }
     .logout {
-      padding: 0 1rem;
-      font-size: 1.2rem;
+      display: inherit;
+      position: relative;
+      top: 1px;
+      margin-left: 2rem;
+      padding: 0 5px;
+      font-size: 1.3rem;
       cursor: pointer;
+      color: $gray-dark;
+
+      &:hover {
+        color: $blue-dark;
+      }
     }
   }
 

@@ -76,6 +76,7 @@ router.route('/user/:user_id')
       user.middleName = req.body.middleName;
       user.lastName = req.body.lastName;
       user.phone = req.body.phone;
+      user.workEmail = req.body.workEmail;
       user.country = req.body.country;
       user.city = req.body.city;
       user.work = req.body.work;

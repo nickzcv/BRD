@@ -12,7 +12,12 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
   onRender: function() {
 
-  }
+  },
 
+  templateContext: function() {
+    return {
+      email: this.getOption('email')
+    }
+  }
 
 });

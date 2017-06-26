@@ -416,7 +416,8 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     registrationBtn: '.registration',
     loginBtn: '.login',
     logout: '.logout',
-    homeLink: '.home-link'
+    homeLink: '.home-link',
+    userProfile: '.user-profile'
   },
 
   events: {
@@ -428,7 +429,11 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     },
     'click @ui.logout': function clickUiLogout() {
       brd.controllers.logout();
+      app.user = null;
       brd.router.navigate('#', { trigger: true });
+    },
+    'click @ui.userProfile': function clickUiUserProfile() {
+      brd.router.navigate('#dashboard', { trigger: true });
     }
   },
 
@@ -487,7 +492,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
@@ -497,7 +502,13 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {},
 
-  onRender: function onRender() {}
+  onRender: function onRender() {},
+
+  templateContext: function templateContext() {
+    return {
+      email: this.getOption('email')
+    };
+  }
 
 });
 'use strict';
@@ -510,6 +521,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
+    work: '#work',
+    position: '#position',
+    workEmail: '#workEmail',
+    phone: '#phone',
+
     saveProfile: '.saveProfile'
   },
 
@@ -537,49 +553,14 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     thisView.model.set({
       lastName: thisView.ui.lastName.val(),
       name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val()
+      middleName: thisView.ui.middleName.val(),
+      work: thisView.ui.work.val(),
+      position: thisView.ui.position.val(),
+      phone: thisView.ui.phone.val(),
+      workEmail: thisView.ui.workEmail.val()
     });
     // Save updated user model
     thisView.model.save();
-  }
-
-});
-"use strict";
-
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
   }
 
 });
@@ -858,6 +839,45 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
+"use strict";
+
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter
+
+});
+'use strict';
+
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function onRender() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
+  }
+
+});
 'use strict';
 
 app.views.DashboardView = Backbone.Marionette.View.extend({
@@ -932,7 +952,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
       this.ui.accountSettings.removeClass('active');
     },
     'click @ui.accountSettings': function clickUiAccountSettings() {
-      this.showChildView('page', new app.views.SettingsAccountSectionView());
+      this.showChildView('page', new app.views.SettingsAccountSectionView({ email: app.user.get('email') }));
       this.ui.accountSettings.addClass('active');
       this.ui.profileSettings.removeClass('active');
     }

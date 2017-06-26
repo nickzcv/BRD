@@ -19,7 +19,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
       this.ui.accountSettings.removeClass('active');
     },
     'click @ui.accountSettings': function () {
-      this.showChildView('page', new app.views.SettingsAccountSectionView());
+      this.showChildView('page', new app.views.SettingsAccountSectionView({email:app.user.get('email')}));
       this.ui.accountSettings.addClass('active');
       this.ui.profileSettings.removeClass('active');
     }

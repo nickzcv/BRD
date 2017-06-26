@@ -6,6 +6,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
+    work: '#work',
+    position: '#position',
+    workEmail: '#workEmail',
+    phone: '#phone',
+
     saveProfile: '.saveProfile',
   },
 
@@ -34,7 +39,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     thisView.model.set({
       lastName: thisView.ui.lastName.val(),
       name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val()
+      middleName: thisView.ui.middleName.val(),
+      work: thisView.ui.work.val(),
+      position: thisView.ui.position.val(),
+      phone: thisView.ui.phone.val(),
+      workEmail: thisView.ui.workEmail.val(),
     });
     // Save updated user model
     thisView.model.save()

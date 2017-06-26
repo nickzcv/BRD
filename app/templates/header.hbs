@@ -14,12 +14,13 @@
         {{#if user}}
 
           <div class="user">
-            <div class="border">
-              <i class="ion-person"></i>
+            <div class="user-profile">
+              <div class="border">
+                <i class="ion-person"></i>
+              </div>
+              {{this.user.name}}
             </div>
-            {{this.user.name}}
-
-            <span class="ion-android-exit logout"></span>
+            <span class="ion-log-out logout"></span>
           </div>
 
         {{else}}
