@@ -45,6 +45,12 @@ label.error {
   100% {
     transform: rotate(360deg); } }
 
+.forbidden {
+  text-align: center; }
+
+.forbidden .icon {
+  font-size: 5rem; }
+
 /* Header styles
 -------------------------------------------------- */
 header {

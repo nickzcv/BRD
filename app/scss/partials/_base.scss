@@ -74,3 +74,11 @@ label.error {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.forbidden {
+  text-align: center;
+
+  .icon {
+    font-size: 5rem;
+  }
+}

@@ -9,6 +9,9 @@ this["tpl"]["templates"]["filter"] = Handlebars.template({"compiler":[6,">= 2.0.
 this["tpl"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"copyright\">\r\n  <span class=\"glyphicon glyphicon-copyright-mark\"></span> 2017\r\n</div>";
 },"useData":true});
+this["tpl"]["templates"]["forbidden"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"forbidden\">\r\n  <div class=\"ion-ios-locked icon\"></div>\r\n  <h2>Вы не авторизованы.</h2>\r\n  <button type=\"button\" class=\"btn btn-default login\">Вход</button>\r\n</div>\r\n\r\n<div class=\"modal-section\"></div>";
+},"useData":true});
 this["tpl"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 

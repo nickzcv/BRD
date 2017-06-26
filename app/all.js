@@ -166,21 +166,34 @@ app.router = Marionette.AppRouter.extend({
 
   initialize: function initialize() {},
 
+  // Main
   showMainPage: function showMainPage() {
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.HomeView());
   },
 
+  // Dashboard
   showDashboardPage: function showDashboardPage() {
-    brd.regions.mainRegion.show(new app.views.MainView());
-    brd.regions.bodyRegion.show(new app.views.DashboardView());
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'dashboard' }));
+    if (brd.controllers.isLoggedIn()) {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.DashboardView());
+      brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'dashboard' }));
+    } else {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
   },
 
+  // Settings
   showSettingsPage: function showSettingsPage() {
-    brd.regions.mainRegion.show(new app.views.MainView());
-    brd.regions.bodyRegion.show(new app.views.SettingsView());
-    brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'settings' }));
+    if (brd.controllers.isLoggedIn()) {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.SettingsView());
+      brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'settings' }));
+    } else {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
   }
 
 });
@@ -399,6 +412,31 @@ app.models.UserModel = Backbone.Model.extend({
 
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: tpl.templates.footer
+});
+'use strict';
+
+app.views.ForbiddenView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.forbidden,
+
+  regions: {
+    modalSection: '.modal-section'
+  },
+
+  ui: {
+    'login': '.login'
+  },
+
+  events: {
+    'click @ui.login': 'showLoginView'
+  },
+
+  showLoginView: function showLoginView() {
+    this.showChildView('modalSection', new app.views.LoginView({
+      model: new app.models.LoginModel()
+    }));
+  }
+
 });
 'use strict';
 
