@@ -12,15 +12,15 @@
     <div class="col-md-7">
       <div class="form-group ">
         <label for="lastName">Фамилия</label>
-        <input type="text" class="form-control" id="lastName" {{#if user.lastName}}value="{{user.lastName}}"{{else}} placeholder="Фамилия"{{/if}}>
+        <input type="text" class="form-control" id="lastName" {{#if lastName}}value="{{lastName}}"{{else}} placeholder="Фамилия"{{/if}}>
       </div>
       <div class="form-group ">
         <label for="name">Имя</label>
-        <input type="text" class="form-control" id="name" {{#if user.name}}value="{{user.name}}"{{else}} placeholder="Имя"{{/if}}>
+        <input type="text" class="form-control" id="name" {{#if name}}value="{{name}}"{{else}} placeholder="Имя"{{/if}}>
       </div>
       <div class="form-group ">
         <label for="middleName">Отчество</label>
-        <input type="text" class="form-control" id="middleName" {{#if user.middleName}}value="{{user.middleName}}"{{else}} placeholder="Отчество"{{/if}}>
+        <input type="text" class="form-control" id="middleName" {{#if middleName}}value="{{middleName}}"{{else}} placeholder="Отчество"{{/if}}>
       </div>
     </div>
   </div>
@@ -61,16 +61,16 @@
   <p class="lbl2">Будут отображаться в объявлениях</p>
   <div class="form-group short">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">@</span>
-      <input type="text" class="form-control" placeholder="example@mail.com" aria-describedby="basic-addon1">
+      <span class="input-group-addon">@</span>
+      <input type="text" class="form-control" placeholder="example@mail.com">
     </div>
   </div>
   <div class="form-group short">
     <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1"><i class="ion-android-call"></i></span>
-      <input type="text" class="form-control" placeholder="+375 00 0000000" aria-describedby="basic-addon1">
+      <span class="input-group-addon"><i class="ion-android-call"></i></span>
+      <input type="text" class="form-control" placeholder="+375 00 0000000">
     </div>
   </div>
 
-  <button type="button" class="btn btn-default save">Сохранить</button>
+  <button type="submit" class="btn btn-default saveProfile">Сохранить</button>
 </form>

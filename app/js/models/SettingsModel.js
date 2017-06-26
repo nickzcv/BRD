@@ -1,23 +1,18 @@
 app.models.SettingsModel = Backbone.Model.extend({
 
-  defaults: {
-    user: null
-  },
+  urlRoot: 'api/user/',
+
 
   initialize: function() {
     console.log('-- initialize SettingsModel');
 
-    if (app.user) {
-      this.update();
-    } else {
-      console.log('NO app user');
-    }
+
 
   },
 
   update: function () {
-    this.set({user: app.user.attributes});
-  }
+    //this.set({user: app.user.attributes});
+  },
 
 
 });

@@ -30,8 +30,6 @@ var app = function () {
           var useId = brd.controllers.getUserId();
           app.user = new app.models.UserModel({ id: useId });
 
-          //console.log(app.user.attributes);
-
           app.user.fetch().then(function () {
             console.log('SUCCESS');
             console.log(app.user.attributes);
@@ -371,22 +369,14 @@ app.models.RegistrationModel = Backbone.Model.extend({
 
 app.models.SettingsModel = Backbone.Model.extend({
 
-  defaults: {
-    user: null
-  },
+  urlRoot: 'api/user/',
 
   initialize: function initialize() {
     console.log('-- initialize SettingsModel');
-
-    if (app.user) {
-      this.update();
-    } else {
-      console.log('NO app user');
-    }
   },
 
   update: function update() {
-    this.set({ user: app.user.attributes });
+    //this.set({user: app.user.attributes});
   }
 
 });
@@ -516,17 +506,42 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings_profile_section,
 
-  regions: {},
+  ui: {
+    lastName: '#lastName',
+    name: '#name',
+    middleName: '#middleName',
+    saveProfile: '.saveProfile'
+  },
+
+  events: {
+    'click @ui.saveProfile': 'saveProfile'
+  },
 
   initialize: function initialize() {
+    console.log('initialize: SettingsProfileSectionView');
+
     var thisView = this;
-    thisView.listenTo(app.user, 'change', function () {
-      thisView.model.update();
+    // Get user data from server
+    thisView.model.fetch().then(function () {
       thisView.render();
+    }, function () {
+      console.log('FAIL');
+      console.log(thisView.model.attributes);
     });
   },
 
-  onRender: function onRender() {}
+  saveProfile: function saveProfile(e) {
+    var thisView = this;
+    e.preventDefault();
+
+    thisView.model.set({
+      lastName: thisView.ui.lastName.val(),
+      name: thisView.ui.name.val(),
+      middleName: thisView.ui.middleName.val()
+    });
+    // Save updated user model
+    thisView.model.save();
+  }
 
 });
 "use strict";
@@ -912,7 +927,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.profileSettings': function clickUiProfileSettings() {
-      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel() }));
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: brd.controllers.getUserId() }) }));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
@@ -929,7 +944,8 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel() }));
+    var useId = brd.controllers.getUserId();
+    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }

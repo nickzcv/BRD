@@ -490,14 +490,14 @@ nav.navigation .user .logout {
 .settings .tabs .tab:hover {
   color: #373737; }
 
-.settings .save {
+.settings .saveProfile {
   font-size: 1rem;
   font-weight: bold;
   padding: 0.7rem 2rem;
   margin-top: 2rem;
   border-color: #777777; }
 
-.settings .save:hover {
+.settings .saveProfile:hover {
   background: #74BDC1; }
 
 .settings .lbl {
