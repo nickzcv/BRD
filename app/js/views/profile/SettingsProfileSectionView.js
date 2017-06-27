@@ -10,31 +10,44 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     position: '#position',
     workEmail: '#workEmail',
     phone: '#phone',
+    country: '#country',
 
     saveProfile: '.saveProfile',
   },
 
   events: {
-    'click @ui.saveProfile': 'saveProfile'
+    'click @ui.saveProfile': 'saveProfile',
+    'change @ui.country': 'selectCountry'
   },
 
   initialize: function() {
-    console.log('initialize: SettingsProfileSectionView');
-
     let thisView = this;
+
     // Get user data from server
     thisView.model.fetch().then(() => {
       thisView.render();
     },() => {
-      console.log('FAIL');
-      console.log(thisView.model.attributes);
+      console.log('FAIL: Get user data from server');
+    });
+
+    // Get countries from VK api
+    thisView.model.loadCountries().then((data) => {
+      thisView.model.set({countries: data.response.items});
+      thisView.render();
+    },() => {
+      console.log('FAIL: Get countries');
     });
 
   },
 
-  saveProfile: function (e) {
+  selectCountry: function(event) {
+    // Save country object into the model
+    this.model.setCountry(event.target.value);
+  },
+
+  saveProfile: function(event) {
     let thisView = this;
-    e.preventDefault();
+    event.preventDefault();
 
     thisView.model.set({
       lastName: thisView.ui.lastName.val(),

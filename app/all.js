@@ -388,8 +388,24 @@ app.models.SettingsModel = Backbone.Model.extend({
     console.log('-- initialize SettingsModel');
   },
 
-  update: function update() {
-    //this.set({user: app.user.attributes});
+  loadCountries: function loadCountries() {
+    return $.ajax({
+      method: 'GET',
+      dataType: 'jsonp',
+      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=250'
+    });
+  },
+
+  setCountry: function setCountry(id) {
+    var thisModel = this;
+    // Find selected country from the list
+    var selectedCountry = thisModel.get('countries').filter(function (obj) {
+      return obj.id == id;
+    });
+    // Save country object into the model
+    thisModel.set({ country: selectedCountry });
+
+    console.log(thisModel.get('country'));
   }
 
 });
@@ -530,75 +546,42 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-'use strict';
+"use strict";
 
-app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+app.views.FilterView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.settings_account_section,
-
-  regions: {},
-
-  initialize: function initialize() {},
-
-  onRender: function onRender() {},
-
-  templateContext: function templateContext() {
-    return {
-      email: this.getOption('email')
-    };
-  }
+  template: tpl.templates.filter
 
 });
 'use strict';
 
-app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+app.views.HomeView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.settings_profile_section,
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
 
   ui: {
-    lastName: '#lastName',
-    name: '#name',
-    middleName: '#middleName',
-    work: '#work',
-    position: '#position',
-    workEmail: '#workEmail',
-    phone: '#phone',
-
-    saveProfile: '.saveProfile'
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
   },
 
   events: {
-    'click @ui.saveProfile': 'saveProfile'
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
   },
 
-  initialize: function initialize() {
-    console.log('initialize: SettingsProfileSectionView');
-
+  onRender: function onRender() {
     var thisView = this;
-    // Get user data from server
-    thisView.model.fetch().then(function () {
-      thisView.render();
-    }, function () {
-      console.log('FAIL');
-      console.log(thisView.model.attributes);
-    });
-  },
-
-  saveProfile: function saveProfile(e) {
-    var thisView = this;
-    e.preventDefault();
-
-    thisView.model.set({
-      lastName: thisView.ui.lastName.val(),
-      name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val(),
-      work: thisView.ui.work.val(),
-      position: thisView.ui.position.val(),
-      phone: thisView.ui.phone.val(),
-      workEmail: thisView.ui.workEmail.val()
-    });
-    // Save updated user model
-    thisView.model.save();
+    thisView.showChildView('filter', new app.views.FilterView());
   }
 
 });
@@ -877,45 +860,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
-"use strict";
-
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
-  }
-
-});
 'use strict';
 
 app.views.DashboardView = Backbone.Marionette.View.extend({
@@ -969,6 +913,91 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
 });
 'use strict';
 
+app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_account_section,
+
+  regions: {},
+
+  initialize: function initialize() {},
+
+  onRender: function onRender() {},
+
+  templateContext: function templateContext() {
+    return {
+      email: this.getOption('email')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_profile_section,
+
+  ui: {
+    lastName: '#lastName',
+    name: '#name',
+    middleName: '#middleName',
+    work: '#work',
+    position: '#position',
+    workEmail: '#workEmail',
+    phone: '#phone',
+    country: '#country',
+
+    saveProfile: '.saveProfile'
+  },
+
+  events: {
+    'click @ui.saveProfile': 'saveProfile',
+    'change @ui.country': 'selectCountry'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+
+    // Get user data from server
+    thisView.model.fetch().then(function () {
+      thisView.render();
+    }, function () {
+      console.log('FAIL: Get user data from server');
+    });
+
+    // Get countries from VK api
+    thisView.model.loadCountries().then(function (data) {
+      thisView.model.set({ countries: data.response.items });
+      thisView.render();
+    }, function () {
+      console.log('FAIL: Get countries');
+    });
+  },
+
+  selectCountry: function selectCountry(event) {
+    // Save country object into the model
+    this.model.setCountry(event.target.value);
+  },
+
+  saveProfile: function saveProfile(event) {
+    var thisView = this;
+    event.preventDefault();
+
+    thisView.model.set({
+      lastName: thisView.ui.lastName.val(),
+      name: thisView.ui.name.val(),
+      middleName: thisView.ui.middleName.val(),
+      work: thisView.ui.work.val(),
+      position: thisView.ui.position.val(),
+      phone: thisView.ui.phone.val(),
+      workEmail: thisView.ui.workEmail.val()
+    });
+    // Save updated user model
+    thisView.model.save();
+  }
+
+});
+'use strict';
+
 app.views.SettingsView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.settings,
@@ -985,7 +1014,8 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.profileSettings': function clickUiProfileSettings() {
-      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: brd.controllers.getUserId() }) }));
+      var useId = brd.controllers.getUserId();
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: useId }) }));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },

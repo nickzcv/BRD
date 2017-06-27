@@ -83,41 +83,68 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
   return "value=\""
     + this.escapeExpression(((helper = (helper = helpers.position || (depth0 != null ? depth0.position : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"position","hash":{},"data":data}) : helper)))
     + "\"";
-},"17":function(depth0,helpers,partials,data) {
+},"17":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "          <option value=\""
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\" "
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias1).call(depth0,(depth0 != null ? depth0.id : depth0),"===",((stack1 = (depths[1] != null ? depths[1].country : depths[1])) != null ? stack1.id : stack1),{"name":"compare","hash":{},"fn":this.program(18, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</option>\r\n";
+},"18":function(depth0,helpers,partials,data) {
+    return "selected";
+},"20":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "          <option value=\""
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</option>\r\n";
+},"22":function(depth0,helpers,partials,data) {
     var helper;
 
   return "value=\""
     + this.escapeExpression(((helper = (helper = helpers.workEmail || (depth0 != null ? depth0.workEmail : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"workEmail","hash":{},"data":data}) : helper)))
     + "\"";
-},"19":function(depth0,helpers,partials,data) {
+},"24":function(depth0,helpers,partials,data) {
     return " placeholder=\"example@mail.com\"";
-},"21":function(depth0,helpers,partials,data) {
+},"26":function(depth0,helpers,partials,data) {
     var helper;
 
   return "value=\""
     + this.escapeExpression(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"phone","hash":{},"data":data}) : helper)))
     + "\"";
-},"23":function(depth0,helpers,partials,data) {
+},"28":function(depth0,helpers,partials,data) {
     return " placeholder=\"+375 00 0000000\"";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return "<form>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-5\">\r\n      <div class=\"image-upload\">\r\n        <label for=\"file-input\">\r\n          <img src=\"img/profile_placeholder.png\"/>\r\n        </label>\r\n\r\n        <input id=\"file-input\" type=\"file\"/>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n      <div class=\"form-group \">\r\n        <label for=\"lastName\">Фамилия</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"lastName\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.lastName : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, options, alias1=helpers.helperMissing, alias2="function", alias3=helpers.blockHelperMissing, buffer = 
+  "<form>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-5\">\r\n      <div class=\"image-upload\">\r\n        <label for=\"file-input\">\r\n          <img src=\"img/profile_placeholder.png\"/>\r\n        </label>\r\n\r\n        <input id=\"file-input\" type=\"file\"/>\r\n      </div>\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n      <div class=\"form-group \">\r\n        <label for=\"lastName\">Фамилия</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"lastName\" "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.lastName : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0, blockParams, depths),"inverse":this.program(3, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + ">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"name\">Имя</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"name\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.name : depth0),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(7, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.name : depth0),{"name":"if","hash":{},"fn":this.program(5, data, 0, blockParams, depths),"inverse":this.program(7, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + ">\r\n      </div>\r\n      <div class=\"form-group \">\r\n        <label for=\"middleName\">Отчество</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"middleName\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.middleName : depth0),{"name":"if","hash":{},"fn":this.program(9, data, 0),"inverse":this.program(11, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.middleName : depth0),{"name":"if","hash":{},"fn":this.program(9, data, 0, blockParams, depths),"inverse":this.program(11, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + ">\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"work\">Место работы</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"work\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.work : depth0),{"name":"if","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.work : depth0),{"name":"if","hash":{},"fn":this.program(13, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + ">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"position\">Должность</label>\r\n    <input type=\"text\" class=\"form-control\" id=\"position\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.position : depth0),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + ">\r\n  </div>\r\n\r\n  <p class=\"lbl\">Ваше местоположение</p>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Страна</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\">\r\n        <option>Город</option>\r\n        <option>2</option>\r\n        <option>3</option>\r\n        <option>4</option>\r\n        <option>5</option>\r\n      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <p class=\"lead\">Контактные данные</p>\r\n  <p class=\"lbl2\">Будут отображаться в объявлениях</p>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\">@</span>\r\n      <input type=\"text\" class=\"form-control\" id=\"workEmail\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.workEmail : depth0),{"name":"if","hash":{},"fn":this.program(17, data, 0),"inverse":this.program(19, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.position : depth0),{"name":"if","hash":{},"fn":this.program(15, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">\r\n  </div>\r\n\r\n  <p class=\"lbl\">Ваше местоположение</p>\r\n  <div class=\"form-group row\">\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\" id=\"country\">\r\n        <option value=\"\">Страна</option>\r\n";
+  stack1 = ((helper = (helper = helpers.countries || (depth0 != null ? depth0.countries : depth0)) != null ? helper : alias1),(options={"name":"countries","hash":{},"fn":this.program(17, data, 0, blockParams, depths),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  if (!helpers.countries) { stack1 = alias3.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "      </select>\r\n    </div>\r\n    <div class=\"col-md-6\">\r\n      <select class=\"form-control\" id=\"city\" disabled>\r\n        <option>Город</option>\r\n";
+  stack1 = ((helper = (helper = helpers.cities || (depth0 != null ? depth0.cities : depth0)) != null ? helper : alias1),(options={"name":"cities","hash":{},"fn":this.program(20, data, 0, blockParams, depths),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
+  if (!helpers.cities) { stack1 = alias3.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "      </select>\r\n    </div>\r\n  </div>\r\n\r\n  <p class=\"lead\">Контактные данные</p>\r\n  <p class=\"lbl2\">Будут отображаться в объявлениях</p>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\">@</span>\r\n      <input type=\"text\" class=\"form-control\" id=\"workEmail\" "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.workEmail : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0, blockParams, depths),"inverse":this.program(24, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + ">\r\n    </div>\r\n  </div>\r\n  <div class=\"form-group short\">\r\n    <div class=\"input-group\">\r\n      <span class=\"input-group-addon\"><i class=\"ion-android-call\"></i></span>\r\n      <input type=\"text\" class=\"form-control\" id=\"phone\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.phone : depth0),{"name":"if","hash":{},"fn":this.program(21, data, 0),"inverse":this.program(23, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.phone : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0, blockParams, depths),"inverse":this.program(28, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + ">\r\n    </div>\r\n  </div>\r\n\r\n  <button type=\"submit\" class=\"btn btn-default saveProfile\">Сохранить</button>\r\n</form>";
-},"useData":true});
+},"useData":true,"useDepths":true});
 this["tpl"]["templates"]["forgot"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"forgot\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"forgotModalLabel\">Восстановление пароля</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <label for=\"exampleInputEmail1\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email адрес\">\r\n          </div>\r\n\r\n          <button type=\"button\" class=\"btn btn-default login-btn\">Выслать пароль</button>\r\n        </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
 },"useData":true});
