@@ -8,7 +8,7 @@ app.models.UserModel = Backbone.Model.extend({
   },
 
   initialize: function() {
-    console.log('initialize UserModel');
+    //console.log('initialize UserModel');
 
   },
 });

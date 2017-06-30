@@ -92,10 +92,10 @@ app.views.LoginView = app.views.HeaderView.extend({
 
         app.user.fetch().then(() => {
           console.log('SUCCESS');
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
         },() => {
           console.log('FAIL');
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
         });
       }
       // ---

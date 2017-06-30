@@ -22,7 +22,6 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   initialize: function() {
     let thisView = this;
-
     // Get user data from server
     thisView.model.fetch().then(() => {
       thisView.render();
@@ -41,8 +40,15 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   selectCountry: function(event) {
+    let thisView = this,
+        countryId = event.target.value;
     // Save country object into the model
-    this.model.setCountry(event.target.value);
+    thisView.model.setCountry(countryId);
+    // Get cities by country id
+    thisView.model.loadCities(countryId).then((data) => {
+      thisView.render();
+      console.log(data)
+    });
   },
 
   saveProfile: function(event) {

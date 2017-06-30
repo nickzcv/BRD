@@ -46,12 +46,9 @@
       </select>
     </div>
     <div class="col-md-6">
-      <select class="form-control" id="city" disabled>
-        <option>Город</option>
-        {{#cities}}
-          <option value="{{id}}">{{title}}</option>
-        {{/cities}}
-      </select>
+      <input type="text" class="form-control" id="city"
+        {{#if city}}value="{{city.title}}"{{else}} placeholder="Город"{{/if }}
+        {{#if country}}{{else}}disabled{{/if}}>
     </div>
   </div>
 

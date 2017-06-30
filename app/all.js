@@ -279,7 +279,7 @@ app.models.HeaderModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    console.log('initialize Header Model');
+    //console.log('initialize Header Model');
 
     if (app.user) {
       this.updateUser();
@@ -385,14 +385,22 @@ app.models.SettingsModel = Backbone.Model.extend({
   urlRoot: 'api/user/',
 
   initialize: function initialize() {
-    console.log('-- initialize SettingsModel');
+    //console.log('-- initialize SettingsModel');
   },
 
   loadCountries: function loadCountries() {
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=250'
+      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300'
+    });
+  },
+
+  loadCities: function loadCities(countryId) {
+    return $.ajax({
+      method: 'GET',
+      dataType: 'jsonp',
+      url: 'http://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=1000'
     });
   },
 
@@ -403,9 +411,7 @@ app.models.SettingsModel = Backbone.Model.extend({
       return obj.id == id;
     });
     // Save country object into the model
-    thisModel.set({ country: selectedCountry });
-
-    console.log(thisModel.get('country'));
+    thisModel.set({ country: Object.assign({}, selectedCountry[0]) });
   }
 
 });
@@ -421,7 +427,8 @@ app.models.UserModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    console.log('initialize UserModel');
+    //console.log('initialize UserModel');
+
   }
 });
 "use strict";
@@ -699,10 +706,10 @@ app.views.LoginView = app.views.HeaderView.extend({
 
         app.user.fetch().then(function () {
           console.log('SUCCESS');
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
         }, function () {
           console.log('FAIL');
-          console.log(app.user.attributes);
+          //console.log(app.user.attributes);
         });
       }
       // ---
@@ -956,7 +963,6 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {
     var thisView = this;
-
     // Get user data from server
     thisView.model.fetch().then(function () {
       thisView.render();
@@ -974,8 +980,15 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
     // Save country object into the model
-    this.model.setCountry(event.target.value);
+    thisView.model.setCountry(countryId);
+    // Get cities by country id
+    thisView.model.loadCities(countryId).then(function (data) {
+      thisView.render();
+      console.log(data);
+    });
   },
 
   saveProfile: function saveProfile(event) {

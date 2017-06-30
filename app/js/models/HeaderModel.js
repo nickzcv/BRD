@@ -5,7 +5,7 @@ app.models.HeaderModel = Backbone.Model.extend({
   },
 
   initialize: function() {
-    console.log('initialize Header Model');
+    //console.log('initialize Header Model');
 
     if (app.user) {
       this.updateUser();
