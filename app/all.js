@@ -952,13 +952,14 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     workEmail: '#workEmail',
     phone: '#phone',
     country: '#country',
-
+    city: '#city',
     saveProfile: '.saveProfile'
   },
 
   events: {
     'click @ui.saveProfile': 'saveProfile',
-    'change @ui.country': 'selectCountry'
+    'change @ui.country': 'selectCountry',
+    'focus @ui.city': 'selectCity'
   },
 
   initialize: function initialize() {
@@ -971,11 +972,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
 
     // Get countries from VK api
-    thisView.model.loadCountries().then(function (data) {
-      thisView.model.set({ countries: data.response.items });
+    thisView.model.loadCountries().then(function (countries) {
+      thisView.model.set({ countries: countries.response.items });
       thisView.render();
-    }, function () {
-      console.log('FAIL: Get countries');
+    }, function (error) {
+      console.log(error);
     });
   },
 
@@ -984,10 +985,15 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
         countryId = event.target.value;
     // Save country object into the model
     thisView.model.setCountry(countryId);
-    // Get cities by country id
-    thisView.model.loadCities(countryId).then(function (data) {
-      thisView.render();
-      console.log(data);
+  },
+
+  selectCity: function selectCity() {
+    var thisView = this,
+        country = thisView.model.get('country');
+
+    thisView.model.loadCities(country.id).then(function (cities) {
+      //thisView.render();
+      console.log(cities.response.count);
     });
   },
 
