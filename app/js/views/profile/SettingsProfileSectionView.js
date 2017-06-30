@@ -72,6 +72,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     thisView.model.searchCities(country.id, value).then((cities) => {
       // Display dropdown
       thisView.model.set({cities: cities.response.items});
+      thisView.cacheProfile();
       thisView.render();
       thisView.ui.cityDropdown.addClass('show');
       // return focus and value after render
