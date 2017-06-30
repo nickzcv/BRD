@@ -14,11 +14,11 @@ app.models.SettingsModel = Backbone.Model.extend({
     });
   },
 
-  loadCities: function(countryId) {
+  searchCities: function(countryId, searchString) {
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: `http://api.vk.com/method/database.getCities?v=5.5&country_id=${countryId}&need_all=1&count=1000`
+      url: `http://api.vk.com/method/database.getCities?v=5.5&country_id=${countryId}&need_all=1&count=10&q=${searchString}`
     });
   },
 
@@ -30,6 +30,17 @@ app.models.SettingsModel = Backbone.Model.extend({
     });
     // Save country object into the model
     thisModel.set({country: Object.assign({}, selectedCountry[0])});
+  },
+
+  setCity: function(id) {
+    let thisModel = this;
+    // Find selected city from the list
+    let selectedCity = thisModel.get('cities').filter((obj) => {
+      return obj.id == id;
+    });
+    // Save city object into the model
+    thisModel.set({city: Object.assign({}, selectedCity[0])});
+    console.log(thisModel.attributes)
   },
 
 

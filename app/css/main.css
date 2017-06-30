@@ -51,6 +51,9 @@ label.error {
 .forbidden .icon {
   font-size: 5rem; }
 
+.m-b-1 {
+  margin-bottom: 1rem; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -467,6 +470,33 @@ nav.navigation .user .logout:hover {
 .profile .page {
   margin: 1rem 1rem 0 5rem; }
 
+.profile .cityDropdown {
+  position: relative;
+  z-index: 100; }
+
+.profile .cityDropdown ul {
+  position: absolute;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  width: 100%;
+  border: 1px solid gray; }
+
+.profile .cityDropdown ul li {
+  padding: 0.2rem 0.5rem 0.2rem 1rem;
+  cursor: pointer; }
+
+.profile .cityDropdown ul li:hover {
+  background: #E5E3D4; }
+
+.profile .cityDropdown ul li .area {
+  color: #999;
+  padding-left: 0.5rem; }
+
+.profile .cityDropdown ul li .region {
+  color: #BBB; }
+
 @media only screen and (min-width: 992px) {
   .profile .page {
     margin: 1.5rem 2rem 0 18rem; } }
@@ -593,9 +623,3 @@ nav.navigation .user .logout:hover {
   color: #008023;
   font-size: 5rem;
   text-align: center; }
-
-/* icons
-  'partials/icons/_ionicons-variables',
-  'partials/icons/_ionicons-font',
-  'partials/icons/_ionicons-icons';
-*/

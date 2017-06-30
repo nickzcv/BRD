@@ -3,6 +3,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings_profile_section,
 
   ui: {
+    form: 'form',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -12,13 +13,17 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     phone: '#phone',
     country: '#country',
     city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city',
     saveProfile: '.saveProfile',
   },
 
   events: {
     'click @ui.saveProfile': 'saveProfile',
     'change @ui.country': 'selectCountry',
-    'focus @ui.city': 'selectCity'
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'click @ui.form': 'checkCity'
   },
 
   initialize: function() {
@@ -43,18 +48,59 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   selectCountry: function(event) {
     let thisView = this,
         countryId = event.target.value;
-    // Save country object into the model
-    thisView.model.setCountry(countryId);
+    // Check if county selected
+    if(countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+    thisView.render();
   },
 
-  selectCity: function() {
+  searchCity: function() {
     let thisView = this,
-        country = thisView.model.get('country');
-
-    thisView.model.loadCities(country.id).then((cities) => {
-      //thisView.render();
-      console.log(cities.response.count)
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then((cities) => {
+      // Display dropdown
+      thisView.model.set({cities: cities.response.items});
+      thisView.render();
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
     });
+  },
+
+  selectCity: function(event) {
+    let thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if(cityId) {
+      this.model.setCity(cityId);
+      thisView.render();
+    }
+  },
+
+  checkCity: function () {
+    let thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if(isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({city: null});
+      thisView.render();
+    } else if(isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title)
+    }
   },
 
   saveProfile: function(event) {
