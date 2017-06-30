@@ -19,7 +19,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.saveProfile': 'saveProfile',
+    'click @ui.saveProfile': 'saveProfileData',
     'change @ui.country': 'selectCountry',
     'input @ui.city': 'searchCity',
     'click @ui.cityDropdownElement': 'selectCity',
@@ -34,7 +34,6 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     },() => {
       console.log('FAIL: Get user data from server');
     });
-
     // Get countries from VK api
     thisView.model.loadCountries().then((countries) => {
       thisView.model.set({countries: countries.response.items});
@@ -42,8 +41,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     },(error) => {
       console.log(error);
     });
-
   },
+
 
   selectCountry: function(event) {
     let thisView = this,
@@ -52,14 +51,18 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     if(countryId) {
       // Save country object into the model
       thisView.model.setCountry(countryId);
+      thisView.model.set({city: null});
     } else {
       thisView.model.set({
         country: null,
         city: null
       });
     }
+
+    thisView.cacheProfile();
     thisView.render();
   },
+
 
   searchCity: function() {
     let thisView = this,
@@ -77,6 +80,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
+
   selectCity: function(event) {
     let thisView = this,
         cityId = event.currentTarget.getAttribute('data-id');
@@ -86,6 +90,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       thisView.render();
     }
   },
+
 
   checkCity: function () {
     let thisView = this,
@@ -103,10 +108,9 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     }
   },
 
-  saveProfile: function(event) {
+  // Save form data into the model before rerender
+  cacheProfile: function() {
     let thisView = this;
-    event.preventDefault();
-
     thisView.model.set({
       lastName: thisView.ui.lastName.val(),
       name: thisView.ui.name.val(),
@@ -116,10 +120,12 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       phone: thisView.ui.phone.val(),
       workEmail: thisView.ui.workEmail.val(),
     });
-    // Save updated user model
-    thisView.model.save()
-    
-  }
+  },
 
+  saveProfileData: function(event) {
+    event.preventDefault();
+    this.cacheProfile();
+    this.model.save();
+  }
 
 });
