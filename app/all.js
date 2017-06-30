@@ -1071,9 +1071,10 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   saveProfileData: function saveProfileData(event) {
+    var thisView = this;
     event.preventDefault();
-    this.cacheProfile();
-    this.model.save();
+    thisView.cacheProfile();
+    thisView.model.save();
   }
 
 });
