@@ -470,6 +470,31 @@ nav.navigation .user .logout:hover {
 .profile .page {
   margin: 1rem 1rem 0 5rem; }
 
+.profile .image-upload {
+  text-align: center; }
+
+.profile .image-upload label {
+  position: relative;
+  cursor: pointer;
+  margin: 1.5rem 0 0 0;
+  height: 16rem;
+  width: 16rem;
+  background: url(../img/profile_placeholder.png) no-repeat;
+  background-size: cover; }
+
+.profile .image-upload label:hover {
+  border: 1px solid #ccc; }
+
+.profile .image-upload label:hover:after {
+  content: "\002b";
+  position: absolute;
+  left: 1rem;
+  font-size: 5rem;
+  color: #559797; }
+
+.profile .image-upload #photo {
+  display: none; }
+
 .profile .cityDropdown {
   position: relative;
   z-index: 100; }

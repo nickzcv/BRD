@@ -956,6 +956,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   ui: {
     form: 'form',
+    photo: '#photo',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -975,7 +976,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     'change @ui.country': 'selectCountry',
     'input @ui.city': 'searchCity',
     'click @ui.cityDropdownElement': 'selectCity',
-    'click @ui.form': 'checkCity'
+    'click @ui.form': 'checkCity',
+    'change @ui.photo': 'addPhoto'
   },
 
   initialize: function initialize() {
@@ -993,6 +995,19 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     }, function (error) {
       console.log(error);
     });
+  },
+
+  addPhoto: function addPhoto(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        //$('#preview').attr('src', e.target.result);
+        $('#preview').css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   },
 
   selectCountry: function selectCountry(event) {

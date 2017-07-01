@@ -16,6 +16,36 @@
   .page {
     margin: 1rem 1rem 0 5rem;
   }
+
+  .image-upload {
+    text-align: center;
+
+    label {
+      position: relative;
+      cursor: pointer;
+      margin: 1.5rem 0 0 0;
+      height: 16rem;
+      width: 16rem;
+      background: url(../img/profile_placeholder.png) no-repeat;
+      background-size: cover;
+
+      &:hover {
+        border: 1px solid $gray-dark;
+
+        &:after {
+          content: "\002b";
+          position: absolute;
+          left: 1rem;
+          font-size: 5rem;
+          color: $blue-dark;
+        }
+      }
+    }
+    #photo {
+      display: none;
+    }
+  }
+
   .cityDropdown {
     position: relative;
     z-index: 100;
@@ -69,6 +99,7 @@
     .page {
       margin: 1.5rem 2rem 0 18rem;
     }
+
   }
 
 }
