@@ -26,7 +26,7 @@ let app = (function() {
         // Check If user already logged in
         if (brd.controllers.isLoggedIn()) {
           let useId = brd.controllers.getUserId();
-          app.user = new app.models.UserModel({id: useId});
+          app.user = new app.models.UserModel({_id: useId});
 
           app.user.fetch().then(() => {
             console.log('SUCCESS');

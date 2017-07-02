@@ -2,6 +2,8 @@ app.models.LoginModel = Backbone.Model.extend({
 
   urlRoot: 'api/login',
 
+  idAttribute: '_id',
+
   defaults: {
     email: null,
     password: null

@@ -28,7 +28,7 @@ var app = function () {
         // Check If user already logged in
         if (brd.controllers.isLoggedIn()) {
           var useId = brd.controllers.getUserId();
-          app.user = new app.models.UserModel({ id: useId });
+          app.user = new app.models.UserModel({ _id: useId });
 
           app.user.fetch().then(function () {
             console.log('SUCCESS');
@@ -299,6 +299,8 @@ app.models.LoginModel = Backbone.Model.extend({
 
   urlRoot: 'api/login',
 
+  idAttribute: '_id',
+
   defaults: {
     email: null,
     password: null
@@ -431,6 +433,8 @@ app.models.SettingsModel = Backbone.Model.extend({
 app.models.UserModel = Backbone.Model.extend({
 
   urlRoot: 'api/user/',
+
+  idAttribute: '_id',
 
   defaults: {
     email: null,
@@ -713,7 +717,7 @@ app.views.LoginView = app.views.HeaderView.extend({
       // Open setting page
       if (brd.controllers.isLoggedIn()) {
         var useId = brd.controllers.getUserId();
-        app.user = new app.models.UserModel({ id: useId });
+        app.user = new app.models.UserModel({ _id: useId });
 
         app.user.fetch().then(function () {
           console.log('SUCCESS');
