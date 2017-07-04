@@ -42,6 +42,8 @@ var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
 var admin = require(path.join(__dirname, 'routes/admin'));
 app.use('/api', admin);
+var uploader = require(path.join(__dirname, 'routes/upload'));
+app.use('/api', uploader);
 
 // Otherwise render the index.html page for the Backbone SPA
 // This means we don't have to map all of the SPA routes in Express

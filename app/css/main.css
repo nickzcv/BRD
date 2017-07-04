@@ -479,11 +479,11 @@ nav.navigation .user .logout:hover {
   margin: 1.5rem 0 0 0;
   height: 16rem;
   width: 16rem;
-  background: url(../img/profile_placeholder.png) no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-image: url(../img/profile_placeholder.png); }
 
 .profile .image-upload label:hover {
-  border: 1px solid #ccc; }
+  border: 1px solid orange; }
 
 .profile .image-upload label:hover:after {
   content: "\002b";
