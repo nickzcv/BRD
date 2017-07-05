@@ -45,7 +45,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
-
+  // Add user profile photo
   addPhoto: function(event) {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();

@@ -2,6 +2,8 @@ app.models.SettingsModel = Backbone.Model.extend({
 
   urlRoot: 'api/user/',
 
+  idAttribute: '_id',
+
   initialize: function() {
     //console.log('-- initialize SettingsModel');
   },
@@ -40,7 +42,6 @@ app.models.SettingsModel = Backbone.Model.extend({
     });
     // Save city object into the model
     thisModel.set({city: Object.assign({}, selectedCity[0])});
-    console.log(thisModel.attributes)
   },
 
 

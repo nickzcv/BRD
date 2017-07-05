@@ -27,7 +27,7 @@ let app = (function() {
         if (brd.controllers.isLoggedIn()) {
           let useId = brd.controllers.getUserId();
           app.user = new app.models.UserModel({_id: useId});
-
+          // Store user profile data into the app
           app.user.fetch().then(() => {
             console.log('SUCCESS');
             console.log(app.user.attributes);

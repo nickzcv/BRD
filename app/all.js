@@ -29,7 +29,7 @@ var app = function () {
         if (brd.controllers.isLoggedIn()) {
           var useId = brd.controllers.getUserId();
           app.user = new app.models.UserModel({ _id: useId });
-
+          // Store user profile data into the app
           app.user.fetch().then(function () {
             console.log('SUCCESS');
             console.log(app.user.attributes);
@@ -386,6 +386,8 @@ app.models.SettingsModel = Backbone.Model.extend({
 
   urlRoot: 'api/user/',
 
+  idAttribute: '_id',
+
   initialize: function initialize() {
     //console.log('-- initialize SettingsModel');
   },
@@ -424,7 +426,6 @@ app.models.SettingsModel = Backbone.Model.extend({
     });
     // Save city object into the model
     thisModel.set({ city: Object.assign({}, selectedCity[0]) });
-    console.log(thisModel.attributes);
   }
 
 });
@@ -1001,6 +1002,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
+  // Add user profile photo
   addPhoto: function addPhoto(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -1117,7 +1119,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   events: {
     'click @ui.profileSettings': function clickUiProfileSettings() {
       var useId = brd.controllers.getUserId();
-      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: useId }) }));
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
@@ -1135,7 +1137,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     var useId = brd.controllers.getUserId();
-    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ id: useId }) }));
+    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }
