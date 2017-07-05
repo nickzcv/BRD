@@ -569,45 +569,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
-
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
-  }
-
-});
 'use strict';
 
 app.views.ForgotView = app.views.HeaderView.extend({
@@ -883,6 +844,45 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
+"use strict";
+
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter
+
+});
+'use strict';
+
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function onRender() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
+  }
+
+});
 'use strict';
 
 app.views.DashboardView = Backbone.Marionette.View.extend({
@@ -1006,13 +1006,23 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   addPhoto: function addPhoto(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
       reader.onload = function (e) {
         //$('#preview').attr('src', e.target.result);
-        $('#preview').css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
+        $('#preview').css('background-image', 'url(' + e.target.result + ')');
       };
+      //var test = reader.readAsDataURL(event.target.files[0]);
 
-      reader.readAsDataURL(event.target.files[0]);
+      $.ajax({
+        url: 'api/upload/profile',
+        data: reader.readAsDataURL(event.target.files[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function success(data) {
+          alert(data);
+        }
+      });
     }
   },
 

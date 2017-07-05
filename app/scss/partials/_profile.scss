@@ -26,11 +26,11 @@
       margin: 1.5rem 0 0 0;
       height: 16rem;
       width: 16rem;
-      background: url(../img/profile_placeholder.png) no-repeat;
       background-size: cover;
+      background-image: url(../img/profile_placeholder.png);
 
       &:hover {
-        border: 1px solid $gray-dark;
+        border: 1px solid orange;
 
         &:after {
           content: "\002b";
