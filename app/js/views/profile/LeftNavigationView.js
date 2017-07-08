@@ -15,6 +15,9 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
     'click @ui.dashboard': function () {
       brd.router.navigate('#dashboard', {trigger:true});
     },
+    'click @ui.ads': function () {
+      brd.router.navigate('#ads', {trigger:true});
+    },
     'click @ui.settings': function () {
       brd.router.navigate('#settings', {trigger:true});
     },
