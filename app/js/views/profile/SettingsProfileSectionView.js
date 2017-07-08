@@ -47,28 +47,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   // Add user profile photo
   addPhoto: function(event) {
-    if (event.target.files && event.target.files[0]) {
-/*      let reader = new FileReader();
-      reader.onload = (e) => {
-        //$('#preview').attr('src', e.target.result);
-        $('#preview').css('background-image', 'url('+e.target.result+')');
-        console.log(e.target.result)
-      };*/
-      //var test = reader.readAsDataURL(event.target.files[0]);
-
-
-      $.ajax({
-        url: 'api/upload/profile',
-        data: event.target.files[0],
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        success: function(data){
-          alert(data);
-        }
-      });
-    }
+    console.log(event)
   },
 
 

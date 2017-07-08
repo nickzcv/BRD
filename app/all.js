@@ -610,6 +610,257 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
+app.views.DashboardView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.dashboard,
+
+  regions: {
+    leftNavRegion: '.left-navigation'
+  },
+
+  ui: {},
+
+  events: {},
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  }
+
+});
+'use strict';
+
+app.views.LeftNavigation = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.left_navigation,
+
+  ui: {
+    dashboard: '.dashboard',
+    ads: '.ads',
+    companies: '.companies',
+    messages: '.messages',
+    favorite: '.favorite',
+    settings: '.settings'
+  },
+
+  events: {
+    'click @ui.dashboard': function clickUiDashboard() {
+      brd.router.navigate('#dashboard', { trigger: true });
+    },
+    'click @ui.settings': function clickUiSettings() {
+      brd.router.navigate('#settings', { trigger: true });
+    }
+  },
+
+  templateContext: function templateContext() {
+    return {
+      activePage: this.getOption('page')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_account_section,
+
+  regions: {},
+
+  initialize: function initialize() {},
+
+  onRender: function onRender() {},
+
+  templateContext: function templateContext() {
+    return {
+      email: this.getOption('email')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_profile_section,
+
+  ui: {
+    form: 'form',
+    photo: '#photo',
+    lastName: '#lastName',
+    name: '#name',
+    middleName: '#middleName',
+    work: '#work',
+    position: '#position',
+    workEmail: '#workEmail',
+    phone: '#phone',
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city',
+    saveProfile: '.saveProfile'
+  },
+
+  events: {
+    'click @ui.saveProfile': 'saveProfileData',
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'click @ui.form': 'checkCity',
+    'change @ui.photo': 'addPhoto'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Get user data from server
+    thisView.model.fetch().then(function () {
+      thisView.render();
+    }, function () {
+      console.log('FAIL: Get user data from server');
+    });
+    // Get countries from VK api
+    thisView.model.loadCountries().then(function (countries) {
+      thisView.model.set({ countries: countries.response.items });
+      thisView.render();
+    }, function (error) {
+      console.log(error);
+    });
+  },
+
+  // Add user profile photo
+  addPhoto: function addPhoto(event) {
+    console.log(event);
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+
+    thisView.cacheProfile();
+    thisView.render();
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.cacheProfile();
+      thisView.render();
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+      thisView.render();
+    }
+  },
+
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+      thisView.render();
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    }
+  },
+
+  // Save form data into the model before rerender
+  cacheProfile: function cacheProfile() {
+    var thisView = this;
+    thisView.model.set({
+      lastName: thisView.ui.lastName.val(),
+      name: thisView.ui.name.val(),
+      middleName: thisView.ui.middleName.val(),
+      work: thisView.ui.work.val(),
+      position: thisView.ui.position.val(),
+      phone: thisView.ui.phone.val(),
+      workEmail: thisView.ui.workEmail.val()
+    });
+  },
+
+  saveProfileData: function saveProfileData(event) {
+    var thisView = this;
+    event.preventDefault();
+    thisView.cacheProfile();
+    thisView.model.save();
+  }
+
+});
+'use strict';
+
+app.views.SettingsView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings,
+
+  regions: {
+    leftNavRegion: '.left-navigation',
+    page: '.page'
+  },
+
+  ui: {
+    profileSettings: '.profile-settings-link',
+    accountSettings: '.account-settings-link'
+  },
+
+  events: {
+    'click @ui.profileSettings': function clickUiProfileSettings() {
+      var useId = brd.controllers.getUserId();
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
+      this.ui.profileSettings.addClass('active');
+      this.ui.accountSettings.removeClass('active');
+    },
+    'click @ui.accountSettings': function clickUiAccountSettings() {
+      this.showChildView('page', new app.views.SettingsAccountSectionView({ email: app.user.get('email') }));
+      this.ui.accountSettings.addClass('active');
+      this.ui.profileSettings.removeClass('active');
+    }
+  },
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  },
+
+  onRender: function onRender() {
+    var useId = brd.controllers.getUserId();
+    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
+    this.ui.profileSettings.addClass('active');
+    this.ui.accountSettings.removeClass('active');
+  }
+
+});
+'use strict';
+
 app.views.ForgotView = app.views.HeaderView.extend({
 
   template: tpl.templates.forgot,
@@ -880,278 +1131,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         thisView.ui.form.fadeIn();
       }
     });
-  }
-
-});
-'use strict';
-
-app.views.DashboardView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.dashboard,
-
-  regions: {
-    leftNavRegion: '.left-navigation'
-  },
-
-  ui: {},
-
-  events: {},
-
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
-  }
-
-});
-'use strict';
-
-app.views.LeftNavigation = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.left_navigation,
-
-  ui: {
-    dashboard: '.dashboard',
-    ads: '.ads',
-    companies: '.companies',
-    messages: '.messages',
-    favorite: '.favorite',
-    settings: '.settings'
-  },
-
-  events: {
-    'click @ui.dashboard': function clickUiDashboard() {
-      brd.router.navigate('#dashboard', { trigger: true });
-    },
-    'click @ui.settings': function clickUiSettings() {
-      brd.router.navigate('#settings', { trigger: true });
-    }
-  },
-
-  templateContext: function templateContext() {
-    return {
-      activePage: this.getOption('page')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings_account_section,
-
-  regions: {},
-
-  initialize: function initialize() {},
-
-  onRender: function onRender() {},
-
-  templateContext: function templateContext() {
-    return {
-      email: this.getOption('email')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings_profile_section,
-
-  ui: {
-    form: 'form',
-    photo: '#photo',
-    lastName: '#lastName',
-    name: '#name',
-    middleName: '#middleName',
-    work: '#work',
-    position: '#position',
-    workEmail: '#workEmail',
-    phone: '#phone',
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city',
-    saveProfile: '.saveProfile'
-  },
-
-  events: {
-    'click @ui.saveProfile': 'saveProfileData',
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'click @ui.form': 'checkCity',
-    'change @ui.photo': 'addPhoto'
-  },
-
-  initialize: function initialize() {
-    var thisView = this;
-    // Get user data from server
-    thisView.model.fetch().then(function () {
-      thisView.render();
-    }, function () {
-      console.log('FAIL: Get user data from server');
-    });
-    // Get countries from VK api
-    thisView.model.loadCountries().then(function (countries) {
-      thisView.model.set({ countries: countries.response.items });
-      thisView.render();
-    }, function (error) {
-      console.log(error);
-    });
-  },
-
-  // Add user profile photo
-  addPhoto: function addPhoto(event) {
-    if (event.target.files && event.target.files[0]) {
-      /*      let reader = new FileReader();
-            reader.onload = (e) => {
-              //$('#preview').attr('src', e.target.result);
-              $('#preview').css('background-image', 'url('+e.target.result+')');
-              console.log(e.target.result)
-            };*/
-      //var test = reader.readAsDataURL(event.target.files[0]);
-
-
-      $.ajax({
-        url: 'api/upload/profile',
-        data: event.target.files[0],
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        success: function success(data) {
-          alert(data);
-        }
-      });
-    }
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-
-    thisView.cacheProfile();
-    thisView.render();
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.cacheProfile();
-      thisView.render();
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-      thisView.render();
-    }
-  },
-
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-      thisView.render();
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    }
-  },
-
-  // Save form data into the model before rerender
-  cacheProfile: function cacheProfile() {
-    var thisView = this;
-    thisView.model.set({
-      lastName: thisView.ui.lastName.val(),
-      name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val(),
-      work: thisView.ui.work.val(),
-      position: thisView.ui.position.val(),
-      phone: thisView.ui.phone.val(),
-      workEmail: thisView.ui.workEmail.val()
-    });
-  },
-
-  saveProfileData: function saveProfileData(event) {
-    var thisView = this;
-    event.preventDefault();
-    thisView.cacheProfile();
-    thisView.model.save();
-  }
-
-});
-'use strict';
-
-app.views.SettingsView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings,
-
-  regions: {
-    leftNavRegion: '.left-navigation',
-    page: '.page'
-  },
-
-  ui: {
-    profileSettings: '.profile-settings-link',
-    accountSettings: '.account-settings-link'
-  },
-
-  events: {
-    'click @ui.profileSettings': function clickUiProfileSettings() {
-      var useId = brd.controllers.getUserId();
-      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
-      this.ui.profileSettings.addClass('active');
-      this.ui.accountSettings.removeClass('active');
-    },
-    'click @ui.accountSettings': function clickUiAccountSettings() {
-      this.showChildView('page', new app.views.SettingsAccountSectionView({ email: app.user.get('email') }));
-      this.ui.accountSettings.addClass('active');
-      this.ui.profileSettings.removeClass('active');
-    }
-  },
-
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
-  },
-
-  onRender: function onRender() {
-    var useId = brd.controllers.getUserId();
-    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.SettingsModel({ _id: useId }) }));
-    this.ui.profileSettings.addClass('active');
-    this.ui.accountSettings.removeClass('active');
   }
 
 });
