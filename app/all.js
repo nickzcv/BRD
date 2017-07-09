@@ -896,6 +896,19 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
+"use strict";
+
+app.views.AddAdView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.add_ad,
+
+  regions: {},
+
+  initialize: function initialize() {},
+
+  onRender: function onRender() {}
+
+});
 'use strict';
 
 app.views.AdsView = Backbone.Marionette.View.extend({
@@ -903,12 +916,21 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   template: tpl.templates.ads,
 
   regions: {
-    leftNavRegion: '.left-navigation'
+    leftNavRegion: '.left-navigation',
+    page: '.page'
   },
 
-  ui: {},
+  ui: {
+    'addButton': '.add-new-ad'
+  },
 
-  events: {},
+  events: {
+    'click @ui.addButton': function clickUiAddButton(event) {
+      event.preventDefault();
+      var useId = brd.controllers.getUserId();
+      this.showChildView('page', new app.views.AddAdView());
+    }
+  },
 
   initialize: function initialize() {
     // Initialize left navigation region
