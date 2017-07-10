@@ -4,6 +4,7 @@ app.router = Marionette.AppRouter.extend({
     '': 'showMainPage',
     'dashboard': 'showDashboardPage',
     'ads': 'showAdsPage',
+    'ads/new': 'showAdNewForm',
     'settings': 'showSettingsPage'
   },
 
@@ -34,6 +35,18 @@ app.router = Marionette.AppRouter.extend({
     if (brd.controllers.isLoggedIn()) {
       brd.regions.mainRegion.show(new app.views.MainView());
       brd.regions.bodyRegion.show(new app.views.AdsView());
+      brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'ads'}));
+    } else {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
+  },
+
+  // New Add
+  showAdNewForm: function() {
+    if (brd.controllers.isLoggedIn()) {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.AddAdView());
       brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'ads'}));
     } else {
       brd.regions.mainRegion.show(new app.views.MainView());

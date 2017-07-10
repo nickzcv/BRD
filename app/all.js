@@ -162,6 +162,7 @@ app.router = Marionette.AppRouter.extend({
     '': 'showMainPage',
     'dashboard': 'showDashboardPage',
     'ads': 'showAdsPage',
+    'ads/new': 'showAdNewForm',
     'settings': 'showSettingsPage'
   },
 
@@ -190,6 +191,18 @@ app.router = Marionette.AppRouter.extend({
     if (brd.controllers.isLoggedIn()) {
       brd.regions.mainRegion.show(new app.views.MainView());
       brd.regions.bodyRegion.show(new app.views.AdsView());
+      brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'ads' }));
+    } else {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
+  },
+
+  // New Add
+  showAdNewForm: function showAdNewForm() {
+    if (brd.controllers.isLoggedIn()) {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.AddAdView());
       brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'ads' }));
     } else {
       brd.regions.mainRegion.show(new app.views.MainView());
@@ -896,15 +909,20 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
 
-  regions: {},
+  regions: {
+    leftNavRegion: '.left-navigation'
+  },
 
-  initialize: function initialize() {},
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  },
 
   onRender: function onRender() {}
 
@@ -925,10 +943,9 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.addButton': function clickUiAddButton(event) {
-      event.preventDefault();
-      var useId = brd.controllers.getUserId();
-      this.showChildView('page', new app.views.AddAdView());
+    'click @ui.addButton': function clickUiAddButton() {
+      brd.router.navigate('#ads/new', { trigger: true });
+      //this.showChildView('page', new app.views.AddAdView());
     }
   },
 
