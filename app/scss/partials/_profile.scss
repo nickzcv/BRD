@@ -15,6 +15,19 @@
   }
   .page {
     margin: 1rem 1rem 0 5rem;
+
+    .lbl {
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .lead {
+      margin-bottom: 0;
+    }
+    .lbl2 {
+      color: $gray-dark2;
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+    }
   }
 
   .image-upload {

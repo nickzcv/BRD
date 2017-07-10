@@ -21,10 +21,10 @@ a:hover {
   cursor: pointer;
   text-decoration: none; }
 
-input.form-control, select.form-control {
+input.form-control, select.form-control, textarea.form-control {
   border-radius: 0; }
 
-input.error, select.error {
+input.error, select.error, textarea.error {
   border: 1px solid #a80200; }
 
 label.error {
@@ -470,6 +470,18 @@ nav.navigation .user .logout:hover {
 .profile .page {
   margin: 1rem 1rem 0 5rem; }
 
+.profile .page .lbl {
+  font-weight: bold;
+  font-size: 0.9rem; }
+
+.profile .page .lead {
+  margin-bottom: 0; }
+
+.profile .page .lbl2 {
+  color: #777777;
+  font-size: 0.8rem;
+  margin-bottom: 20px; }
+
 .profile .image-upload {
   text-align: center; }
 
@@ -528,15 +540,19 @@ nav.navigation .user .logout:hover {
 
 /* Ads styles
 -------------------------------------------------- */
-.add-ad-form {
+.new-ad {
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
 
-.add-ad-form .form-divider {
+.new-ad .add-ad-form .form-divider {
   margin: 1rem 0;
   width: 50%;
   border-top: 1px solid #eee; }
+
+@media only screen and (min-width: 1200px) {
+  .new-ad .page {
+    max-width: 50rem; } }
 
 /* Content
 -------------------------------------------------- */
@@ -590,18 +606,6 @@ nav.navigation .user .logout:hover {
 
 .settings .saveProfile:hover {
   background: #74BDC1; }
-
-.settings .lbl {
-  font-weight: bold;
-  font-size: 0.9rem; }
-
-.settings .lead {
-  margin-bottom: 0; }
-
-.settings .lbl2 {
-  color: #777777;
-  font-size: 0.8rem;
-  margin-bottom: 20px; }
 
 @media only screen and (min-width: 992px) {
   .settings .tabs .tab {

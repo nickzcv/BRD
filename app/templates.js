@@ -1,7 +1,40 @@
 this["tpl"] = this["tpl"] || {};
 this["tpl"]["templates"] = this["tpl"]["templates"] || {};
-this["tpl"]["templates"]["add_ad"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Новое объявление</span>\r\n  </div>\r\n  <div class=\"page\">\r\n\r\n    <form class=\"add-ad-form\">\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio\">Куплю</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio\">Продам</label>\r\n      </div>\r\n      <div class=\"form-divider\"></div>\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio1\">Товар</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio1\">Услуга</label>\r\n      </div>\r\n\r\n      <button type=\"button\" class=\"btn btn-default save-ad disabled\">Сохранить</button>\r\n    </form>\r\n\r\n  </div>\r\n\r\n\r\n\r\n</div>";
+this["tpl"]["templates"]["add_ad"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "value=\""
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
+    + "\"";
+},"3":function(depth0,helpers,partials,data) {
+    return " placeholder=\"Город\"";
+},"5":function(depth0,helpers,partials,data) {
+    return "";
+},"7":function(depth0,helpers,partials,data) {
+    return "disabled";
+},"9":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "                <li class=\"city\" data-id=\""
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + " <span class=\"area\">"
+    + alias3(((helper = (helper = helpers.area || (depth0 != null ? depth0.area : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"area","hash":{},"data":data}) : helper)))
+    + "</span> <span class=\"region\"> "
+    + alias3(((helper = (helper = helpers.region || (depth0 != null ? depth0.region : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"region","hash":{},"data":data}) : helper)))
+    + "</span></li>\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, helper, options, buffer = 
+  "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile new-ad\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Новое объявление</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <!--  Add new ad form -->\r\n    <form class=\"add-ad-form\">\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio\">Куплю</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio\">Продам</label>\r\n      </div>\r\n\r\n      <div class=\"form-divider\"></div>\r\n\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio1\">Товар</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"optradio1\">Услуга</label>\r\n      </div>\r\n\r\n      <div class=\"form-divider\"></div>\r\n\r\n      <p class=\"lbl\">Раздел</p>\r\n      <div class=\"form-group\">\r\n        <select class=\"form-control\">\r\n          <option>...</option>\r\n          <option>Пиломатериалы</option>\r\n          <option>Лесоматериалы</option>\r\n          <option>Изделия из древесины</option>\r\n          <option>Древесные отходы</option>\r\n          <option>Транспорт и перевозки</option>\r\n        </select>\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"title\">Заголовок</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"content\">Текс объявления</label>\r\n        <textarea class=\"form-control\" rows=\"3\" id=\"content\" placeholder=\"Текс объявления\"></textarea>\r\n      </div>\r\n\r\n      <div class=\"form-group row\">\r\n        <div class=\"col-md-6 m-b-1\">\r\n          <select class=\"form-control\" id=\"country\">\r\n            <option value=\"\">Страна</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <input type=\"text\" class=\"form-control\" id=\"city\"\r\n                 "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.city : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "\r\n            "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.country : depth0),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(7, data, 0),"data":data})) != null ? stack1 : "")
+    + ">\r\n          <div class=\"cityDropdown hide\">\r\n            <ul>\r\n";
+  stack1 = ((helper = (helper = helpers.cities || (depth0 != null ? depth0.cities : depth0)) != null ? helper : helpers.helperMissing),(options={"name":"cities","hash":{},"fn":this.program(9, data, 0),"inverse":this.noop,"data":data}),(typeof helper === "function" ? helper.call(depth0,options) : helper));
+  if (!helpers.cities) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "            </ul>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <button type=\"button\" class=\"btn btn-default save-ad disabled\">Опубликовать</button>\r\n    </form>\r\n    <!-- /end form-->\r\n  </div>\r\n\r\n\r\n\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["ads"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Мои объявления</span>\r\n  </div>\r\n  <div class=\"page\">\r\n\r\n    <button type=\"button\" class=\"btn btn-default add-new-ad\">Добавить объявление</button>\r\n\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n";

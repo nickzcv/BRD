@@ -1,12 +1,17 @@
 /* Ads styles
 -------------------------------------------------- */
-.add-ad-form {
+.new-ad {
 
-  .form-divider {
-    margin: 1rem 0;
-    width: 50%;
-    border-top: 1px solid #eee;
+  .add-ad-form {
+
+    .form-divider {
+      margin: 1rem 0;
+      width: 50%;
+      border-top: 1px solid #eee;
+    }
+
   }
+
 
 
   /* Tablets */
@@ -23,7 +28,9 @@
 
   /* Desktop and larger */
   @media only screen and (min-width: 1200px) {
-
+    .page {
+      max-width: 50rem;
+    }
   }
 
 

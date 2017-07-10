@@ -44,12 +44,10 @@ a {
 }
 
 // Form elements
-input, select {
-
+input, select, textarea {
   &.form-control {
     border-radius: 0;
   }
-
   &.error {
     border: 1px solid $error;
   }

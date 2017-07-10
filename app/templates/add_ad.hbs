@@ -2,27 +2,73 @@
 <div class="left-navigation"></div>
 <!-- /end  left-navigation -->
 
-<div class="profile ads">
+<div class="profile new-ad">
   <div class="title">
     <span class="icon ion-clipboard"></span>
     <span class="title-text">Новое объявление</span>
   </div>
   <div class="page">
-
+    <!--  Add new ad form -->
     <form class="add-ad-form">
       <div class="form-group">
         <label class="radio-inline"><input type="radio" name="optradio">Куплю</label>
         <label class="radio-inline"><input type="radio" name="optradio">Продам</label>
       </div>
+
       <div class="form-divider"></div>
+
       <div class="form-group">
         <label class="radio-inline"><input type="radio" name="optradio1">Товар</label>
         <label class="radio-inline"><input type="radio" name="optradio1">Услуга</label>
       </div>
 
-      <button type="button" class="btn btn-default save-ad disabled">Сохранить</button>
-    </form>
+      <div class="form-divider"></div>
 
+      <p class="lbl">Раздел</p>
+      <div class="form-group">
+        <select class="form-control">
+          <option>...</option>
+          <option>Пиломатериалы</option>
+          <option>Лесоматериалы</option>
+          <option>Изделия из древесины</option>
+          <option>Древесные отходы</option>
+          <option>Транспорт и перевозки</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" id="title" placeholder="Заголовок">
+      </div>
+
+      <div class="form-group">
+        <label for="content">Текс объявления</label>
+        <textarea class="form-control" rows="3" id="content" placeholder="Текс объявления"></textarea>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6 m-b-1">
+          <select class="form-control" id="country">
+            <option value="">Страна</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" id="city"
+                 {{#if city}}value="{{city.title}}"{{else}} placeholder="Город"{{/if}}
+            {{#if country}}{{else}}disabled{{/if}}>
+          <div class="cityDropdown hide">
+            <ul>
+              {{#cities}}
+                <li class="city" data-id="{{id}}">{{title}} <span class="area">{{area}}</span> <span class="region"> {{region}}</span></li>
+              {{/cities}}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-default save-ad disabled">Опубликовать</button>
+    </form>
+    <!-- /end form-->
   </div>
 
 
