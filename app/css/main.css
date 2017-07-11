@@ -550,6 +550,14 @@ nav.navigation .user .logout:hover {
   width: 50%;
   border-top: 1px solid #eee; }
 
+.new-ad .add-ad-form .add-photo-wrapper {
+  text-align: center; }
+
+.new-ad .add-ad-form .add-photo-wrapper .add-photo {
+  padding: 10px 56px;
+  margin: 26px;
+  font-size: 4rem; }
+
 @media only screen and (min-width: 1200px) {
   .new-ad .page {
     max-width: 50rem; } }
