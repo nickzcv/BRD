@@ -420,13 +420,15 @@ app.models.UserModel = Backbone.Model.extend({
 
   initialize: function initialize() {
     var thisModel = this;
-
+    // when a model has been successfully synced with the server.
     thisModel.on('sync', function () {
       // Init countries model
-      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({ country: thisModel.get('country'), city: thisModel.get('city') }) });
+      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
+          country: thisModel.get('country'),
+          city: thisModel.get('city')
+        }) });
       // get countries Model
       var countriesModel = thisModel.get('countriesModel');
-
       // Listen to country change
       countriesModel.on('change:country', function () {
         thisModel.set({ country: countriesModel.get('country') });
