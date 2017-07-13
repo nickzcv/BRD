@@ -1,0 +1,22 @@
+<div class="form-group row">
+  <div class="col-md-6 m-b-1">
+    <select class="form-control" id="country">
+      <option value="">Страна</option>
+      {{#countries}}
+        <option value="{{id}}" {{#compare id '===' ../country.id}}selected{{/compare}}>{{title}}</option>
+      {{/countries}}
+    </select>
+  </div>
+  <div class="col-md-6">
+    <input type="text" class="form-control" id="city"
+      {{#if city}}value="{{city.title}}"{{else}} placeholder="Город"{{/if}}
+      {{#if country}}{{else}}disabled{{/if}}>
+    <div class="cityDropdown hide">
+      <ul>
+        {{#cities}}
+          <li class="city" data-id="{{id}}">{{title}} <span class="area">{{area}}</span> <span class="region"> {{region}}</span></li>
+        {{/cities}}
+      </ul>
+    </div>
+  </div>
+</div>

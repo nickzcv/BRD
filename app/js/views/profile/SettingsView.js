@@ -15,12 +15,12 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
   events: {
     'click @ui.profileSettings': function () {
       let useId = brd.controllers.getUserId();
-      this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.SettingsModel({_id: useId})}));
+      this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.UserModel({_id: useId})}));
       this.ui.profileSettings.addClass('active');
       this.ui.accountSettings.removeClass('active');
     },
     'click @ui.accountSettings': function () {
-      this.showChildView('page', new app.views.SettingsAccountSectionView({email:app.user.get('email')}));
+      this.showChildView('page', new app.views.SettingsAccountSectionView({email: app.user.get('email')}));
       this.ui.accountSettings.addClass('active');
       this.ui.profileSettings.removeClass('active');
     }
@@ -33,7 +33,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 
   onRender: function() {
     let useId = brd.controllers.getUserId();
-    this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.SettingsModel({_id: useId})}));
+    this.showChildView('page', new app.views.SettingsProfileSectionView({model: new app.models.UserModel({_id: useId})}));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
   }

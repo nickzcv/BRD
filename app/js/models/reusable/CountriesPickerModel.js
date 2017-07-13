@@ -1,11 +1,13 @@
-app.models.SettingsModel = Backbone.Model.extend({
+app.models.CountriesPickerModel = Backbone.Model.extend({
 
-  urlRoot: 'api/user/',
-
-  idAttribute: '_id',
+  defaults: {
+    country: null,
+    city: null
+  },
 
   initialize: function() {
-    //console.log('-- initialize SettingsModel');
+     //console.log('-- initialize CountriesPickerModel');
+    console.log(this.attributes);
   },
 
   loadCountries: function() {

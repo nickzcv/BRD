@@ -40,7 +40,7 @@ gulp.task('js', function() {
     'app/js/router.js',
     'app/js/helpers.js',
     'app/js/collections/*.js',
-    'app/js/models/*.js',
+    'app/js/models/**/*.js',
     'app/js/routers/*.js',
     'app/js/views/**/*.js'
   ])
