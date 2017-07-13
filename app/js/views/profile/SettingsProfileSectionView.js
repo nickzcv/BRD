@@ -29,10 +29,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     // Get user data from server
     thisView.model.fetch().then(() => {
       thisView.render();
-      let countryModel = thisView.model.get('countriesModel');
-      countryModel.set({country: thisView.model.get('country'), city: thisView.model.get('city')});
       // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({model: countryModel}));
+      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({model: thisView.model.get('countriesModel')}));
     },() => {
       console.log('FAIL: Get user data from server');
     });

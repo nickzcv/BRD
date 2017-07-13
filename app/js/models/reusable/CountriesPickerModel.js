@@ -7,7 +7,6 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 
   initialize: function() {
      //console.log('-- initialize CountriesPickerModel');
-    console.log(this.attributes);
   },
 
   loadCountries: function() {

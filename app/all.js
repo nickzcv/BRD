@@ -421,20 +421,21 @@ app.models.UserModel = Backbone.Model.extend({
   initialize: function initialize() {
     var thisModel = this;
 
-    // Init countries model
-    thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // get countries Model
-    var countriesModel = thisModel.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      thisModel.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      thisModel.set({ city: countriesModel.get('city') });
-    });
+    thisModel.on('sync', function () {
+      // Init countries model
+      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({ country: thisModel.get('country'), city: thisModel.get('city') }) });
+      // get countries Model
+      var countriesModel = thisModel.get('countriesModel');
 
-    console.log(thisModel.get('country'));
+      // Listen to country change
+      countriesModel.on('change:country', function () {
+        thisModel.set({ country: countriesModel.get('country') });
+      });
+      // Listen to city change
+      countriesModel.on('change:city', function () {
+        thisModel.set({ city: countriesModel.get('city') });
+      });
+    });
   }
 
 });
@@ -449,7 +450,6 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 
   initialize: function initialize() {
     //console.log('-- initialize CountriesPickerModel');
-    console.log(this.attributes);
   },
 
   loadCountries: function loadCountries() {
@@ -1077,10 +1077,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     // Get user data from server
     thisView.model.fetch().then(function () {
       thisView.render();
-      var countryModel = thisView.model.get('countriesModel');
-      countryModel.set({ country: thisView.model.get('country'), city: thisView.model.get('city') });
       // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: countryModel }));
+      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
     }, function () {
       console.log('FAIL: Get user data from server');
     });
@@ -1173,7 +1171,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
   },
 
   initialize: function initialize() {
-    console.log('INIT CountriesPickerView');
     var thisView = this;
     // Get countries from VK api
     thisView.model.loadCountries().then(function (countries) {

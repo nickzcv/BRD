@@ -17,7 +17,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
   },
 
   initialize: function() {
-    console.log('INIT CountriesPickerView');
     let thisView = this;
     // Get countries from VK api
     thisView.model.loadCountries().then((countries) => {
