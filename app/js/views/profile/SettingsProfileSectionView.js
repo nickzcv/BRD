@@ -36,9 +36,15 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
-  // Add user profile photo
+  // Preview user profile photo
   addPhoto: function(event) {
-    console.log(event)
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
+        $('#preview').attr('src', e.target.result).css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
   },
 
   saveProfileData: function(event) {
