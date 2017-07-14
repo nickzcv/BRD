@@ -40,6 +40,8 @@ database.connect();
 // API
 var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
+var user = require(path.join(__dirname, 'routes/ad'));
+app.use('/api', user);
 var admin = require(path.join(__dirname, 'routes/admin'));
 app.use('/api', admin);
 var uploader = require(path.join(__dirname, 'routes/upload'));
