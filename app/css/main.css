@@ -560,18 +560,17 @@ nav.navigation .user .logout:hover {
   /* Desktop */
   /* Desktop and larger */ }
 
-.new-ad .add-ad-form .form-divider {
+.new-ad .form-divider {
   margin: 1rem 0;
   width: 50%;
   border-top: 1px solid #eee; }
 
-.new-ad .add-ad-form .add-photo-wrapper {
-  text-align: center; }
+.new-ad .lbl {
+  margin-bottom: 5px; }
 
-.new-ad .add-ad-form .add-photo-wrapper .add-photo {
-  padding: 10px 56px;
-  margin: 26px;
-  font-size: 4rem; }
+@media only screen and (min-width: 992px) {
+  .new-ad .add-company {
+    margin-top: 21px; } }
 
 @media only screen and (min-width: 1200px) {
   .new-ad .page {

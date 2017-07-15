@@ -2,25 +2,16 @@
 -------------------------------------------------- */
 .new-ad {
 
-  .add-ad-form {
-
-    .form-divider {
-      margin: 1rem 0;
-      width: 50%;
-      border-top: 1px solid #eee;
-    }
-    .add-photo-wrapper {
-      text-align: center;
-
-      .add-photo {
-        padding: 10px 56px;
-        margin: 26px;
-        font-size: 4rem;
-      }
-    }
-
-
+  .form-divider {
+    margin: 1rem 0;
+    width: 50%;
+    border-top: 1px solid #eee;
   }
+  .lbl {
+    margin-bottom: 5px;
+  }
+
+
 
 
 
@@ -32,7 +23,9 @@
 
   /* Desktop */
   @media only screen and (min-width: 992px) {
-
+    .add-company {
+      margin-top: 21px;
+    }
   }
 
 

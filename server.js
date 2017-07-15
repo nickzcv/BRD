@@ -17,9 +17,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Root directory from which the static assets are to be served.
-app.use(express.static(path.join(__dirname, 'temp')));
-// Uncomment when ready to start
-//app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(path.join(__dirname, 'app')));
 
 
 // Set up a logger.
