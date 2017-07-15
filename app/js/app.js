@@ -29,8 +29,8 @@ let app = (function() {
           app.user = new app.models.UserModel({_id: useId});
           // Store user profile data into the app
           app.user.fetch().then(() => {
-            console.log('SUCCESS');
-            console.log(app.user.attributes);
+            //console.log('SUCCESS');
+            //console.log(app.user.attributes);
           },() => {
             console.log('FAIL');
             console.log(app.user.attributes);

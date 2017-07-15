@@ -53,7 +53,6 @@ router.route('/users')
     });
 	});
 
-// on routes that end in /users/:user_id
 // ----------------------------------------------------
 router.route('/user/:user_id')
 // get the user with :user_id
@@ -66,7 +65,7 @@ router.route('/user/:user_id')
 		});
 	})
 	// update
-	.put(function(req, res) {
+	.put(auth, function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
 
 			if (err)
@@ -83,9 +82,8 @@ router.route('/user/:user_id')
       user.position = req.body.position;
       user.photo = req.body.photo;
       user.updated_at = new Date();
-      user.notes = null;
       user.status = 'UPDATED';
-      user.isActive = true;
+      user.isActive = req.body.isActive;
 
 			user.save(function(err) {
 				if (err)
@@ -97,7 +95,7 @@ router.route('/user/:user_id')
 		});
 	})
 	// delete
-	.delete(function(req, res) {
+	.delete(auth, function(req, res) {
 		User.remove({
 			_id: req.params.user_id
 		}, function(err, user) {

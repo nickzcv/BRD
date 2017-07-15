@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();              // get an instance of the express Router
+const router = express.Router();
 //Define mongoose Schema
 var Ad = require('../models/ad');
 
@@ -10,94 +10,96 @@ var auth = jwt({
 });
 
 router.route('/ads')
-	// create a User (accessed at POST /api/users)
-	.post(function(req, res) {
+	// create a User (accessed at POST /api/ads)
+	.post(auth, function(req, res) {
 		var ad = new Ad();
-		
-		user.email = req.body.email;
-		user.password = req.body.password;
-    user.name = null;
-    user.middleName = null;
-    user.lastName = null;
-    user.phone = null;
-    user.country = null;
-    user.city = null;
-    user.work = null;
-    user.position = null;
-    user.photo = null;
-    user.created_at = new Date();
-    user.updated_at = new Date();
-    user.notes = null;
-    user.status = 'NEW';
-    user.isActive = false;
 
-		// save the user and check for errors
-		user.save(function(err) {
+    ad.type = req.body.type;
+    ad.object = req.body.object;
+    ad.category = req.body.category;
+    ad.title = req.body.title;
+    ad.description = req.body.description;
+    ad.country = req.body.country;
+    ad.city = req.body.city;
+    ad.price = req.body.price;
+    ad.photo = req.body.photo;
+    ad.expirationDate = req.body.expirationDate;
+    ad.contacts = req.body.contacts;
+    ad.created_at = new Date();
+    ad.updated_at = new Date();
+    ad.notes = null;
+    ad.status = null;
+    ad.isActive = true;
+    ad.userId = req.body.userId;
+
+		// save the ad and check for errors
+    ad.save(function(err) {
 			if (err)
 				res.json(err);
 
-			res.json({ message: 'User created!' });
+			res.json({ message: 'Ad created!' });
 		});
 
 	})
-	// get all the users (accessed at GET /api/users)
-	.get(auth, function(req, res) {
-    User.find({}, function(err, user) {
+	// get all the ads (accessed at GET /api/ads)
+	.get(function(req, res) {
+    Ad.find({}, function(err, ad) {
       if (err)
         res.json(err);
 
-      res.json(user);
+      res.json(ad);
     });
 	});
 
-// on routes that end in /users/:user_id
+// on routes that end in /ads/:ad_id
 // ----------------------------------------------------
-router.route('/user/:user_id')
-// get the user with :user_id
+router.route('/ads/:ad_id')
+// get the ads with :ad_id
 	.get(function(req, res) {
-		User.findById(req.params.user_id, function(err, user) {
+		Ad.findById(req.params.ad_id, function(err, ad) {
 			if (err)
 				res.json(err);
 
-			res.json(user);
+			res.json(ad);
 		});
 	})
 	// update
-	.put(function(req, res) {
-		User.findById(req.params.user_id, function(err, user) {
+	.put(auth, function(req, res) {
+		User.findById(req.params.ad_id, function(err, ad) {
 
-			if (err)
-				res.json(err);
+      if (err)
+        res.json(err);
 
-      user.name = req.body.name;
-      user.middleName = req.body.middleName;
-      user.lastName = req.body.lastName;
-      user.phone = req.body.phone;
-      user.workEmail = req.body.workEmail;
-      user.country = req.body.country;
-      user.city = req.body.city;
-      user.work = req.body.work;
-      user.position = req.body.position;
-      user.photo = req.body.photo;
-      user.updated_at = new Date();
-      user.notes = null;
-      user.status = 'UPDATED';
-      user.isActive = true;
+      ad.type = req.body.type;
+      ad.object = req.body.object;
+      ad.category = req.body.category;
+      ad.title = req.body.title;
+      ad.description = req.body.description;
+      ad.country = req.body.country;
+      ad.city = req.body.city;
+      ad.price = req.body.price;
+      ad.photo = req.body.photo;
+      ad.expirationDate = req.body.expirationDate;
+      ad.contacts = req.body.contacts;
+      ad.updated_at = new Date();
+      ad.status = 'UPDATED';
+      ad.isActive = req.body.isActive;
+      ad.userId = req.body.userId;
 
-			user.save(function(err) {
+			ad.save(function(err) {
 				if (err)
 					res.json(err);
 
-				res.json({ message: 'User updated!' });
+				res.json({ message: 'Ad updated!' });
 			});
 
 		});
 	})
 	// delete
-	.delete(function(req, res) {
-		User.remove({
-			_id: req.params.user_id
-		}, function(err, user) {
+	.delete(auth, function(req, res) {
+		Ad.remove({
+			_id: req.params.ad_id
+		}, function(err, ad) {
 			if (err)
 				res.json(err);
 
@@ -105,18 +107,6 @@ router.route('/user/:user_id')
 		});
 	});
 
-router.route('/user-email-check/')
-  .get(function(req, res) {
-    User.findOne({'email': req.query.email}, function(err, email) {
-      if (err)
-        res.json(err);
 
-      if (email) {
-        res.json({exist: true});
-      } else {
-        res.json({exist: false});
-      }
-    });
-  });
 
 module.exports = router;
