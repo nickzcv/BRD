@@ -22,12 +22,13 @@ router.route('/users')
     user.name = null;
     user.middleName = null;
     user.lastName = null;
-    user.phone = null;
     user.country = null;
     user.city = null;
     user.work = null;
     user.position = null;
     user.photo = null;
+    user.phone1 = null;
+    user.phone2 = null;
     user.created_at = new Date();
     user.updated_at = new Date();
     user.notes = null;
@@ -65,7 +66,7 @@ router.route('/user/:user_id')
 		});
 	})
 	// update
-	.put(auth, function(req, res) {
+	.put(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
 
 			if (err)
@@ -74,12 +75,12 @@ router.route('/user/:user_id')
       user.name = req.body.name;
       user.middleName = req.body.middleName;
       user.lastName = req.body.lastName;
-      user.phone = req.body.phone;
-      user.workEmail = req.body.workEmail;
       user.country = req.body.country;
       user.city = req.body.city;
       user.work = req.body.work;
       user.position = req.body.position;
+      user.phone1 = req.body.phone1;
+      user.phone2 = req.body.phone2;
       user.photo = req.body.photo;
       user.updated_at = new Date();
       user.status = 'UPDATED';
@@ -95,7 +96,7 @@ router.route('/user/:user_id')
 		});
 	})
 	// delete
-	.delete(auth, function(req, res) {
+	.delete(function(req, res) {
 		User.remove({
 			_id: req.params.user_id
 		}, function(err, user) {

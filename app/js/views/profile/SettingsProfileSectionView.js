@@ -15,7 +15,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     work: '#work',
     position: '#position',
     workEmail: '#workEmail',
-    phone: '#phone',
+    phone1: '#phone1',
+    phone2: '#phone2',
     saveProfile: '.saveProfile',
   },
 
@@ -57,7 +58,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       middleName: thisView.ui.middleName.val(),
       work: thisView.ui.work.val(),
       position: thisView.ui.position.val(),
-      phone: thisView.ui.phone.val(),
+      phone1: thisView.ui.phone1.val(),
+      phone2: thisView.ui.phone2.val(),
       workEmail: thisView.ui.workEmail.val(),
     });
     // Save data on server

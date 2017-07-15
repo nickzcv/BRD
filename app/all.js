@@ -613,6 +613,45 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
+"use strict";
+
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter
+
+});
+'use strict';
+
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function onRender() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
+  }
+
+});
 'use strict';
 
 app.views.ForgotView = app.views.HeaderView.extend({
@@ -888,45 +927,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
-"use strict";
-
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
-  }
-
-});
 'use strict';
 
 app.views.AddAdView = Backbone.Marionette.View.extend({
@@ -1065,7 +1065,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     work: '#work',
     position: '#position',
     workEmail: '#workEmail',
-    phone: '#phone',
+    phone1: '#phone1',
+    phone2: '#phone2',
     saveProfile: '.saveProfile'
   },
 
@@ -1107,7 +1108,8 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       middleName: thisView.ui.middleName.val(),
       work: thisView.ui.work.val(),
       position: thisView.ui.position.val(),
-      phone: thisView.ui.phone.val(),
+      phone1: thisView.ui.phone1.val(),
+      phone2: thisView.ui.phone2.val(),
       workEmail: thisView.ui.workEmail.val()
     });
     // Save data on server

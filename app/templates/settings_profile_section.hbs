@@ -36,18 +36,19 @@
   <p class="lbl">Ваше местоположение</p>
   <div class="countries-picker"></div>
 
-  <p class="lead">Контактные данные</p>
-  <p class="lbl2">Будут отображаться в объявлениях</p>
+  <p class="lead">Контактные телефоны</p>
+  <p class="lbl2">Будут отображаться в ваших объявлениях</p>
+
   <div class="form-group short">
     <div class="input-group">
-      <span class="input-group-addon">@</span>
-      <input type="text" class="form-control" id="workEmail" {{#if workEmail}}value="{{workEmail}}"{{else}} placeholder="example@mail.com"{{/if}}>
+      <span class="input-group-addon"><i class="ion-android-call"></i></span>
+      <input type="text" class="form-control" id="phone1" {{#if phone1}}value="{{phone1}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
     </div>
   </div>
   <div class="form-group short">
     <div class="input-group">
       <span class="input-group-addon"><i class="ion-android-call"></i></span>
-      <input type="text" class="form-control" id="phone" {{#if phone}}value="{{phone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
+      <input type="text" class="form-control" id="phone2" {{#if phone2}}value="{{phone2}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
     </div>
   </div>
 
