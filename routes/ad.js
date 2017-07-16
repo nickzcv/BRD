@@ -10,7 +10,7 @@ var auth = jwt({
 });
 
 router.route('/ads')
-	// create a User (accessed at POST /api/ads)
+	// create Ad (accessed at POST /api/ads)
 	.post(auth, function(req, res) {
 		var ad = new Ad();
 

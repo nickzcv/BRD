@@ -490,7 +490,8 @@ nav.navigation .user .logout:hover {
   font-size: 0.9rem; }
 
 .profile .page .lead {
-  margin-bottom: 0; }
+  margin: 2rem 0 0;
+  font-weight: bold; }
 
 .profile .page .lbl2 {
   color: #777777;
@@ -549,9 +550,15 @@ nav.navigation .user .logout:hover {
 .profile .cityDropdown ul li .region {
   color: #BBB; }
 
+@media only screen and (min-width: 768px) {
+  .profile .page .lead {
+    font-weight: normal; } }
+
 @media only screen and (min-width: 992px) {
   .profile .page {
-    margin: 1.5rem 2rem 0 18rem; } }
+    margin: 1.5rem 2rem 0 18rem; }
+  .profile .page .lead {
+    margin: 0; } }
 
 /* Ads styles
 -------------------------------------------------- */
@@ -570,7 +577,17 @@ nav.navigation .user .logout:hover {
 
 @media only screen and (min-width: 992px) {
   .new-ad .add-company {
-    margin-top: 21px; } }
+    margin-top: 21px; }
+  .new-ad .ad-photo {
+    margin: 25px 0 0;
+    width: 100%;
+    background: #f0eedf;
+    cursor: cell; }
+  .new-ad .ad-photo:hover {
+    border: 1px solid orange; }
+  .new-ad .ad-photo span {
+    font-size: 7.4rem;
+    color: #fff; } }
 
 @media only screen and (min-width: 1200px) {
   .new-ad .page {
