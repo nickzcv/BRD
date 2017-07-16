@@ -11,18 +11,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 
   },
 
+  modelEvents: {
+    'change': function () {
+      this.showChildView('countriesPicker', new app.views.CountriesPickerView({model: this.model.get('countriesModel')}));
+    },
+  },
+
   initialize: function() {
     let thisView = this;
     // Initialize left navigation region
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
 
-    thisView.model.fetch().then(() => {
-      // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({model: thisView.model.get('countriesModel')}));
-
-    },() => {
-      console.log('FAIL: Get user data from server');
-    });
+    //TODO: find out how to remove fetch 
+    thisView.model.fetch();
 
   },
 

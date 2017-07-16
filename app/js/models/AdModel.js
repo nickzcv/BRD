@@ -13,22 +13,17 @@ app.models.AdModel = Backbone.Model.extend({
   initialize: function() {
     let thisModel = this;
     // Init countries model
-    thisModel.on('sync', () => {
-
-      thisModel.set({countriesModel: new app.models.CountriesPickerModel()});
-      // get countries Model
-      let countriesModel = thisModel.get('countriesModel');
-      // Listen to country change
-      countriesModel.on('change:country', () => {
-        thisModel.set({country: countriesModel.get('country')});
-      });
-      // Listen to city change
-      countriesModel.on('change:city', () => {
-        thisModel.set({city: countriesModel.get('city')});
-      });
+    thisModel.set({countriesModel: new app.models.CountriesPickerModel()});
+    // get countries Model
+    let countriesModel = thisModel.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', () => {
+      thisModel.set({country: countriesModel.get('country')});
     });
-
-
+    // Listen to city change
+    countriesModel.on('change:city', () => {
+      thisModel.set({city: countriesModel.get('city')});
+    });
 
   },
 
