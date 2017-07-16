@@ -202,7 +202,7 @@ app.router = Marionette.AppRouter.extend({
   showAdNewForm: function showAdNewForm() {
     if (brd.controllers.isLoggedIn()) {
       brd.regions.mainRegion.show(new app.views.MainView());
-      brd.regions.bodyRegion.show(new app.views.AddAdView());
+      brd.regions.bodyRegion.show(new app.views.AddAdView({ model: new app.models.AdModel() }));
       brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: 'ads' }));
     } else {
       brd.regions.mainRegion.show(new app.views.MainView());
@@ -295,6 +295,40 @@ Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options
   } else {
     return options.inverse(this);
   }
+});
+'use strict';
+
+app.models.AdModel = Backbone.Model.extend({
+
+  defaults: {
+    countriesModel: null,
+    country: null,
+    city: null
+  },
+
+  urlRoot: 'api/ads/',
+
+  //idAttribute: '_id',
+
+  initialize: function initialize() {
+    var thisModel = this;
+    // Init countries model
+    thisModel.on('sync', function () {
+
+      thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
+      // get countries Model
+      var countriesModel = thisModel.get('countriesModel');
+      // Listen to country change
+      countriesModel.on('change:country', function () {
+        thisModel.set({ country: countriesModel.get('country') });
+      });
+      // Listen to city change
+      countriesModel.on('change:city', function () {
+        thisModel.set({ city: countriesModel.get('city') });
+      });
+    });
+  }
+
 });
 'use strict';
 
@@ -448,10 +482,6 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
   defaults: {
     country: null,
     city: null
-  },
-
-  initialize: function initialize() {
-    //console.log('-- initialize CountriesPickerModel');
   },
 
   loadCountries: function loadCountries() {
@@ -934,12 +964,23 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   template: tpl.templates.add_ad,
 
   regions: {
-    leftNavRegion: '.left-navigation'
+    leftNavRegion: '.left-navigation',
+    countriesPicker: '.country-picker'
   },
 
+  ui: {},
+
   initialize: function initialize() {
+    var thisView = this;
     // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+    brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
+
+    thisView.model.fetch().then(function () {
+      // Show countries picker
+      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    }, function () {
+      console.log('FAIL: Get user data from server');
+    });
   },
 
   onRender: function onRender() {}

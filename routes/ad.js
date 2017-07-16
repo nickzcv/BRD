@@ -51,9 +51,9 @@ router.route('/ads')
     });
 	});
 
-// on routes that end in /ads/:ad_id
+// on routes that end in /ad/:ad_id
 // ----------------------------------------------------
-router.route('/ads/:ad_id')
+router.route('/ad/:ad_id')
 // get the ads with :ad_id
 	.get(function(req, res) {
 		Ad.findById(req.params.ad_id, function(err, ad) {

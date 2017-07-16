@@ -46,7 +46,7 @@ app.router = Marionette.AppRouter.extend({
   showAdNewForm: function() {
     if (brd.controllers.isLoggedIn()) {
       brd.regions.mainRegion.show(new app.views.MainView());
-      brd.regions.bodyRegion.show(new app.views.AddAdView());
+      brd.regions.bodyRegion.show(new app.views.AddAdView({model: new app.models.AdModel()}));
       brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: 'ads'}));
     } else {
       brd.regions.mainRegion.show(new app.views.MainView());

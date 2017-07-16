@@ -43,13 +43,13 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 
   showRegistrationView: function() {
     this.showChildView('modalSection', new app.views.RegistrationView({
-      model: new app.models.RegistrationModel
+      model: new app.models.RegistrationModel()
     }));
   },
 
   showLoginView: function() {
     this.showChildView('modalSection', new app.views.LoginView({
-      model: new app.models.LoginModel
+      model: new app.models.LoginModel()
     }));
   },
 

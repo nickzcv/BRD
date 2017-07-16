@@ -5,10 +5,6 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
     city: null
   },
 
-  initialize: function() {
-     //console.log('-- initialize CountriesPickerModel');
-  },
-
   loadCountries: function() {
     return $.ajax({
       method: 'GET',
