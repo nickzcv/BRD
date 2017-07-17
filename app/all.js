@@ -312,22 +312,20 @@ app.models.AdModel = Backbone.Model.extend({
 
   initialize: function initialize() {
     var thisModel = this;
-    // Init countries model
-    thisModel.on('sync', function () {
-      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
-          country: thisModel.get('country'),
-          city: thisModel.get('city')
-        }) });
-      // get countries Model
-      var countriesModel = thisModel.get('countriesModel');
-      // Listen to country change
-      countriesModel.on('change:country', function () {
-        thisModel.set({ country: countriesModel.get('country') });
-      });
-      // Listen to city change
-      countriesModel.on('change:city', function () {
-        thisModel.set({ city: countriesModel.get('city') });
-      });
+    // Init child countries model
+    thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
+        country: thisModel.get('country'),
+        city: thisModel.get('city')
+      }) });
+    // get countries Model
+    var countriesModel = thisModel.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      thisModel.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      thisModel.set({ city: countriesModel.get('city') });
     });
   }
 
@@ -483,7 +481,19 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 
   defaults: {
     country: null,
-    city: null
+    city: null,
+    countries: null,
+    cities: null
+  },
+
+  initialize: function initialize() {
+    var model = this;
+    // Get countries from VK api
+    model.loadCountries().then(function (countries) {
+      model.set({ countries: countries.response.items });
+    }, function (error) {
+      console.log(error);
+    });
   },
 
   loadCountries: function loadCountries() {
@@ -976,14 +986,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     var thisView = this;
     // Initialize left navigation region
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
-
-    thisView.model.fetch().then(function () {
-      //thisView.render();
-      // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
-    }, function () {
-      console.log('FAIL: Get user data from server');
-    });
+    // Show country picker
+    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
   },
 
   onRender: function onRender() {}
@@ -1226,12 +1230,9 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {
     var thisView = this;
-    // Get countries from VK api
-    thisView.model.loadCountries().then(function (countries) {
-      thisView.model.set({ countries: countries.response.items });
+    // Re-render view when countries are loaded
+    thisView.model.on('change:countries', function () {
       thisView.render();
-    }, function (error) {
-      console.log(error);
     });
   },
 
@@ -1249,7 +1250,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
         city: null
       });
     }
-
     thisView.render();
   },
 

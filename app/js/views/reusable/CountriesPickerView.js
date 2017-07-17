@@ -18,13 +18,10 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
 
   initialize: function() {
     let thisView = this;
-    // Get countries from VK api
-    thisView.model.loadCountries().then((countries) => {
-      thisView.model.set({countries: countries.response.items});
-      thisView.render();
-    },(error) => {
-      console.log(error);
-    });
+    // Re-render view when countries are loaded
+    thisView.model.on('change:countries', function () {
+      thisView.render()
+    })
   },
 
   selectCountry: function(event) {
@@ -41,7 +38,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
         city: null
       });
     }
-
     thisView.render();
   },
 

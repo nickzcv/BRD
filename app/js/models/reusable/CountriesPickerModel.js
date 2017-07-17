@@ -2,7 +2,19 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 
   defaults: {
     country: null,
-    city: null
+    city: null,
+    countries: null,
+    cities: null
+  },
+
+  initialize: function() {
+    let model = this;
+    // Get countries from VK api
+    model.loadCountries().then((countries) => {
+      model.set({countries: countries.response.items});
+    },(error) => {
+      console.log(error);
+    });
   },
 
   loadCountries: function() {
