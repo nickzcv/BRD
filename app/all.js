@@ -303,15 +303,18 @@ app.models.AdModel = Backbone.Model.extend({
   defaults: {
     countriesModel: null,
     country: null,
-    city: null
+    city: null,
+    user: null
   },
 
   initialize: function initialize() {
-    var thisModel = this;
+    var thisModel = this,
+        user = app.user.attributes;
+
     // Init child countries model
     thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
-        country: thisModel.get('country'),
-        city: thisModel.get('city')
+        country: user.country,
+        city: user.city
       }) });
     // get countries Model
     var countriesModel = thisModel.get('countriesModel');
@@ -979,6 +982,18 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   ui: {
     addAdForm: '#add-ad-form',
     type: 'input[name=type]',
+    object: 'input[name=object]',
+    category: '#category',
+    title: '#title',
+    description: '#description',
+    price: '#price',
+    expirationDate: '#expirationDate',
+    profileRadio: '#profileRadio',
+    companyRadio: '#companyRadio',
+    otherRadio: '#otherRadio',
+
+    otherPhone: '#otherPhone',
+
     saveAd: '.save-ad'
   },
 

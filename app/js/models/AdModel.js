@@ -3,16 +3,19 @@ app.models.AdModel = Backbone.Model.extend({
   defaults: {
     countriesModel: null,
     country: null,
-    city: null
+    city: null,
+    user: null
   },
 
 
   initialize: function() {
-    let thisModel = this;
+    let thisModel = this,
+        user = app.user.attributes;
+
     // Init child countries model
     thisModel.set({countriesModel: new app.models.CountriesPickerModel({
-      country: thisModel.get('country'),
-      city: thisModel.get('city')
+      country: user.country,
+      city: user.city
     })});
     // get countries Model
     let countriesModel = thisModel.get('countriesModel');
@@ -24,6 +27,8 @@ app.models.AdModel = Backbone.Model.extend({
     countriesModel.on('change:city', () => {
       thisModel.set({city: countriesModel.get('city')});
     });
+
+
   },
 
 

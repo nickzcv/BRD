@@ -10,6 +10,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   ui: {
     addAdForm: '#add-ad-form',
     type: 'input[name=type]',
+    object: 'input[name=object]',
+    category: '#category',
+    title: '#title',
+    description: '#description',
+    price: '#price',
+    expirationDate: '#expirationDate',
+    profileRadio: '#profileRadio',
+    companyRadio: '#companyRadio',
+    otherRadio: '#otherRadio',
+
+    otherPhone: '#otherPhone',
+
+
     saveAd: '.save-ad',
   },
 
