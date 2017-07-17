@@ -306,10 +306,6 @@ app.models.AdModel = Backbone.Model.extend({
     city: null
   },
 
-  urlRoot: 'api/user/' + brd.controllers.getUserId(),
-
-  idAttribute: '_id',
-
   initialize: function initialize() {
     var thisModel = this;
     // Init child countries model
@@ -980,7 +976,15 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     countriesPicker: '.country-picker'
   },
 
-  ui: {},
+  ui: {
+    addAdForm: '#add-ad-form',
+    type: 'input[name=type]',
+    saveAd: '.save-ad'
+  },
+
+  events: {
+    'click @ui.saveAd': 'saveAdData'
+  },
 
   initialize: function initialize() {
     var thisView = this;
@@ -990,7 +994,49 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
   },
 
-  onRender: function onRender() {}
+  onRender: function onRender() {
+    this.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the add Ad form.
+   *
+   */
+  formAddValidation: function formAddValidation() {
+    var thisView = this;
+    thisView.ui.addAdForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true,
+          maxlength: 120,
+          minlength: 4
+        },
+        password: {
+          required: true,
+          maxlength: 100,
+          minlength: 5
+        }
+      },
+      messages: {
+        email: {
+          required: 'Введите e-mail',
+          email: 'Проверьте правильность ввода e-mail',
+          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
+        },
+        password: {
+          required: 'Введите пароль',
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        }
+      },
+
+      submitHandler: function submitHandler() {
+        thisView.loginHandler();
+      }
+    });
+  }
 
 });
 'use strict';

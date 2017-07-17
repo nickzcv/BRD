@@ -6,9 +6,6 @@ app.models.AdModel = Backbone.Model.extend({
     city: null
   },
 
-  urlRoot: 'api/user/' + brd.controllers.getUserId(),
-
-  idAttribute: '_id',
 
   initialize: function() {
     let thisModel = this;
