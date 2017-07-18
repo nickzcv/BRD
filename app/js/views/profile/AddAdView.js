@@ -117,6 +117,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     console.log(thisView.model.attributes);
 
     thisView.model.save(null, {
+      headers:{
+        'Authorization':'Bearer ' + brd.controllers.getToken()
+      },
       success: function() {
         console.log('success')
       },
