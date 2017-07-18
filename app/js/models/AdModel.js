@@ -17,9 +17,9 @@ app.models.AdModel = Backbone.Model.extend({
     let thisModel = this,
         user = app.user.attributes;
 
-/*    thisModel.on('invalid', function(model, error){
+    thisModel.on('invalid', function(model, error){
       console.log(error);
-    });*/
+    });
 
     // Init child countries model
     thisModel.set({countriesModel: new app.models.CountriesPickerModel({
@@ -39,10 +39,10 @@ app.models.AdModel = Backbone.Model.extend({
 
   },
 
-/*  validate: function(attr) {
+  validate: function(attr) {
     if (!attr.type || !attr.type || !attr.category || !attr.title || !attr.description) {
       return 'empty one of the required fields.';
     }
-  },*/
+  },
 
 });

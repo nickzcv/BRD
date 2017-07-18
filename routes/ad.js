@@ -29,7 +29,7 @@ router.route('/ads')
     ad.updated_at = new Date();
     ad.notes = null;
     ad.status = null;
-    ad.isActive = true;
+    ad.isActive = false;
     ad.userId = req.body.userId;
 
 		// save the ad and check for errors
@@ -83,8 +83,8 @@ router.route('/ad/:ad_id')
       ad.contacts = req.body.contacts;
       ad.updated_at = new Date();
       ad.status = 'UPDATED';
-      ad.isActive = req.body.isActive;
-      ad.userId = req.body.userId;
+      //ad.isActive = req.body.isActive;
+      //ad.userId = req.body.userId;
 
 			ad.save(function(err) {
 				if (err)

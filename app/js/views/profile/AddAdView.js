@@ -43,7 +43,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function() {
     let thisView = this;
     thisView.ui.addAdForm.validate({
-/*      rules: {
+      rules: {
         type: {
           required: true,
         },
@@ -60,7 +60,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         description: {
           required: true
         }
-      },*/
+      },
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -101,7 +101,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function() {
     let thisView = this;
-
+    // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
       object: thisView.ui.object.val(),
@@ -112,12 +112,11 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.ui.expirationDate.val(),
       contacts: thisView.ui.otherPhone.val(),
+      userId: app.user.get('_id')
     });
-
-    console.log(thisView.model.attributes);
-
+    // Save model
     thisView.model.save(null, {
-      headers:{
+      headers: {
         'Authorization':'Bearer ' + brd.controllers.getToken()
       },
       success: function() {

@@ -17,7 +17,7 @@ var adSchema = new mongoose.Schema({
   notes: String,
   status: String,
   isActive: {type: Boolean, default: false},
-  userId: String,
+  userId: {type: mongoose.Schema.ObjectId},
 });
 
 
