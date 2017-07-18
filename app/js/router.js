@@ -9,7 +9,7 @@ app.router = Marionette.AppRouter.extend({
   },
 
   initialize: function() {
-    
+
   },
 
   // Main

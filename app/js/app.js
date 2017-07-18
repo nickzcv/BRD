@@ -39,7 +39,6 @@ let app = (function() {
 
         // Init router
         brd.router = new app.router();
-
       },
 
       onStart: function(application, options) {

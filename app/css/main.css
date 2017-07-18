@@ -560,6 +560,9 @@ nav.navigation .user .logout:hover {
   /* Desktop */
   /* Desktop and larger */ }
 
+.new-ad .typeError, .new-ad .objectError {
+  margin: 5px 0 0; }
+
 .new-ad .form-divider {
   margin: 1rem 0;
   width: 50%;

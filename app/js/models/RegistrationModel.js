@@ -9,7 +9,6 @@ app.models.RegistrationModel = Backbone.Model.extend({
   },
 
   initialize: function() {
-    console.log('initialize RegistrationModel');
     this.on('invalid', function(model, error){
       console.log(error);
     });

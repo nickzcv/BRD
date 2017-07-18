@@ -300,8 +300,14 @@ Handlebars.registerHelper('compare', function (lvalue, operator, rvalue, options
 
 app.models.AdModel = Backbone.Model.extend({
 
+  urlRoot: 'api/ads',
+
   defaults: {
     countriesModel: null,
+    type: null,
+    object: null,
+    category: null,
+    title: null,
     country: null,
     city: null,
     user: null
@@ -310,6 +316,10 @@ app.models.AdModel = Backbone.Model.extend({
   initialize: function initialize() {
     var thisModel = this,
         user = app.user.attributes;
+
+    thisModel.on('invalid', function (model, error) {
+      console.log(error);
+    });
 
     // Init child countries model
     thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
@@ -326,6 +336,12 @@ app.models.AdModel = Backbone.Model.extend({
     countriesModel.on('change:city', function () {
       thisModel.set({ city: countriesModel.get('city') });
     });
+  },
+
+  validate: function validate(attr) {
+    if (!attr.type || !attr.type || !attr.category || !attr.title || !attr.description) {
+      return 'empty one of the required fields.';
+    }
   }
 
 });
@@ -410,7 +426,6 @@ app.models.RegistrationModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    console.log('initialize RegistrationModel');
     this.on('invalid', function (model, error) {
       console.log(error);
     });
@@ -991,14 +1006,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     profileRadio: '#profileRadio',
     companyRadio: '#companyRadio',
     otherRadio: '#otherRadio',
-
-    otherPhone: '#otherPhone',
-
-    saveAd: '.save-ad'
-  },
-
-  events: {
-    'click @ui.saveAd': 'saveAdData'
+    otherPhoneWrapper: '.otherPhoneWrapper',
+    otherPhone: '#otherPhone'
   },
 
   initialize: function initialize() {
@@ -1007,6 +1016,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
     // Show country picker
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    thisView.ui.otherPhoneWrapper.hide();
   },
 
   onRender: function onRender() {
@@ -1021,34 +1031,79 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     var thisView = this;
     thisView.ui.addAdForm.validate({
       rules: {
-        email: {
-          required: true,
-          email: true,
-          maxlength: 120,
-          minlength: 4
+        type: {
+          required: true
         },
-        password: {
+        object: {
+          required: true
+        },
+        category: {
+          required: true
+        },
+        title: {
           required: true,
-          maxlength: 100,
-          minlength: 5
+          maxlength: 120
+        },
+        description: {
+          required: true
         }
       },
       messages: {
-        email: {
-          required: 'Введите e-mail',
-          email: 'Проверьте правильность ввода e-mail',
-          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
+        type: {
+          required: 'Укажите тип объявления'
         },
-        password: {
-          required: 'Введите пароль',
-          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        object: {
+          required: 'Укажите объект объявления'
+        },
+        category: {
+          required: 'Выберите категорию'
+        },
+        title: {
+          required: 'Введите заголовок',
+          maxlength: jQuery.validator.format('Заголовок не должен превышать {0} символов')
+        },
+        description: {
+          required: 'Введите текс объявления'
         }
       },
 
+      errorPlacement: function errorPlacement(error, element) {
+        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else error.insertAfter(element);
+      },
+
       submitHandler: function submitHandler() {
-        thisView.loginHandler();
+        thisView.saveAd();
+      }
+    });
+  },
+
+  /*
+   * Save Ad
+   *
+   */
+  saveAd: function saveAd() {
+    var thisView = this;
+
+    thisView.model.set({
+      type: thisView.ui.type.val(),
+      object: thisView.ui.object.val(),
+      category: thisView.ui.category.val(),
+      title: thisView.ui.title.val(),
+      description: thisView.ui.description.val(),
+      price: thisView.ui.price.val(),
+      photo: thisView.ui.photo.val(),
+      expirationDate: thisView.ui.expirationDate.val(),
+      contacts: thisView.ui.otherPhone.val()
+    });
+
+    console.log(thisView.model.attributes);
+
+    thisView.model.save(null, {
+      success: function success() {
+        console.log('success');
+      },
+      error: function error() {
+        console.log('error');
       }
     });
   }

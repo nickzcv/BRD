@@ -13,17 +13,19 @@
       <div class="form-group">
         <label class="radio-inline"><input type="radio" name="type" value="buy">Куплю</label>
         <label class="radio-inline"><input type="radio" name="type" value="sell">Продам</label>
+        <div class="typeError"></div>
       </div>
       <div class="form-divider"></div>
       <div class="form-group">
         <label class="radio-inline"><input type="radio" name="object" value="product">Товар</label>
         <label class="radio-inline"><input type="radio" name="object" value="service">Услуга</label>
+        <div class="objectError"></div>
       </div>
       <div class="form-divider"></div>
 
       <p class="lbl">Раздел</p>
       <div class="form-group">
-        <select class="form-control" id="category">
+        <select class="form-control" id="category" name="category">
           <option value="">---</option>
           <option value="Пиломатериалы">Пиломатериалы</option>
           <option value="Лесоматериалы">Лесоматериалы</option>
@@ -35,11 +37,11 @@
 
       <div class="form-group">
         <label for="title">Заголовок</label>
-        <input type="text" class="form-control" id="title" placeholder="Заголовок объявления">
+        <input type="text" class="form-control" id="title" name="title" placeholder="Заголовок объявления">
       </div>
       <div class="form-group">
         <label for="description">Текс объявления</label>
-        <textarea class="form-control" rows="3" id="description" placeholder="Текс объявления"></textarea>
+        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Текс объявления"></textarea>
       </div>
 
       <div class="form-group row">
@@ -81,7 +83,7 @@
             <div class="radio">
               <label><input type="radio" id="otherRadio" name="getContacts" value="other" >Ввести другой контактный телефон</label>
             </div>
-            <div class="form-group short">
+            <div class="form-group otherPhoneWrapper">
               <div class="input-group">
                 <span class="input-group-addon"><i class="ion-android-call"></i></span>
                 <input type="text" class="form-control" id="otherPhone" {{#if otherPhone}}value="{{otherPhone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
@@ -96,7 +98,7 @@
       </div>
 
 
-      <button type="button" class="btn btn-default save-ad disabled">Опубликовать</button>
+      <button type="submit" class="btn btn-default">Опубликовать</button>
     </form>
     <!-- /end form-->
   </div>

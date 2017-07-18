@@ -1,16 +1,25 @@
 app.models.AdModel = Backbone.Model.extend({
 
+  urlRoot: 'api/ads',
+
   defaults: {
     countriesModel: null,
+    type: null,
+    object: null,
+    category: null,
+    title: null,
     country: null,
     city: null,
     user: null
   },
 
-
   initialize: function() {
     let thisModel = this,
         user = app.user.attributes;
+
+    thisModel.on('invalid', function(model, error){
+      console.log(error);
+    });
 
     // Init child countries model
     thisModel.set({countriesModel: new app.models.CountriesPickerModel({
@@ -28,8 +37,12 @@ app.models.AdModel = Backbone.Model.extend({
       thisModel.set({city: countriesModel.get('city')});
     });
 
-
   },
 
+  validate: function(attr) {
+    if (!attr.type || !attr.type || !attr.category || !attr.title || !attr.description) {
+      return 'empty one of the required fields.';
+    }
+  },
 
 });
