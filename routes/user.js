@@ -14,6 +14,7 @@ router.post('/login', ctrlAuth.login);
 
 router.route('/users')
 	// create a User (accessed at POST /api/users)
+  // Registration
 	.post(function(req, res) {
 		var user = new User();
 		

@@ -43,7 +43,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function() {
     let thisView = this;
     thisView.ui.addAdForm.validate({
-      rules: {
+/*      rules: {
         type: {
           required: true,
         },
@@ -60,7 +60,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         description: {
           required: true
         }
-      },
+      },*/
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -109,7 +109,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       title: thisView.ui.title.val(),
       description: thisView.ui.description.val(),
       price: thisView.ui.price.val(),
-      photo: thisView.ui.photo.val(),
+      //photo: thisView.ui.photo.val(),
       expirationDate: thisView.ui.expirationDate.val(),
       contacts: thisView.ui.otherPhone.val(),
     });
