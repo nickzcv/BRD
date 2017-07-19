@@ -16,11 +16,18 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     description: '#description',
     price: '#price',
     expirationDate: '#expirationDate',
+    getContacts: 'input[name=getContacts]',
     profileRadio: '#profileRadio',
     companyRadio: '#companyRadio',
     otherRadio: '#otherRadio',
     otherPhoneWrapper: '.otherPhoneWrapper',
     otherPhone: '#otherPhone'
+  },
+
+  events: {
+    'change @ui.getContacts': function () {
+      console.log(this.ui.getContacts.val())
+    },
   },
 
   initialize: function() {
@@ -101,22 +108,23 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function() {
     let thisView = this;
-
+    // Set contacts to the model
+    thisView.setContacts();
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
       object: thisView.ui.object.val(),
       category: thisView.ui.category.val(),
-      title: thisView.ui.title.val(),
-      description: thisView.ui.description.val(),
-      price: thisView.ui.price.val(),
+      title: thisView.ui.title.val().trim(),
+      description: thisView.ui.description.val().trim(),
+      price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      contacts: thisView.ui.otherPhone.val(),
+      //contacts: thisView.ui.otherPhone.val(),
       userId: app.user.get('_id')
     });
     // Save model
-    thisView.model.save(null, {
+/*    thisView.model.save(null, {
       headers: {
         'Authorization':'Bearer ' + brd.controllers.getToken()
       },
@@ -127,12 +135,21 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       error: function() {
         console.log('error')
       }
-    });
+    });*/
+  },
+
+  /*
+   * Set contacts based on user selection
+   *
+   */
+  setContacts: function() {
+    console.log('1');
   },
 
   /*
    * Count Expiration date
    *
+   * @param days - plus to current date
    */
   returnExpirationDate: function(days) {
     let result = new Date();

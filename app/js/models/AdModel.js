@@ -10,7 +10,8 @@ app.models.AdModel = Backbone.Model.extend({
     title: null,
     country: null,
     city: null,
-    user: null
+    user: null,
+    contacts: null
   },
 
   initialize: function() {
