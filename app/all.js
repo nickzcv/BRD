@@ -1275,7 +1275,11 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       workEmail: thisView.ui.workEmail.val()
     });
     // Save data on server
-    thisView.model.save();
+    thisView.model.save(null, {
+      headers: {
+        'Authorization': 'Bearer ' + brd.controllers.getToken()
+      }
+    });
   }
 
 });

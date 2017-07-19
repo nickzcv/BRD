@@ -3,7 +3,7 @@
 nav.navigation {
   ul {
     margin: 0;
-    padding: 0.5rem 0 0 0;
+    padding: 0;
     text-align: right;
     list-style: none;
     li {
@@ -87,7 +87,7 @@ nav.navigation {
       color: $gray-dark;
 
       &:hover {
-        color: $blue-dark;
+        color: goldenrod;
       }
     }
   }
@@ -95,6 +95,7 @@ nav.navigation {
   /* Tablets */
   @media only screen and (min-width: 768px) {
     line-height: 2.5rem;
+    float: right;
 
     &.hidden {
       display: block !important; /* must be here for hamburger menu */
