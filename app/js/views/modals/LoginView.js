@@ -89,7 +89,6 @@ app.views.LoginView = app.views.HeaderView.extend({
       if (brd.controllers.isLoggedIn()) {
         let useId = brd.controllers.getUserId();
         app.user = new app.models.UserModel({_id: useId});
-
         app.user.fetch().then(() => {
           console.log('SUCCESS');
           //console.log(app.user.attributes);

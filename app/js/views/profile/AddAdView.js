@@ -101,6 +101,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function() {
     let thisView = this;
+
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
@@ -110,7 +111,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       description: thisView.ui.description.val(),
       price: thisView.ui.price.val(),
       //photo: thisView.ui.photo.val(),
-      expirationDate: thisView.ui.expirationDate.val(),
+      expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
       contacts: thisView.ui.otherPhone.val(),
       userId: app.user.get('_id')
     });
@@ -120,12 +121,23 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         'Authorization':'Bearer ' + brd.controllers.getToken()
       },
       success: function() {
-        console.log('success')
+        // Redirect to Ads profile page
+        brd.router.navigate('#ads',{trigger:true});
       },
       error: function() {
         console.log('error')
       }
     });
+  },
+
+  /*
+   * Count Expiration date
+   *
+   */
+  returnExpirationDate: function(days) {
+    let result = new Date();
+    result.setDate(result.getDate() + parseInt(days));
+    return result;
   }
 
 
