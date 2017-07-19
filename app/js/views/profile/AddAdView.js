@@ -25,9 +25,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'change @ui.getContacts': function () {
-      console.log(this.ui.getContacts.val())
-    },
+    'change @ui.getContacts': 'setContacts'
   },
 
   initialize: function() {
@@ -36,7 +34,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
     // Show country picker
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({model: thisView.model.get('countriesModel')}));
-    thisView.ui.otherPhoneWrapper.hide()
+    // Disable radio btns by default
+    thisView.ui.otherPhoneWrapper.hide();
+    thisView.ui.companyRadio.prop('disabled', true);
   },
 
   onRender: function() {
@@ -50,7 +50,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function() {
     let thisView = this;
     thisView.ui.addAdForm.validate({
-      rules: {
+/*      rules: {
         type: {
           required: true,
         },
@@ -67,7 +67,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         description: {
           required: true
         }
-      },
+      },*/
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -108,8 +108,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function() {
     let thisView = this;
-    // Set contacts to the model
-    thisView.setContacts();
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
@@ -142,8 +140,13 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    * Set contacts based on user selection
    *
    */
-  setContacts: function() {
-    console.log('1');
+  setContacts: function(event) {
+    let thisView = this;
+    if(event.target.value === 'other') {
+      thisView.ui.otherPhoneWrapper.show();
+    } else {
+      thisView.ui.otherPhoneWrapper.hide();
+    }
   },
 
   /*

@@ -981,6 +981,96 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
+app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Re-render view when countries are loaded
+    thisView.model.on('change:countries', function () {
+      thisView.render();
+    });
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+    thisView.render();
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.render();
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+      thisView.render();
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+      thisView.render();
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    }
+  }
+
+});
+'use strict';
+
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
@@ -1008,9 +1098,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'change @ui.getContacts': function changeUiGetContacts() {
-      console.log(this.ui.getContacts.val());
-    }
+    'change @ui.getContacts': 'setContacts'
   },
 
   initialize: function initialize() {
@@ -1019,7 +1107,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
     // Show country picker
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    // Disable radio btns by default
     thisView.ui.otherPhoneWrapper.hide();
+    thisView.ui.companyRadio.prop('disabled', true);
   },
 
   onRender: function onRender() {
@@ -1033,24 +1123,24 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function formAddValidation() {
     var thisView = this;
     thisView.ui.addAdForm.validate({
-      rules: {
-        type: {
-          required: true
-        },
-        object: {
-          required: true
-        },
-        category: {
-          required: true
-        },
-        title: {
-          required: true,
-          maxlength: 120
-        },
-        description: {
-          required: true
-        }
-      },
+      /*      rules: {
+              type: {
+                required: true,
+              },
+              object: {
+                required: true,
+              },
+              category: {
+                required: true,
+              },
+              title: {
+                required: true,
+                maxlength: 120
+              },
+              description: {
+                required: true
+              }
+            },*/
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -1086,8 +1176,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function saveAd() {
     var thisView = this;
-    // Set contacts to the model
-    thisView.setContacts();
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
@@ -1120,8 +1208,13 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    * Set contacts based on user selection
    *
    */
-  setContacts: function setContacts() {
-    console.log('1');
+  setContacts: function setContacts(event) {
+    var thisView = this;
+    if (event.target.value === 'other') {
+      thisView.ui.otherPhoneWrapper.show();
+    } else {
+      thisView.ui.otherPhoneWrapper.hide();
+    }
   },
 
   /*
@@ -1352,96 +1445,6 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
     this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
-  }
-
-});
-'use strict';
-
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  initialize: function initialize() {
-    var thisView = this;
-    // Re-render view when countries are loaded
-    thisView.model.on('change:countries', function () {
-      thisView.render();
-    });
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-    thisView.render();
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.render();
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-      thisView.render();
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-      thisView.render();
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    }
   }
 
 });
