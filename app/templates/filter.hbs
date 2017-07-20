@@ -1,5 +1,5 @@
 <div class="actions">
-  <button type="button" class="btn btn-default btn-lg">Добавить объявление</button>
+  <button type="button" class="btn btn-default">Добавить объявление <span class="ion-ios-plus-outline"></span></button>
 </div>
 <div class="filters hidden-xs hidden-sm">
   <a class="close-btn visible-xs visible-sm"><span class="ion-close"></span></a>
@@ -18,15 +18,20 @@
   </div>
   <div class="line-breaker"></div>
   <div class="form-group">
-    <select class="form-control">
-      <option>Выбрать категорию</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
+    <label for="category">Категория</label>
+    <select class="form-control" id="category">
+      <option value="all">Все</option>
+      <option value="Пиломатериалы">Пиломатериалы</option>
+      <option value="Лесоматериалы">Лесоматериалы</option>
+      <option value="Изделия из древесины">Изделия из древесины</option>
+      <option value="Древесные отходы">Древесные отходы</option>
+      <option value="Транспорт и перевозки">Транспорт и перевозки</option>
     </select>
   </div>
   <div class="line-breaker"></div>
+
   <div class="form-group">
+    <label>Местоположение</label>
     <select class="form-control">
       <option>Страна</option>
       <option>2</option>
@@ -44,6 +49,6 @@
   </div>
   <div class="line-breaker"></div>
   <div class="form-group">
-    <button type="button" class="btn btn-default disabled">Сбросить фильтр <span class="ion-refresh"></span></button>
+    <button type="button" class="btn btn-default disabled">Сбросить фильтр <span class="ion-android-close"></span></button>
   </div>
 </div>

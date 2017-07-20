@@ -104,6 +104,10 @@ header .hamburger {
 header .hamburger.closeBtn span:before {
   content: "\f2d7"; }
 
+header .registration, header .login {
+  padding: 6px 12px;
+  line-height: 1.5rem; }
+
 @media only screen and (min-width: 768px) {
   header .logo {
     float: left;
@@ -267,23 +271,20 @@ nav.navigation .user .logout:hover {
 
 .section.home .actions {
   background: #fcfcf4;
-  border-bottom: 1px solid #fff;
-  padding: 1rem 2rem; }
+  border: 1px solid #E5E3D4; }
 
 .section.home .actions .btn {
-  background-color: #777777;
-  border-color: #777777;
-  color: #fff;
-  width: 100%; }
+  width: 100%;
+  border-color: #559797; }
 
 .section.home .actions .btn:hover {
-  background-color: #373737; }
+  background: #559797;
+  color: #fff; }
 
 .section.home .filters {
-  font-size: 1rem;
   background: #fcfcf4;
-  border-top: 1px solid #eee;
-  padding: 1rem 1.5rem; }
+  border: 1px solid #E5E3D4;
+  border-top: none; }
 
 .section.home .filters.visible {
   display: block !important; }
@@ -298,8 +299,8 @@ nav.navigation .user .logout:hover {
   color: #000; }
 
 .section.home .filters .line-breaker {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #fff; }
+  border-top: 1px solid #E5E3D4;
+  margin: 1rem 0; }
 
 .section.home .filters .form-group {
   margin: 1rem 0; }

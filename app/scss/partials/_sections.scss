@@ -19,24 +19,22 @@
 
     .actions {
       background: $gray-light;
-      border-bottom: 1px solid #fff;
-      padding: 1rem 2rem;
+      border: 1px solid $gray;
 
       .btn {
-        background-color: $gray-dark2;
-        border-color: $gray-dark2;
-        color: #fff;
         width: 100%;
+        border-color: $blue-dark;
+
         &:hover {
-          background-color: $header-dark;
+          background: $blue-dark;
+          color: #fff;
         }
       }
     }
     .filters {
-      font-size: 1rem;
       background: $gray-light;
-      border-top: 1px solid #eee;
-      padding: 1rem 1.5rem;
+      border: 1px solid $gray;
+      border-top: none;
 
       &.visible {
         display: block!important;
@@ -51,8 +49,8 @@
         }
       }
       .line-breaker {
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #fff;
+        border-top: 1px solid $gray;
+        margin: 1rem 0;
       }
       .form-group {
         margin: 1rem 0;
