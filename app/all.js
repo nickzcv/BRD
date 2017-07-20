@@ -311,7 +311,10 @@ app.models.AdModel = Backbone.Model.extend({
     country: null,
     city: null,
     user: null,
-    contacts: null
+    contacts: {
+      takeFrom: 'profile',
+      phones: []
+    }
   },
 
   initialize: function initialize() {
@@ -981,96 +984,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  initialize: function initialize() {
-    var thisView = this;
-    // Re-render view when countries are loaded
-    thisView.model.on('change:countries', function () {
-      thisView.render();
-    });
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-    thisView.render();
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.render();
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-      thisView.render();
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-      thisView.render();
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    }
-  }
-
-});
-'use strict';
-
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
@@ -1123,24 +1036,27 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function formAddValidation() {
     var thisView = this;
     thisView.ui.addAdForm.validate({
-      /*      rules: {
-              type: {
-                required: true,
-              },
-              object: {
-                required: true,
-              },
-              category: {
-                required: true,
-              },
-              title: {
-                required: true,
-                maxlength: 120
-              },
-              description: {
-                required: true
-              }
-            },*/
+      rules: {
+        type: {
+          required: true
+        },
+        object: {
+          required: true
+        },
+        category: {
+          required: true
+        },
+        title: {
+          required: true,
+          maxlength: 120
+        },
+        description: {
+          required: true
+        },
+        otherPhone: {
+          required: true
+        }
+      },
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -1157,11 +1073,14 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         description: {
           required: 'Введите текс объявления'
+        },
+        otherPhone: {
+          required: 'Введите контактный телефон'
         }
       },
 
       errorPlacement: function errorPlacement(error, element) {
-        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else error.insertAfter(element);
+        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else if (element.attr('id') === 'otherPhone') error.insertAfter('.otherPhoneError');else error.insertAfter(element);
       },
 
       submitHandler: function submitHandler() {
@@ -1175,7 +1094,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    *
    */
   saveAd: function saveAd() {
-    var thisView = this;
+    var thisView = this,
+        contacts = thisView.model.get('contacts') || [],
+        error = false;
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
@@ -1186,22 +1107,47 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      //contacts: thisView.ui.otherPhone.val(),
       userId: app.user.get('_id')
     });
-    // Save model
-    /*    thisView.model.save(null, {
-          headers: {
-            'Authorization':'Bearer ' + brd.controllers.getToken()
-          },
-          success: function() {
-            // Redirect to Ads profile page
-            brd.router.navigate('#ads',{trigger:true});
-          },
-          error: function() {
-            console.log('error')
-          }
-        });*/
+    // Set contacts
+    switch (contacts.takeFrom) {
+      case 'profile':
+        var phone1 = app.user.get('phone1'),
+            phone2 = app.user.get('phone2');
+        // check if profile phones are exist
+        if (phone1 || phone2) {
+          contacts.phones.push(phone1, phone2);
+          // Set contacts to the model
+          thisView.model.set({ contacts: contacts });
+        } else {
+          error = true;
+          console.log('No profile phones');
+        }
+        break;
+      case 'other':
+        console.log(thisView.ui.otherPhone.val().trim());
+        contacts.phones.push(thisView.ui.otherPhone.val().trim());
+        // Set contacts to the model
+        thisView.model.set({ contacts: contacts });
+        break;
+      default:
+        console.log('default');
+    }
+    // If no Errors - Save the model
+    if (!error) {
+      thisView.model.save(null, {
+        headers: {
+          'Authorization': 'Bearer ' + brd.controllers.getToken()
+        },
+        success: function success() {
+          // Redirect to Ads profile page
+          brd.router.navigate('#ads', { trigger: true });
+        },
+        error: function error() {
+          console.log('error');
+        }
+      });
+    }
   },
 
   /*
@@ -1212,8 +1158,16 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     var thisView = this;
     if (event.target.value === 'other') {
       thisView.ui.otherPhoneWrapper.show();
+      thisView.model.set('contacts', {
+        takeFrom: 'other',
+        phones: []
+      });
     } else {
       thisView.ui.otherPhoneWrapper.hide();
+      thisView.model.set('contacts', {
+        takeFrom: 'profile',
+        phones: []
+      });
     }
   },
 
@@ -1387,19 +1341,21 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     event.preventDefault();
     // Update model
     thisView.model.set({
-      lastName: thisView.ui.lastName.val(),
-      name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val(),
-      work: thisView.ui.work.val(),
-      position: thisView.ui.position.val(),
-      phone1: thisView.ui.phone1.val(),
-      phone2: thisView.ui.phone2.val(),
-      workEmail: thisView.ui.workEmail.val()
+      lastName: thisView.ui.lastName.val().trim(),
+      name: thisView.ui.name.val().trim(),
+      middleName: thisView.ui.middleName.val().trim(),
+      work: thisView.ui.work.val().trim(),
+      position: thisView.ui.position.val().trim(),
+      phone1: thisView.ui.phone1.val().trim(),
+      phone2: thisView.ui.phone2.val().trim()
     });
     // Save data on server
     thisView.model.save(null, {
       headers: {
         'Authorization': 'Bearer ' + brd.controllers.getToken()
+      },
+      success: function success() {
+        app.user.fetch();
       }
     });
   }
@@ -1445,6 +1401,96 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
     this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
+  }
+
+});
+'use strict';
+
+app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Re-render view when countries are loaded
+    thisView.model.on('change:countries', function () {
+      thisView.render();
+    });
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+    thisView.render();
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.render();
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+      thisView.render();
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+      thisView.render();
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    }
   }
 
 });

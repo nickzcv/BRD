@@ -50,7 +50,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   formAddValidation: function() {
     let thisView = this;
     thisView.ui.addAdForm.validate({
-/*      rules: {
+      rules: {
         type: {
           required: true,
         },
@@ -66,8 +66,11 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         description: {
           required: true
+        },
+        otherPhone: {
+          required: true
         }
-      },*/
+      },
       messages: {
         type: {
           required: 'Укажите тип объявления'
@@ -84,6 +87,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         description: {
           required: 'Введите текс объявления'
+        },
+        otherPhone: {
+          required: 'Введите контактный телефон'
         }
       },
 
@@ -92,6 +98,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           error.insertAfter('.typeError');
         else if  (element.attr('name') === 'object')
           error.insertAfter('.objectError');
+        else if  (element.attr('id') === 'otherPhone')
+          error.insertAfter('.otherPhoneError');
         else
           error.insertAfter(element);
       },
@@ -107,7 +115,9 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    *
    */
   saveAd: function() {
-    let thisView = this;
+    let thisView = this,
+        contacts = thisView.model.get('contacts') || [],
+        error = false;
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
@@ -118,22 +128,48 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      //contacts: thisView.ui.otherPhone.val(),
       userId: app.user.get('_id')
     });
-    // Save model
-/*    thisView.model.save(null, {
-      headers: {
-        'Authorization':'Bearer ' + brd.controllers.getToken()
-      },
-      success: function() {
-        // Redirect to Ads profile page
-        brd.router.navigate('#ads',{trigger:true});
-      },
-      error: function() {
-        console.log('error')
-      }
-    });*/
+    // Set contacts
+    switch (contacts.takeFrom) {
+      case 'profile':
+        let phone1 = app.user.get('phone1'),
+            phone2 = app.user.get('phone2');
+        // check if profile phones are exist
+        if (phone1 || phone2) {
+          contacts.phones.push(phone1, phone2);
+          // Set contacts to the model
+          thisView.model.set({contacts});
+        } else {
+          error = true;
+          console.log('No profile phones')
+        }
+        break;
+      case 'other':
+        console.log(thisView.ui.otherPhone.val().trim());
+        contacts.phones.push(thisView.ui.otherPhone.val().trim());
+        // Set contacts to the model
+        thisView.model.set({contacts});
+        break;
+      default:
+        console.log('default');
+    }
+    // If no Errors - Save the model
+    if (!error) {
+      thisView.model.save(null, {
+        headers: {
+          'Authorization':'Bearer ' + brd.controllers.getToken()
+        },
+        success: function() {
+          // Redirect to Ads profile page
+          brd.router.navigate('#ads',{trigger:true});
+        },
+        error: function() {
+          console.log('error')
+        }
+      });
+    }
+
   },
 
   /*
@@ -144,8 +180,16 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     let thisView = this;
     if(event.target.value === 'other') {
       thisView.ui.otherPhoneWrapper.show();
+      thisView.model.set('contacts', {
+        takeFrom: 'other',
+        phones: []
+      })
     } else {
       thisView.ui.otherPhoneWrapper.hide();
+      thisView.model.set('contacts', {
+        takeFrom: 'profile',
+        phones: []
+      })
     }
   },
 

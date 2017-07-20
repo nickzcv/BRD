@@ -11,7 +11,10 @@ app.models.AdModel = Backbone.Model.extend({
     country: null,
     city: null,
     user: null,
-    contacts: null
+    contacts: {
+      takeFrom: 'profile',
+      phones: []
+    }
   },
 
   initialize: function() {

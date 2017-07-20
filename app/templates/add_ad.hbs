@@ -86,8 +86,9 @@
             <div class="form-group otherPhoneWrapper">
               <div class="input-group">
                 <span class="input-group-addon"><i class="ion-android-call"></i></span>
-                <input type="text" class="form-control" id="otherPhone" {{#if otherPhone}}value="{{otherPhone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
+                <input type="text" class="form-control" id="otherPhone" name="otherPhone" {{#if otherPhone}}value="{{otherPhone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
               </div>
+              <div class="otherPhoneError"></div>
             </div>
           </div>
         </div>

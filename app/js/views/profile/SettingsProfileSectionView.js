@@ -53,21 +53,25 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     event.preventDefault();
     // Update model
     thisView.model.set({
-      lastName: thisView.ui.lastName.val(),
-      name: thisView.ui.name.val(),
-      middleName: thisView.ui.middleName.val(),
-      work: thisView.ui.work.val(),
-      position: thisView.ui.position.val(),
-      phone1: thisView.ui.phone1.val(),
-      phone2: thisView.ui.phone2.val(),
-      workEmail: thisView.ui.workEmail.val(),
+      lastName: thisView.ui.lastName.val().trim(),
+      name: thisView.ui.name.val().trim(),
+      middleName: thisView.ui.middleName.val().trim(),
+      work: thisView.ui.work.val().trim(),
+      position: thisView.ui.position.val().trim(),
+      phone1: thisView.ui.phone1.val().trim(),
+      phone2: thisView.ui.phone2.val().trim()
     });
     // Save data on server
     thisView.model.save(null, {
       headers: {
         'Authorization':'Bearer ' + brd.controllers.getToken()
+      },
+      success: () => {
+        app.user.fetch();
       }
     });
+
+
   }
 
 });
