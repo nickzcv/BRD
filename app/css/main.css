@@ -266,21 +266,6 @@ nav.navigation .user .logout:hover {
 .section.home .home-wrapper {
   margin: 0; }
 
-.section.home .filter {
-  padding: 0; }
-
-.section.home .actions {
-  background: #fcfcf4;
-  border: 1px solid #E5E3D4; }
-
-.section.home .actions .btn {
-  width: 100%;
-  border-color: #559797; }
-
-.section.home .actions .btn:hover {
-  background: #559797;
-  color: #fff; }
-
 .section.home .content-filter {
   overflow: hidden; }
 
@@ -332,56 +317,65 @@ nav.navigation .user .logout:hover {
     display: block;
     background: #fcfcf4;
     height: 10rem; }
-  .section.home .actions {
-    padding: 1rem; }
-  .section.home .actions .btn {
-    font-size: 0.9rem; }
   .section.home .content-filter {
     padding: 1.3rem 0; }
   .section.home .content-filter .search .input-group, .section.home .content-filter .btn-toolbar {
     padding: 0; } }
 
-@media only screen and (min-width: 1200px) {
-  .section.home .actions {
-    padding: 1rem 2rem; }
-  .section.home .actions .btn {
-    font-size: 1rem; } }
-
 /* Sections styles
 -------------------------------------------------- */
-.filters {
-  background: #fcfcf4;
-  border: 1px solid #E5E3D4;
-  border-top: none;
+.filter {
+  padding: 0;
   /* Tablets */
   /* Desktop */
   /* Large screens */ }
 
-.filters.visible {
+.filter .actions {
+  padding: 1rem;
+  background: #fcfcf4;
+  border: 1px solid #E5E3D4; }
+
+.filter .actions .btn {
+  width: 100%;
+  padding: 6px 12px;
+  border-color: #559797; }
+
+.filter .actions .btn:hover {
+  background: #559797;
+  color: #fff; }
+
+.filter .filters {
+  background: #fcfcf4;
+  border: 1px solid #E5E3D4;
+  border-top: none; }
+
+.filter .filters.visible {
   display: block !important; }
 
-.filters .close-btn {
+.filter .filters .close-btn {
   position: absolute;
   right: 2rem;
   cursor: pointer;
   color: #ccc; }
 
-.filters .close-btn:hover {
+.filter .filters .close-btn:hover {
   color: #000; }
 
-.filters .line-breaker {
+.filter .filters .line-breaker {
   border-top: 1px solid #E5E3D4;
   margin: 1rem 0; }
 
-.filters .form-group {
+.filter .filters .form-group {
   margin: 1rem 0; }
 
 @media only screen and (min-width: 992px) {
-  .filters {
+  .filter .filters {
     padding: 1rem; } }
 
 @media only screen and (min-width: 1200px) {
-  .filters {
+  .filter {
+    max-width: 22rem; }
+  .filter .filters {
     padding: 1rem 1.5rem; } }
 
 /* Left navigation styles

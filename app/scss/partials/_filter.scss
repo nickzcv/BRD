@@ -1,31 +1,51 @@
 /* Sections styles
 -------------------------------------------------- */
 
-.filters {
-  background: $gray-light;
-  border: 1px solid $gray;
-  border-top: none;
+.filter {
+  padding: 0;
 
-  &.visible {
-    display: block!important;
-  }
-  .close-btn {
-    position: absolute;
-    right: 2rem;
-    cursor: pointer;
-    color: $gray-dark;
-    &:hover {
-      color: #000;
+  .actions {
+    padding: 1rem;
+    background: $gray-light;
+    border: 1px solid $gray;
+
+    .btn {
+      width: 100%;
+      padding: 6px 12px;
+      border-color: $blue-dark;
+
+      &:hover {
+        background: $blue-dark;
+        color: #fff;
+      }
     }
   }
-  .line-breaker {
-    border-top: 1px solid $gray;
-    margin: 1rem 0;
-  }
-  .form-group {
-    margin: 1rem 0;
-  }
+  .filters {
+    background: $gray-light;
+    border: 1px solid $gray;
+    border-top: none;
 
+    &.visible {
+      display: block !important;
+    }
+    .close-btn {
+      position: absolute;
+      right: 2rem;
+      cursor: pointer;
+      color: $gray-dark;
+      &:hover {
+        color: #000;
+      }
+    }
+    .line-breaker {
+      border-top: 1px solid $gray;
+      margin: 1rem 0;
+    }
+    .form-group {
+      margin: 1rem 0;
+    }
+
+  }
 
 
   /* Tablets */
@@ -36,14 +56,19 @@
 
   /* Desktop */
   @media only screen and (min-width: 992px) {
-    padding: 1rem;
+    .filters {
+      padding: 1rem;
+    }
 
   }
 
   /* Large screens */
   @media only screen and (min-width: 1200px) {
-    padding: 1rem 1.5rem;
+    max-width: 22rem;
 
+    .filters {
+      padding: 1rem 1.5rem;
+    }
 
   }
 

@@ -13,25 +13,6 @@
       margin: 0;
     }
 
-    .filter {
-      padding: 0;
-    }
-
-    .actions {
-      background: $gray-light;
-      border: 1px solid $gray;
-
-      .btn {
-        width: 100%;
-        border-color: $blue-dark;
-
-        &:hover {
-          background: $blue-dark;
-          color: #fff;
-        }
-      }
-    }
-
     .content-filter {
       overflow: hidden;
 
@@ -113,12 +94,7 @@
         background: $gray-light;
         height: 10rem;
       }
-      .actions {
-        padding: 1rem;
-        .btn{
-          font-size: 0.9rem;
-        }
-      }
+
 
       .content-filter {
         padding: 1.3rem 0;
@@ -133,15 +109,7 @@
 
   /* Large screens */
   @media only screen and (min-width: 1200px) {
-    &.home {
-      .actions {
-        padding: 1rem 2rem;
-        .btn {
-          font-size: 1rem;
-        }
-      }
 
-    }
 
   }
 
