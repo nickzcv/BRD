@@ -308,6 +308,17 @@ nav.navigation .user .logout:hover {
 .section.home .content-filter {
   overflow: hidden; }
 
+.section.home .content-filter .btn-default {
+  line-height: 14px;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem; }
+
+.section.home .content-filter .btn-default span {
+  font-size: 1rem;
+  position: relative;
+  top: 0;
+  padding-left: 0; }
+
 .section.home .content-filter .mobile-filter-btn {
   overflow: hidden;
   float: left;
@@ -328,58 +339,6 @@ nav.navigation .user .logout:hover {
 .section.home .ads-list {
   overflow: hidden;
   margin: 1rem 0; }
-
-.section.home .ads-item {
-  position: relative;
-  overflow: hidden;
-  max-height: 7rem;
-  margin-bottom: 1rem;
-  border: 1px solid #E5E3D4;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
-
-.section.home .ads-item .type {
-  position: absolute;
-  font-size: 0.7rem;
-  background: #559797;
-  padding: 2px 4px;
-  color: #fff; }
-
-.section.home .ads-item .photo {
-  float: left;
-  height: 7rem;
-  width: 7rem;
-  background: #ccc;
-  margin-right: 0.5rem;
-  background-size: cover; }
-
-.section.home .ads-item .title {
-  font-size: 1rem;
-  background-color: #fcfcf4;
-  border-bottom: 1px solid #E5E3D4;
-  padding: 0.5rem;
-  white-space: nowrap; }
-
-.section.home .ads-item .subtitle {
-  padding: 0.5rem; }
-
-.section.home .ads-item .item-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: right;
-  white-space: nowrap;
-  padding-left: 7rem; }
-
-.section.home .ads-item .item-footer .date, .section.home .ads-item .item-footer .organization, .section.home .ads-item .item-footer .location {
-  display: inline-block;
-  line-height: 1.5rem;
-  padding: 0 1rem;
-  background: #f9f9f9; }
-
-.section.home .ads-item .item-footer .more {
-  margin: 0 0.3rem 0 2rem; }
 
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {

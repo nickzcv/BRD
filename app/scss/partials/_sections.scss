@@ -59,6 +59,21 @@
     .content-filter {
       overflow: hidden;
 
+      // Buttons
+      .btn-default {
+        line-height: 14px;
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+
+        span {
+          font-size: 1rem;
+          position: relative;
+          top: 0;
+          padding-left: 0;
+        }
+      }
+
+
       .mobile-filter-btn {
         overflow: hidden;
         float: left;
@@ -81,61 +96,6 @@
     .ads-list {
       overflow: hidden;
       margin: 1rem 0;
-    }
-    .ads-item {
-      position: relative;
-      overflow: hidden;
-      max-height: 7rem;
-      margin-bottom: 1rem;
-      border: 1px solid $gray;
-      border-radius: 4px;
-      box-shadow: (0 1px 1px rgba(0,0,0,.05));
-
-      .type {
-        position: absolute;
-        font-size: 0.7rem;
-        background: $blue-dark;
-        padding: 2px 4px;
-        color: #fff;
-      }
-      .photo {
-        float: left;
-        height: 7rem;
-        width: 7rem;
-        background: $gray-dark;
-        margin-right: 0.5rem;
-        background-size: cover;
-      }
-      .title {
-        font-size: 1rem;
-        background-color: $gray-light;
-        border-bottom: 1px solid $gray;
-        padding: 0.5rem;
-        white-space: nowrap;
-      }
-      .subtitle {
-        padding: 0.5rem;
-      }
-      .item-footer {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-
-        text-align: right;
-        white-space: nowrap;
-        padding-left: 7rem;
-
-        .date, .organization, .location {
-          display: inline-block;
-          line-height: 1.5rem;
-          padding: 0 1rem;
-          background: #f9f9f9;
-        }
-        .more{
-          margin: 0 0.3rem 0 2rem;
-        }
-      }
     }
     .rside {
 
