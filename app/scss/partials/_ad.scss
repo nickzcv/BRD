@@ -1,0 +1,42 @@
+/* Ads list styles
+-------------------------------------------------- */
+.ads {
+
+  .bts-section {
+    text-align: right;
+
+  }
+
+  .ads-list {
+    max-width: 70rem;
+  }
+
+  .ad-item {
+    background: gainsboro;
+
+    .photo {
+      width: 7rem;
+      height: 7rem;
+      background: gray;
+    }
+  }
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+  }
+
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 1200px) {
+
+  }
+
+
+}

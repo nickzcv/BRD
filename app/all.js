@@ -305,13 +305,17 @@ Handlebars.registerHelper('formatDate', function (datetime, format) {
 });
 'use strict';
 
-app.models.AdsCollection = Backbone.Collection.extend({
+app.collections.AdsCollection = Backbone.Collection.extend({
 
   url: 'api/ads',
+
+  model: app.models.Ad,
 
   initialize: function initialize() {}
 
 });
+
+app.models.Ad = Backbone.Model.extend({});
 'use strict';
 
 app.models.AdModel = Backbone.Model.extend({

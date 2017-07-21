@@ -306,10 +306,6 @@ nav.navigation .user .logout:hover {
 .section.home .content-filter .btn i:before {
   font-size: 1.2rem; }
 
-.section.home .ads-list {
-  overflow: hidden;
-  margin: 1rem 0; }
-
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {
     float: left;
@@ -320,8 +316,6 @@ nav.navigation .user .logout:hover {
 @media only screen and (min-width: 992px) {
   .section.home {
     padding: 0; }
-  .section.home .ads-list {
-    margin: 1rem 0; }
   .section.home .rside {
     display: block;
     background: #fcfcf4;
@@ -540,6 +534,27 @@ nav.navigation .user .logout:hover {
     margin: 1.5rem 2rem 0 18rem; }
   .profile .page .lead {
     margin: 0; } }
+
+/* Ads list styles
+-------------------------------------------------- */
+.ads {
+  /* Tablets */
+  /* Desktop */
+  /* Desktop and larger */ }
+
+.ads .bts-section {
+  text-align: right; }
+
+.ads .ads-list {
+  max-width: 70rem; }
+
+.ads .ad-item {
+  background: gainsboro; }
+
+.ads .ad-item .photo {
+  width: 7rem;
+  height: 7rem;
+  background: gray; }
 
 /* Ads styles
 -------------------------------------------------- */
