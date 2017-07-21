@@ -6,6 +6,8 @@
  *
  * @class app
  */
+moment.locale('ru');
+
 let app = (function() {
 
   let objApp = {

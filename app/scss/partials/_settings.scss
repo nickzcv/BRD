@@ -40,13 +40,12 @@
       }
     }
   }
-
-  .saveProfile {
-    margin-top: 2rem;
-
+  .updated {
+    border-left: 5px solid $gray;
+    color: $gray-dark2;
+    padding: 5px 10px;
+    margin-top: 10px;
   }
-
-
 
   /* SmartPhones */
   @media only screen and (min-width: 450px) {

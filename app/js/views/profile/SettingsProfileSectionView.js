@@ -68,6 +68,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
       },
       success: () => {
         app.user.fetch();
+        brd.router.navigate('#dashboard',{trigger:true});
       }
     });
 

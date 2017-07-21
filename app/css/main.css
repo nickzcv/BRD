@@ -69,6 +69,15 @@ label.error {
 .m-b-1 {
   margin-bottom: 1rem; }
 
+.m-t-05 {
+  margin-top: 0.5rem; }
+
+.m-t-1 {
+  margin-top: 1rem; }
+
+.m-t-2 {
+  margin-top: 2rem; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -617,8 +626,11 @@ nav.navigation .user .logout:hover {
 .settings .tabs .tab:hover {
   color: #373737; }
 
-.settings .saveProfile {
-  margin-top: 2rem; }
+.settings .updated {
+  border-left: 5px solid #E5E3D4;
+  color: #777777;
+  padding: 5px 10px;
+  margin-top: 10px; }
 
 @media only screen and (min-width: 992px) {
   .settings .tabs .tab {

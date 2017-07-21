@@ -1,8 +1,3 @@
-// Profile left navigation
-// Handlebars.registerPartial('leftNavigation', tpl.templates.left_navigation);
-
-
-
 /**
  * Compare two values
  *
@@ -16,8 +11,6 @@
  * @todo Clarify parameters' types and descriptions.
  * @function external:HandlebarsHelper#compare
  */
-/* jshint ignore:start */
-/* eslint-disable */
 Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options) {
   let operators, result;
   if (arguments.length < 3) {
@@ -56,5 +49,17 @@ Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options)
     return options.fn(this);
   } else {
     return options.inverse(this);
+  }
+});
+
+/*
+ * Formatting date before show
+ */
+Handlebars.registerHelper('formatDate', function(datetime, format) {
+  if (moment) {
+    return moment(datetime).format(format);
+  }
+  else {
+    return datetime;
   }
 });
