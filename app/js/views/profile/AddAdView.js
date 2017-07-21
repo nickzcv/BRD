@@ -64,9 +64,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           required: true,
           maxlength: 120
         },
-        description: {
-          required: true
-        },
         otherPhone: {
           required: true
         }
@@ -84,9 +81,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         title: {
           required: 'Введите заголовок',
           maxlength: jQuery.validator.format('Заголовок не должен превышать {0} символов')
-        },
-        description: {
-          required: 'Введите текс объявления'
         },
         otherPhone: {
           required: 'Введите контактный телефон'
@@ -146,7 +140,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         }
         break;
       case 'other':
-        console.log(thisView.ui.otherPhone.val().trim());
         contacts.phones.push(thisView.ui.otherPhone.val().trim());
         // Set contacts to the model
         thisView.model.set({contacts});
