@@ -549,12 +549,38 @@ nav.navigation .user .logout:hover {
   max-width: 70rem; }
 
 .ads .ad-item {
-  background: gainsboro; }
+  border: 1px solid #E5E3D4;
+  overflow: hidden; }
 
 .ads .ad-item .photo {
+  float: left;
   width: 7rem;
   height: 7rem;
-  background: gray; }
+  background: #f0eedf; }
+
+.ads .ad-item .photo span {
+  color: #ccc;
+  font-size: 5rem;
+  padding: 0 20px; }
+
+.ads .ad-item .content {
+  float: left; }
+
+.ads .ad-item .content .ad-title {
+  font-size: 1rem;
+  padding: 5px 10px; }
+
+.ads .ad-item .content .ad-description {
+  padding: 5px 10px; }
+
+.ads .ad-item .ad-actions {
+  float: right;
+  line-height: 0; }
+
+.ads .ad-item .ad-actions span {
+  display: block;
+  font-size: 2rem;
+  border: 1px solid #E5E3D4; }
 
 /* Ads styles
 -------------------------------------------------- */
@@ -640,6 +666,9 @@ nav.navigation .user .logout:hover {
 
 .settings .tabs .tab:hover {
   color: #373737; }
+
+.settings .saveProfile {
+  width: 100%; }
 
 .settings .updated {
   border-left: 5px solid #E5E3D4;
