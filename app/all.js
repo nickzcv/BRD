@@ -1438,12 +1438,8 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     'change @ui.city': 'checkCity'
   },
 
-  initialize: function initialize() {
-    var thisView = this;
-    // Re-render view when countries are loaded
-    thisView.model.on('change:countries', function () {
-      thisView.render();
-    });
+  modelEvents: {
+    'change': 'render'
   },
 
   selectCountry: function selectCountry(event) {
@@ -1460,7 +1456,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
         city: null
       });
     }
-    thisView.render();
   },
 
   searchCity: function searchCity() {
@@ -1471,7 +1466,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     thisView.model.searchCities(country.id, value).then(function (cities) {
       // Display dropdown
       thisView.model.set({ cities: cities.response.items });
-      thisView.render();
       thisView.ui.cityDropdown.addClass('show');
       // return focus and value after render
       thisView.ui.city.val(value);
@@ -1485,7 +1479,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
 
     if (cityId) {
       this.model.setCity(cityId);
-      thisView.render();
     }
   },
 
@@ -1500,7 +1493,6 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     if (isVisible && city && !inputValue) {
       thisView.ui.cityDropdown.removeClass('show');
       thisView.model.set({ city: null });
-      thisView.render();
     } else if (isVisible && city) {
       thisView.ui.cityDropdown.removeClass('show');
       thisView.ui.city.val(city.title);

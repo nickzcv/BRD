@@ -8,8 +8,8 @@
     "body-parser": "latest",
     "cookie-parser": "latest",
     "express": "latest",
-    "express-session" : "",
-    "express-jwt" : "",
+    "express-session": "",
+    "express-jwt": "",
     "jsonwebtoken": "^5.0.4",
     "mongoose": "4.10.8",
     "multer": "1.3.0",
@@ -20,16 +20,18 @@
     "winston": "latest"
   },
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "",
     "gulp": "latest",
+    "gulp-babel": "",
     "gulp-clean-css": "latest",
-    "gulp-util": "latest",
+    "gulp-concat": "latest",
+    "gulp-declare": "latest",
+    "gulp-handlebars": "4.0.0",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
-    "gulp-handlebars": "4.0.0",
-    "gulp-wrap": "latest",
-    "gulp-declare": "latest",
-    "gulp-concat": "latest",
-    "babel-preset-es2015": "",
-    "gulp-babel": ""
+    "gulp-util": "latest",
+    "gulp-wrap": "latest"
   }
 }
