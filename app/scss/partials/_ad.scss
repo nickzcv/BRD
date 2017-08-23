@@ -2,9 +2,9 @@
 -------------------------------------------------- */
 .ads {
 
-  .bts-section {
+  .btns-section {
     text-align: right;
-
+    margin: 1rem 0;
   }
 
   .ads-list {
@@ -12,8 +12,10 @@
   }
 
   .ad-item {
-    border: 1px solid $gray;
+    position: relative;
     overflow: hidden;
+    border: 1px solid $gray;
+
 
     .photo {
       float: left;
@@ -37,14 +39,34 @@
         padding: 5px 10px;
       }
     }
-    .ad-actions {
-      float: right;
-      line-height: 0;
-
-      span {
-        display: block;
-        font-size: 2rem;
-        border: 1px solid $gray;
+    .icon {
+      position: absolute;
+      right: 0.5rem;
+      font-size: 1.7rem;
+      cursor: pointer;
+      background: $main-bg;
+      &.star {
+        top: 0;
+        color: gold;
+        &:hover {
+          color: goldenrod;
+        }
+      }
+      &.tab {
+        top: 2.5rem;
+        right: 0.6rem;
+        color: $gray-dark2;
+        &:hover:before {
+          content: "\f3f0";
+        }
+      }
+      &.arrow {
+        bottom: -0.3rem;
+        font-size: 1.5rem;
+        color: $gray-dark2;
+        &:hover {
+          color: $blue-dark;
+        }
       }
     }
   }

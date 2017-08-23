@@ -542,15 +542,17 @@ nav.navigation .user .logout:hover {
   /* Desktop */
   /* Desktop and larger */ }
 
-.ads .bts-section {
-  text-align: right; }
+.ads .btns-section {
+  text-align: right;
+  margin: 1rem 0; }
 
 .ads .ads-list {
   max-width: 70rem; }
 
 .ads .ad-item {
-  border: 1px solid #E5E3D4;
-  overflow: hidden; }
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #E5E3D4; }
 
 .ads .ad-item .photo {
   float: left;
@@ -573,14 +575,35 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .content .ad-description {
   padding: 5px 10px; }
 
-.ads .ad-item .ad-actions {
-  float: right;
-  line-height: 0; }
+.ads .ad-item .icon {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+  background: #fcfbf7; }
 
-.ads .ad-item .ad-actions span {
-  display: block;
-  font-size: 2rem;
-  border: 1px solid #E5E3D4; }
+.ads .ad-item .icon.star {
+  top: 0;
+  color: gold; }
+
+.ads .ad-item .icon.star:hover {
+  color: goldenrod; }
+
+.ads .ad-item .icon.tab {
+  top: 2.5rem;
+  right: 0.6rem;
+  color: #777777; }
+
+.ads .ad-item .icon.tab:hover:before {
+  content: "\f3f0"; }
+
+.ads .ad-item .icon.arrow {
+  bottom: -0.3rem;
+  font-size: 1.5rem;
+  color: #777777; }
+
+.ads .ad-item .icon.arrow:hover {
+  color: #559797; }
 
 /* Ads styles
 -------------------------------------------------- */
