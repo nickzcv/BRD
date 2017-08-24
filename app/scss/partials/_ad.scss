@@ -39,6 +39,16 @@
         padding: 5px 10px;
       }
     }
+    .i-bottom {
+      position: absolute;
+      bottom: 0;
+      font-size: 1.7rem;
+      cursor: pointer;
+      background: $main-bg;
+      &.name {
+        left: 8rem;
+      }
+    }
     .icon {
       position: absolute;
       right: 0.5rem;

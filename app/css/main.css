@@ -575,6 +575,16 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .content .ad-description {
   padding: 5px 10px; }
 
+.ads .ad-item .i-bottom {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.7rem;
+  cursor: pointer;
+  background: #fcfbf7; }
+
+.ads .ad-item .i-bottom.name {
+  left: 8rem; }
+
 .ads .ad-item .icon {
   position: absolute;
   right: 0.5rem;
