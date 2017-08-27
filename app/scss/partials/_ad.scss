@@ -12,10 +12,12 @@
   }
 
   .ad-item {
+    max-height: 7rem;
     position: relative;
     overflow: hidden;
     border: 1px solid $gray;
-
+    background: #fff;
+    margin: 1rem 0;
 
     .photo {
       float: left;
@@ -30,6 +32,7 @@
     }
     .content {
       float: left;
+      width: 80%;
 
       .ad-title {
         font-size: 1rem;
@@ -41,12 +44,23 @@
     }
     .i-bottom {
       position: absolute;
+      left: 7.5rem;
       bottom: 0;
-      font-size: 1.7rem;
+      width: 86%;
+      font-size: 0.9rem;
       cursor: pointer;
-      background: $main-bg;
-      &.name {
-        left: 8rem;
+      background: $white;
+      color: #999;
+      i {
+        font-size: 1.2rem;
+      }
+      span {
+        font-size: 0.9rem;
+        padding-left: .5rem;
+        padding-right: 3%;
+        &:hover {
+          color: $gray-dark2;
+        }
       }
     }
     .icon {
@@ -54,7 +68,7 @@
       right: 0.5rem;
       font-size: 1.7rem;
       cursor: pointer;
-      background: $main-bg;
+      background: $white;
       &.star {
         top: 0;
         color: gold;
@@ -65,20 +79,34 @@
       &.tab {
         top: 2.5rem;
         right: 0.6rem;
-        color: $gray-dark2;
-        &:hover:before {
-          content: "\f3f0";
+        color: $gray-dark;
+        &:hover {
+          color: $gray-dark2;
         }
       }
       &.arrow {
         bottom: -0.3rem;
         font-size: 1.5rem;
-        color: $gray-dark2;
+        color: $gray-dark;
         &:hover {
           color: $blue-dark;
         }
       }
     }
+
+    &.expanded {
+      max-height: none;
+
+      .section1 {
+        overflow: hidden;
+      }
+
+      .section2 {
+        height: 300px;
+
+      }
+    }
+
   }
 
   /* Tablets */
