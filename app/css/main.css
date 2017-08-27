@@ -555,7 +555,7 @@ nav.navigation .user .logout:hover {
   overflow: hidden;
   border: 1px solid #E5E3D4;
   background: #fff;
-  margin: 1rem 0; }
+  margin: 1.5rem 0; }
 
 .ads .ad-item .photo {
   float: left;
@@ -630,14 +630,19 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .icon.arrow:hover {
   color: #559797; }
 
+.ads .ad-item .section2 {
+  display: none; }
+
 .ads .ad-item.expanded {
-  max-height: none; }
+  max-height: none;
+  border-color: #74BDC1; }
 
 .ads .ad-item.expanded .section1 {
   overflow: hidden; }
 
 .ads .ad-item.expanded .section2 {
-  height: 300px; }
+  height: 300px;
+  display: block; }
 
 /* Ads styles
 -------------------------------------------------- */

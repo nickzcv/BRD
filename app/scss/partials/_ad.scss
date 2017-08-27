@@ -17,7 +17,7 @@
     overflow: hidden;
     border: 1px solid $gray;
     background: #fff;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 
     .photo {
       float: left;
@@ -93,9 +93,13 @@
         }
       }
     }
+    .section2 {
+      display: none;
+    }
 
     &.expanded {
       max-height: none;
+      border-color: $blue-light;
 
       .section1 {
         overflow: hidden;
@@ -103,7 +107,7 @@
 
       .section2 {
         height: 300px;
-
+        display: block;
       }
     }
 
