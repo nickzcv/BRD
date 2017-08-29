@@ -8,13 +8,12 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   },
 
   ui: {
-    'addButton': '.add-new-ad'
+    'addButton': '.add-button'
   },
 
   events: {
     'click @ui.addButton': function() {
       brd.router.navigate('#ads/new', {trigger:true});
-      //this.showChildView('page', new app.views.AddAdView());
     }
   },
 
