@@ -630,12 +630,18 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .icon.arrow:hover {
   color: #559797; }
 
+.ads .ad-item .icon.arrow:before {
+  content: "\f123"; }
+
 .ads .ad-item .section2 {
   display: none; }
 
 .ads .ad-item.expanded {
   max-height: none;
-  border-color: #74BDC1; }
+  border-color: #e1d1c4; }
+
+.ads .ad-item.expanded .icon.arrow:before {
+  content: "\f126"; }
 
 .ads .ad-item.expanded .section1 {
   overflow: hidden; }

@@ -91,6 +91,9 @@
         &:hover {
           color: $blue-dark;
         }
+        &:before {
+          content: "\f123";
+        }
       }
     }
     .section2 {
@@ -99,7 +102,11 @@
 
     &.expanded {
       max-height: none;
-      border-color: $blue-light;
+      border-color: #e1d1c4;
+
+      .icon.arrow:before {
+        content: "\f126";
+      }
 
       .section1 {
         overflow: hidden;
