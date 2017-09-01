@@ -309,13 +309,13 @@ app.collections.AdsCollection = Backbone.Collection.extend({
 
   url: 'api/ads',
 
-  model: app.models.Ad,
+  //model: app.models.Ad,
 
-  initialize: function initialize() {}
+  initialize: function initialize() {
+    console.log(this);
+  }
 
 });
-
-app.models.Ad = Backbone.Model.extend({});
 'use strict';
 
 app.models.AdModel = Backbone.Model.extend({
@@ -569,6 +569,14 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 });
 "use strict";
 
+app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  childView: MyChildView,
+  collection: collection
+
+});
+"use strict";
+
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: tpl.templates.footer
 });
@@ -686,6 +694,163 @@ app.views.MainView = Backbone.Marionette.View.extend({
     var thisView = this;
     thisView.showChildView('headerRegion', new app.views.HeaderView({ model: new app.models.HeaderModel() }));
     thisView.showChildView('footerRegion', new app.views.FooterView());
+  }
+
+});
+'use strict';
+
+app.views.AddAdView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.add_ad,
+
+  regions: {
+    leftNavRegion: '.left-navigation',
+    countriesPicker: '.country-picker'
+  },
+
+  ui: {
+    addAdForm: '#add-ad-form',
+    type: 'input[name=type]',
+    object: 'input[name=object]',
+    category: '#category',
+    title: '#title',
+    description: '#description',
+    price: '#price',
+    expirationDate: '#expirationDate',
+    getContacts: 'input[name=getContacts]',
+    profileRadio: '#profileRadio',
+    companyRadio: '#companyRadio',
+    otherRadio: '#otherRadio',
+    otherPhoneWrapper: '.otherPhoneWrapper',
+    otherPhone: '#otherPhone'
+  },
+
+  events: {
+    'change @ui.getContacts': 'setContacts'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
+    // Show country picker
+    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    // Disable radio btns by default
+    thisView.ui.otherPhoneWrapper.hide();
+    thisView.ui.companyRadio.prop('disabled', true);
+  },
+
+  onRender: function onRender() {
+    this.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the add Ad form.
+   *
+   */
+  formAddValidation: function formAddValidation() {
+    var thisView = this;
+    thisView.ui.addAdForm.validate({
+      rules: {
+        type: {
+          required: true
+        },
+        object: {
+          required: true
+        },
+        category: {
+          required: true
+        },
+        title: {
+          required: true,
+          maxlength: 120
+        },
+        otherPhone: {
+          required: true
+        }
+      },
+      messages: {
+        type: {
+          required: 'Укажите тип объявления'
+        },
+        object: {
+          required: 'Укажите объект объявления'
+        },
+        category: {
+          required: 'Выберите категорию'
+        },
+        title: {
+          required: 'Введите заголовок',
+          maxlength: jQuery.validator.format('Заголовок не должен превышать {0} символов')
+        },
+        otherPhone: {
+          required: 'Введите контактный телефон'
+        }
+      },
+
+      errorPlacement: function errorPlacement(error, element) {
+        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else if (element.attr('id') === 'otherPhone') error.insertAfter('.otherPhoneError');else error.insertAfter(element);
+      },
+
+      submitHandler: function submitHandler() {
+        thisView.saveAd();
+      }
+    });
+  },
+
+  /*
+<<<<<<< HEAD
+=======
+   * Check form data before save
+   *
+   */
+  handleSubmitClick: function handleSubmitClick() {
+    var thisView = this;
+    // Show loader
+    thisView.ui.form.hide();
+    thisView.ui.loader.show();
+    // Check if email already exist
+    thisView.model.isEmailExist(thisView.ui.email.val()).then(function (data) {
+      if (data.exist) {
+        thisView.ui.loader.hide();
+        thisView.ui.form.fadeIn();
+        thisView.ui.danger.html('E-mail занят.').fadeIn();
+      } else {
+        thisView.saveUser();
+      }
+    }, function (error) {
+      thisView.ui.loader.hide();
+      thisView.ui.form.fadeIn();
+      thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+    });
+  },
+
+  /*
+   * Save user
+   *
+   */
+  saveUser: function saveUser() {
+    var thisView = this;
+
+    thisView.model.set({
+      email: thisView.ui.email.val(),
+      password: thisView.ui.password.val(),
+      confirmPassword: thisView.ui.confirmPassword.val()
+    });
+
+    thisView.model.save(null, {
+      success: function success() {
+        thisView.ui.loader.hide();
+        thisView.ui.danger.hide();
+        thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();
+        thisView.ui.checkmark.fadeIn(1000);
+      },
+      error: function error() {
+        thisView.ui.loader.hide();
+        thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+        thisView.ui.form.fadeIn();
+      }
+    });
   }
 
 });
@@ -830,6 +995,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   /*
+>>>>>>> e257e9896525a1a23c87795240a4c156098e6065
    * Save Ad
    *
    */
@@ -928,14 +1094,20 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.ads,
 
-  regions: {
-    leftNavRegion: '.left-navigation',
-    page: '.page'
-  },
-
   ui: {
+<<<<<<< HEAD
     'addButton': '.add-button',
     'arrow': '.arrow'
+=======
+    'leftNavRegion': '.left-navigation',
+    'listRegion': '.ads-list',
+    'addButton': '.add-button'
+>>>>>>> e257e9896525a1a23c87795240a4c156098e6065
+  },
+
+  regions: {
+    leftNav: '@ui.leftNavRegion',
+    adsList: '@ui.listRegion'
   },
 
   events: {
@@ -947,7 +1119,11 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {
     // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+    brd.regions.leftNavRegion = this.getRegion('leftNav');
+  },
+
+  onRender: function onRender() {
+    this.showChildView('adsList', new app.views.adsCollectionView());
   }
 
 });

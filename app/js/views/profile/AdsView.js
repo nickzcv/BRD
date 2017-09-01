@@ -2,14 +2,15 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.ads,
 
-  regions: {
-    leftNavRegion: '.left-navigation',
-    page: '.page'
+  ui: {
+    'leftNavRegion': '.left-navigation',
+    'listRegion': '.ads-list',
+    'addButton': '.add-button'
   },
 
-  ui: {
-    'addButton': '.add-button',
-    'arrow': '.arrow'
+  regions: {
+    leftNav: '@ui.leftNavRegion',
+    adsList: '@ui.listRegion'
   },
 
   events: {
@@ -23,7 +24,11 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   initialize: function() {
     // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+    brd.regions.leftNavRegion = this.getRegion('leftNav');
+  },
+
+  onRender: function() {
+    this.showChildView('adsList', new app.views.adsCollectionView());
   }
 
 });

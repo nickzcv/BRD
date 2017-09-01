@@ -586,7 +586,7 @@ nav.navigation .user .logout:hover {
   width: 86%;
   font-size: 0.9rem;
   background: #FFFFFF;
-  color: #999; }
+  color: #777777; }
 
 .ads .ad-item .i-bottom i {
   font-size: 1.2rem;
@@ -599,7 +599,7 @@ nav.navigation .user .logout:hover {
   cursor: pointer; }
 
 .ads .ad-item .i-bottom span:hover {
-  color: #777777; }
+  color: #559797; }
 
 .ads .ad-item .icon {
   position: absolute;
