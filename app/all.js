@@ -309,13 +309,13 @@ app.collections.AdsCollection = Backbone.Collection.extend({
 
   url: 'api/ads',
 
-  model: app.models.Ad,
+  //model: app.models.Ad,
 
-  initialize: function initialize() {}
+  initialize: function initialize() {
+    console.log(this);
+  }
 
 });
-
-app.models.Ad = Backbone.Model.extend({});
 'use strict';
 
 app.models.AdModel = Backbone.Model.extend({
@@ -569,6 +569,14 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
 });
 "use strict";
 
+app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  childView: MyChildView,
+  collection: collection
+
+});
+"use strict";
+
 app.views.FooterView = Backbone.Marionette.View.extend({
   template: tpl.templates.footer
 });
@@ -686,45 +694,6 @@ app.views.MainView = Backbone.Marionette.View.extend({
     var thisView = this;
     thisView.showChildView('headerRegion', new app.views.HeaderView({ model: new app.models.HeaderModel() }));
     thisView.showChildView('footerRegion', new app.views.FooterView());
-  }
-
-});
-"use strict";
-
-app.views.FilterView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  regions: {
-    filter: '.filter',
-    adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
   }
 
 });
@@ -1002,6 +971,45 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
+"use strict";
+
+app.views.FilterView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter
+
+});
+'use strict';
+
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  regions: {
+    filter: '.filter',
+    adsFilter: '.content-filter',
+    adsList: '.ads-list'
+  },
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function onRender() {
+    var thisView = this;
+    thisView.showChildView('filter', new app.views.FilterView());
+  }
+
+});
 'use strict';
 
 app.views.AddAdView = Backbone.Marionette.View.extend({
@@ -1202,13 +1210,15 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.ads,
 
-  regions: {
-    leftNavRegion: '.left-navigation',
-    page: '.page'
+  ui: {
+    'leftNavRegion': '.left-navigation',
+    'listRegion': '.ads-list',
+    'addButton': '.add-button'
   },
 
-  ui: {
-    'addButton': '.add-button'
+  regions: {
+    leftNav: '@ui.leftNavRegion',
+    adsList: '@ui.listRegion'
   },
 
   events: {
@@ -1219,7 +1229,11 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   initialize: function initialize() {
     // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+    brd.regions.leftNavRegion = this.getRegion('leftNav');
+  },
+
+  onRender: function onRender() {
+    this.showChildView('adsList', new app.views.adsCollectionView());
   }
 
 });
