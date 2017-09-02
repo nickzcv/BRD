@@ -573,8 +573,8 @@ nav.navigation .user .logout:hover {
   width: 80%; }
 
 .ads .ad-item .content .ad-title {
-  font-size: 1rem;
-  padding: 5px 10px; }
+  font-size: 1.1rem;
+  padding: 5px 10px 0; }
 
 .ads .ad-item .content .ad-description {
   padding: 5px 10px; }
@@ -585,6 +585,7 @@ nav.navigation .user .logout:hover {
   bottom: 0;
   width: 86%;
   font-size: 0.9rem;
+  line-height: 2rem;
   background: #FFFFFF;
   color: #777777; }
 
