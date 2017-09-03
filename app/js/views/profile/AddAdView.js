@@ -92,7 +92,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           required: 'Введите контактный телефон'
         },
         country: {
-          required: 'Выбирите страну'
+          required: 'Выберите страну'
         },
         city: {
           required: 'Введите название города'
