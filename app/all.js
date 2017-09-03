@@ -309,72 +309,8 @@ app.collections.AdsCollection = Backbone.Collection.extend({
 
   url: 'api/ads',
 
-  //model: app.models.Ad,
-
   comparator: function comparator(m) {
     return -Date.parse(m.get('updated_at'));
-  },
-
-  initialize: function initialize() {
-    console.log(this);
-  }
-
-});
-'use strict';
-
-app.models.CountriesPickerModel = Backbone.Model.extend({
-
-  defaults: {
-    country: null,
-    city: null,
-    countries: null,
-    cities: null
-  },
-
-  initialize: function initialize() {
-    var model = this;
-    // Get countries from VK api
-    model.loadCountries().then(function (countries) {
-      model.set({ countries: countries.response.items });
-    }, function (error) {
-      console.log(error);
-    });
-  },
-
-  loadCountries: function loadCountries() {
-    return $.ajax({
-      method: 'GET',
-      dataType: 'jsonp',
-      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300'
-    });
-  },
-
-  searchCities: function searchCities(countryId, searchString) {
-    return $.ajax({
-      method: 'GET',
-      dataType: 'jsonp',
-      url: 'http://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString
-    });
-  },
-
-  setCountry: function setCountry(id) {
-    var thisModel = this;
-    // Find selected country from the list
-    var selectedCountry = thisModel.get('countries').filter(function (obj) {
-      return obj.id == id;
-    });
-    // Save country object into the model
-    thisModel.set({ country: Object.assign({}, selectedCountry[0]) });
-  },
-
-  setCity: function setCity(id) {
-    var thisModel = this;
-    // Find selected city from the list
-    var selectedCity = thisModel.get('cities').filter(function (obj) {
-      return obj.id == id;
-    });
-    // Save city object into the model
-    thisModel.set({ city: Object.assign({}, selectedCity[0]) });
   }
 
 });
@@ -392,7 +328,7 @@ app.models.AdModel = Backbone.Model.extend({
     title: null,
     country: null,
     city: null,
-    user: null,
+
     contacts: {
       takeFrom: 'profile',
       phones: []
@@ -400,18 +336,15 @@ app.models.AdModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    var thisModel = this,
-        user = app.user.attributes;
+    var thisModel = this;
 
     thisModel.on('invalid', function (model, error) {
       console.log(error);
     });
 
     // Init child countries model
-    thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
-        country: user.country,
-        city: user.city
-      }) });
+    thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
+
     // get countries Model
     var countriesModel = thisModel.get('countriesModel');
     // Listen to country change
@@ -425,7 +358,7 @@ app.models.AdModel = Backbone.Model.extend({
   },
 
   validate: function validate(attr) {
-    if (!attr.type || !attr.type || !attr.category || !attr.title || !attr.description) {
+    if (!attr.type || !attr.category || !attr.title || !attr.country) {
       return 'empty one of the required fields.';
     }
   }
@@ -568,6 +501,64 @@ app.models.UserModel = Backbone.Model.extend({
         thisModel.set({ city: countriesModel.get('city') });
       });
     });
+  }
+
+});
+'use strict';
+
+app.models.CountriesPickerModel = Backbone.Model.extend({
+
+  defaults: {
+    country: null,
+    city: null,
+    countries: null,
+    cities: null
+  },
+
+  initialize: function initialize() {
+    var model = this;
+    // Get countries from VK api
+    model.loadCountries().then(function (countries) {
+      model.set({ countries: countries.response.items });
+    }, function (error) {
+      console.log(error);
+    });
+  },
+
+  loadCountries: function loadCountries() {
+    return $.ajax({
+      method: 'GET',
+      dataType: 'jsonp',
+      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300'
+    });
+  },
+
+  searchCities: function searchCities(countryId, searchString) {
+    return $.ajax({
+      method: 'GET',
+      dataType: 'jsonp',
+      url: 'http://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString
+    });
+  },
+
+  setCountry: function setCountry(id) {
+    var thisModel = this;
+    // Find selected country from the list
+    var selectedCountry = thisModel.get('countries').filter(function (obj) {
+      return obj.id == id;
+    });
+    // Save country object into the model
+    thisModel.set({ country: Object.assign({}, selectedCountry[0]) });
+  },
+
+  setCity: function setCity(id) {
+    var thisModel = this;
+    // Find selected city from the list
+    var selectedCity = thisModel.get('cities').filter(function (obj) {
+      return obj.id == id;
+    });
+    // Save city object into the model
+    thisModel.set({ city: Object.assign({}, selectedCity[0]) });
   }
 
 });
@@ -772,280 +763,6 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.ForgotView = app.views.HeaderView.extend({
-
-  template: tpl.templates.forgot,
-
-  ui: {
-    forgotPasswordModal: '#forgot'
-  },
-
-  events: {},
-
-  onRender: function onRender() {
-    //console.log('onRender forgotPasswordModal');
-    //this.ui.forgotPasswordModal.modal('show');
-  }
-
-});
-'use strict';
-
-app.views.LoginView = app.views.HeaderView.extend({
-
-  template: tpl.templates.login,
-
-  ui: {
-    loginModal: '#login',
-    loginForm: '#login-form',
-    email: '#email',
-    password: '#password',
-    loader: '.loader-wrapper',
-    danger: '.alert-danger'
-  },
-
-  events: {
-    'hide.bs.modal': function hideBsModal() {
-      this.destroy();
-    },
-    'click .forgot-password': function clickForgotPassword() {
-      this.ui.loginModal.modal('hide');
-      this.destroy();
-      this.showForgotView();
-    }
-  },
-
-  onRender: function onRender() {
-    var thisView = this;
-    thisView.ui.loginModal.modal('show');
-    thisView.formAddValidation();
-  },
-
-  /*
-   * Validation rules for the Login form.
-   *
-   */
-  formAddValidation: function formAddValidation() {
-    var thisView = this;
-    thisView.ui.loginForm.validate({
-      rules: {
-        email: {
-          required: true,
-          email: true,
-          maxlength: 120,
-          minlength: 4
-        },
-        password: {
-          required: true,
-          maxlength: 100,
-          minlength: 5
-        }
-      },
-      messages: {
-        email: {
-          required: 'Введите e-mail',
-          email: 'Проверьте правильность ввода e-mail',
-          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
-        },
-        password: {
-          required: 'Введите пароль',
-          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
-        }
-      },
-
-      submitHandler: function submitHandler() {
-        thisView.loginHandler();
-      }
-    });
-  },
-
-  loginHandler: function loginHandler() {
-    var thisView = this;
-    // Show loader
-    thisView.ui.loginForm.hide();
-    thisView.ui.loader.show();
-    thisView.model.set({
-      email: thisView.ui.email.val(),
-      password: thisView.ui.password.val()
-    });
-    // Login request to the server
-    thisView.model.login().then(function (data) {
-      // Destroy modal
-      thisView.destroy();
-      brd.controllers.hideModalFully();
-      // Save token
-      brd.controllers.saveToken(data.token);
-      // Duplicate from app.js ---
-      // Open setting page
-      if (brd.controllers.isLoggedIn()) {
-        var useId = brd.controllers.getUserId();
-        app.user = new app.models.UserModel({ _id: useId });
-        app.user.fetch().then(function () {
-          console.log('SUCCESS');
-          //console.log(app.user.attributes);
-        }, function () {
-          console.log('FAIL');
-          //console.log(app.user.attributes);
-        });
-      }
-      // Navigate to user dashboard after login successful
-      brd.router.navigate('#dashboard', { trigger: true });
-    }, function () {
-      thisView.ui.loader.hide();
-      thisView.ui.loginForm.fadeIn();
-      thisView.ui.danger.html('Ошибка! Неверный email или пароль.').fadeIn();
-    });
-  },
-
-  showForgotView: function showForgotView() {
-    // this.showChildView('modalSection', new app.views.ForgotView());
-  }
-
-});
-'use strict';
-
-app.views.RegistrationView = app.views.HeaderView.extend({
-
-  template: tpl.templates.registration,
-
-  ui: {
-    registrationModal: '#registration',
-    email: '#email',
-    password: '#password',
-    confirmPassword: '#confirm_password',
-    form: '#registration-form',
-    loader: '.loader-wrapper',
-    danger: '.alert-danger',
-    success: '.alert-success',
-    checkmark: '.checkmark'
-  },
-
-  events: {
-    'hide.bs.modal': function hideBsModal() {
-      this.destroy();
-    }
-  },
-
-  onRender: function onRender() {
-    this.ui.registrationModal.modal('show');
-    this.formAddValidation();
-  },
-
-  /*
-   * Validation rules for the Registration form.
-   *
-   */
-  formAddValidation: function formAddValidation() {
-    var thisView = this;
-    thisView.ui.form.validate({
-      rules: {
-        email: {
-          required: true,
-          email: true,
-          maxlength: 120,
-          minlength: 4
-        },
-        password: {
-          required: true,
-          maxlength: 100,
-          minlength: 5
-        },
-        confirm_password: {
-          required: true,
-          equalTo: '#password',
-          maxlength: 100,
-          minlength: 5
-        },
-        confirm: {
-          required: true
-        }
-      },
-      messages: {
-        email: {
-          required: 'Введите e-mail',
-          email: 'Проверьте правильность ввода e-mail',
-          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
-        },
-        password: {
-          required: 'Введите пароль',
-          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
-        },
-        confirm_password: {
-          required: 'Введите пароль еще раз',
-          equalTo: 'Пароль не совпадает с введеным выше значением',
-          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
-          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
-        },
-        confirm: {
-          required: 'Ознакомьтесь с правилами'
-        }
-      },
-
-      submitHandler: function submitHandler() {
-        thisView.handleSubmitClick();
-      }
-    });
-  },
-
-  /*
-   * Check form data before save
-   *
-   */
-  handleSubmitClick: function handleSubmitClick() {
-    var thisView = this;
-    // Show loader
-    thisView.ui.form.hide();
-    thisView.ui.loader.show();
-    // Check if email already exist
-    thisView.model.isEmailExist(thisView.ui.email.val()).then(function (data) {
-      if (data.exist) {
-        thisView.ui.loader.hide();
-        thisView.ui.form.fadeIn();
-        thisView.ui.danger.html('E-mail занят.').fadeIn();
-      } else {
-        thisView.saveUser();
-      }
-    }, function (error) {
-      thisView.ui.loader.hide();
-      thisView.ui.form.fadeIn();
-      thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
-    });
-  },
-
-  /*
-   * Save user
-   *
-   */
-  saveUser: function saveUser() {
-    var thisView = this;
-
-    thisView.model.set({
-      email: thisView.ui.email.val(),
-      password: thisView.ui.password.val(),
-      confirmPassword: thisView.ui.confirmPassword.val()
-    });
-
-    thisView.model.save(null, {
-      success: function success() {
-        thisView.ui.loader.hide();
-        thisView.ui.danger.hide();
-        thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();
-        thisView.ui.checkmark.fadeIn(1000);
-      },
-      error: function error() {
-        thisView.ui.loader.hide();
-        thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
-        thisView.ui.form.fadeIn();
-      }
-    });
-  }
-
-});
-'use strict';
-
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
@@ -1114,6 +831,12 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         otherPhone: {
           required: true
+        },
+        country: {
+          required: true
+        },
+        city: {
+          required: true
         }
       },
       messages: {
@@ -1132,6 +855,12 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         otherPhone: {
           required: 'Введите контактный телефон'
+        },
+        country: {
+          required: 'Выбирите страну'
+        },
+        city: {
+          required: 'Введите название города'
         }
       },
 
@@ -1463,6 +1192,280 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
     this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
+  }
+
+});
+'use strict';
+
+app.views.ForgotView = app.views.HeaderView.extend({
+
+  template: tpl.templates.forgot,
+
+  ui: {
+    forgotPasswordModal: '#forgot'
+  },
+
+  events: {},
+
+  onRender: function onRender() {
+    //console.log('onRender forgotPasswordModal');
+    //this.ui.forgotPasswordModal.modal('show');
+  }
+
+});
+'use strict';
+
+app.views.LoginView = app.views.HeaderView.extend({
+
+  template: tpl.templates.login,
+
+  ui: {
+    loginModal: '#login',
+    loginForm: '#login-form',
+    email: '#email',
+    password: '#password',
+    loader: '.loader-wrapper',
+    danger: '.alert-danger'
+  },
+
+  events: {
+    'hide.bs.modal': function hideBsModal() {
+      this.destroy();
+    },
+    'click .forgot-password': function clickForgotPassword() {
+      this.ui.loginModal.modal('hide');
+      this.destroy();
+      this.showForgotView();
+    }
+  },
+
+  onRender: function onRender() {
+    var thisView = this;
+    thisView.ui.loginModal.modal('show');
+    thisView.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the Login form.
+   *
+   */
+  formAddValidation: function formAddValidation() {
+    var thisView = this;
+    thisView.ui.loginForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true,
+          maxlength: 120,
+          minlength: 4
+        },
+        password: {
+          required: true,
+          maxlength: 100,
+          minlength: 5
+        }
+      },
+      messages: {
+        email: {
+          required: 'Введите e-mail',
+          email: 'Проверьте правильность ввода e-mail',
+          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
+        },
+        password: {
+          required: 'Введите пароль',
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        }
+      },
+
+      submitHandler: function submitHandler() {
+        thisView.loginHandler();
+      }
+    });
+  },
+
+  loginHandler: function loginHandler() {
+    var thisView = this;
+    // Show loader
+    thisView.ui.loginForm.hide();
+    thisView.ui.loader.show();
+    thisView.model.set({
+      email: thisView.ui.email.val(),
+      password: thisView.ui.password.val()
+    });
+    // Login request to the server
+    thisView.model.login().then(function (data) {
+      // Destroy modal
+      thisView.destroy();
+      brd.controllers.hideModalFully();
+      // Save token
+      brd.controllers.saveToken(data.token);
+      // Duplicate from app.js ---
+      // Open setting page
+      if (brd.controllers.isLoggedIn()) {
+        var useId = brd.controllers.getUserId();
+        app.user = new app.models.UserModel({ _id: useId });
+        app.user.fetch().then(function () {
+          console.log('SUCCESS');
+          //console.log(app.user.attributes);
+        }, function () {
+          console.log('FAIL');
+          //console.log(app.user.attributes);
+        });
+      }
+      // Navigate to user dashboard after login successful
+      brd.router.navigate('#dashboard', { trigger: true });
+    }, function () {
+      thisView.ui.loader.hide();
+      thisView.ui.loginForm.fadeIn();
+      thisView.ui.danger.html('Ошибка! Неверный email или пароль.').fadeIn();
+    });
+  },
+
+  showForgotView: function showForgotView() {
+    // this.showChildView('modalSection', new app.views.ForgotView());
+  }
+
+});
+'use strict';
+
+app.views.RegistrationView = app.views.HeaderView.extend({
+
+  template: tpl.templates.registration,
+
+  ui: {
+    registrationModal: '#registration',
+    email: '#email',
+    password: '#password',
+    confirmPassword: '#confirm_password',
+    form: '#registration-form',
+    loader: '.loader-wrapper',
+    danger: '.alert-danger',
+    success: '.alert-success',
+    checkmark: '.checkmark'
+  },
+
+  events: {
+    'hide.bs.modal': function hideBsModal() {
+      this.destroy();
+    }
+  },
+
+  onRender: function onRender() {
+    this.ui.registrationModal.modal('show');
+    this.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the Registration form.
+   *
+   */
+  formAddValidation: function formAddValidation() {
+    var thisView = this;
+    thisView.ui.form.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true,
+          maxlength: 120,
+          minlength: 4
+        },
+        password: {
+          required: true,
+          maxlength: 100,
+          minlength: 5
+        },
+        confirm_password: {
+          required: true,
+          equalTo: '#password',
+          maxlength: 100,
+          minlength: 5
+        },
+        confirm: {
+          required: true
+        }
+      },
+      messages: {
+        email: {
+          required: 'Введите e-mail',
+          email: 'Проверьте правильность ввода e-mail',
+          maxlength: jQuery.validator.format('E-mail не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('E-mail должен содержать минимум {0} символов')
+        },
+        password: {
+          required: 'Введите пароль',
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        },
+        confirm_password: {
+          required: 'Введите пароль еще раз',
+          equalTo: 'Пароль не совпадает с введеным выше значением',
+          maxlength: jQuery.validator.format('Пароль не должен превышать {0} символов'),
+          minlength: jQuery.validator.format('Пароль должен содержать минимум {0} символов')
+        },
+        confirm: {
+          required: 'Ознакомьтесь с правилами'
+        }
+      },
+
+      submitHandler: function submitHandler() {
+        thisView.handleSubmitClick();
+      }
+    });
+  },
+
+  /*
+   * Check form data before save
+   *
+   */
+  handleSubmitClick: function handleSubmitClick() {
+    var thisView = this;
+    // Show loader
+    thisView.ui.form.hide();
+    thisView.ui.loader.show();
+    // Check if email already exist
+    thisView.model.isEmailExist(thisView.ui.email.val()).then(function (data) {
+      if (data.exist) {
+        thisView.ui.loader.hide();
+        thisView.ui.form.fadeIn();
+        thisView.ui.danger.html('E-mail занят.').fadeIn();
+      } else {
+        thisView.saveUser();
+      }
+    }, function (error) {
+      thisView.ui.loader.hide();
+      thisView.ui.form.fadeIn();
+      thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+    });
+  },
+
+  /*
+   * Save user
+   *
+   */
+  saveUser: function saveUser() {
+    var thisView = this;
+
+    thisView.model.set({
+      email: thisView.ui.email.val(),
+      password: thisView.ui.password.val(),
+      confirmPassword: thisView.ui.confirmPassword.val()
+    });
+
+    thisView.model.save(null, {
+      success: function success() {
+        thisView.ui.loader.hide();
+        thisView.ui.danger.hide();
+        thisView.ui.success.html('Для завершения регистрации пройдите по ссылке в письме.').fadeIn();
+        thisView.ui.checkmark.fadeIn(1000);
+      },
+      error: function error() {
+        thisView.ui.loader.hide();
+        thisView.ui.danger.html('Ошибка! Поробуйте еще раз чуть позже.').fadeIn();
+        thisView.ui.form.fadeIn();
+      }
+    });
   }
 
 });

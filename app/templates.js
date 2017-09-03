@@ -204,11 +204,11 @@ this["tpl"]["templates"]["countries_picker"] = Handlebars.template({"1":function
     + "</span></li>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,blockParams,depths) {
     var stack1, helper, options, alias1=helpers.helperMissing, alias2="function", alias3=helpers.blockHelperMissing, buffer = 
-  "<div class=\"form-group row\">\r\n  <div class=\"col-md-6 m-b-1\">\r\n    <select class=\"form-control\" id=\"country\">\r\n      <option value=\"\">Страна</option>\r\n";
+  "<div class=\"form-group row\">\r\n  <div class=\"col-md-6 m-b-1\">\r\n    <select class=\"form-control\" id=\"country\" name=\"country\">\r\n      <option value=\"\">Страна</option>\r\n";
   stack1 = ((helper = (helper = helpers.countries || (depth0 != null ? depth0.countries : depth0)) != null ? helper : alias1),(options={"name":"countries","hash":{},"fn":this.program(1, data, 0, blockParams, depths),"inverse":this.noop,"data":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));
   if (!helpers.countries) { stack1 = alias3.call(depth0,stack1,options)}
   if (stack1 != null) { buffer += stack1; }
-  buffer += "    </select>\r\n  </div>\r\n  <div class=\"col-md-6\">\r\n    <input type=\"text\" class=\"form-control\" id=\"city\"\r\n      "
+  buffer += "    </select>\r\n  </div>\r\n  <div class=\"col-md-6\">\r\n    <input type=\"text\" class=\"form-control\" id=\"city\" name=\"city\"\r\n      "
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.city : depth0),{"name":"if","hash":{},"fn":this.program(4, data, 0, blockParams, depths),"inverse":this.program(6, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
     + "\r\n      "
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.country : depth0),{"name":"if","hash":{},"fn":this.program(8, data, 0, blockParams, depths),"inverse":this.program(10, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")

@@ -66,6 +66,12 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         otherPhone: {
           required: true
+        },
+        country: {
+          required: true
+        },
+        city: {
+          required: true
         }
       },
       messages: {
@@ -84,6 +90,12 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         otherPhone: {
           required: 'Введите контактный телефон'
+        },
+        country: {
+          required: 'Выбирите страну'
+        },
+        city: {
+          required: 'Введите название города'
         }
       },
 
@@ -155,7 +167,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         },
         success: function() {
           // Redirect to Ads profile page
-          brd.router.navigate('#ads',{trigger:true});
+          brd.router.navigate('#ads', {trigger:true});
         },
         error: function() {
           console.log('error')

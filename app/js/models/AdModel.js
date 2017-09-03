@@ -10,7 +10,7 @@ app.models.AdModel = Backbone.Model.extend({
     title: null,
     country: null,
     city: null,
-    user: null,
+
     contacts: {
       takeFrom: 'profile',
       phones: []
@@ -18,18 +18,15 @@ app.models.AdModel = Backbone.Model.extend({
   },
 
   initialize: function() {
-    let thisModel = this,
-        user = app.user.attributes;
+    let thisModel = this;
 
     thisModel.on('invalid', function(model, error){
       console.log(error);
     });
 
     // Init child countries model
-    thisModel.set({countriesModel: new app.models.CountriesPickerModel({
-      country: user.country,
-      city: user.city
-    })});
+    thisModel.set({countriesModel: new app.models.CountriesPickerModel()});
+
     // get countries Model
     let countriesModel = thisModel.get('countriesModel');
     // Listen to country change
@@ -44,7 +41,7 @@ app.models.AdModel = Backbone.Model.extend({
   },
 
   validate: function(attr) {
-    if (!attr.type || !attr.type || !attr.category || !attr.title || !attr.description) {
+    if (!attr.type || !attr.category || !attr.title || !attr.country) {
       return 'empty one of the required fields.';
     }
   },
