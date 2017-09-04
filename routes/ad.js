@@ -51,11 +51,28 @@ router.route('/ads')
     });
 	});
 
+// on routes that end in /ads/:userId
+// ----------------------------------------------------
+router.route('/ads/:userId')
+  // get the ads by userId
+  .get(function(req, res) {
+
+    Ad.find({
+        'userId': req.params.userId
+      }, function(err, ads) {
+      if (err)
+        res.json(err);
+
+      res.json(ads);
+    });
+  });
+
 // on routes that end in /ad/:ad_id
 // ----------------------------------------------------
 router.route('/ad/:ad_id')
-// get the ads with :ad_id
+// get the ad with :ad_id
 	.get(function(req, res) {
+	  console.log(req);
 		Ad.findById(req.params.ad_id, function(err, ad) {
 			if (err)
 				res.json(err);
