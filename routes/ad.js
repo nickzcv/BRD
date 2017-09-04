@@ -31,6 +31,8 @@ router.route('/ads')
     ad.status = null;
     ad.isActive = false;
     ad.userId = req.body.userId;
+    ad.userName = req.body.userName;
+    ad.company = null;
 
 		// save the ad and check for errors
     ad.save(function(err) {

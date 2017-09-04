@@ -21,11 +21,15 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     companyRadio: '#companyRadio',
     otherRadio: '#otherRadio',
     otherPhoneWrapper: '.otherPhoneWrapper',
-    otherPhone: '#otherPhone'
+    otherPhone: '#otherPhone',
+    backBtn: '.back'
   },
 
   events: {
-    'change @ui.getContacts': 'setContacts'
+    'change @ui.getContacts': 'setContacts',
+    'click @ui.backBtn': function() {
+      brd.router.navigate('#ads', {trigger:true});
+    }
   },
 
   initialize: function() {
@@ -134,7 +138,11 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      userId: app.user.get('_id')
+      userId: app.user.get('_id'),
+      userName: {
+        name: app.user.get('name'),
+        lastName: app.user.get('lastName')
+      }
     });
     // Set contacts
     switch (contacts.takeFrom) {

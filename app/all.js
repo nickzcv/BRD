@@ -307,7 +307,9 @@ Handlebars.registerHelper('formatDate', function (datetime, format) {
 
 app.collections.AdsCollection = Backbone.Collection.extend({
 
-  url: 'api/ads',
+  url: function url() {
+    return 'api/ads/' + brd.controllers.getUserId();
+  },
 
   comparator: function comparator(m) {
     return -Date.parse(m.get('updated_at'));
@@ -562,6 +564,20 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
   }
 
 });
+"use strict";
+
+app.models.CountriesPickerModel = Backbone.Model.extend({
+
+  defaults: {
+    country: null,
+    city: null,
+    countries: null,
+    cities: null
+  },
+
+  initialize: function initialize() {}
+
+});
 'use strict';
 
 app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
@@ -575,8 +591,6 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
    * @instance
    */
   initialize: function initialize() {
-
-    //this.collection = new app.collections.AdsCollection();
     this.childView = app.views.adView;
     this.collection.fetch().then(function () {
       console.log('Done');
@@ -593,11 +607,28 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.adView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.ad_item
+  template: tpl.templates.ad_item,
+
+  ui: {
+    'arrow': '.arrow',
+    'item': '.ad-item'
+
+  },
+
+  events: {
+    'click @ui.arrow': 'changeAdView'
+  },
+
+  /*
+   Expanded/hide filter section
+   */
+  changeAdView: function changeAdView() {
+    this.ui.item.toggleClass('expanded');
+  }
 
 });
 "use strict";
@@ -1060,11 +1091,15 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     companyRadio: '#companyRadio',
     otherRadio: '#otherRadio',
     otherPhoneWrapper: '.otherPhoneWrapper',
-    otherPhone: '#otherPhone'
+    otherPhone: '#otherPhone',
+    backBtn: '.back'
   },
 
   events: {
-    'change @ui.getContacts': 'setContacts'
+    'change @ui.getContacts': 'setContacts',
+    'click @ui.backBtn': function clickUiBackBtn() {
+      brd.router.navigate('#ads', { trigger: true });
+    }
   },
 
   initialize: function initialize() {
@@ -1166,7 +1201,11 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      userId: app.user.get('_id')
+      userId: app.user.get('_id'),
+      userName: {
+        name: app.user.get('name'),
+        lastName: app.user.get('lastName')
+      }
     });
     // Set contacts
     switch (contacts.takeFrom) {

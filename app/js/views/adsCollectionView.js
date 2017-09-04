@@ -9,8 +9,6 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
    * @instance
    */
   initialize: function() {
-
-    //this.collection = new app.collections.AdsCollection();
     this.childView = app.views.adView;
     this.collection.fetch().then(
       () => {

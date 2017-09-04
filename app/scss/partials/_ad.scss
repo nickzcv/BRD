@@ -49,9 +49,12 @@
       width: 86%;
       font-size: 0.9rem;
       line-height: 2rem;
+      max-height: 2rem;
       background: $white;
       color: $gray-dark2;
       i {
+        position: relative;
+        top: 1px;
         font-size: 1.2rem;
         cursor: pointer;
       }
@@ -99,7 +102,10 @@
       }
     }
     .section2 {
-      display: none;
+      height: 0;
+    }
+    .section1 {
+      overflow: hidden;
     }
 
     &.expanded {
@@ -115,8 +121,8 @@
       }
 
       .section2 {
-        height: 300px;
-        display: block;
+        height: auto;
+        padding-bottom: 2rem;
       }
     }
 

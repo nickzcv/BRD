@@ -586,10 +586,13 @@ nav.navigation .user .logout:hover {
   width: 86%;
   font-size: 0.9rem;
   line-height: 2rem;
+  max-height: 2rem;
   background: #FFFFFF;
   color: #777777; }
 
 .ads .ad-item .i-bottom i {
+  position: relative;
+  top: 1px;
   font-size: 1.2rem;
   cursor: pointer; }
 
@@ -636,7 +639,10 @@ nav.navigation .user .logout:hover {
   content: "\f123"; }
 
 .ads .ad-item .section2 {
-  display: none; }
+  height: 0; }
+
+.ads .ad-item .section1 {
+  overflow: hidden; }
 
 .ads .ad-item.expanded {
   max-height: none;
@@ -649,8 +655,8 @@ nav.navigation .user .logout:hover {
   overflow: hidden; }
 
 .ads .ad-item.expanded .section2 {
-  height: 300px;
-  display: block; }
+  height: auto;
+  padding-bottom: 2rem; }
 
 /* Ads styles
 -------------------------------------------------- */
@@ -685,6 +691,10 @@ nav.navigation .user .logout:hover {
 .new-ad .ad-photo span {
   font-size: 2.4rem;
   color: #fff; }
+
+.new-ad .back {
+  color: goldenrod;
+  float: right; }
 
 @media only screen and (min-width: 992px) {
   .new-ad .ad-photo span {

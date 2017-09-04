@@ -7,11 +7,25 @@
     </div>
   </div>
   <div class="section2">
-    Section 2
+    {{#if filter}}
+      {{filter}}
+    {{else}}
+      test<br>
+      test<br>
+      test<br>
+      test<br>
+      test<br>
+      test<br>
+      test<br>
+    {{/if}}
   </div>
   <div class="i-bottom">
     <span class="date"><i class="ion-ios-calendar-outline"></i><span>{{formatDate updated_at 'll'}}</span></span>
-    <span class="name"><i class="ion-ios-briefcase-outline"></i><span>ООО "Компаныв Тест"</span></span>
+    {{#if company}}
+      <span class="name"><i class="ion-ios-briefcase-outline"></i><span>{{userName.name}}</span></span>
+    {{else}}
+      <span class="name"><i class="ion-ios-person-outline"></i><span>{{userName.name}} {{userName.lastName}}</span></span>
+    {{/if}}
     <span class="location"><i class="ion-ios-location-outline"></i><span>{{city.title}}, {{country.title}}</span></span>
 
   </div>
