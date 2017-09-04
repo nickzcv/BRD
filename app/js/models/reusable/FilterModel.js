@@ -1,69 +1,127 @@
 app.models.FilterModel = Backbone.Model.extend({
 
   defaults: {
-    sort: '',
-    include_docs: true,
-    q: null,
-    taggers: [
+    category: [
       {
-        name: 'All',
-        cnum: '',
-        email: '',
-        count: 0,
-        isSelected: true // optional field. Needs to be set to false when deselecting user
+        id: 1,
+        title: 'Пиломатериалы',
+        filters: [
+          {
+            label: 'sortiment',
+            value: 'Сортимент',
+            items: [
+              {
+                label: 'brus',
+                value: 'Брус',
+              },
+              {
+                label: 'brusok',
+                value: 'Брусок',
+              },
+              {
+                label: 'doska',
+                value: 'Доска',
+              },
+              {
+                label: 'shpaly',
+                value: 'Шпалы',
+              }
+            ]
+          },
+          {
+            label: 'poroda',
+            value: 'Порода',
+            items: [
+              {
+                label: 'hvoya',
+                value: 'Хвойные',
+                items: [
+                  {
+                    label: 'el',
+                    value: 'Ель',
+                  },
+                  {
+                    label: 'kedr',
+                    value: 'Кедр',
+                  },
+                  {
+                    label: 'listvenica',
+                    value: 'Лиственница',
+                  },
+                  {
+                    label: 'pihta',
+                    value: 'Пихта',
+                  },
+                  {
+                    label: 'sosna',
+                    value: 'Сосна',
+                  }
+                ]
+              },
+              {
+                label: 'listva',
+                value: 'Лиственные',
+                items: [
+                  {
+                    label: 'bereza',
+                    value: 'Береза',
+                  },
+                  {
+                    label: 'buk',
+                    value: 'Бук',
+                  },
+                  {
+                    label: 'vyaz',
+                    value: 'Вяз',
+                  },
+                  {
+                    label: 'dub',
+                    value: 'Дуб',
+                  },
+                  {
+                    label: 'klen',
+                    value: 'Клен',
+                  },
+                  {
+                    label: 'lipa',
+                    value: 'Липа',
+                  },
+                  {
+                    label: 'olha',
+                    value: 'Ольха',
+                  },
+                  {
+                    label: 'osina',
+                    value: 'Осина',
+                  },
+                  {
+                    label: 'topol',
+                    value: 'Тополь',
+                  },
+                  {
+                    label: 'yasen',
+                    value: 'Ясень',
+                  },
+                ]
+              }
+            ]
+          }
+
+        ],
+
+
+        poroda: {
+
+        }
+
       }
     ],
-    queryTargets: [
-      {
-        label: 'Activity',
-        value: 'Activity',
-        isSelected: true
-      },
-      {
-        label: 'Channel',
-        value: 'Channel',
-        isSelected: false
-      }
-    ],
-    actionStatuses: [
-      {
-        label: 'Add tags',
-        value: 'Active',
-        isSelected: true
-      },
-      {
-        label: 'Remove tags',
-        value: 'Inactive',
-        isSelected: true
-      }
-    ],
-    pageModes: [
-      {
-        label: 'Tags In Your Tag Subscriptions',
-        value: 'Subscription',
-        isSelected: false
-      },
-      {
-        label: 'All tags',
-        value: 'All',
-        isSelected: true
-      },
-      {
-        label: 'A specific tag or tag group',
-        value: 'Specific',
-        isSelected: false
-      }
-    ],
-    luceneParams: {
-      groupId: null,
-      tagId: null,
-      targetId: null,
-      fromDate: null,
-      toDate: null,
-      status: null,
-      target: null
+    poroda: {
+
     },
-    tagGroups: []
+
+
+
   },
 
   initialize: function() {
