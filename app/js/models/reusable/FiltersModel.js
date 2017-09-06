@@ -1,4 +1,4 @@
-app.models.FilterModel = Backbone.Model.extend({
+app.models.FiltersModel = Backbone.Model.extend({
 
   defaults: {
     category: [
@@ -126,6 +126,12 @@ app.models.FilterModel = Backbone.Model.extend({
 
   initialize: function() {
 
+    //console.log(this)
+
   },
+
+  showFilters: function(catId) {
+    console.log('showFilters')
+  }
 
 });

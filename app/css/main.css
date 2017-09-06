@@ -681,7 +681,8 @@ nav.navigation .user .logout:hover {
 
 .new-ad .ad-photo {
   margin: 0;
-  width: 100%;
+  width: 10rem;
+  height: 10rem;
   background: #f0eedf;
   cursor: cell; }
 
@@ -698,7 +699,7 @@ nav.navigation .user .logout:hover {
 
 @media only screen and (min-width: 992px) {
   .new-ad .ad-photo span {
-    font-size: 7.4rem; } }
+    font-size: 5rem; } }
 
 @media only screen and (min-width: 1200px) {
   .new-ad .page {

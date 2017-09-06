@@ -4,7 +4,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 
   regions: {
     leftNavRegion: '.left-navigation',
-    countriesPicker: '.country-picker'
+    countriesPicker: '.country-picker',
+    filters: '.filters'
   },
 
   ui: {
@@ -27,6 +28,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 
   events: {
     'change @ui.getContacts': 'setContacts',
+    'change @ui.category': 'setFilter',
     'click @ui.backBtn': function() {
       brd.router.navigate('#ads', {trigger:true});
     }
@@ -86,7 +88,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           required: 'Укажите объект объявления'
         },
         category: {
-          required: 'Выберите категорию'
+          required: 'Выберите раздел'
         },
         title: {
           required: 'Введите заголовок',
@@ -204,6 +206,22 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         phones: []
       })
     }
+  },
+
+  /*
+   *
+   *
+   */
+  setFilter: function(event) {
+    // If selected some item
+    if(event.target.value) {
+      // Show filters in child view
+      this.showChildView('filters', new app.views.FiltersView({model: this.model.get('categoryModel')}));
+    } else {
+      // Clear region
+      this.getRegion('filters').empty();
+    }
+
   },
 
   /*

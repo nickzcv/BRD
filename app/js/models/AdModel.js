@@ -10,7 +10,6 @@ app.models.AdModel = Backbone.Model.extend({
     title: null,
     country: null,
     city: null,
-
     contacts: {
       takeFrom: 'profile',
       phones: []
@@ -24,8 +23,10 @@ app.models.AdModel = Backbone.Model.extend({
       console.log(error);
     });
 
-    // Init child countries model
+    // Init child Countries model
     thisModel.set({countriesModel: new app.models.CountriesPickerModel()});
+    // Init child Filters model under categories
+    thisModel.set({categoryModel: new app.models.FiltersModel()});
 
     // get countries Model
     let countriesModel = thisModel.get('countriesModel');
