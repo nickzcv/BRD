@@ -1,7 +1,7 @@
 app.models.FiltersModel = Backbone.Model.extend({
 
   defaults: {
-    category: [
+    categories: [
       {
         id: 1,
         title: 'Пиломатериалы',
