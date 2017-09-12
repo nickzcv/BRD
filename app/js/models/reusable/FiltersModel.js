@@ -8,7 +8,9 @@ app.models.FiltersModel = Backbone.Model.extend({
         filters: [
           {
             label: 'sortiment',
-            value: 'Сортимент',
+            title: 'Сортимент',
+            level: 'child',
+            type: 'checkbox',
             items: [
               {
                 label: 'brus',
@@ -30,11 +32,14 @@ app.models.FiltersModel = Backbone.Model.extend({
           },
           {
             label: 'poroda',
-            value: 'Порода',
+            title: 'Порода',
+            level: 'parent',
             items: [
               {
                 label: 'hvoya',
-                value: 'Хвойные',
+                title: 'Хвойные',
+                level: 'child',
+                type: 'checkbox',
                 items: [
                   {
                     label: 'el',
@@ -60,7 +65,8 @@ app.models.FiltersModel = Backbone.Model.extend({
               },
               {
                 label: 'listva',
-                value: 'Лиственные',
+                title: 'Лиственные',
+                level: 'child',
                 items: [
                   {
                     label: 'bereza',

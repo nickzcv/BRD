@@ -575,7 +575,9 @@ app.models.FiltersModel = Backbone.Model.extend({
       title: 'Пиломатериалы',
       filters: [{
         label: 'sortiment',
-        value: 'Сортимент',
+        title: 'Сортимент',
+        level: 'child',
+        type: 'checkbox',
         items: [{
           label: 'brus',
           value: 'Брус'
@@ -591,10 +593,13 @@ app.models.FiltersModel = Backbone.Model.extend({
         }]
       }, {
         label: 'poroda',
-        value: 'Порода',
+        title: 'Порода',
+        level: 'parent',
         items: [{
           label: 'hvoya',
-          value: 'Хвойные',
+          title: 'Хвойные',
+          level: 'child',
+          type: 'checkbox',
           items: [{
             label: 'el',
             value: 'Ель'
@@ -613,7 +618,8 @@ app.models.FiltersModel = Backbone.Model.extend({
           }]
         }, {
           label: 'listva',
-          value: 'Лиственные',
+          title: 'Лиственные',
+          level: 'child',
           items: [{
             label: 'bereza',
             value: 'Береза'
