@@ -27,6 +27,9 @@ app.models.AdModel = Backbone.Model.extend({
     thisModel.set({countriesModel: new app.models.CountriesPickerModel()});
     // Init child Filters model under categories
     thisModel.set({categoryModel: new app.models.FiltersModel()});
+    //thisModel.set({categoryModel: new app.models.FiltersModel()});
+
+    console.log( thisModel );
 
     // get countries Model
     let countriesModel = thisModel.get('countriesModel');

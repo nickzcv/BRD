@@ -27,11 +27,9 @@
       <div class="form-group">
         <select class="form-control" id="category" name="category">
           <option value="">&mdash;</option>
-          <option value="1">Пиломатериалы</option>
-          <option value="2">Лесоматериалы</option>
-          <option value="3">Изделия из древесины</option>
-          <option value="4">Древесные отходы</option>
-          <option value="5">Транспорт и перевозки</option>
+          {{#each categoryModel.attributes.categories}}
+            <option value="{{id}}">{{title}}</option>
+          {{/each}}
         </select>
       </div>
       <div class="filters"></div>

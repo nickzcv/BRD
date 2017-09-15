@@ -347,6 +347,9 @@ app.models.AdModel = Backbone.Model.extend({
     thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
     // Init child Filters model under categories
     thisModel.set({ categoryModel: new app.models.FiltersModel() });
+    //thisModel.set({categoryModel: new app.models.FiltersModel()});
+
+    console.log(thisModel);
 
     // get countries Model
     var countriesModel = thisModel.get('countriesModel');
@@ -656,15 +659,96 @@ app.models.FiltersModel = Backbone.Model.extend({
 
       poroda: {}
 
-    }],
-    poroda: {}
+    }, {
+      id: 2,
+      title: 'Test 2 obj',
+      filters: [{
+        label: 'test1',
+        title: 'тест1',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'brus',
+          value: 'Брус'
+        }, {
+          label: 'brusok',
+          value: 'Брусок'
+        }, {
+          label: 'doska',
+          value: 'Доска'
+        }, {
+          label: 'shpaly',
+          value: 'Шпалы'
+        }]
+      }, {
+        label: 'test2',
+        title: 'т 2',
+        level: 'parent',
+        items: [{
+          label: 'hvoya',
+          title: 'Хвойные',
+          level: 'child',
+          type: 'checkbox',
+          items: [{
+            label: 'el',
+            value: 'Ель'
+          }, {
+            label: 'kedr',
+            value: 'Кедр'
+          }, {
+            label: 'listvenica',
+            value: 'Лиственница'
+          }, {
+            label: 'pihta',
+            value: 'Пихта'
+          }, {
+            label: 'sosna',
+            value: 'Сосна'
+          }]
+        }, {
+          label: 'listva',
+          title: 'Лиственные',
+          level: 'child',
+          items: [{
+            label: 'bereza',
+            value: 'Береза'
+          }, {
+            label: 'buk',
+            value: 'Бук'
+          }, {
+            label: 'vyaz',
+            value: 'Вяз'
+          }, {
+            label: 'dub',
+            value: 'Дуб'
+          }, {
+            label: 'klen',
+            value: 'Клен'
+          }, {
+            label: 'lipa',
+            value: 'Липа'
+          }, {
+            label: 'olha',
+            value: 'Ольха'
+          }, {
+            label: 'osina',
+            value: 'Осина'
+          }, {
+            label: 'topol',
+            value: 'Тополь'
+          }, {
+            label: 'yasen',
+            value: 'Ясень'
+          }]
+        }]
+      }]
+    }]
 
   },
 
   initialize: function initialize() {
 
-    //console.log(this)
-
+    console.log(this.attributes);
   },
 
   showFilters: function showFilters(catId) {
@@ -1369,10 +1453,18 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    *
    */
   setFilter: function setFilter(event) {
+    var selectedCategoryId = parseInt(event.target.value);
     // If selected some item
-    if (event.target.value) {
+    if (selectedCategoryId) {
+      var categoryModel = this.model.get('categoryModel'),
+          category = _.findWhere(categoryModel.attributes.categories, { id: selectedCategoryId });
+
+      console.log(category);
+      console.log(event.target.value);
+
+      //console.log(categoryModel.categories)
       // Show filters in child view
-      this.showChildView('filters', new app.views.FiltersView({ model: this.model.get('categoryModel') }));
+      this.showChildView('filters', new app.views.FiltersView({ model: category }));
     } else {
       // Clear region
       this.getRegion('filters').empty();
@@ -1715,6 +1807,10 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
     //'change @ui.country': 'selectCountry',
   },
 
-  initialize: function initialize() {}
+  initialize: function initialize() {
+
+    console.log(this.model);
+    console.log(this);
+  }
 
 });

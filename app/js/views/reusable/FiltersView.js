@@ -12,6 +12,9 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
 
   initialize: function() {
 
+    console.log(this.model)
+    console.log(this)
+
   }
 
 
