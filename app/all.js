@@ -660,34 +660,40 @@ app.models.FiltersModel = Backbone.Model.extend({
       }]
     }, {
       id: 2,
-      title: 'Test 2 obj',
+      title: 'Древесные отходы',
       filters: [{
-        label: 'test1',
-        title: 'тест1',
+        label: '',
+        title: '',
         level: 'child',
         type: 'checkbox',
         items: [{
-          label: 'brus',
-          value: 'Брус'
+          label: 'gorbil',
+          value: 'Горбыль'
         }, {
-          label: 'brusok',
-          value: 'Брусок'
+          label: 'struzhka',
+          value: 'Стружка'
         }, {
-          label: 'doska',
-          value: 'Доска'
+          label: 'obapol',
+          value: 'Обапол'
         }, {
-          label: 'shpaly',
-          value: 'Шпалы'
+          label: 'opilki',
+          value: 'Опилки'
+        }, {
+          label: 'kora',
+          value: 'Кора'
+        }, {
+          label: 'shepa',
+          value: 'Щепа'
         }]
       }, {
-        label: 'test2',
-        title: 'т 2',
-        level: 'child',
+        label: 'poroda',
+        title: 'Порода',
+        level: 'parent',
         items: [{
           label: 'hvoya',
           title: 'Хвойные',
           level: 'child',
-          type: 'radio',
+          type: 'checkbox',
           items: [{
             label: 'el',
             value: 'Ель'
@@ -708,6 +714,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           label: 'listva',
           title: 'Лиственные',
           level: 'child',
+          type: 'checkbox',
           items: [{
             label: 'bereza',
             value: 'Береза'
