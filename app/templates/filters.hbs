@@ -1,8 +1,36 @@
-<div class="filters">
+{{#each category.filters}}
 
-    {{#each filters}}
-      <div>{{label}}/{{title}}</div>
+  {{!-- If Filter has childs --}}
+  {{#compare level '===' 'parent'}}
+
+    <p class="lbl" data-label="{{label}}">{{title}}</p>
+    {{#each items}}
+      <div class="checkbox parent">
+        <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{title}}</label>
+      </div>
+      <div class="child-filters hidden">
+        {{#each items}}
+          {{#compare ../type '===' 'checkbox'}}
+            <div class="checkbox m-l-1">
+              <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
+            </div>
+          {{/compare}}
+        {{/each}}
+      </div>
     {{/each}}
 
+  {{else}}
 
-</div>
+  {{!-- Else filter has 1 lvl --}}
+    <p class="lbl" data-label="{{label}}">{{title}}</p>
+    {{#each items}}
+      {{#compare ../type '===' 'checkbox'}}
+        <div class="checkbox">
+          <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
+        </div>
+      {{/compare}}
+    {{/each}}
+
+  {{/compare}}
+
+{{/each}}

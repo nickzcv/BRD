@@ -209,22 +209,18 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   /*
-   *
+   * Show filter section for selected category
    *
    */
   setFilter: function(event) {
     let selectedCategoryId = parseInt(event.target.value);
     // If selected some item
     if(selectedCategoryId) {
-      let categoryModel = this.model.get('categoryModel'),
-          category = _.findWhere(categoryModel.attributes.categories, {id: selectedCategoryId});
-
-      console.log(category)
-      console.log(event.target.value)
-
-      //console.log(categoryModel.categories)
+      let categoryModel = this.model.get('categoryModel');
       // Show filters in child view
-      this.showChildView('filters', new app.views.FiltersView({model: category}));
+      this.showChildView('filters', new app.views.FiltersView({
+        model: new app.models.FiltersModel({catId : selectedCategoryId})
+      }));
     } else {
       // Clear region
       this.getRegion('filters').empty();

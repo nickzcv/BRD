@@ -347,7 +347,8 @@ app.models.AdModel = Backbone.Model.extend({
     thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
     // Init child Filters model under categories
     thisModel.set({ categoryModel: new app.models.FiltersModel() });
-    //thisModel.set({categoryModel: new app.models.FiltersModel()});
+    var categoryModel = thisModel.get('categoryModel');
+    thisModel.set({ categories: categoryModel.attributes.categories });
 
     console.log(thisModel);
 
@@ -623,6 +624,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           label: 'listva',
           title: 'Лиственные',
           level: 'child',
+          type: 'checkbox',
           items: [{
             label: 'bereza',
             value: 'Береза'
@@ -655,10 +657,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             value: 'Ясень'
           }]
         }]
-      }],
-
-      poroda: {}
-
+      }]
     }, {
       id: 2,
       title: 'Test 2 obj',
@@ -683,12 +682,12 @@ app.models.FiltersModel = Backbone.Model.extend({
       }, {
         label: 'test2',
         title: 'т 2',
-        level: 'parent',
+        level: 'child',
         items: [{
           label: 'hvoya',
           title: 'Хвойные',
           level: 'child',
-          type: 'checkbox',
+          type: 'radio',
           items: [{
             label: 'el',
             value: 'Ель'
@@ -748,11 +747,18 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   initialize: function initialize() {
 
-    console.log(this.attributes);
+    //console.log(this.attributes)
+
   },
 
-  showFilters: function showFilters(catId) {
-    console.log('showFilters');
+  showFilters: function showFilters() {
+    var catId = this.get('catId');
+    var categories = this.get('categories');
+    var category = _.findWhere(categories, { id: catId });
+
+    this.set({ category: category });
+
+    // console.log(this)
   }
 
 });
@@ -1449,22 +1455,18 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   /*
-   *
+   * Show filter section for selected category
    *
    */
   setFilter: function setFilter(event) {
     var selectedCategoryId = parseInt(event.target.value);
     // If selected some item
     if (selectedCategoryId) {
-      var categoryModel = this.model.get('categoryModel'),
-          category = _.findWhere(categoryModel.attributes.categories, { id: selectedCategoryId });
-
-      console.log(category);
-      console.log(event.target.value);
-
-      //console.log(categoryModel.categories)
+      var categoryModel = this.model.get('categoryModel');
       // Show filters in child view
-      this.showChildView('filters', new app.views.FiltersView({ model: category }));
+      this.showChildView('filters', new app.views.FiltersView({
+        model: new app.models.FiltersModel({ catId: selectedCategoryId })
+      }));
     } else {
       // Clear region
       this.getRegion('filters').empty();
@@ -1793,24 +1795,31 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.FiltersView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.filters,
 
   ui: {
-    // country: '#country',
+    parent: '.parent'
   },
 
   events: {
-    //'change @ui.country': 'selectCountry',
+    'change @ui.parent': function changeUiParent(event) {
+      var $element = $(event.target);
+      // Toggle hidden class
+      if ($element.prop('checked')) {
+        $element.parent().parent().next().removeClass('hidden');
+      } else {
+        $element.parent().parent().next().addClass('hidden');
+      }
+    }
   },
 
   initialize: function initialize() {
 
-    console.log(this.model);
-    console.log(this);
+    this.model.showFilters();
   }
 
 });

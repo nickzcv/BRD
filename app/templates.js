@@ -20,8 +20,8 @@ this["tpl"]["templates"]["add_ad"] = Handlebars.template({"1":function(depth0,he
     var stack1;
 
   return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile new-ad\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Новое объявление</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <!--  Add new ad form -->\r\n    <form id=\"add-ad-form\">\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"type\" value=\"buy\">Куплю</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"type\" value=\"sell\">Продам</label>\r\n        <div class=\"typeError\"></div>\r\n      </div>\r\n      <div class=\"form-divider\"></div>\r\n      <div class=\"form-group\">\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"object\" value=\"product\">Товар</label>\r\n        <label class=\"radio-inline\"><input type=\"radio\" name=\"object\" value=\"service\">Услуга</label>\r\n        <div class=\"objectError\"></div>\r\n      </div>\r\n      <div class=\"form-divider\"></div>\r\n\r\n      <p class=\"lbl\">Раздел</p>\r\n      <div class=\"form-group\">\r\n        <select class=\"form-control\" id=\"category\" name=\"category\">\r\n          <option value=\"\">&mdash;</option>\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = ((stack1 = (depth0 != null ? depth0.categoryModel : depth0)) != null ? stack1.attributes : stack1)) != null ? stack1.categories : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "        </select>\r\n      </div>\r\n      <div class=\"filters\"></div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"title\">Заголовок</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"title\" name=\"title\" placeholder=\"Заголовок объявления\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"description\">Текс объявления</label>\r\n        <textarea class=\"form-control\" rows=\"3\" id=\"description\" name=\"description\" placeholder=\"Текс объявления\"></textarea>\r\n      </div>\r\n\r\n      <div class=\"form-group row\">\r\n        <div class=\"col-md-6\">\r\n          <div class=\"form-group\">\r\n            <label for=\"price\">Цена</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"price\" placeholder=\"0 BYR\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <p class=\"lbl\">Срок размещения</p>\r\n          <div class=\"form-group\">\r\n            <select class=\"form-control\" id=\"expirationDate\">\r\n              <option value=\"5\">5 дней</option>\r\n              <option value=\"10\">10 дней</option>\r\n              <option value=\"30\">30 дней</option>\r\n            </select>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <p class=\"lbl\">Местоположение</p>\r\n      <div class=\"country-picker\"></div>\r\n\r\n      <div class=\"form-group row\">\r\n        <div class=\"col-md-6\">\r\n          <div class=\"form-group\">\r\n            <label for=\"contacts\">Контактные данные:</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"contacts\" placeholder=\"Введите название компании\" disabled=\"disabled\">\r\n            <span class=\"add-company\">Нет вашей компании? <a>Создать</a></span>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"profileRadio\" name=\"getContacts\" value=\"profile\" checked>Использовать контактные телефоны профиля</label>\r\n            </div>\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"companyRadio\" name=\"getContacts\" value=\"company\">Использовать контактные телефоны компании</label>\r\n            </div>\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"otherRadio\" name=\"getContacts\" value=\"other\" >Ввести другой контактный телефон</label>\r\n            </div>\r\n            <div class=\"form-group otherPhoneWrapper\">\r\n              <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"ion-android-call\"></i></span>\r\n                <input type=\"text\" class=\"form-control\" id=\"otherPhone\" name=\"otherPhone\" "
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.categories : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "        </select>\r\n      </div>\r\n      <div class=\"filters m-b-2\"></div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"title\">Заголовок</label>\r\n        <input type=\"text\" class=\"form-control\" id=\"title\" name=\"title\" placeholder=\"Заголовок объявления\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"description\">Текс объявления</label>\r\n        <textarea class=\"form-control\" rows=\"3\" id=\"description\" name=\"description\" placeholder=\"Текс объявления\"></textarea>\r\n      </div>\r\n\r\n      <div class=\"form-group row\">\r\n        <div class=\"col-md-6\">\r\n          <div class=\"form-group\">\r\n            <label for=\"price\">Цена</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"price\" placeholder=\"0 BYR\">\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <p class=\"lbl\">Срок размещения</p>\r\n          <div class=\"form-group\">\r\n            <select class=\"form-control\" id=\"expirationDate\">\r\n              <option value=\"5\">5 дней</option>\r\n              <option value=\"10\">10 дней</option>\r\n              <option value=\"30\">30 дней</option>\r\n            </select>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <p class=\"lbl\">Местоположение</p>\r\n      <div class=\"country-picker\"></div>\r\n\r\n      <div class=\"form-group row\">\r\n        <div class=\"col-md-6\">\r\n          <div class=\"form-group\">\r\n            <label for=\"contacts\">Контактные данные:</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"contacts\" placeholder=\"Введите название компании\" disabled=\"disabled\">\r\n            <span class=\"add-company\">Нет вашей компании? <a>Создать</a></span>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"profileRadio\" name=\"getContacts\" value=\"profile\" checked>Использовать контактные телефоны профиля</label>\r\n            </div>\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"companyRadio\" name=\"getContacts\" value=\"company\">Использовать контактные телефоны компании</label>\r\n            </div>\r\n            <div class=\"radio\">\r\n              <label><input type=\"radio\" id=\"otherRadio\" name=\"getContacts\" value=\"other\" >Ввести другой контактный телефон</label>\r\n            </div>\r\n            <div class=\"form-group otherPhoneWrapper\">\r\n              <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"ion-android-call\"></i></span>\r\n                <input type=\"text\" class=\"form-control\" id=\"otherPhone\" name=\"otherPhone\" "
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.otherPhone : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.program(5, data, 0),"data":data})) != null ? stack1 : "")
     + ">\r\n              </div>\r\n              <div class=\"otherPhoneError\"></div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-md-6\">\r\n          <p class=\"lbl\">Фото:</p>\r\n          <button type=\"button\" class=\"btn ad-photo\"><span class=\"ion-image\"></span></button>\r\n        </div>\r\n      </div>\r\n\r\n\r\n      <button type=\"submit\" class=\"btn btn-default\">Опубликовать</button>\r\n      <button type=\"button\" class=\"btn btn-default back\">Отмена</button>\r\n    </form>\r\n    <!-- /end form-->\r\n  </div>\r\n\r\n\r\n\r\n</div>";
 },"useData":true});
@@ -75,21 +75,83 @@ this["tpl"]["templates"]["dashboard"] = Handlebars.template({"compiler":[6,">= 2
 this["tpl"]["templates"]["filter"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"actions\">\r\n  <button type=\"button\" class=\"btn btn-default\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\r\n</div>\r\n<div class=\"filters hidden-xs hidden-sm\">\r\n  <a class=\"close-btn visible-xs visible-sm\"><span class=\"ion-close\"></span></a>\r\n  <div class=\"checkbox\">\r\n    <label><input type=\"checkbox\" value=\"\">Спрос</label>\r\n  </div>\r\n  <div class=\"checkbox\">\r\n    <label><input type=\"checkbox\" value=\"\">Предложение</label>\r\n  </div>\r\n  <div class=\"line-breaker\"></div>\r\n  <div class=\"checkbox\">\r\n    <label><input type=\"checkbox\" value=\"\">Товар</label>\r\n  </div>\r\n  <div class=\"checkbox\">\r\n    <label><input type=\"checkbox\" value=\"\">Услуга</label>\r\n  </div>\r\n  <div class=\"line-breaker\"></div>\r\n  <div class=\"form-group\">\r\n    <label for=\"category\">Категория</label>\r\n    <select class=\"form-control\" id=\"category\">\r\n      <option value=\"all\">Все</option>\r\n      <option value=\"Пиломатериалы\">Пиломатериалы</option>\r\n      <option value=\"Лесоматериалы\">Лесоматериалы</option>\r\n      <option value=\"Изделия из древесины\">Изделия из древесины</option>\r\n      <option value=\"Древесные отходы\">Древесные отходы</option>\r\n      <option value=\"Транспорт и перевозки\">Транспорт и перевозки</option>\r\n    </select>\r\n  </div>\r\n  <div class=\"line-breaker\"></div>\r\n\r\n  <div class=\"form-group\">\r\n    <label>Местоположение</label>\r\n    <select class=\"form-control\">\r\n      <option>Страна</option>\r\n      <option>2</option>\r\n      <option>3</option>\r\n      <option>4</option>\r\n    </select>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <select class=\"form-control\">\r\n      <option>Город</option>\r\n      <option>2</option>\r\n      <option>3</option>\r\n      <option>4</option>\r\n    </select>\r\n  </div>\r\n  <div class=\"line-breaker\"></div>\r\n  <div class=\"form-group\">\r\n    <button type=\"button\" class=\"btn btn-default disabled\">Сбросить фильтр <span class=\"ion-android-close\"></span></button>\r\n  </div>\r\n</div>";
 },"useData":true});
-this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
-
-  return "      <div>"
-    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
-    + "/"
-    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</div>\r\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,helpers,partials,data,blockParams,depths) {
     var stack1;
 
-  return "<div class=\"filters\">\r\n\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.filters : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n\r\n</div>";
-},"useData":true});
+  return "\r\n"
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(2, data, 0, blockParams, depths),"inverse":this.program(7, data, 0, blockParams, depths),"data":data})) != null ? stack1 : "")
+    + "\r\n";
+},"2":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "\r\n    <p class=\"lbl\" data-label=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</p>\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(3, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n";
+},"3":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "      <div class=\"checkbox parent\">\r\n        <label><input type=\"checkbox\" id=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" name=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" value=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</label>\r\n      </div>\r\n      <div class=\"child-filters hidden\">\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(4, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "      </div>\r\n";
+},"4":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1;
+
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depths[1] != null ? depths[1].type : depths[1]),"===","checkbox",{"name":"compare","hash":{},"fn":this.program(5, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"5":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "            <div class=\"checkbox m-l-1\">\r\n              <label><input type=\"checkbox\" id=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" name=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" value=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
+    + "</label>\r\n            </div>\r\n";
+},"7":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "\r\n    <p class=\"lbl\" data-label=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</p>\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(8, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n";
+},"8":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1;
+
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depths[1] != null ? depths[1].type : depths[1]),"===","checkbox",{"name":"compare","hash":{},"fn":this.program(9, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"9":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "        <div class=\"checkbox\">\r\n          <label><input type=\"checkbox\" id=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" name=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\" value=\""
+    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias3(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
+    + "</label>\r\n        </div>\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data,blockParams,depths) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0, blockParams, depths),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"useData":true,"useDepths":true});
 this["tpl"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"copyright\">\r\n  <span class=\"glyphicon glyphicon-copyright-mark\"></span> 2017\r\n</div>";
 },"useData":true});

@@ -67,6 +67,7 @@ app.models.FiltersModel = Backbone.Model.extend({
                 label: 'listva',
                 title: 'Лиственные',
                 level: 'child',
+                type: 'checkbox',
                 items: [
                   {
                     label: 'bereza',
@@ -114,12 +115,6 @@ app.models.FiltersModel = Backbone.Model.extend({
           }
 
         ],
-
-
-        poroda: {
-
-        }
-
       },
       {
         id: 2,
@@ -152,13 +147,13 @@ app.models.FiltersModel = Backbone.Model.extend({
           {
             label: 'test2',
             title: 'т 2',
-            level: 'parent',
+            level: 'child',
             items: [
               {
                 label: 'hvoya',
                 title: 'Хвойные',
                 level: 'child',
-                type: 'checkbox',
+                type: 'radio',
                 items: [
                   {
                     label: 'el',
@@ -241,12 +236,18 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   initialize: function() {
 
-    console.log(this.attributes)
+      //console.log(this.attributes)
 
   },
 
-  showFilters: function(catId) {
-    console.log('showFilters')
+  showFilters: function() {
+    let catId = this.get('catId');
+    let categories = this.get('categories');
+    let category = _.findWhere(categories, {id: catId});
+
+    this.set({category});
+
+    // console.log(this)
   }
 
 });
