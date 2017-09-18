@@ -23,6 +23,10 @@
 
   {{else}}
 
+  {{#if subtitle}}
+    <h4>{{subtitle}}</h4>
+  {{/if}}
+
   {{!-- Else filter has 1 lvl --}}
     <p class="lbl" data-label="{{label}}">{{title}}</p>
     {{#each items}}

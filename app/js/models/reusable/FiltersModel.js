@@ -190,6 +190,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             title: '',
             level: 'child',
             type: 'checkbox',
+            separator: true,
             items: [
               {
                 label: 'gorbil',
@@ -300,6 +301,391 @@ app.models.FiltersModel = Backbone.Model.extend({
               }
             ]
           }
+        ],
+      },
+      {
+        id: 3,
+        title: 'Лесоматериалы',
+        filters: [
+          {
+            label: '',
+            title: '',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'Деловая древесина',
+              },
+              {
+                label: '',
+                value: 'Дрова',
+              },
+              {
+                label: '',
+                value: 'Технологическое сырье',
+              }
+            ]
+          },
+          {
+            label: 'poroda',
+            title: 'Порода',
+            level: 'parent',
+            separator: true,
+            items: [
+              {
+                label: 'hvoya',
+                title: 'Хвойные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'el',
+                    value: 'Ель',
+                  },
+                  {
+                    label: 'kedr',
+                    value: 'Кедр',
+                  },
+                  {
+                    label: 'listvenica',
+                    value: 'Лиственница',
+                  },
+                  {
+                    label: 'pihta',
+                    value: 'Пихта',
+                  },
+                  {
+                    label: 'sosna',
+                    value: 'Сосна',
+                  }
+                ]
+              },
+              {
+                label: 'listva',
+                title: 'Лиственные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'bereza',
+                    value: 'Береза',
+                  },
+                  {
+                    label: 'buk',
+                    value: 'Бук',
+                  },
+                  {
+                    label: 'vyaz',
+                    value: 'Вяз',
+                  },
+                  {
+                    label: 'dub',
+                    value: 'Дуб',
+                  },
+                  {
+                    label: 'klen',
+                    value: 'Клен',
+                  },
+                  {
+                    label: 'lipa',
+                    value: 'Липа',
+                  },
+                  {
+                    label: 'olha',
+                    value: 'Ольха',
+                  },
+                  {
+                    label: 'osina',
+                    value: 'Осина',
+                  },
+                  {
+                    label: 'topol',
+                    value: 'Тополь',
+                  },
+                  {
+                    label: 'yasen',
+                    value: 'Ясень',
+                  },
+                ]
+              }
+            ]
+          },
+          {
+            label: '',
+            subtitle: 'Размеры',
+            title: 'Толщина(диаметр)',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'от 2 до 13 см',
+              },
+              {
+                label: '',
+                value: 'от 14 до 24 см',
+              },
+              {
+                label: '',
+                value: 'более 26 см',
+              },
+            ]
+          },
+          {
+            label: '',
+            title: 'Длина',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'до 2 м',
+              },
+              {
+                label: '',
+                value: 'от 2,1 до 6,5 м',
+              },
+              {
+                label: '',
+                value: 'более 6,5 м',
+              },
+            ]
+          },
+          {
+            label: '',
+            title: 'Сорт',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'Первый',
+              },
+              {
+                label: '',
+                value: 'Второй',
+              },
+              {
+                label: '',
+                value: 'Третий',
+              },
+              {
+                label: '',
+                value: 'Четвертый',
+              }
+            ]
+          }
+        ],
+      },
+      {
+        id: 4,
+        title: 'Изделия из древесины',
+        filters: [
+          {
+            label: '',
+            title: '',
+            level: 'parent',
+            separator: true,
+            items: [
+              {
+                label: '',
+                title: 'Материалы для покрытия пола',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: '',
+                    value: 'Доска пола',
+                  },
+                  {
+                    label: '',
+                    value: 'Террасная доска',
+                  },
+                  {
+                    label: '',
+                    value: 'Паркетная доска',
+                  }
+                ]
+              },
+              {
+                label: '',
+                title: 'Обшивочные материалы',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: '',
+                    value: 'Вагонка',
+                  },
+                  {
+                    label: '',
+                    value: 'Евровагонка',
+                  },
+                  {
+                    label: '',
+                    value: 'Блок-хаус',
+                  },
+                  {
+                    label: '',
+                    value: 'Имитация бруса',
+                  },
+                  {
+                    label: '',
+                    value: 'Планкен',
+                  }
+                ]
+              },
+              {
+                label: '',
+                title: 'Погонажные изделия',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: '',
+                    value: 'Наличник',
+                  },
+                  {
+                    label: '',
+                    value: 'Плинтус',
+                  },
+                  {
+                    label: '',
+                    value: 'Раскладка',
+                  },
+                  {
+                    label: '',
+                    value: 'Деревянный уголок',
+                  },
+                  {
+                    label: '',
+                    value: 'Дверная коробка',
+                  },
+                  {
+                    label: '',
+                    value: 'Штапики',
+                  },
+                  {
+                    label: '',
+                    value: 'Рейки',
+                  }
+                ]
+              },
+              {
+                label: '',
+                title: 'Клееный брус',
+                level: 'child',
+                type: 'checkbox'
+              },
+              {
+                label: '',
+                title: 'Фанера, ДСП, ДВП, МДФ, ОСП',
+                level: 'child',
+                type: 'checkbox'
+              },
+              {
+                label: '',
+                title: 'Мебельный щит',
+                level: 'child',
+                type: 'checkbox'
+              },
+              {
+                label: '',
+                title: 'Подоконная доска',
+                level: 'child',
+                type: 'checkbox'
+              },
+              {
+                label: '',
+                title: 'Элементы лестниц',
+                level: 'child',
+                type: 'checkbox'
+              },
+            ]
+          },
+          {
+            label: 'poroda',
+            title: 'Порода',
+            level: 'parent',
+            items: [
+              {
+                label: 'hvoya',
+                title: 'Хвойные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'el',
+                    value: 'Ель',
+                  },
+                  {
+                    label: 'kedr',
+                    value: 'Кедр',
+                  },
+                  {
+                    label: 'listvenica',
+                    value: 'Лиственница',
+                  },
+                  {
+                    label: 'pihta',
+                    value: 'Пихта',
+                  },
+                  {
+                    label: 'sosna',
+                    value: 'Сосна',
+                  }
+                ]
+              },
+              {
+                label: 'listva',
+                title: 'Лиственные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'bereza',
+                    value: 'Береза',
+                  },
+                  {
+                    label: 'buk',
+                    value: 'Бук',
+                  },
+                  {
+                    label: 'vyaz',
+                    value: 'Вяз',
+                  },
+                  {
+                    label: 'dub',
+                    value: 'Дуб',
+                  },
+                  {
+                    label: 'klen',
+                    value: 'Клен',
+                  },
+                  {
+                    label: 'lipa',
+                    value: 'Липа',
+                  },
+                  {
+                    label: 'olha',
+                    value: 'Ольха',
+                  },
+                  {
+                    label: 'osina',
+                    value: 'Осина',
+                  },
+                  {
+                    label: 'topol',
+                    value: 'Тополь',
+                  },
+                  {
+                    label: 'yasen',
+                    value: 'Ясень',
+                  },
+                ]
+              }
+            ]
+          },
         ],
       }
     ],
