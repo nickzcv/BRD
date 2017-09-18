@@ -1,3 +1,5 @@
+<div class="row">
+  <div class="col-md-6">
 {{#each category.filters}}
 
   {{!-- If Filter has childs --}}
@@ -11,7 +13,7 @@
       <div class="child-filters hidden">
         {{#each items}}
           {{#compare ../type '===' 'checkbox'}}
-            <div class="checkbox m-l-1">
+            <div class="checkbox">
               <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
             </div>
           {{/compare}}
@@ -33,4 +35,11 @@
 
   {{/compare}}
 
+  {{#if separator}}
+    </div>
+    <div class="col-md-6">
+  {{/if}}
+
 {{/each}}
+  </div>
+</div>

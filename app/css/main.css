@@ -703,6 +703,9 @@ nav.navigation .user .logout:hover {
   color: goldenrod;
   float: right; }
 
+.new-ad .child-filters {
+  margin-left: 1rem; }
+
 @media only screen and (min-width: 992px) {
   .new-ad .ad-photo span {
     font-size: 5rem; } }

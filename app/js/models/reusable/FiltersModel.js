@@ -112,6 +112,71 @@ app.models.FiltersModel = Backbone.Model.extend({
                 ]
               }
             ]
+          },
+          {
+            label: 'vlazhnost',
+            title: 'Влажность, %',
+            level: 'child',
+            separator: true,
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'Техническая сушка',
+              },
+              {
+                label: '',
+                value: 'Естественная влажность',
+              }
+            ]
+          },
+          {
+            label: 'obrabotka',
+            title: 'Характер обработки',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'Обрезной',
+              },
+              {
+                label: '',
+                value: 'Необрезной',
+              },
+              {
+                label: '',
+                value: 'Строганый',
+              }
+            ]
+          },
+          {
+            label: 'sort',
+            title: 'Сорт',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: '',
+                value: 'Отборный',
+              },
+              {
+                label: '',
+                value: 'Первый',
+              },
+              {
+                label: '',
+                value: 'Второй',
+              },
+              {
+                label: '',
+                value: 'Третий',
+              },
+              {
+                label: '',
+                value: 'Четвертый',
+              }
+            ]
           }
 
         ],
