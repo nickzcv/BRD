@@ -12,11 +12,9 @@
       </div>
       <div class="child-filters hidden">
         {{#each items}}
-          {{#compare ../type '===' 'checkbox'}}
-            <div class="checkbox">
-              <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
-            </div>
-          {{/compare}}
+          <div class="checkbox">
+            <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
+          </div>
         {{/each}}
       </div>
     {{/each}}
@@ -30,7 +28,22 @@
   {{!-- Else filter has 1 lvl --}}
     <p class="lbl" data-label="{{label}}">{{title}}</p>
     {{#each items}}
-      {{#compare ../type '===' 'checkbox'}}
+      {{#compare type '===' 'input'}}
+        {{#if label}}
+          <div class="input-label">{{label}}</div>
+        {{/if}}
+        <div class="from-to-inline">
+          <div class="input-filter m-r-1">
+            <label for="{{id}}-from">от</label>
+            <input type="text" class="form-control" id="{{id}}-from">
+          </div>
+          <div class="input-filter">
+            <label for="{{id}}-to">до</label>
+            <input type="text" class="form-control" id="{{id}}-to">
+          </div>
+
+        </div>
+      {{else}}
         <div class="checkbox">
           <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
         </div>

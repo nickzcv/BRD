@@ -38,6 +38,21 @@
   .child-filters {
     margin-left: 1rem;
   }
+  .input-label {
+    margin: 0.5rem 0;
+  }
+  .from-to-inline {
+    .input-filter {
+      display: inline-block;
+      label {
+        font-weight: normal;
+      }
+      input {
+        display: inline-block;
+        width: 4rem;
+      }
+    }
+  }
 
   /* Tablets */
   @media only screen and (min-width: 768px) {

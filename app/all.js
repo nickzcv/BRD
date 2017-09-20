@@ -661,9 +661,14 @@ app.models.FiltersModel = Backbone.Model.extend({
         label: 'vlazhnost',
         title: 'Влажность, %',
         level: 'child',
-        separator: true,
         type: 'checkbox',
         items: [{
+          type: 'input',
+          id: 'vlazhnost',
+          label: '',
+          from: 0,
+          to: 0
+        }, {
           label: '',
           value: 'Техническая сушка'
         }, {
@@ -675,6 +680,7 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: 'Характер обработки',
         level: 'child',
         type: 'checkbox',
+        separator: true,
         items: [{
           label: '',
           value: 'Обрезной'
@@ -705,6 +711,29 @@ app.models.FiltersModel = Backbone.Model.extend({
         }, {
           label: '',
           value: 'Четвертый'
+        }]
+      }, {
+        label: 'sizes',
+        title: 'Размеры',
+        level: 'child',
+        items: [{
+          type: 'input',
+          id: 'dlina',
+          label: 'Длина, мм',
+          from: 0,
+          to: 0
+        }, {
+          type: 'input',
+          id: 'shirina',
+          label: 'Ширина, мм',
+          from: 0,
+          to: 0
+        }, {
+          type: 'input',
+          id: 'tolshina',
+          label: 'Толщина, мм',
+          from: 0,
+          to: 0
         }]
       }]
     }, {

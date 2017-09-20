@@ -69,6 +69,9 @@ label.error {
 .m-b-1 {
   margin-bottom: 1rem; }
 
+.m-r-1 {
+  margin-right: 1rem; }
+
 .m-b-2 {
   margin-bottom: 2rem; }
 
@@ -705,6 +708,19 @@ nav.navigation .user .logout:hover {
 
 .new-ad .child-filters {
   margin-left: 1rem; }
+
+.new-ad .input-label {
+  margin: 0.5rem 0; }
+
+.new-ad .from-to-inline .input-filter {
+  display: inline-block; }
+
+.new-ad .from-to-inline .input-filter label {
+  font-weight: normal; }
+
+.new-ad .from-to-inline .input-filter input {
+  display: inline-block;
+  width: 4rem; }
 
 @media only screen and (min-width: 992px) {
   .new-ad .ad-photo span {
