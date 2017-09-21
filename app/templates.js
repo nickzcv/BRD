@@ -147,11 +147,11 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
   return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "        <div class=\"from-to-inline\">\r\n          <div class=\"input-filter m-r-1\">\r\n            <label for=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + "-from\">от</label>\r\n            <input type=\"text\" class=\"form-control\" id=\""
+    + "-from\">от</label>\r\n            <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
     + "-from\">\r\n          </div>\r\n          <div class=\"input-filter\">\r\n            <label for=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + "-to\">до</label>\r\n            <input type=\"text\" class=\"form-control\" id=\""
+    + "-to\">до</label>\r\n            <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
     + "-to\">\r\n          </div>\r\n        </div>\r\n";
 },"11":function(depth0,helpers,partials,data) {
