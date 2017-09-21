@@ -835,7 +835,7 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: '',
         type: 'checkbox',
         items: [{
-          label: '',
+          label: 'delovaya',
           value: 'Деловая древесина'
         }, {
           label: '',
@@ -1133,8 +1133,6 @@ app.models.FiltersModel = Backbone.Model.extend({
     var category = _.findWhere(categories, { id: catId });
 
     this.set({ category: category });
-
-    // console.log(this)
   }
 
 });
@@ -2178,10 +2176,12 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
   template: tpl.templates.filters,
 
   ui: {
-    parent: '.parent'
+    parent: '.parent',
+    sizes: '.subtitle'
   },
 
   events: {
+    // Handle parent checkbox
     'change @ui.parent': function changeUiParent(event) {
       var $element = $(event.target);
       // Toggle hidden class
@@ -2190,11 +2190,18 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
       } else {
         $element.parent().parent().next().addClass('hidden');
       }
+    },
+    'change #delovaya': function changeDelovaya(event) {
+      var $element = $(event.target);
+      if ($element.prop('checked')) {
+        this.ui.sizes.removeClass('hidden');
+      } else {
+        this.ui.sizes.addClass('hidden');
+      }
     }
   },
 
   initialize: function initialize() {
-
     this.model.showFilters();
   }
 

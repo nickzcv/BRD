@@ -348,7 +348,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             type: 'checkbox',
             items: [
               {
-                label: '',
+                label: 'delovaya',
                 value: 'Деловая древесина',
               },
               {
@@ -741,8 +741,6 @@ app.models.FiltersModel = Backbone.Model.extend({
     let category = _.findWhere(categories, {id: catId});
 
     this.set({category});
-
-    // console.log(this)
   }
 
 });

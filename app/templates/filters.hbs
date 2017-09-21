@@ -22,7 +22,8 @@
   {{else}}
 
   {{#if subtitle}}
-    <h4>{{subtitle}}</h4>
+    <div class="subtitle hidden">
+      <h4>{{subtitle}}</h4>
   {{/if}}
 
   {{!-- Else filter has 1 lvl --}}
@@ -41,7 +42,6 @@
             <label for="{{id}}-to">до</label>
             <input type="text" class="form-control" id="{{id}}-to">
           </div>
-
         </div>
       {{else}}
         <div class="checkbox">
@@ -58,5 +58,8 @@
   {{/if}}
 
 {{/each}}
+    {{#if subtitle}}
+    </div>
+    {{/if}}
   </div>
 </div>

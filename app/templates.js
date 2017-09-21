@@ -134,7 +134,7 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
 },"7":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "    <h4>"
+  return "    <div class=\"subtitle hidden\">\r\n      <h4>"
     + this.escapeExpression(((helper = (helper = helpers.subtitle || (depth0 != null ? depth0.subtitle : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"subtitle","hash":{},"data":data}) : helper)))
     + "</h4>\r\n";
 },"9":function(depth0,helpers,partials,data) {
@@ -153,7 +153,7 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
     + "-to\">до</label>\r\n            <input type=\"text\" class=\"form-control\" id=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
-    + "-to\">\r\n          </div>\r\n\r\n        </div>\r\n";
+    + "-to\">\r\n          </div>\r\n        </div>\r\n";
 },"11":function(depth0,helpers,partials,data) {
     var helper;
 
@@ -174,11 +174,14 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
     + "</label>\r\n        </div>\r\n";
 },"15":function(depth0,helpers,partials,data) {
     return "    </div>\r\n    <div class=\"col-md-6\">\r\n";
+},"17":function(depth0,helpers,partials,data) {
+    return "    </div>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "<div class=\"row\">\r\n  <div class=\"col-md-6\">\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.subtitle : depth0),{"name":"if","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
