@@ -104,7 +104,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           required: 'Введите название города'
         },
         inputFilter: {
-          number: ''
+          number: '',
+          min: ''
         }
       },
 
