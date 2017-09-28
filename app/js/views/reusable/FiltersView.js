@@ -32,21 +32,22 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
     'change @ui.number': 'changeFilter'
   },
 
+
   changeFilter: function(event) {
-    // define active element
     let type = event.target.type,
-        label = event.target.value;
+        label = event.target.value,
+        value = label;
 
     if (type === 'checkbox') {
-      // Checkoboxes
-      console.log(label)
-
+      value = event.target.checked;
     } else {
-      // otherwise Inputs
-      console.log('input')
+      label = event.target.id;
+      value = event.target.value;
     }
 
+    this.model.setFilter(label, type, value);
   },
+
 
   initialize: function() {
     this.model.showFilters();

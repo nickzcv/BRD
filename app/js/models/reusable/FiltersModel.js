@@ -127,11 +127,11 @@ app.models.FiltersModel = Backbone.Model.extend({
                 to: 0,
               },
               {
-                label: '',
+                label: 'tehn_sushka',
                 value: 'Техническая сушка',
               },
               {
-                label: '',
+                label: 'est_vlazhnost',
                 value: 'Естественная влажность',
               }
             ]
@@ -144,15 +144,15 @@ app.models.FiltersModel = Backbone.Model.extend({
             separator: true,
             items: [
               {
-                label: '',
+                label: 'obreznoi',
                 value: 'Обрезной',
               },
               {
-                label: '',
+                label: 'neobrabot',
                 value: 'Необрезной',
               },
               {
-                label: '',
+                label: 'stroganyi',
                 value: 'Строганый',
               }
             ]
@@ -164,23 +164,23 @@ app.models.FiltersModel = Backbone.Model.extend({
             type: 'checkbox',
             items: [
               {
-                label: '',
+                label: 'otbornyi',
                 value: 'Отборный',
               },
               {
-                label: '',
+                label: 'pervyi',
                 value: 'Первый',
               },
               {
-                label: '',
+                label: 'vtoroi',
                 value: 'Второй',
               },
               {
-                label: '',
+                label: 'treti',
                 value: 'Третий',
               },
               {
-                label: '',
+                label: 'chetvertyi',
                 value: 'Четвертый',
               }
             ]
@@ -731,7 +731,18 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   initialize: function() {
 
-      //console.log(this.attributes)
+  },
+
+  setFilter: function(label, type, value) {
+    // For checkboxes
+    if (type === 'checkbox') {
+      console.log(value)
+
+    } else {
+      // For inputs
+      console.log(label)
+      console.log(value)
+    }
 
   },
 
@@ -739,7 +750,7 @@ app.models.FiltersModel = Backbone.Model.extend({
     let catId = this.get('catId');
     let categories = this.get('categories');
     let category = _.findWhere(categories, {id: catId});
-
+    // Selected filters category
     this.set({category});
   }
 
