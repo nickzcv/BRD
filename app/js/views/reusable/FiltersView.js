@@ -4,7 +4,9 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
 
   ui: {
     parent: '.parent',
-    sizes: '.subtitle'
+    sizes: '.subtitle',
+    checkbox: 'input[type="checkbox"]',
+    number: 'input[type="number"]'
   },
 
   events: {
@@ -25,7 +27,25 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
       } else {
         this.ui.sizes.addClass('hidden');
       }
+    },
+    'change @ui.checkbox': 'changeFilter',
+    'change @ui.number': 'changeFilter'
+  },
+
+  changeFilter: function(event) {
+    // define active element
+    let type = event.target.type,
+        label = event.target.value;
+
+    if (type === 'checkbox') {
+      // Checkoboxes
+      console.log(label)
+
+    } else {
+      // otherwise Inputs
+      console.log('input')
     }
+
   },
 
   initialize: function() {

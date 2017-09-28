@@ -121,8 +121,8 @@ app.models.FiltersModel = Backbone.Model.extend({
             items: [
               {
                 type: 'input',
-                id: 'vlazhnost',
                 label: '',
+                id: 'vlazhnost',
                 from: 0,
                 to: 0,
               },
