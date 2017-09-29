@@ -734,14 +734,16 @@ app.models.FiltersModel = Backbone.Model.extend({
   },
 
   setFilter: function(label, type, value) {
+    let category = this.get('category');
     // For checkboxes
     if (type === 'checkbox') {
-      console.log(value)
+      console.log(category);
+      let test = _.findWhere(category.filters, {'label': label});
+      console.log(test);
 
     } else {
       // For inputs
-      console.log(label)
-      console.log(value)
+
     }
 
   },
