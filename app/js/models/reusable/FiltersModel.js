@@ -453,15 +453,15 @@ app.models.FiltersModel = Backbone.Model.extend({
             type: 'checkbox',
             items: [
               {
-                label: '',
+                label: 'from2to13',
                 value: 'от 2 до 13 см',
               },
               {
-                label: '',
+                label: 'from14to24',
                 value: 'от 14 до 24 см',
               },
               {
-                label: '',
+                label: '25more',
                 value: 'более 26 см',
               },
             ]
@@ -733,14 +733,26 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   },
 
-  setFilter: function(label, type, value) {
+  setFilter: function(filterLabel, type, value) {
     let category = this.get('category');
     // For checkboxes
     if (type === 'checkbox') {
-      console.log(category);
-      let test = _.findWhere(category.filters, {'label': label});
-      console.log(test);
+      //console.log(category);
+      //let test = _.findWhere(category.filters[0].items, {label: label1});
+      //console.log(test);
 
+      console.log(filterLabel);
+
+      category.filters.forEach((currentValue) => {
+
+        console.log(currentValue);
+        console.log('--------------');
+
+        if (currentValue.label === filterLabel) {
+          console.log('!!!!!!!!!!!!!');
+        }
+
+      })
     } else {
       // For inputs
 
