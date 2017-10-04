@@ -351,8 +351,6 @@ app.models.AdModel = Backbone.Model.extend({
     var categoryModel = thisModel.get('categoryModel');
     thisModel.set({ categories: categoryModel.attributes.categories });
 
-    console.log(thisModel);
-
     // get countries Model
     var countriesModel = thisModel.get('countriesModel');
     // Listen to country change
@@ -1168,7 +1166,23 @@ app.models.FiltersModel = Backbone.Model.extend({
       });
     } else {
       // For inputs
-
+      // Retrive Id and Destination
+      var filterLabelArray = filterLabel.split('-'),
+          id = filterLabelArray[0],
+          destination = filterLabelArray[1];
+      // Iterate over all filters in current category
+      category.filters.forEach(function (currentValue) {
+        // Retrive array of inner filter items
+        var items = _this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach(function (currentValue) {
+            if (currentValue.id === id) {
+              currentValue[destination] = value;
+            }
+          });
+        }
+      });
     }
   },
 
@@ -1818,7 +1832,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     thisView.model.set({
       type: thisView.ui.type.val(),
       object: thisView.ui.object.val(),
-      //category: this.model.getCategoryObject(),
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),

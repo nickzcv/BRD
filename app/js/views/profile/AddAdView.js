@@ -140,7 +140,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     thisView.model.set({
       type: thisView.ui.type.val(),
       object: thisView.ui.object.val(),
-      //category: this.model.getCategoryObject(),
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),

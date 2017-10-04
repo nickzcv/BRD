@@ -769,6 +769,23 @@ app.models.FiltersModel = Backbone.Model.extend({
       })
     } else {
       // For inputs
+      // Retrive Id and Destination
+      let filterLabelArray = filterLabel.split('-'),
+          id = filterLabelArray[0],
+          destination = filterLabelArray[1];
+      // Iterate over all filters in current category
+      category.filters.forEach((currentValue) => {
+        // Retrive array of inner filter items
+        let items = this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach((currentValue) => {
+            if (currentValue.id === id) {
+              currentValue[destination] = value;
+            }
+          });
+        }
+      });
 
     }
 

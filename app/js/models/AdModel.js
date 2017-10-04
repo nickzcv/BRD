@@ -31,8 +31,6 @@ app.models.AdModel = Backbone.Model.extend({
     let categoryModel = thisModel.get('categoryModel');
     thisModel.set({categories: categoryModel.attributes.categories});
 
-    console.log( thisModel );
-
     // get countries Model
     let countriesModel = thisModel.get('countriesModel');
     // Listen to country change
