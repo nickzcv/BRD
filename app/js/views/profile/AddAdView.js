@@ -134,11 +134,13 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     let thisView = this,
         contacts = thisView.model.get('contacts') || [],
         error = false;
+    // Set selected filters
+    this.model.setCategoryObject();
     // Set model to save it to the server
     thisView.model.set({
       type: thisView.ui.type.val(),
       object: thisView.ui.object.val(),
-      category: thisView.ui.category.val(),
+      //category: this.model.getCategoryObject(),
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),
@@ -225,9 +227,11 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       this.showChildView('filters', new app.views.FiltersView({
         model: new app.models.FiltersModel({catId : selectedCategoryId})
       }));
+      this.model.set({selectedCategoryId})
     } else {
       // Clear region
       this.getRegion('filters').empty();
+      this.model.set({selectedCategoryId: null})
     }
 
   },

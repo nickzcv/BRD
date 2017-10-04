@@ -7,6 +7,7 @@ app.models.AdModel = Backbone.Model.extend({
     type: null,
     object: null,
     category: null,
+    selectedCategoryId: null,
     title: null,
     country: null,
     city: null,
@@ -50,5 +51,10 @@ app.models.AdModel = Backbone.Model.extend({
       return 'empty one of the required fields.';
     }
   },
+
+  setCategoryObject: function() {
+    let category = _.findWhere(this.get('categories'), {id: this.get('selectedCategoryId')});
+    this.set({category})
+  }
 
 });

@@ -771,9 +771,13 @@ app.models.FiltersModel = Backbone.Model.extend({
       // For inputs
 
     }
-    console.log(this.attributes);
+
   },
 
+  /*
+   * Get object and return array if items or false
+   *
+   */
   retriveItems: function(object) {
     if (object.hasOwnProperty('items')){
       return object.items;
