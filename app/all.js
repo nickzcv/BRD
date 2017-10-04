@@ -578,7 +578,7 @@ app.models.FiltersModel = Backbone.Model.extend({
       id: 1,
       title: 'Пиломатериалы',
       filters: [{
-        label: 'sortiment',
+        label: null,
         title: 'Сортимент',
         level: 'child',
         type: 'checkbox',
@@ -596,7 +596,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'Шпалы'
         }]
       }, {
-        label: 'poroda',
+        label: null,
         title: 'Порода',
         level: 'parent',
         items: [{
@@ -658,7 +658,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           }]
         }]
       }, {
-        label: 'vlazhnost',
+        label: null,
         title: 'Влажность, %',
         level: 'child',
         type: 'checkbox',
@@ -676,7 +676,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'Естественная влажность'
         }]
       }, {
-        label: 'obrabotka',
+        label: null,
         title: 'Характер обработки',
         level: 'child',
         type: 'checkbox',
@@ -692,7 +692,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'Строганый'
         }]
       }, {
-        label: 'sort',
+        label: null,
         title: 'Сорт',
         level: 'child',
         type: 'checkbox',
@@ -713,7 +713,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'Четвертый'
         }]
       }, {
-        label: 'sizes',
+        label: null,
         title: 'Размеры',
         level: 'child',
         items: [{
@@ -740,7 +740,7 @@ app.models.FiltersModel = Backbone.Model.extend({
       id: 2,
       title: 'Древесные отходы',
       filters: [{
-        label: '',
+        label: null,
         title: '',
         level: 'child',
         type: 'checkbox',
@@ -765,7 +765,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'Щепа'
         }]
       }, {
-        label: 'poroda',
+        label: null,
         title: 'Порода',
         level: 'parent',
         items: [{
@@ -831,21 +831,21 @@ app.models.FiltersModel = Backbone.Model.extend({
       id: 3,
       title: 'Лесоматериалы',
       filters: [{
-        label: '',
+        label: null,
         title: '',
         type: 'checkbox',
         items: [{
           label: 'delovaya',
           value: 'Деловая древесина'
         }, {
-          label: '',
+          label: 'drova',
           value: 'Дрова'
         }, {
-          label: '',
+          label: 'tehn_syrie',
           value: 'Технологическое сырье'
         }]
       }, {
-        label: 'poroda',
+        label: null,
         title: 'Порода',
         level: 'parent',
         separator: true,
@@ -908,23 +908,23 @@ app.models.FiltersModel = Backbone.Model.extend({
           }]
         }]
       }, {
-        label: '',
+        label: null,
         subtitle: 'Размеры',
         title: 'Толщина(диаметр)',
         level: 'child',
         type: 'checkbox',
         items: [{
-          label: '',
+          label: 'from2to13',
           value: 'от 2 до 13 см'
         }, {
-          label: '',
+          label: 'from14to24',
           value: 'от 14 до 24 см'
         }, {
-          label: '',
+          label: '25more',
           value: 'более 26 см'
         }]
       }, {
-        label: '',
+        label: null,
         title: 'Длина',
         level: 'child',
         type: 'checkbox',
@@ -939,7 +939,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           value: 'более 6,5 м'
         }]
       }, {
-        label: '',
+        label: null,
         title: 'Сорт',
         level: 'child',
         type: 'checkbox',
@@ -961,20 +961,20 @@ app.models.FiltersModel = Backbone.Model.extend({
       id: 4,
       title: 'Изделия из древесины',
       filters: [{
-        label: '',
+        label: null,
         title: '',
         level: 'parent',
         separator: true,
         items: [{
-          label: '',
+          label: 'materialy_dlya_pola',
           title: 'Материалы для покрытия пола',
           level: 'child',
           type: 'checkbox',
           items: [{
-            label: '',
+            label: 'doska_pola',
             value: 'Доска пола'
           }, {
-            label: '',
+            label: 'terrasnaya_doska',
             value: 'Террасная доска'
           }, {
             label: '',
@@ -1055,7 +1055,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           type: 'checkbox'
         }]
       }, {
-        label: 'poroda',
+        label: null,
         title: 'Порода',
         level: 'parent',
         items: [{
@@ -1123,16 +1123,55 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   initialize: function initialize() {},
 
-  setFilter: function setFilter(label, type, value) {
+  /*
+  * Handler for choosing any filter
+  *
+  * @param filterLabel - unique label of the selected filter
+  * @param type - checkbox or input
+  * @param value - value of the selected filter
+  *
+   */
+  setFilter: function setFilter(filterLabel, type, value) {
+    var _this = this;
+
     var category = this.get('category');
     // For checkboxes
     if (type === 'checkbox') {
-      console.log(category);
-      var test = _.findWhere(category.filters, { 'label': label });
-      console.log(test);
+      // Iterate over all filters in current category
+      category.filters.forEach(function (currentValue) {
+        // Retrive array of inner filter items
+        var items = _this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach(function (currentValue) {
+            if (currentValue.label === filterLabel) {
+              // Mark selected filter
+              currentValue.selected = value;
+            } else {
+              var _items = _this.retriveItems(currentValue);
+              if (_items) {
+                _items.forEach(function (currentValue) {
+                  if (currentValue.label === filterLabel) {
+                    currentValue.selected = value;
+                  }
+                });
+              }
+            }
+          });
+        }
+      });
     } else {
       // For inputs
 
+    }
+    console.log(this.attributes);
+  },
+
+  retriveItems: function retriveItems(object) {
+    if (object.hasOwnProperty('items')) {
+      return object.items;
+    } else {
+      return false;
     }
   },
 
@@ -1635,6 +1674,144 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
+app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    }
+  }
+
+});
+'use strict';
+
+app.views.FiltersView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filters,
+
+  ui: {
+    parent: '.parent',
+    sizes: '.subtitle',
+    checkbox: 'input[type="checkbox"]',
+    number: 'input[type="number"]'
+  },
+
+  events: {
+    // Handle parent checkbox
+    'change @ui.parent': function changeUiParent(event) {
+      var $element = $(event.target);
+      // Toggle hidden class
+      if ($element.prop('checked')) {
+        $element.parent().parent().next().removeClass('hidden');
+      } else {
+        $element.parent().parent().next().addClass('hidden');
+      }
+    },
+    'change #delovaya': function changeDelovaya(event) {
+      var $element = $(event.target);
+      if ($element.prop('checked')) {
+        this.ui.sizes.removeClass('hidden');
+      } else {
+        this.ui.sizes.addClass('hidden');
+      }
+    },
+    'change @ui.checkbox': 'changeFilter',
+    'change @ui.number': 'changeFilter'
+  },
+
+  changeFilter: function changeFilter(event) {
+    var type = event.target.type,
+        label = event.target.value,
+        value = label;
+
+    if (type === 'checkbox') {
+      value = event.target.checked;
+    } else {
+      label = event.target.id;
+      value = event.target.value;
+    }
+
+    this.model.setFilter(label, type, value);
+  },
+
+  initialize: function initialize() {
+    this.model.showFilters();
+  }
+
+});
+'use strict';
+
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
@@ -2097,144 +2274,6 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
     this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
     this.ui.profileSettings.addClass('active');
     this.ui.accountSettings.removeClass('active');
-  }
-
-});
-'use strict';
-
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    }
-  }
-
-});
-'use strict';
-
-app.views.FiltersView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filters,
-
-  ui: {
-    parent: '.parent',
-    sizes: '.subtitle',
-    checkbox: 'input[type="checkbox"]',
-    number: 'input[type="number"]'
-  },
-
-  events: {
-    // Handle parent checkbox
-    'change @ui.parent': function changeUiParent(event) {
-      var $element = $(event.target);
-      // Toggle hidden class
-      if ($element.prop('checked')) {
-        $element.parent().parent().next().removeClass('hidden');
-      } else {
-        $element.parent().parent().next().addClass('hidden');
-      }
-    },
-    'change #delovaya': function changeDelovaya(event) {
-      var $element = $(event.target);
-      if ($element.prop('checked')) {
-        this.ui.sizes.removeClass('hidden');
-      } else {
-        this.ui.sizes.addClass('hidden');
-      }
-    },
-    'change @ui.checkbox': 'changeFilter',
-    'change @ui.number': 'changeFilter'
-  },
-
-  changeFilter: function changeFilter(event) {
-    var type = event.target.type,
-        label = event.target.value,
-        value = label;
-
-    if (type === 'checkbox') {
-      value = event.target.checked;
-    } else {
-      label = event.target.id;
-      value = event.target.value;
-    }
-
-    this.model.setFilter(label, type, value);
-  },
-
-  initialize: function initialize() {
-    this.model.showFilters();
   }
 
 });

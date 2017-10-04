@@ -7,7 +7,7 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: 'Пиломатериалы',
         filters: [
           {
-            label: 'sortiment',
+            label: null,
             title: 'Сортимент',
             level: 'child',
             type: 'checkbox',
@@ -31,7 +31,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'poroda',
+            label: null,
             title: 'Порода',
             level: 'parent',
             items: [
@@ -114,7 +114,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'vlazhnost',
+            label: null,
             title: 'Влажность, %',
             level: 'child',
             type: 'checkbox',
@@ -137,7 +137,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'obrabotka',
+            label: null,
             title: 'Характер обработки',
             level: 'child',
             type: 'checkbox',
@@ -158,7 +158,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'sort',
+            label: null,
             title: 'Сорт',
             level: 'child',
             type: 'checkbox',
@@ -186,7 +186,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'sizes',
+            label: null,
             title: 'Размеры',
             level: 'child',
             items: [
@@ -213,7 +213,6 @@ app.models.FiltersModel = Backbone.Model.extend({
               },
             ]
           }
-
         ],
       },
       {
@@ -221,7 +220,7 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: 'Древесные отходы',
         filters: [
           {
-            label: '',
+            label: null,
             title: '',
             level: 'child',
             type: 'checkbox',
@@ -254,7 +253,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'poroda',
+            label: null,
             title: 'Порода',
             level: 'parent',
             items: [
@@ -343,7 +342,7 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: 'Лесоматериалы',
         filters: [
           {
-            label: '',
+            label: null,
             title: '',
             type: 'checkbox',
             items: [
@@ -352,17 +351,17 @@ app.models.FiltersModel = Backbone.Model.extend({
                 value: 'Деловая древесина',
               },
               {
-                label: '',
+                label: 'drova',
                 value: 'Дрова',
               },
               {
-                label: '',
+                label: 'tehn_syrie',
                 value: 'Технологическое сырье',
               }
             ]
           },
           {
-            label: 'poroda',
+            label: null,
             title: 'Порода',
             level: 'parent',
             separator: true,
@@ -446,7 +445,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: '',
+            label: null,
             subtitle: 'Размеры',
             title: 'Толщина(диаметр)',
             level: 'child',
@@ -467,7 +466,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: '',
+            label: null,
             title: 'Длина',
             level: 'child',
             type: 'checkbox',
@@ -487,7 +486,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: '',
+            label: null,
             title: 'Сорт',
             level: 'child',
             type: 'checkbox',
@@ -517,23 +516,23 @@ app.models.FiltersModel = Backbone.Model.extend({
         title: 'Изделия из древесины',
         filters: [
           {
-            label: '',
+            label: null,
             title: '',
             level: 'parent',
             separator: true,
             items: [
               {
-                label: '',
+                label: 'materialy_dlya_pola',
                 title: 'Материалы для покрытия пола',
                 level: 'child',
                 type: 'checkbox',
                 items: [
                   {
-                    label: '',
+                    label: 'doska_pola',
                     value: 'Доска пола',
                   },
                   {
-                    label: '',
+                    label: 'terrasnaya_doska',
                     value: 'Террасная доска',
                   },
                   {
@@ -639,7 +638,7 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
           {
-            label: 'poroda',
+            label: null,
             title: 'Порода',
             level: 'parent',
             items: [
@@ -733,31 +732,54 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   },
 
+  /*
+  * Handler for choosing any filter
+  *
+  * @param filterLabel - unique label of the selected filter
+  * @param type - checkbox or input
+  * @param value - value of the selected filter
+  *
+   */
   setFilter: function(filterLabel, type, value) {
     let category = this.get('category');
     // For checkboxes
     if (type === 'checkbox') {
-      //console.log(category);
-      //let test = _.findWhere(category.filters[0].items, {label: label1});
-      //console.log(test);
-
-      console.log(filterLabel);
-
+      // Iterate over all filters in current category
       category.filters.forEach((currentValue) => {
-
-        console.log(currentValue);
-        console.log('--------------');
-
-        if (currentValue.label === filterLabel) {
-          console.log('!!!!!!!!!!!!!');
+        // Retrive array of inner filter items
+        let items = this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach((currentValue) => {
+            if (currentValue.label === filterLabel) {
+              // Mark selected filter
+              currentValue.selected = value;
+            } else {
+              let items = this.retriveItems(currentValue);
+              if (items) {
+                items.forEach((currentValue) => {
+                  if (currentValue.label === filterLabel) {
+                    currentValue.selected = value;
+                  }
+                });
+              }
+            }
+          });
         }
-
       })
     } else {
       // For inputs
 
     }
+    console.log(this.attributes);
+  },
 
+  retriveItems: function(object) {
+    if (object.hasOwnProperty('items')){
+      return object.items;
+    } else {
+      return false;
+    }
   },
 
   showFilters: function() {
