@@ -5,7 +5,8 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   ui: {
     'leftNavRegion': '.left-navigation',
     'listRegion': '.ads-list',
-    'addButton': '.add-button'
+    'addButton': '.add-button',
+    'showArchive': '.go-to-archive'
   },
 
   regions: {
@@ -17,8 +18,8 @@ app.views.AdsView = Backbone.Marionette.View.extend({
     'click @ui.addButton': function() {
       brd.router.navigate('#ads/new', {trigger:true});
     },
-    'click @ui.arrow': function() {
-
+    'click @ui.showArchive': function() {
+      // TODO: show archive in case any ads axist in archive
     }
   },
 

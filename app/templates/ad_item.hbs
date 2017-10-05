@@ -7,17 +7,24 @@
     </div>
   </div>
   <div class="section2">
-    {{#if filter}}
-      {{filter}}
-    {{else}}
-      test<br>
-      test<br>
-      test<br>
-      test<br>
-      test<br>
-      test<br>
-      test<br>
-    {{/if}}
+    <div class="ad-info">
+      ad info<br>
+      ad info<br>
+      ad info<br>
+
+    </div>
+    <div class="category">`
+      {{#if category}}
+        <p class="lead" data-id="{{category.id}}">{{category.title}}</p>
+        {{#each category.filters}}
+          <b>{{title}}</b>
+          {{#each items}}
+            {{#if selected}}{{value}}{{/if}}
+          {{/each}}
+        {{/each}}
+      {{/if}}
+    </div>
+
   </div>
   <div class="i-bottom">
     <span class="date"><i class="ion-ios-calendar-outline"></i><span>{{formatDate updated_at 'll'}}</span></span>

@@ -583,10 +583,10 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .content .ad-title {
   font-size: 1.1rem;
-  padding: 5px 10px 0; }
+  padding: 0.5rem 0.5rem 0; }
 
 .ads .ad-item .content .ad-description {
-  padding: 5px 10px; }
+  padding: 0.2rem 0.5rem; }
 
 .ads .ad-item .i-bottom {
   position: absolute;
@@ -613,6 +613,9 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .i-bottom span:hover {
   color: #559797; }
+
+.ads .ad-item .i-bottom span.date {
+  padding-left: 0; }
 
 .ads .ad-item .icon {
   position: absolute;
@@ -666,6 +669,13 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 {
   height: auto;
   padding-bottom: 2rem; }
+
+.ads .ad-item.expanded .section2 .ad-info {
+  float: left;
+  width: 7rem; }
+
+.ads .ad-item.expanded .section2 .category {
+  margin: 1rem 1rem 1rem 8rem; }
 
 /* Ads styles
 -------------------------------------------------- */

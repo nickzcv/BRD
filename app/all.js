@@ -1125,8 +1125,6 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   },
 
-  initialize: function initialize() {},
-
   /*
   * Handler for choosing any filter
   *
@@ -1946,7 +1944,8 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   ui: {
     'leftNavRegion': '.left-navigation',
     'listRegion': '.ads-list',
-    'addButton': '.add-button'
+    'addButton': '.add-button',
+    'showArchive': '.go-to-archive'
   },
 
   regions: {
@@ -1958,7 +1957,9 @@ app.views.AdsView = Backbone.Marionette.View.extend({
     'click @ui.addButton': function clickUiAddButton() {
       brd.router.navigate('#ads/new', { trigger: true });
     },
-    'click @ui.arrow': function clickUiArrow() {}
+    'click @ui.showArchive': function clickUiShowArchive() {
+      // TODO: show archive in case any ads axist in archive
+    }
   },
 
   initialize: function initialize() {

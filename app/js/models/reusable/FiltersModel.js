@@ -724,13 +724,8 @@ app.models.FiltersModel = Backbone.Model.extend({
       }
     ],
 
-
-
   },
 
-  initialize: function() {
-
-  },
 
   /*
   * Handler for choosing any filter
