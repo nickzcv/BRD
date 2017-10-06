@@ -12,7 +12,7 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
     this.childView = app.views.adView;
     this.collection.fetch().then(
       () => {
-        console.log('Done')
+        console.log('Done');
         //thisView.childViewContainer = 'tbody';
         //thisView.emptyView = app.views.SpinnerView;
         //thisView.model.set({loading: false});

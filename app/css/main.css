@@ -188,7 +188,7 @@ nav.navigation ul li a {
   border-bottom: 1px solid #777777; }
 
 nav.navigation ul li a:hover {
-  border-bottom-color: #ccc; }
+  border-bottom-color: #b6b6b6; }
 
 nav.navigation ul li .help-btn {
   font-size: 1.5rem; }
@@ -205,13 +205,13 @@ nav.navigation ul li .btn.btn-success:hover {
   border-color: #74BDC1; }
 
 nav.navigation ul li .btn.btn-default {
-  color: #ccc;
+  color: #b6b6b6;
   background-color: transparent;
   border-color: #777777; }
 
 nav.navigation ul li .btn.btn-default:hover {
   color: #fff;
-  border-color: #ccc; }
+  border-color: #b6b6b6; }
 
 nav.navigation .user {
   position: relative;
@@ -251,7 +251,7 @@ nav.navigation .user .logout {
   padding: 0 5px;
   font-size: 1.3rem;
   cursor: pointer;
-  color: #ccc; }
+  color: #b6b6b6; }
 
 nav.navigation .user .logout:hover {
   color: goldenrod; }
@@ -368,7 +368,7 @@ nav.navigation .user .logout:hover {
   position: absolute;
   right: 2rem;
   cursor: pointer;
-  color: #ccc; }
+  color: #b6b6b6; }
 
 .filter .filters .close-btn:hover {
   color: #000; }
@@ -573,7 +573,7 @@ nav.navigation .user .logout:hover {
   background: #f0eedf; }
 
 .ads .ad-item .photo span {
-  color: #ccc;
+  color: #b6b6b6;
   font-size: 5rem;
   padding: 0 20px; }
 
@@ -634,7 +634,7 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .icon.tab {
   top: 2.5rem;
   right: 0.6rem;
-  color: #ccc; }
+  color: #b6b6b6; }
 
 .ads .ad-item .icon.tab:hover {
   color: #777777; }
@@ -642,7 +642,7 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .icon.arrow {
   bottom: -0.3rem;
   font-size: 1.5rem;
-  color: #ccc; }
+  color: #b6b6b6; }
 
 .ads .ad-item .icon.arrow:hover {
   color: #559797; }
@@ -675,7 +675,19 @@ nav.navigation .user .logout:hover {
   width: 7rem; }
 
 .ads .ad-item.expanded .section2 .category {
-  margin: 1rem 1rem 1rem 8rem; }
+  margin: 1rem 1rem 1rem 7.5rem; }
+
+.ads .ad-item.expanded .section2 .category .category-title {
+  color: #202124;
+  font-size: 1.1rem; }
+
+.ads .ad-item.expanded .section2 .category .filter-row {
+  line-height: 1.5rem; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .filter-title {
+  padding-right: 0.5rem;
+  color: #999;
+  font-weight: normal; }
 
 /* Ads styles
 -------------------------------------------------- */
@@ -823,7 +835,7 @@ nav.navigation .user .logout:hover {
 
 .modal#login .login-btn:hover, .modal#login .registration-submit:hover, .modal#registration .login-btn:hover, .modal#registration .registration-submit:hover, .modal#forgot .login-btn:hover, .modal#forgot .registration-submit:hover {
   background-color: #74BDC1;
-  border-color: #ccc; }
+  border-color: #b6b6b6; }
 
 .modal#login .forgot-password, .modal#registration .forgot-password, .modal#forgot .forgot-password {
   position: relative;

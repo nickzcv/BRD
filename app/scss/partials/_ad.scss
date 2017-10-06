@@ -132,8 +132,21 @@
           width: 7rem;
         }
         .category {
-          margin: 1rem 1rem 1rem 8rem;
+          margin: 1rem 1rem 1rem 7.5rem;
+          .category-title {
+            color: $main-dark;
+            font-size: 1.1rem;
+          }
+          .filter-row {
+            line-height: 1.5rem;
+            .filter-title {
+              padding-right: 0.5rem;
+              color: #999;
+              font-weight: normal;
+            }
+          }
         }
+
       }
     }
 

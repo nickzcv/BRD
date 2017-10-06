@@ -8,19 +8,17 @@
   </div>
   <div class="section2">
     <div class="ad-info">
-      ad info<br>
-      ad info<br>
-      ad info<br>
+
 
     </div>
-    <div class="category">`
+    <div class="category">
       {{#if category}}
-        <p class="lead" data-id="{{category.id}}">{{category.title}}</p>
+        <p class="category-title" data-id="{{category.id}}">{{category.title}}</p>
         {{#each category.filters}}
-          <b>{{title}}</b>
-          {{#each items}}
-            {{#if selected}}{{value}}{{/if}}
-          {{/each}}
+          <div class="filter-row">
+          <span class="filter-title">{{title}}</span>
+          {{#each items}}{{#if selected}}{{#if @first}}{{else}}, {{/if}}{{value}}{{/if}}{{/each}}
+          </div>
         {{/each}}
       {{/if}}
     </div>
