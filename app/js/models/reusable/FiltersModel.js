@@ -536,101 +536,101 @@ app.models.FiltersModel = Backbone.Model.extend({
                     value: 'Террасная доска',
                   },
                   {
-                    label: '',
+                    label: 'parket_doska',
                     value: 'Паркетная доска',
                   }
                 ]
               },
               {
-                label: '',
+                label: 'obshiv_materialy',
                 title: 'Обшивочные материалы',
                 level: 'child',
                 type: 'checkbox',
                 items: [
                   {
-                    label: '',
+                    label: 'vagonka',
                     value: 'Вагонка',
                   },
                   {
-                    label: '',
+                    label: 'evrovagonka',
                     value: 'Евровагонка',
                   },
                   {
-                    label: '',
+                    label: 'block_house',
                     value: 'Блок-хаус',
                   },
                   {
-                    label: '',
+                    label: 'imitaciya_brusa',
                     value: 'Имитация бруса',
                   },
                   {
-                    label: '',
+                    label: 'planken',
                     value: 'Планкен',
                   }
                 ]
               },
               {
-                label: '',
+                label: 'pogon_izdeliya',
                 title: 'Погонажные изделия',
                 level: 'child',
                 type: 'checkbox',
                 items: [
                   {
-                    label: '',
+                    label: 'nalichnik',
                     value: 'Наличник',
                   },
                   {
-                    label: '',
+                    label: 'plintus',
                     value: 'Плинтус',
                   },
                   {
-                    label: '',
+                    label: 'raskladka',
                     value: 'Раскладка',
                   },
                   {
-                    label: '',
+                    label: 'der_ugolok',
                     value: 'Деревянный уголок',
                   },
                   {
-                    label: '',
+                    label: 'dvernaya_korobka',
                     value: 'Дверная коробка',
                   },
                   {
-                    label: '',
+                    label: 'shtapiki',
                     value: 'Штапики',
                   },
                   {
-                    label: '',
+                    label: 'reiki',
                     value: 'Рейки',
                   }
                 ]
               },
               {
-                label: '',
+                label: 'kleenyi_brus',
                 title: 'Клееный брус',
                 level: 'child',
                 type: 'checkbox'
               },
               {
-                label: '',
+                label: 'fanera_dsp_dvp_mdf_osp',
                 title: 'Фанера, ДСП, ДВП, МДФ, ОСП',
                 level: 'child',
                 type: 'checkbox'
               },
               {
-                label: '',
+                label: 'mebelnyi_shit',
                 title: 'Мебельный щит',
                 level: 'child',
                 type: 'checkbox'
               },
               {
-                label: '',
+                label: 'podokonnaya_doska',
                 title: 'Подоконная доска',
                 level: 'child',
                 type: 'checkbox'
               },
               {
-                label: '',
+                label: 'element_lestnic',
                 title: 'Элементы лестниц',
                 level: 'child',
                 type: 'checkbox'

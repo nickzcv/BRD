@@ -87,6 +87,9 @@ label.error {
 .m-l-1 {
   margin-left: 1rem; }
 
+.m-l-05 {
+  margin-left: 0.5rem; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -686,8 +689,11 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .category .filter-row .filter-title {
   padding-right: 0.5rem;
-  color: #999;
-  font-weight: normal; }
+  color: #202124;
+  font-weight: bold; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .parent-title {
+  color: #202124; }
 
 /* Ads styles
 -------------------------------------------------- */

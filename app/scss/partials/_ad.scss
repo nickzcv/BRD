@@ -141,8 +141,12 @@
             line-height: 1.5rem;
             .filter-title {
               padding-right: 0.5rem;
-              color: #999;
-              font-weight: normal;
+              color: $main-dark;
+              font-weight: bold;
+            }
+            .parent-title {
+              color: $main-dark;
+
             }
           }
         }
