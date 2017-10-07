@@ -134,19 +134,23 @@
         .category {
           margin: 1rem 1rem 1rem 7.5rem;
           .category-title {
-            color: $main-dark;
+            color: $gray-dark2;
             font-size: 1.1rem;
+            font-weight: normal;
           }
           .filter-row {
             line-height: 1.5rem;
             .filter-title {
-              padding-right: 0.5rem;
               color: $main-dark;
               font-weight: bold;
+              padding-right: 1rem;
             }
             .parent-title {
-              color: $main-dark;
-
+              color: $gray-dark3;
+              font-weight: bold;
+            }
+            .dash {
+              color: #c0b0a2;
             }
           }
         }

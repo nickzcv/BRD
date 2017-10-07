@@ -43,7 +43,7 @@ label.error {
 
 .btn-default:hover {
   background: #fcfcf4;
-  border-color: #777777; }
+  border-color: #777; }
 
 .loader {
   display: inline-block;
@@ -188,7 +188,7 @@ nav.navigation ul li a {
   text-decoration: none;
   cursor: pointer;
   padding: 3px 0;
-  border-bottom: 1px solid #777777; }
+  border-bottom: 1px solid #777; }
 
 nav.navigation ul li a:hover {
   border-bottom-color: #b6b6b6; }
@@ -210,7 +210,7 @@ nav.navigation ul li .btn.btn-success:hover {
 nav.navigation ul li .btn.btn-default {
   color: #b6b6b6;
   background-color: transparent;
-  border-color: #777777; }
+  border-color: #777; }
 
 nav.navigation ul li .btn.btn-default:hover {
   color: #fff;
@@ -414,7 +414,7 @@ nav.navigation .user .logout:hover {
 
 .left-navigation ul li .link {
   display: block;
-  color: #777777;
+  color: #777;
   text-decoration: none; }
 
 .left-navigation ul li .link:hover {
@@ -467,7 +467,7 @@ nav.navigation .user .logout:hover {
 
 .profile .title .icon {
   padding: 0 1rem 0 2rem;
-  color: #777777; }
+  color: #777; }
 
 .profile .page {
   margin: 1rem 1rem 0 5rem; }
@@ -481,7 +481,7 @@ nav.navigation .user .logout:hover {
   font-weight: bold; }
 
 .profile .page .lbl2 {
-  color: #777777;
+  color: #777;
   font-size: 0.8rem;
   margin-bottom: 20px; }
 
@@ -600,7 +600,7 @@ nav.navigation .user .logout:hover {
   line-height: 2rem;
   max-height: 2rem;
   background: #FFFFFF;
-  color: #777777; }
+  color: #777; }
 
 .ads .ad-item .i-bottom i {
   position: relative;
@@ -640,7 +640,7 @@ nav.navigation .user .logout:hover {
   color: #b6b6b6; }
 
 .ads .ad-item .icon.tab:hover {
-  color: #777777; }
+  color: #777; }
 
 .ads .ad-item .icon.arrow {
   bottom: -0.3rem;
@@ -681,19 +681,24 @@ nav.navigation .user .logout:hover {
   margin: 1rem 1rem 1rem 7.5rem; }
 
 .ads .ad-item.expanded .section2 .category .category-title {
-  color: #202124;
-  font-size: 1.1rem; }
+  color: #777;
+  font-size: 1.1rem;
+  font-weight: normal; }
 
 .ads .ad-item.expanded .section2 .category .filter-row {
   line-height: 1.5rem; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .filter-title {
-  padding-right: 0.5rem;
   color: #202124;
-  font-weight: bold; }
+  font-weight: bold;
+  padding-right: 1rem; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .parent-title {
-  color: #202124; }
+  color: #888;
+  font-weight: bold; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .dash {
+  color: #c0b0a2; }
 
 /* Ads styles
 -------------------------------------------------- */
@@ -806,7 +811,7 @@ nav.navigation .user .logout:hover {
 
 .settings .updated {
   border-left: 5px solid #E5E3D4;
-  color: #777777;
+  color: #777;
   padding: 5px 10px;
   margin-top: 10px; }
 

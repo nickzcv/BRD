@@ -12,30 +12,53 @@
 
     </div>
     <div class="category">
-      {{#if category}}
-        <p class="category-title" data-id="{{category.id}}">{{category.title}}</p>
+
+    {{#if category}}
+      <table>
+        <tr>
+          <th class="category-title">{{category.title}}</th>
+        </tr>
         {{#each category.filters}}
-
           {{#compare level '===' 'parent'}}
-            <div class="filter-row">
-              {{#if title}}<span class="filter-title">{{title}}</span>{{/if}}
-              {{#each items}}
-                {{#if selected}}
-                  <div class="m-l-05">
-                    <span class="parent-title">{{title}}</span>{{#each items}}{{#if selected}}{{#if @first}}: {{else}}, {{/if}}<i>{{value}}</i>{{/if}}{{/each}}
-                  </div>
-                {{/if}}
-              {{/each}}
-            </div>
+            <tr class="filter-row">
+              <td>{{#if title}}<span class="filter-title">{{title}}</span>{{/if}}</td>
+              <td>
+                {{#each items}}
+                  {{#if selected}}
+                    <div>
+                      <span class="parent-title">{{title}}</span>
+                      {{#each items}}
+                        {{#if selected}}
+                          <i>{{value}}</i>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </td>
+            </tr>
           {{else}}
-            <div class="filter-row">
-              <span class="filter-title">{{title}}</span>
-              {{#each items}}{{#if selected}}{{#if @first}}{{else}}, {{/if}}{{value}}{{/if}}{{/each}}
-            </div>
-          {{/compare}}
+            <tr class="filter-row">
+              <td><span class="filter-title">{{title}}</span></td>
+              <td>
+                {{#each items}}
 
+                  {{#compare type '===' 'input'}}
+                    input
+                  {{else}}
+                    {{#if selected}}
+                      <span>{{value}}</span>
+                    {{/if}}
+                  {{/compare}}
+
+                {{/each}}
+              </td>
+            </tr>
+          {{/compare}}
         {{/each}}
-      {{/if}}
+
+      </table>
+    {{/if}}
     </div>
 
   </div>
