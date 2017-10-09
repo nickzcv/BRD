@@ -15,17 +15,17 @@
 
     {{#if category}}
       <table>
-        <tr>
+        <tr class="table-header">
           <th class="category-title">{{category.title}}</th>
         </tr>
         {{#each category.filters}}
           {{#compare level '===' 'parent'}}
             <tr class="filter-row">
-              <td>{{#if title}}<span class="filter-title">{{title}}</span>{{/if}}</td>
+              {{#if title}}<td><span class="filter-title">{{title}}</span></td>{{/if}}
               <td>
                 {{#each items}}
                   {{#if selected}}
-                    <div>
+                    <div class="parent">
                       <span class="parent-title">{{title}}</span>
                       {{#each items}}
                         {{#if selected}}
@@ -44,7 +44,10 @@
                 {{#each items}}
 
                   {{#compare type '===' 'input'}}
-                    input
+                    {{#if label}}{{label}}: {{/if}}
+                    {{#if from}}от {{from}}{{/if}}
+                    {{#if to}}до {{to}}{{/if}}
+                    <br>
                   {{else}}
                     {{#if selected}}
                       <span>{{value}}</span>

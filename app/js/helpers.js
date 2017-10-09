@@ -58,8 +58,24 @@ Handlebars.registerHelper('compare', function(lvalue, operator, rvalue, options)
 Handlebars.registerHelper('formatDate', function(datetime, format) {
   if (moment) {
     return moment(datetime).format(format);
-  }
-  else {
+  } else {
     return datetime;
   }
+});
+
+/*
+ *
+ */
+Handlebars.registerHelper('getSelected', function(context, options) {
+  if (context) {
+    return context.map(function(item) {
+      if (item.selected) {
+        return options.fn(item);
+      }
+
+      }).join(",");
+  } else {
+    return 'NOTHING'
+  }
+
 });

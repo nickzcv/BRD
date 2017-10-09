@@ -140,18 +140,26 @@
           }
           .filter-row {
             line-height: 1.5rem;
+
+            td {
+              vertical-align: text-top;
+            }
             .filter-title {
               color: $main-dark;
               font-weight: bold;
               padding-right: 1rem;
             }
+            .parent {
+
+            }
             .parent-title {
-              color: $gray-dark3;
+              color: $main-dark;
               font-weight: bold;
+              font-style: italic;
             }
-            .dash {
-              color: #c0b0a2;
-            }
+          }
+          .table-header {
+            padding-bottom: 1rem;
           }
         }
 
