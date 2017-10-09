@@ -13,6 +13,10 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
     this.collection.fetch().then(
       () => {
         console.log('Done');
+        if (this.collection.length) {
+          console.log(this.collection.length)
+        }
+
         //thisView.childViewContainer = 'tbody';
         //thisView.emptyView = app.views.SpinnerView;
         //thisView.model.set({loading: false});
@@ -26,6 +30,7 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
         });*/
       }
     );
+
   },
 
 });

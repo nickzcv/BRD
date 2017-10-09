@@ -123,8 +123,8 @@ app.models.FiltersModel = Backbone.Model.extend({
                 type: 'input',
                 label: '',
                 id: 'vlazhnost',
-                from: 0,
-                to: 0,
+                from: null,
+                to: null,
               },
               {
                 label: 'tehn_sushka',
@@ -194,22 +194,22 @@ app.models.FiltersModel = Backbone.Model.extend({
                 type: 'input',
                 id: 'dlina',
                 label: 'Длина, мм',
-                from: 0,
-                to: 0,
+                from: null,
+                to: null,
               },
               {
                 type: 'input',
                 id: 'shirina',
                 label: 'Ширина, мм',
-                from: 0,
-                to: 0,
+                from: null,
+                to: null,
               },
               {
                 type: 'input',
                 id: 'tolshina',
                 label: 'Толщина, мм',
-                from: 0,
-                to: 0,
+                from: null,
+                to: null,
               },
             ]
           }
@@ -777,6 +777,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           items.forEach((currentValue) => {
             if (currentValue.id === id) {
               currentValue[destination] = value;
+              currentValue.selected = true;
             }
           });
         }

@@ -42,18 +42,20 @@
               <td><span class="filter-title">{{title}}</span></td>
               <td>
                 {{#each items}}
-
                   {{#compare type '===' 'input'}}
-                    {{#if label}}{{label}}: {{/if}}
-                    {{#if from}}от {{from}}{{/if}}
-                    {{#if to}}до {{to}}{{/if}}
-                    <br>
+                    {{#if selected}}
+                      {{#if label}}
+                        <i>{{label}}</i>:
+                      {{/if}}
+                      {{#if from}}от {{from}}{{/if}}
+                      {{#if to}}до {{to}}{{/if}}
+                      <br>
+                    {{/if}}
                   {{else}}
                     {{#if selected}}
                       <span>{{value}}</span>
                     {{/if}}
                   {{/compare}}
-
                 {{/each}}
               </td>
             </tr>

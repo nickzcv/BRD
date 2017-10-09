@@ -685,8 +685,8 @@ app.models.FiltersModel = Backbone.Model.extend({
           type: 'input',
           label: '',
           id: 'vlazhnost',
-          from: 0,
-          to: 0
+          from: null,
+          to: null
         }, {
           label: 'tehn_sushka',
           value: 'Техническая сушка'
@@ -739,20 +739,20 @@ app.models.FiltersModel = Backbone.Model.extend({
           type: 'input',
           id: 'dlina',
           label: 'Длина, мм',
-          from: 0,
-          to: 0
+          from: null,
+          to: null
         }, {
           type: 'input',
           id: 'shirina',
           label: 'Ширина, мм',
-          from: 0,
-          to: 0
+          from: null,
+          to: null
         }, {
           type: 'input',
           id: 'tolshina',
           label: 'Толщина, мм',
-          from: 0,
-          to: 0
+          from: null,
+          to: null
         }]
       }]
     }, {
@@ -1192,6 +1192,7 @@ app.models.FiltersModel = Backbone.Model.extend({
           items.forEach(function (currentValue) {
             if (currentValue.id === id) {
               currentValue[destination] = value;
+              currentValue.selected = true;
             }
           });
         }
@@ -1233,9 +1234,15 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
    * @instance
    */
   initialize: function initialize() {
+    var _this = this;
+
     this.childView = app.views.adView;
     this.collection.fetch().then(function () {
       console.log('Done');
+      if (_this.collection.length) {
+        console.log(_this.collection.length);
+      }
+
       //thisView.childViewContainer = 'tbody';
       //thisView.emptyView = app.views.SpinnerView;
       //thisView.model.set({loading: false});
