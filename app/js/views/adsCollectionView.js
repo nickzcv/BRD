@@ -2,6 +2,10 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
+  modelEvents: {
+    'change': 'render'
+  },
+
   /**
    * @see Marionette.Object#initialize
    *
@@ -16,21 +20,20 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
         if (this.collection.length) {
           console.log(this.collection.length)
         }
-
-        //thisView.childViewContainer = 'tbody';
-        //thisView.emptyView = app.views.SpinnerView;
-        //thisView.model.set({loading: false});
-
+        this.emptyView = app.views.SpinnerView;
+        this.model.set({loading: true});
       },
       () => {
-/*        thisView.model.set({
+          this.model.set({
           loading: false,
           isError: true,
           errorMessage: 'Unable to get service data. Please try later.',
-        });*/
+        });
       }
     );
 
   },
 
 });
+
+

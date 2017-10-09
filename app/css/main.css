@@ -696,10 +696,22 @@ nav.navigation .user .logout:hover {
   font-weight: bold;
   padding-right: 1rem; }
 
+.ads .ad-item.expanded .section2 .category .filter-row .parent i:nth-child(1n):after {
+  content: ', '; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .parent i:last-child:after {
+  content: ''; }
+
 .ads .ad-item.expanded .section2 .category .filter-row .parent-title {
   color: #202124;
   font-weight: bold;
   font-style: italic; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .first-level span:nth-child(1n):after {
+  content: ', '; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .first-level span:last-child:after {
+  content: ''; }
 
 .ads .ad-item.expanded .section2 .category .table-header {
   padding-bottom: 1rem; }

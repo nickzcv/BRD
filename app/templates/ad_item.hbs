@@ -40,7 +40,7 @@
           {{else}}
             <tr class="filter-row">
               <td><span class="filter-title">{{title}}</span></td>
-              <td>
+              <td class="first-level">
                 {{#each items}}
                   {{#compare type '===' 'input'}}
                     {{#if selected}}
@@ -63,6 +63,7 @@
         {{/each}}
 
       </table>
+
     {{/if}}
     </div>
 

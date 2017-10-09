@@ -12,6 +12,11 @@
       <button type="button" class="btn btn-default add-button">Добавить объявление <span class="ion-ios-plus-outline"></span></button>
       <button type="button" class="btn btn-default go-to-archive" disabled>Архив <span class="ion-filing"></span></button>
     </div>
-    <div class="ads-list"></div>
+    {{#if loading}}
+      <div>LOADER</div>
+    {{else}}
+      <div class="ads-list"></div>
+    {{/if}}
+
   </div>
 </div>

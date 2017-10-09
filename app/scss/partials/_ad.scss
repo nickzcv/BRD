@@ -149,13 +149,22 @@
               font-weight: bold;
               padding-right: 1rem;
             }
-            .parent {
-
+            .parent i:nth-child(1n):after {
+              content: ', ';
+            }
+            .parent i:last-child:after {
+              content: '';
             }
             .parent-title {
               color: $main-dark;
               font-weight: bold;
               font-style: italic;
+            }
+            .first-level span:nth-child(1n):after {
+              content: ', ';
+            }
+            .first-level span:last-child:after {
+              content: '';
             }
           }
           .table-header {

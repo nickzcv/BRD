@@ -392,6 +392,19 @@ app.models.AdModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.AdsListModel = Backbone.Model.extend({
+
+  defaults: {
+    loading: true
+  },
+
+  initialize: function initialize() {
+    console.log('initialize');
+  }
+
+});
+'use strict';
+
 app.models.HeaderModel = Backbone.Model.extend({
 
   defaults: {
@@ -1221,11 +1234,33 @@ app.models.FiltersModel = Backbone.Model.extend({
   }
 
 });
+"use strict";
+
+/**
+ * Spinner view
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.SpinnerView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.SpinnerView
+   */
+  template: tpl.templates.spinner
+});
 'use strict';
 
 app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
+
+  modelEvents: {
+    'change': 'render'
+  },
 
   /**
    * @see Marionette.Object#initialize
@@ -1242,16 +1277,14 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
       if (_this.collection.length) {
         console.log(_this.collection.length);
       }
-
-      //thisView.childViewContainer = 'tbody';
-      //thisView.emptyView = app.views.SpinnerView;
-      //thisView.model.set({loading: false});
+      _this.emptyView = app.views.SpinnerView;
+      _this.model.set({ loading: true });
     }, function () {
-      /*        thisView.model.set({
-                loading: false,
-                isError: true,
-                errorMessage: 'Unable to get service data. Please try later.',
-              });*/
+      _this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Unable to get service data. Please try later.'
+      });
     });
   }
 
@@ -1990,7 +2023,7 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('adsList', new app.views.adsCollectionView());
+    this.showChildView('adsList', new app.views.adsCollectionView({ model: new app.models.AdsListModel() }));
   }
 
 });
