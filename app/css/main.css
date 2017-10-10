@@ -675,7 +675,33 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .ad-info {
   float: left;
-  width: 7rem; }
+  width: 7rem;
+  text-align: center; }
+
+.ads .ad-item.expanded .section2 .ad-info .see-phone {
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem; }
+
+.ads .ad-item.expanded .section2 .ad-info .see-phone:hover {
+  border-color: #559797; }
+
+.ads .ad-item.expanded .section2 .ad-info .see-phone:hover span:before {
+  content: '\f4b9'; }
+
+.ads .ad-item.expanded .section2 .ad-info .see-phone .q-phone {
+  position: absolute;
+  top: 0;
+  color: #559797; }
+
+.ads .ad-item.expanded .section2 .ad-info .mail {
+  padding: 0.5rem 1rem; }
+
+.ads .ad-item.expanded .section2 .ad-info .mail:hover {
+  border-color: #559797; }
+
+.ads .ad-item.expanded .section2 .ad-info .mail:hover span:before {
+  content: '\f423'; }
 
 .ads .ad-item.expanded .section2 .category {
   margin: 1rem 1rem 1rem 7.5rem; }

@@ -130,6 +130,34 @@
         .ad-info {
           float: left;
           width: 7rem;
+          text-align: center;
+
+          .see-phone {
+            position: relative;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            &:hover {
+              border-color: $blue-dark;
+              span:before {
+                content: '\f4b9';
+              }
+            }
+            .q-phone {
+              position: absolute;
+              top: 0;
+              color: $blue-dark;
+            }
+          }
+          .mail {
+            padding: 0.5rem 1rem;
+
+            &:hover {
+              border-color: $blue-dark;
+              span:before {
+                content: '\f423';
+              }
+            }
+          }
         }
         .category {
           margin: 1rem 1rem 1rem 7.5rem;

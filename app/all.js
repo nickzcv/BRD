@@ -1299,20 +1299,25 @@ app.views.adView = Backbone.Marionette.View.extend({
   template: tpl.templates.ad_item,
 
   ui: {
-    'arrow': '.arrow',
-    'item': '.ad-item'
-
+    arrow: '.arrow',
+    item: '.ad-item',
+    showPhone: '.see-phone'
   },
 
   events: {
-    'click @ui.arrow': 'changeAdView'
+    'click @ui.arrow': 'changeAdView',
+    'click @ui.showPhone': 'showPhone'
   },
 
   /*
-   Expanded/hide filter section
-   */
+  *   Expanded/hide filter section
+  */
   changeAdView: function changeAdView() {
     this.ui.item.toggleClass('expanded');
+  },
+
+  showPhone: function showPhone() {
+    console.log(this.model.attributes.contacts);
   }
 
 });
