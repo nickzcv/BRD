@@ -1,11 +1,12 @@
 app.models.AdsListModel = Backbone.Model.extend({
 
   defaults: {
-    loading: true
+    loading: true,
+    noAds: true,
   },
 
   initialize: function() {
-    console.log('initialize')
+    console.log('initialize AdsListModel')
   },
 
 });

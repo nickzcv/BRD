@@ -707,6 +707,20 @@ nav.navigation .user .logout:hover {
   font-weight: bold;
   font-style: italic; }
 
+.ads .ad-item.expanded .section2 .category .filter-row .first-level {
+  position: relative; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .first-level:after {
+  content: '-';
+  position: absolute;
+  left: 0; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .first-level span {
+  display: inline-block;
+  background: #fff;
+  position: relative;
+  z-index: 1; }
+
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span:nth-child(1n):after {
   content: ', '; }
 

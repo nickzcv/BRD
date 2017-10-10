@@ -18,10 +18,12 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
       () => {
         console.log('Done');
         if (this.collection.length) {
-          console.log(this.collection.length)
+          console.log(this.collection.length);
+          this.model.set({noAds: false});
         }
         this.emptyView = app.views.SpinnerView;
-        this.model.set({loading: true});
+        this.model.set({loading: false});
+        console.log(this.model);
       },
       () => {
           this.model.set({

@@ -160,6 +160,20 @@
               font-weight: bold;
               font-style: italic;
             }
+            .first-level {
+              position: relative;
+            }
+            .first-level:after {
+              content: '-';
+              position: absolute;
+              left: 0;
+            }
+            .first-level span {
+              display: inline-block;
+              background: #fff;
+              position: relative;
+              z-index: 1;
+            }
             .first-level span:nth-child(1n):after {
               content: ', ';
             }

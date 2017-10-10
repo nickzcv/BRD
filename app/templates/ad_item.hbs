@@ -21,7 +21,11 @@
         {{#each category.filters}}
           {{#compare level '===' 'parent'}}
             <tr class="filter-row">
-              {{#if title}}<td><span class="filter-title">{{title}}</span></td>{{/if}}
+              {{#if title}}
+                <td>
+                  <span class="filter-title">{{title}}</span>
+                </td>
+              {{/if}}
               <td>
                 {{#each items}}
                   {{#if selected}}
@@ -39,7 +43,9 @@
             </tr>
           {{else}}
             <tr class="filter-row">
-              <td><span class="filter-title">{{title}}</span></td>
+              {{#if title}}
+                <td><span class="filter-title">{{title}}</span></td>
+              {{/if}}
               <td class="first-level">
                 {{#each items}}
                   {{#compare type '===' 'input'}}

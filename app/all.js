@@ -395,11 +395,12 @@ app.models.AdModel = Backbone.Model.extend({
 app.models.AdsListModel = Backbone.Model.extend({
 
   defaults: {
-    loading: true
+    loading: true,
+    noAds: true
   },
 
   initialize: function initialize() {
-    console.log('initialize');
+    console.log('initialize AdsListModel');
   }
 
 });
@@ -1276,9 +1277,11 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
       console.log('Done');
       if (_this.collection.length) {
         console.log(_this.collection.length);
+        _this.model.set({ noAds: false });
       }
       _this.emptyView = app.views.SpinnerView;
-      _this.model.set({ loading: true });
+      _this.model.set({ loading: false });
+      console.log(_this.model);
     }, function () {
       _this.model.set({
         loading: false,
