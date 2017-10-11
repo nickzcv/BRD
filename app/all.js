@@ -1260,7 +1260,7 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
   collection: new app.collections.AdsCollection(),
 
   modelEvents: {
-    'change': 'render'
+    //'change': 'render'
   },
 
   /**
@@ -1298,15 +1298,25 @@ app.views.adView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.ad_item,
 
+  regions: {
+    phones: '.phones'
+  },
+
   ui: {
     arrow: '.arrow',
     item: '.ad-item',
-    showPhone: '.see-phone'
+    showPhone: '.see-phone',
+    categoryBlock: '.category',
+    phones: '.phones'
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
-    'click @ui.showPhone': 'showPhone'
+    'click @ui.showPhone': 'showPhone',
+    'click @ui.phones': function clickUiPhones() {
+      this.getRegion('phones').empty();
+      this.ui.phones.addClass('hidden');
+    }
   },
 
   /*
@@ -1316,8 +1326,12 @@ app.views.adView = Backbone.Marionette.View.extend({
     this.ui.item.toggleClass('expanded');
   },
 
+  /*
+   *   Show phones section
+   */
   showPhone: function showPhone() {
-    console.log(this.model.attributes.contacts);
+    this.ui.phones.toggleClass('hidden');
+    this.showChildView('phones', new app.views.PhonesView({ model: this.model }));
   }
 
 });
@@ -2365,5 +2379,14 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
   initialize: function initialize() {
     this.model.showFilters();
   }
+
+});
+"use strict";
+
+app.views.PhonesView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.phones,
+
+  initialize: function initialize() {}
 
 });

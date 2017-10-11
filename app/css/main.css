@@ -670,13 +670,15 @@ nav.navigation .user .logout:hover {
   overflow: hidden; }
 
 .ads .ad-item.expanded .section2 {
+  position: relative;
   height: auto;
   padding-bottom: 2rem; }
 
 .ads .ad-item.expanded .section2 .ad-info {
   float: left;
   width: 7rem;
-  text-align: center; }
+  text-align: center;
+  padding-top: 1rem; }
 
 .ads .ad-item.expanded .section2 .ad-info .see-phone {
   position: relative;
@@ -695,7 +697,8 @@ nav.navigation .user .logout:hover {
   color: #559797; }
 
 .ads .ad-item.expanded .section2 .ad-info .mail {
-  padding: 0.5rem 1rem; }
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem; }
 
 .ads .ad-item.expanded .section2 .ad-info .mail:hover {
   border-color: #559797; }
@@ -704,7 +707,8 @@ nav.navigation .user .logout:hover {
   content: '\f423'; }
 
 .ads .ad-item.expanded .section2 .category {
-  margin: 1rem 1rem 1rem 7.5rem; }
+  margin: 0 1rem 1rem 7.5rem;
+  padding-top: 1rem; }
 
 .ads .ad-item.expanded .section2 .category .category-title {
   color: #777;
@@ -755,6 +759,19 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .category .table-header {
   padding-bottom: 1rem; }
+
+.ads .ad-item.expanded .section2 .phones {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+  background-color: rgba(84, 73, 64, 0.93); }
+
+.ads .ad-item.expanded .section2 .pnones-section {
+  position: absolute;
+  height: 100%;
+  width: 100%; }
 
 /* Ads styles
 -------------------------------------------------- */

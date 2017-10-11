@@ -38,7 +38,7 @@ this["tpl"]["templates"]["ads"] = Handlebars.template({"1":function(depth0,helpe
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Мои объявления</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <div class=\"btns-section\">\r\n      <button type=\"button\" class=\"btn btn-default add-button\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default go-to-archive\" disabled>Архив <span class=\"ion-filing\"></span></button>\r\n    </div>\r\n"
+  return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Мои объявления</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <div class=\"btns-section\">\r\n      <button type=\"button\" class=\"btn btn-default add-button\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default\">Избранное <span class=\"icon ion-ios-star-outline star\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default go-to-archive\" disabled>Архив <span class=\"ion-filing\"></span></button>\r\n    </div>\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.loading : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
     + "\r\n  </div>\r\n</div>\r\n";
 },"useData":true});
@@ -168,7 +168,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</div>\r\n      <div class=\"ad-description\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default see-phone\">\r\n        <span class=\"ion-ios-telephone-outline\"></span>\r\n        <b class=\"q-phone\">?</b>\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-default mail\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"category\">\r\n"
+    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default see-phone\">\r\n        <span class=\"ion-ios-telephone-outline\"></span>\r\n        <b class=\"q-phone\">?</b>\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-default mail\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"phones hidden\"></div>\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
@@ -496,6 +496,17 @@ this["tpl"]["templates"]["left_navigation"] = Handlebars.template({"1":function(
     + "\">\r\n      <span class=\"icon ion-briefcase\"></span>\r\n      <span class=\"nav-item\">Компании</span>\r\n    </a>\r\n  </li>\r\n  <li>\r\n    <a class=\"link messages\">\r\n      <span class=\"icon ion-android-mail\"></span>\r\n      <span class=\"nav-item\">Сообщения</span>\r\n    </a>\r\n  </li>\r\n  <li>\r\n    <a class=\"link favorite\">\r\n      <span class=\"icon ion-android-star-outline\"></span>\r\n      <span class=\"nav-item\">Избранное</span>\r\n    </a>\r\n  </li>\r\n  <li>\r\n    <a class=\"link settings "
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias1).call(depth0,(depth0 != null ? depth0.activePage : depth0),"===","settings",{"name":"compare","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\">\r\n      <span class=\"icon ion-settings\"></span>\r\n      <span class=\"nav-item\">Настройки</span>\r\n    </a>\r\n  </li>\r\n  <li>\r\n    <a class=\"link\">\r\n      <span class=\"icon ion-help-buoy\"></span>\r\n      <span class=\"nav-item\">Помощь</span>\r\n    </a>\r\n  </li>\r\n</ul>";
+},"useData":true});
+this["tpl"]["templates"]["phones"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    return "    <div>"
+    + this.escapeExpression(this.lambda(depth0, depth0))
+    + "</div>\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"pnones-section\">\r\n"
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "</div>";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "Loading...\r\n";

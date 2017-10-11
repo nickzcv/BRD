@@ -124,13 +124,16 @@
       }
 
       .section2 {
+        position: relative;
         height: auto;
         padding-bottom: 2rem;
+
 
         .ad-info {
           float: left;
           width: 7rem;
           text-align: center;
+          padding-top: 1rem;
 
           .see-phone {
             position: relative;
@@ -150,6 +153,7 @@
           }
           .mail {
             padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
 
             &:hover {
               border-color: $blue-dark;
@@ -160,7 +164,9 @@
           }
         }
         .category {
-          margin: 1rem 1rem 1rem 7.5rem;
+          margin: 0 1rem 1rem 7.5rem;
+          padding-top: 1rem;
+
           .category-title {
             color: $gray-dark2;
             font-size: 1.1rem;
@@ -213,7 +219,19 @@
             padding-bottom: 1rem;
           }
         }
-
+        .phones {
+          z-index: 2;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          padding-top: 1rem;
+          background-color: rgba(84, 73, 64, 0.93);
+        }
+        .pnones-section {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+        }
       }
     }
 
