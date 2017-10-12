@@ -3,7 +3,7 @@ app.views.adView = Backbone.Marionette.View.extend({
   template: tpl.templates.ad_item,
 
   regions: {
-    phones: '.phones'
+    message: '.message'
   },
 
   ui: {
@@ -11,15 +11,15 @@ app.views.adView = Backbone.Marionette.View.extend({
     item: '.ad-item',
     showPhone: '.see-phone',
     categoryBlock: '.category',
-    phones: '.phones',
+    message: '.message',
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
     'click @ui.showPhone': 'showPhone',
-    'click @ui.phones': function () {
-      this.getRegion('phones').empty();
-      this.ui.phones.addClass('hidden');
+    'click @ui.message': function() {
+      this.getRegion('message').empty();
+      this.ui.message.addClass('hidden');
     }
   },
 
@@ -34,8 +34,8 @@ app.views.adView = Backbone.Marionette.View.extend({
    *   Show phones section
    */
   showPhone: function() {
-    this.ui.phones.toggleClass('hidden');
-    this.showChildView('phones', new app.views.PhonesView({model: this.model}));
+    this.ui.message.removeClass('hidden');
+    this.showChildView('message', new app.views.SendMessageFormView({page: 'dashboard'}));
   }
 
 });

@@ -1299,7 +1299,7 @@ app.views.adView = Backbone.Marionette.View.extend({
   template: tpl.templates.ad_item,
 
   regions: {
-    phones: '.phones'
+    message: '.message'
   },
 
   ui: {
@@ -1307,15 +1307,15 @@ app.views.adView = Backbone.Marionette.View.extend({
     item: '.ad-item',
     showPhone: '.see-phone',
     categoryBlock: '.category',
-    phones: '.phones'
+    message: '.message'
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
     'click @ui.showPhone': 'showPhone',
-    'click @ui.phones': function clickUiPhones() {
-      this.getRegion('phones').empty();
-      this.ui.phones.addClass('hidden');
+    'click @ui.message': function clickUiMessage() {
+      this.getRegion('message').empty();
+      this.ui.message.addClass('hidden');
     }
   },
 
@@ -1330,8 +1330,8 @@ app.views.adView = Backbone.Marionette.View.extend({
    *   Show phones section
    */
   showPhone: function showPhone() {
-    this.ui.phones.toggleClass('hidden');
-    this.showChildView('phones', new app.views.PhonesView({ model: this.model }));
+    this.ui.message.removeClass('hidden');
+    this.showChildView('message', new app.views.SendMessageFormView({ page: 'dashboard' }));
   }
 
 });
@@ -2381,12 +2381,18 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
-app.views.PhonesView = Backbone.Marionette.View.extend({
+app.views.SendMessageFormView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.phones,
+  template: tpl.templates.send_message_form,
 
-  initialize: function initialize() {}
+  initialize: function initialize() {},
+
+  templateContext: function templateContext() {
+    return {
+      activePage: this.getOption('page')
+    };
+  }
 
 });

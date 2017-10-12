@@ -691,11 +691,6 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .ad-info .see-phone:hover span:before {
   content: '\f4b9'; }
 
-.ads .ad-item.expanded .section2 .ad-info .see-phone .q-phone {
-  position: absolute;
-  top: 0;
-  color: #559797; }
-
 .ads .ad-item.expanded .section2 .ad-info .mail {
   padding: 0.5rem 1rem;
   margin-bottom: 1rem; }
@@ -760,7 +755,7 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .category .table-header {
   padding-bottom: 1rem; }
 
-.ads .ad-item.expanded .section2 .phones {
+.ads .ad-item.expanded .section2 .message {
   z-index: 2;
   position: absolute;
   width: 100%;

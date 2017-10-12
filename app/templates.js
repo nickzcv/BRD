@@ -168,7 +168,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</div>\r\n      <div class=\"ad-description\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default see-phone\">\r\n        <span class=\"ion-ios-telephone-outline\"></span>\r\n        <b class=\"q-phone\">?</b>\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-default mail\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"phones hidden\"></div>\r\n    <div class=\"category\">\r\n"
+    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default see-phone\">\r\n        <span class=\"ion-ios-telephone-outline\"></span>\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-default mail\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"message hidden\"></div>\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
@@ -497,17 +497,13 @@ this["tpl"]["templates"]["left_navigation"] = Handlebars.template({"1":function(
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias1).call(depth0,(depth0 != null ? depth0.activePage : depth0),"===","settings",{"name":"compare","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\">\r\n      <span class=\"icon ion-settings\"></span>\r\n      <span class=\"nav-item\">Настройки</span>\r\n    </a>\r\n  </li>\r\n  <li>\r\n    <a class=\"link\">\r\n      <span class=\"icon ion-help-buoy\"></span>\r\n      <span class=\"nav-item\">Помощь</span>\r\n    </a>\r\n  </li>\r\n</ul>";
 },"useData":true});
-this["tpl"]["templates"]["phones"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "    <div>"
-    + this.escapeExpression(this.lambda(depth0, depth0))
-    + "</div>\r\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var stack1;
+this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper;
 
-  return "<div class=\"pnones-section\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "</div>";
+  return "<div class=\"pnones-section\">\r\n  FORM "
+    + this.escapeExpression(((helper = (helper = helpers.activePage || (depth0 != null ? depth0.activePage : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"activePage","hash":{},"data":data}) : helper)))
+    + "\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "Loading...\r\n";
+    return "Loading...\n";
 },"useData":true});
