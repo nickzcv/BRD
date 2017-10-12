@@ -500,10 +500,10 @@ this["tpl"]["templates"]["left_navigation"] = Handlebars.template({"1":function(
 this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "<div class=\"pnones-section\">\r\n  FORM "
+  return "<div class=\"ion-close close\"></div>\r\n<form>\r\n  FORM "
     + this.escapeExpression(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
-    + "\r\n</div>";
+    + "\r\n</form>";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "Loading...\n";
+    return "Loading...\r\n";
 },"useData":true});

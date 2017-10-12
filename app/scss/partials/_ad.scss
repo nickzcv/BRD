@@ -159,8 +159,13 @@
           }
         }
         .category {
-          margin: 0 1rem 1rem 7.5rem;
+          float: left;
+          margin: 0 1rem 2.5rem 0;
           padding-top: 1rem;
+
+          table {
+            margin-left: .5rem;
+          }
 
           .category-title {
             color: $gray-dark2;
@@ -218,15 +223,20 @@
           z-index: 2;
           position: absolute;
           top: 0;
-          width: 100%;
-          height: 100%;
+          width: 85%;
           padding-top: 1rem;
           background-color: rgba(84, 73, 64, 0.93);
         }
-        .pnones-section {
+        .close {
           position: absolute;
-          height: 100%;
-          width: 100%;
+          top: 0;
+          right: 0;
+          font-size: 2rem;
+          color: #fff;
+          opacity: .7;
+          &:hover {
+            opacity: 1;
+          }
         }
       }
     }

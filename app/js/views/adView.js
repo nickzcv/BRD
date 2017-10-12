@@ -12,12 +12,13 @@ app.views.adView = Backbone.Marionette.View.extend({
     sendMessage: '.send-message',
     categoryBlock: '.category',
     message: '.message',
+    close: '.close',
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
     'click @ui.sendMessage': 'showMessageForm',
-    'click @ui.message': function() {
+    'click @ui.close': function() {
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
     }

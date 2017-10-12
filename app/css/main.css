@@ -702,8 +702,12 @@ nav.navigation .user .logout:hover {
   content: '\f423'; }
 
 .ads .ad-item.expanded .section2 .category {
-  margin: 0 1rem 1rem 7.5rem;
+  float: left;
+  margin: 0 1rem 2.5rem 0;
   padding-top: 1rem; }
+
+.ads .ad-item.expanded .section2 .category table {
+  margin-left: .5rem; }
 
 .ads .ad-item.expanded .section2 .category .category-title {
   color: #777;
@@ -759,15 +763,20 @@ nav.navigation .user .logout:hover {
   z-index: 2;
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 85%;
   padding-top: 1rem;
   background-color: rgba(84, 73, 64, 0.93); }
 
-.ads .ad-item.expanded .section2 .pnones-section {
+.ads .ad-item.expanded .section2 .close {
   position: absolute;
-  height: 100%;
-  width: 100%; }
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  color: #fff;
+  opacity: .7; }
+
+.ads .ad-item.expanded .section2 .close:hover {
+  opacity: 1; }
 
 /* Ads styles
 -------------------------------------------------- */
