@@ -8,7 +8,7 @@ app.views.SendMessageFormView = Backbone.Marionette.View.extend({
 
   templateContext: function() {
     return {
-      activePage: this.getOption('page')
+      userId: this.getOption('userId')
     }
   }
 

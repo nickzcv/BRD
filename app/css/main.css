@@ -691,14 +691,14 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .ad-info .see-phone:hover span:before {
   content: '\f4b9'; }
 
-.ads .ad-item.expanded .section2 .ad-info .mail {
+.ads .ad-item.expanded .section2 .ad-info .send-message {
   padding: 0.5rem 1rem;
   margin-bottom: 1rem; }
 
-.ads .ad-item.expanded .section2 .ad-info .mail:hover {
+.ads .ad-item.expanded .section2 .ad-info .send-message:hover {
   border-color: #559797; }
 
-.ads .ad-item.expanded .section2 .ad-info .mail:hover span:before {
+.ads .ad-item.expanded .section2 .ad-info .send-message:hover span:before {
   content: '\f423'; }
 
 .ads .ad-item.expanded .section2 .category {
@@ -758,6 +758,7 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .message {
   z-index: 2;
   position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
   padding-top: 1rem;

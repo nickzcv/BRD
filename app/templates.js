@@ -168,9 +168,9 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</div>\r\n      <div class=\"ad-description\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default see-phone\">\r\n        <span class=\"ion-ios-telephone-outline\"></span>\r\n      </button>\r\n      <button type=\"button\" class=\"btn btn-default mail\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n    <div class=\"message hidden\"></div>\r\n    <div class=\"category\">\r\n"
+    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default send-message\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
+    + "\r\n      <div class=\"message hidden\"></div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0),"inverse":this.program(28, data, 0),"data":data})) != null ? stack1 : "")
@@ -501,7 +501,7 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
     var helper;
 
   return "<div class=\"pnones-section\">\r\n  FORM "
-    + this.escapeExpression(((helper = (helper = helpers.activePage || (depth0 != null ? depth0.activePage : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"activePage","hash":{},"data":data}) : helper)))
+    + this.escapeExpression(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
     + "\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

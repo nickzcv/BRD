@@ -9,14 +9,14 @@ app.views.adView = Backbone.Marionette.View.extend({
   ui: {
     arrow: '.arrow',
     item: '.ad-item',
-    showPhone: '.see-phone',
+    sendMessage: '.send-message',
     categoryBlock: '.category',
     message: '.message',
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
-    'click @ui.showPhone': 'showPhone',
+    'click @ui.sendMessage': 'showMessageForm',
     'click @ui.message': function() {
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
@@ -30,12 +30,9 @@ app.views.adView = Backbone.Marionette.View.extend({
     this.ui.item.toggleClass('expanded');
   },
 
-  /*
-   *   Show phones section
-   */
-  showPhone: function() {
+  showMessageForm: function() {
     this.ui.message.removeClass('hidden');
-    this.showChildView('message', new app.views.SendMessageFormView({page: 'dashboard'}));
+    this.showChildView('message', new app.views.SendMessageFormView({userId: this.model.get('userId')}));
   }
 
 });
