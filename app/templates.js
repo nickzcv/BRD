@@ -45,7 +45,7 @@ this["tpl"]["templates"]["ads"] = Handlebars.template({"1":function(depth0,helpe
 this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "      <table>\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
+  return "      <table class=\"filters-table\">\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
     + "</th>\r\n        </tr>\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
@@ -502,7 +502,7 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
 
   return "<div class=\"send_message_form\">\r\n  <div class=\"arrow-left\"></div>\r\n  <div class=\"ion-close close\"></div>\r\n  <form>\r\n    <!-- USER: "
     + this.escapeExpression(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
-    + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Ваше имя\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\" placeholder=\"Текст сообщения...\"></textarea>\r\n    </div>\r\n  </form>\r\n</div>\r\n";
+    + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <label for=\"text_message\">Текст сообщения:</label>\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\"></textarea>\r\n    </div>\r\n    <button type=\"button\" class=\"btn btn-default send\">Отправить</button>\r\n  </form>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "Loading...\r\n";

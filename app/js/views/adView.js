@@ -3,7 +3,7 @@ app.views.adView = Backbone.Marionette.View.extend({
   template: tpl.templates.ad_item,
 
   regions: {
-    message: '.message'
+    message: '.message',
   },
 
   ui: {
@@ -13,6 +13,7 @@ app.views.adView = Backbone.Marionette.View.extend({
     categoryBlock: '.category',
     message: '.message',
     close: '.close',
+    table: '.filters-table',
   },
 
   events: {
@@ -21,6 +22,7 @@ app.views.adView = Backbone.Marionette.View.extend({
     'click @ui.close': function() {
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
+      this.ui.table.removeClass('hidden');
     }
   },
 
@@ -32,6 +34,7 @@ app.views.adView = Backbone.Marionette.View.extend({
   },
 
   showMessageForm: function() {
+    this.ui.table.addClass('hidden');
     this.ui.message.removeClass('hidden');
     this.showChildView('message', new app.views.SendMessageFormView({userId: this.model.get('userId')}));
   }

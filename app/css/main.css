@@ -764,13 +764,13 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .message {
   width: 100%;
   z-index: 2;
-  position: absolute;
+  position: relative;
   top: 0;
   padding-top: 1rem;
   background-color: rgba(84, 73, 64, 0.93); }
 
 .ads .ad-item.expanded .section2 .message .send_message_form {
-  margin: 1rem 2rem 2rem; }
+  padding: 1rem 1.5rem; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form:before {
   content: '';
@@ -780,14 +780,19 @@ nav.navigation .user .logout:hover {
   border-right: 1rem solid rgba(84, 73, 64, 0.93);
   left: -1rem; }
 
-.ads .ad-item.expanded .section2 .message .send_message_form #name {
-  max-width: 15rem; }
+.ads .ad-item.expanded .section2 .message .send_message_form label {
+  color: #fcfbf7;
+  font-weight: normal; }
+
+.ads .ad-item.expanded .section2 .message .send_message_form .send {
+  line-height: 1rem;
+  padding: 0.5rem 1.5rem; }
 
 .ads .ad-item.expanded .section2 .close {
   position: absolute;
   top: .5rem;
   right: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
   opacity: .7; }
 
