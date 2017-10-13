@@ -773,11 +773,12 @@ nav.navigation .user .logout:hover {
   margin: 1rem 2rem 2rem; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form:before {
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid blue; }
+  content: '';
+  position: absolute;
+  border-top: 1rem solid transparent;
+  border-bottom: 1rem solid transparent;
+  border-right: 1rem solid rgba(84, 73, 64, 0.93);
+  left: -1rem; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form #name {
   max-width: 15rem; }
