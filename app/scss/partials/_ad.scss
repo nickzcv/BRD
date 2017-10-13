@@ -159,9 +159,11 @@
           }
         }
         .category {
+          position: relative;
           float: left;
-          margin: 0 1rem 2.5rem 0;
+          margin: 0 1rem 2rem 0;
           padding-top: 1rem;
+          width: 85%;
 
           table {
             margin-left: .5rem;
@@ -220,17 +222,32 @@
           }
         }
         .message {
+          width: 100%;
           z-index: 2;
           position: absolute;
           top: 0;
-          width: 85%;
           padding-top: 1rem;
           background-color: rgba(84, 73, 64, 0.93);
+
+          .send_message_form {
+            margin: 1rem 2rem 2rem;
+            &:before {
+              width: 0;
+              height: 0;
+              border-top: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+
+              border-right:10px solid blue;
+            }
+            #name {
+              max-width: 15rem;
+            }
+          }
         }
         .close {
           position: absolute;
-          top: 0;
-          right: 0;
+          top: .5rem;
+          right: 1rem;
           font-size: 2rem;
           color: #fff;
           opacity: .7;

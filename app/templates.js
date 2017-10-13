@@ -500,9 +500,9 @@ this["tpl"]["templates"]["left_navigation"] = Handlebars.template({"1":function(
 this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "<div class=\"ion-close close\"></div>\r\n<form>\r\n  FORM "
+  return "<div class=\"send_message_form\">\r\n  <div class=\"arrow-left\"></div>\r\n  <div class=\"ion-close close\"></div>\r\n  <form>\r\n    <!-- USER: "
     + this.escapeExpression(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
-    + "\r\n</form>";
+    + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Ваше имя\">\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\" placeholder=\"Текст сообщения...\"></textarea>\r\n    </div>\r\n  </form>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "Loading...\r\n";

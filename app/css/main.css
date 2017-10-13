@@ -702,9 +702,11 @@ nav.navigation .user .logout:hover {
   content: '\f423'; }
 
 .ads .ad-item.expanded .section2 .category {
+  position: relative;
   float: left;
-  margin: 0 1rem 2.5rem 0;
-  padding-top: 1rem; }
+  margin: 0 1rem 2rem 0;
+  padding-top: 1rem;
+  width: 85%; }
 
 .ads .ad-item.expanded .section2 .category table {
   margin-left: .5rem; }
@@ -760,17 +762,30 @@ nav.navigation .user .logout:hover {
   padding-bottom: 1rem; }
 
 .ads .ad-item.expanded .section2 .message {
+  width: 100%;
   z-index: 2;
   position: absolute;
   top: 0;
-  width: 85%;
   padding-top: 1rem;
   background-color: rgba(84, 73, 64, 0.93); }
 
+.ads .ad-item.expanded .section2 .message .send_message_form {
+  margin: 1rem 2rem 2rem; }
+
+.ads .ad-item.expanded .section2 .message .send_message_form:before {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid blue; }
+
+.ads .ad-item.expanded .section2 .message .send_message_form #name {
+  max-width: 15rem; }
+
 .ads .ad-item.expanded .section2 .close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: .5rem;
+  right: 1rem;
   font-size: 2rem;
   color: #fff;
   opacity: .7; }
