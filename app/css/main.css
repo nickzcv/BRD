@@ -766,8 +766,7 @@ nav.navigation .user .logout:hover {
   z-index: 2;
   position: relative;
   top: 0;
-  padding-top: 1rem;
-  background-color: rgba(84, 73, 64, 0.93); }
+  background-color: #f0eedf; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form {
   padding: 1rem 1.5rem; }
@@ -777,11 +776,10 @@ nav.navigation .user .logout:hover {
   position: absolute;
   border-top: 1rem solid transparent;
   border-bottom: 1rem solid transparent;
-  border-right: 1rem solid rgba(84, 73, 64, 0.93);
+  border-right: 1rem solid #f0eedf;
   left: -1rem; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form label {
-  color: #fcfbf7;
   font-weight: normal; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form .send {
@@ -793,7 +791,7 @@ nav.navigation .user .logout:hover {
   top: .5rem;
   right: 1rem;
   font-size: 1.5rem;
-  color: #fff;
+  color: #b6b6b6;
   opacity: .7; }
 
 .ads .ad-item.expanded .section2 .close:hover {
