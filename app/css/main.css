@@ -774,10 +774,10 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .message .send_message_form:before {
   content: '';
   position: absolute;
-  border-top: 1rem solid transparent;
-  border-bottom: 1rem solid transparent;
-  border-right: 1rem solid #f0eedf;
-  left: -1rem; }
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #f0eedf;
+  left: -10px; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form label {
   font-weight: normal; }
