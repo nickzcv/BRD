@@ -600,22 +600,17 @@ nav.navigation .user .logout:hover {
   line-height: 2rem;
   max-height: 2rem;
   background: #FFFFFF;
-  color: #777; }
+  color: #666; }
 
 .ads .ad-item .i-bottom i {
   position: relative;
   top: 1px;
-  font-size: 1.2rem;
-  cursor: pointer; }
+  font-size: 1.2rem; }
 
 .ads .ad-item .i-bottom span {
   font-size: 0.9rem;
   padding-left: .5rem;
-  padding-right: 3%;
-  cursor: pointer; }
-
-.ads .ad-item .i-bottom span:hover {
-  color: #559797; }
+  padding-right: 3%; }
 
 .ads .ad-item .i-bottom span.date {
   padding-left: 0; }
@@ -679,17 +674,6 @@ nav.navigation .user .logout:hover {
   width: 7rem;
   text-align: center;
   padding-top: 1rem; }
-
-.ads .ad-item.expanded .section2 .ad-info .see-phone {
-  position: relative;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem; }
-
-.ads .ad-item.expanded .section2 .ad-info .see-phone:hover {
-  border-color: #559797; }
-
-.ads .ad-item.expanded .section2 .ad-info .see-phone:hover span:before {
-  content: '\f4b9'; }
 
 .ads .ad-item.expanded .section2 .ad-info .send-message {
   padding: 0.5rem 1rem;
@@ -760,6 +744,18 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .category .table-header {
   padding-bottom: 1rem; }
+
+.ads .ad-item.expanded .section2 .phones {
+  padding: 0.5rem 0;
+  margin: 0.5rem;
+  font-size: 1rem; }
+
+.ads .ad-item.expanded .section2 .phones span {
+  padding-right: 1rem;
+  white-space: nowrap; }
+
+.ads .ad-item.expanded .section2 .phones span:before {
+  padding-right: 3px; }
 
 .ads .ad-item.expanded .section2 .message {
   width: 100%;

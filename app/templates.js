@@ -148,12 +148,16 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
 },"26":function(depth0,helpers,partials,data) {
+    return "        <span class=\"ion-android-call\"> "
+    + this.escapeExpression(this.lambda(depth0, depth0))
+    + "</span>\r\n";
+},"28":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span>"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
-},"28":function(depth0,helpers,partials,data) {
+},"30":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
   return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span>"
@@ -170,10 +174,12 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
     + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default send-message\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n      <div class=\"message hidden\"></div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
+    + "      <div class=\"message hidden\"></div>\r\n\r\n      <div class=\"phones\">\r\n"
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(26, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "      </div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0),"inverse":this.program(28, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(28, data, 0),"inverse":this.program(30, data, 0),"data":data})) != null ? stack1 : "")
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span>"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "
@@ -502,7 +508,7 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
 
   return "<div class=\"send_message_form\">\r\n  <div class=\"arrow-left\"></div>\r\n  <div class=\"ion-close close\"></div>\r\n  <form>\r\n    <!-- USER: "
     + this.escapeExpression(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
-    + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <label for=\"text_message\">Текст сообщения:</label>\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\"></textarea>\r\n    </div>\r\n    <button type=\"button\" class=\"btn btn-default send\">Отправить</button>\r\n  </form>\r\n</div>\r\n";
+    + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <label for=\"text_message\">Текст сообщения:</label>\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\"></textarea>\r\n    </div>\r\n    <button type=\"button\" class=\"btn btn-default send\" disabled>Отправить</button>\r\n  </form>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "Loading...\r\n";

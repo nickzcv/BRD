@@ -51,20 +51,18 @@
       line-height: 2rem;
       max-height: 2rem;
       background: $white;
-      color: $gray-dark2;
+      color: $gray-from-hell;
       i {
         position: relative;
         top: 1px;
         font-size: 1.2rem;
-        cursor: pointer;
       }
       span {
         font-size: 0.9rem;
         padding-left: .5rem;
         padding-right: 3%;
-        cursor: pointer;
         &:hover {
-          color: $blue-dark;
+          // color: $blue-dark;
         }
         &.date {
           padding-left: 0;
@@ -134,18 +132,6 @@
           width: 7rem;
           text-align: center;
           padding-top: 1rem;
-
-          .see-phone {
-            position: relative;
-            padding: 0.5rem 1rem;
-            margin: 0.5rem;
-            &:hover {
-              border-color: $blue-dark;
-              span:before {
-                content: '\f4b9';
-              }
-            }
-          }
           .send-message {
             padding: 0.5rem 1rem;
             margin-bottom: 1rem;
@@ -219,6 +205,18 @@
           }
           .table-header {
             padding-bottom: 1rem;
+          }
+        }
+        .phones {
+          padding: 0.5rem 0;
+          margin: 0.5rem;
+          font-size: 1rem;
+          span {
+            padding-right: 1rem;
+            white-space: nowrap;
+            &:before {
+              padding-right: 3px;
+            }
           }
         }
         .message {

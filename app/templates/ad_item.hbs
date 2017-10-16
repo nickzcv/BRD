@@ -72,8 +72,13 @@
       </table>
 
     {{/if}}
-
       <div class="message hidden"></div>
+
+      <div class="phones">
+      {{#each contacts.phones}}
+        <span class="ion-android-call"> {{this}}</span>
+      {{/each}}
+      </div>
 
     </div>
 
