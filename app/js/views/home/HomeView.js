@@ -3,7 +3,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   template: tpl.templates.home,
 
   regions: {
-    filter: '.filter',
+    filter: '.filter-home',
     adsFilter: '.content-filter',
     adsList: '.ads-list'
   },
@@ -23,8 +23,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    let thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
+    this.showChildView('filter', new app.views.FilterView());
   }
 
 });

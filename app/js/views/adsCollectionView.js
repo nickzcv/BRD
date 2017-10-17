@@ -2,9 +2,6 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
-  modelEvents: {
-    //'change': 'render'
-  },
 
   /**
    * @see Marionette.Object#initialize

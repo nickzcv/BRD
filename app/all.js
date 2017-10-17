@@ -1259,10 +1259,6 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
-  modelEvents: {
-    //'change': 'render'
-  },
-
   /**
    * @see Marionette.Object#initialize
    *
@@ -1352,16 +1348,24 @@ app.views.ForbiddenView = Backbone.Marionette.View.extend({
   },
 
   ui: {
-    'login': '.login'
+    'login': '.login',
+    'register': '.register'
   },
 
   events: {
-    'click @ui.login': 'showLoginView'
+    'click @ui.login': 'showLoginView',
+    'click @ui.register': 'showRegistrationView'
   },
 
   showLoginView: function showLoginView() {
     this.showChildView('modalSection', new app.views.LoginView({
       model: new app.models.LoginModel()
+    }));
+  },
+
+  showRegistrationView: function showRegistrationView() {
+    this.showChildView('modalSection', new app.views.RegistrationView({
+      model: new app.models.RegistrationModel()
     }));
   }
 
@@ -1458,11 +1462,30 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.FilterView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.filter
+  template: tpl.templates.filter_home,
+
+  ui: {
+    addNewBtn: '.add-new'
+  },
+
+  events: {
+    'click @ui.addNewBtn': 'addNew'
+  },
+
+  addNew: function addNew() {
+    // Check is user logged in
+    if (brd.controllers.isLoggedIn()) {
+      // Redirect to add view
+      brd.router.navigate('#ads/new', { trigger: true });
+    } else {
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
+  }
 
 });
 'use strict';
@@ -1472,7 +1495,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   template: tpl.templates.home,
 
   regions: {
-    filter: '.filter',
+    filter: '.filter-home',
     adsFilter: '.content-filter',
     adsList: '.ads-list'
   },
@@ -1492,8 +1515,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('filter', new app.views.FilterView());
+    this.showChildView('filter', new app.views.FilterView());
   }
 
 });

@@ -108,7 +108,7 @@ header .logo a {
   height: 40px;
   background: url("../img/logo-gray.svg") no-repeat;
   text-decoration: none;
-  color: #E5E3D4;
+  color: #edebdc;
   font-size: 1.1rem; }
 
 header .logo a:hover {
@@ -225,7 +225,7 @@ nav.navigation .user {
 nav.navigation .user .user-profile {
   display: inherit;
   cursor: pointer;
-  color: #E5E3D4; }
+  color: #edebdc; }
 
 nav.navigation .user .user-profile:hover {
   color: #fff; }
@@ -288,6 +288,7 @@ nav.navigation .user .logout:hover {
   margin: 0; }
 
 .section.home .content-filter {
+  display: none;
   overflow: hidden; }
 
 .section.home .content-filter .btn-default {
@@ -339,58 +340,61 @@ nav.navigation .user .logout:hover {
 
 /* Sections styles
 -------------------------------------------------- */
-.filter {
+.filter-home {
   padding: 0;
   /* Tablets */
   /* Desktop */
   /* Large screens */ }
 
-.filter .actions {
+.filter-home .actions {
   padding: 1rem;
   background: #fcfcf4;
-  border: 1px solid #E5E3D4; }
+  border: 1px solid #edebdc; }
 
-.filter .actions .btn {
+.filter-home .actions .add-new {
   width: 100%;
-  padding: 6px 12px;
-  border-color: #559797; }
+  padding: 6px 12px; }
 
-.filter .actions .btn:hover {
-  background: #559797;
-  color: #fff; }
+.filter-home .actions .add-new:hover {
+  border-color: #559797;
+  background: #f2f2ea; }
 
-.filter .filters {
+.filter-home .actions .add-new:hover span:before {
+  content: "\f216";
+  color: #559797; }
+
+.filter-home .filters {
   background: #fcfcf4;
-  border: 1px solid #E5E3D4;
+  border: 1px solid #edebdc;
   border-top: none; }
 
-.filter .filters.visible {
+.filter-home .filters.visible {
   display: block !important; }
 
-.filter .filters .close-btn {
+.filter-home .filters .close-btn {
   position: absolute;
   right: 2rem;
   cursor: pointer;
   color: #b6b6b6; }
 
-.filter .filters .close-btn:hover {
+.filter-home .filters .close-btn:hover {
   color: #000; }
 
-.filter .filters .line-breaker {
-  border-top: 1px solid #E5E3D4;
+.filter-home .filters .line-breaker {
+  border-top: 1px solid #edebdc;
   margin: 1rem 0; }
 
-.filter .filters .form-group {
+.filter-home .filters .form-group {
   margin: 1rem 0; }
 
 @media only screen and (min-width: 992px) {
-  .filter .filters {
+  .filter-home .filters {
     padding: 1rem; } }
 
 @media only screen and (min-width: 1200px) {
-  .filter {
+  .filter-home {
     max-width: 22rem; }
-  .filter .filters {
+  .filter-home .filters {
     padding: 1rem 1.5rem; } }
 
 /* Left navigation styles
@@ -528,7 +532,7 @@ nav.navigation .user .logout:hover {
   cursor: pointer; }
 
 .profile .cityDropdown ul li:hover {
-  background: #E5E3D4; }
+  background: #edebdc; }
 
 .profile .cityDropdown ul li .area {
   color: #999;
@@ -565,7 +569,7 @@ nav.navigation .user .logout:hover {
   max-height: 7rem;
   position: relative;
   overflow: hidden;
-  border: 1px solid #E5E3D4;
+  border: 1px solid #edebdc;
   background: #fff;
   margin: 1.5rem 0; }
 
@@ -872,7 +876,7 @@ nav.navigation .user .logout:hover {
   font-size: 0.8rem;
   color: gray;
   background: #EAEAE2;
-  border: 1px solid #E5E3D4;
+  border: 1px solid #edebdc;
   padding: 1rem;
   float: left;
   width: 50%;
@@ -903,7 +907,7 @@ nav.navigation .user .logout:hover {
   width: 100%; }
 
 .settings .updated {
-  border-left: 5px solid #E5E3D4;
+  border-left: 5px solid #edebdc;
   color: #777;
   padding: 5px 10px;
   margin-top: 10px; }
