@@ -1457,11 +1457,11 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
     this.childView = app.views.adView;
     this.collection.fetch().then(function () {
-      console.log('Done');
+
       if (_this.collection.length) {
-        console.log(_this.collection.length);
-        _this.model.set({ noAds: false });
+        //this.model.set({noAds: false});
       }
+
       _this.emptyView = app.views.SpinnerView;
       _this.model.set({ loading: false });
       console.log(_this.model);

@@ -17,14 +17,16 @@
     </div>
   </div>
 
-  <!-- Ads list  -->
-  <div class="ads-list">
-    <!-- ads-item -->
+  {{#if loading}}
+    <div>LOADER</div>
+  {{else if noAds}}
+    <div>noAds</div>
+  {{else}}
+    <!-- Ads list  -->
+    <div class="ads-list"></div>
+    <!-- /end ads-list -->
+  {{/if}}
 
-    <!-- /end ads-item -->
-
-  </div>
-  <!-- /end ads-list -->
 
 </div>
 
