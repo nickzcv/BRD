@@ -3,10 +3,10 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   template: tpl.templates.ads,
 
   ui: {
-    'leftNavRegion': '.left-navigation',
-    'listRegion': '.ads-list',
-    'addButton': '.add-button',
-    'showArchive': '.go-to-archive'
+    leftNavRegion: '.left-navigation',
+    listRegion: '.ads-list',
+    addButton: '.add-button',
+    showArchive: '.go-to-archive'
   },
 
   regions: {

@@ -1494,15 +1494,16 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.home,
 
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn',
+    listRegion: '.ads-list'
+  },
+
   regions: {
     filter: '.filter-home',
     adsFilter: '.content-filter',
-    adsList: '.ads-list'
-  },
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn'
+    adsList: '@ui.listRegion'
   },
 
   events: {
@@ -1516,6 +1517,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     this.showChildView('filter', new app.views.FilterView());
+    this.showChildView('adsList', new app.views.adsCollectionView({ model: new app.models.AdsListModel() }));
   }
 
 });
@@ -2042,10 +2044,10 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   template: tpl.templates.ads,
 
   ui: {
-    'leftNavRegion': '.left-navigation',
-    'listRegion': '.ads-list',
-    'addButton': '.add-button',
-    'showArchive': '.go-to-archive'
+    leftNavRegion: '.left-navigation',
+    listRegion: '.ads-list',
+    addButton: '.add-button',
+    showArchive: '.go-to-archive'
   },
 
   regions: {
