@@ -333,6 +333,19 @@ app.collections.AdsCollection = Backbone.Collection.extend({
 });
 'use strict';
 
+app.collections.AdsHomeCollection = Backbone.Collection.extend({
+
+  url: function url() {
+    return 'api/ads';
+  },
+
+  comparator: function comparator(m) {
+    return -Date.parse(m.get('updated_at'));
+  }
+
+});
+'use strict';
+
 app.models.AdModel = Backbone.Model.extend({
 
   urlRoot: 'api/ads',
@@ -1255,41 +1268,6 @@ app.views.SpinnerView = Marionette.View.extend({
 });
 'use strict';
 
-app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
-
-  collection: new app.collections.AdsCollection(),
-
-  /**
-   * @see Marionette.Object#initialize
-   *
-   * @memberOf app.views.RecommendedChannelsTableView
-   * @instance
-   */
-  initialize: function initialize() {
-    var _this = this;
-
-    this.childView = app.views.adView;
-    this.collection.fetch().then(function () {
-      console.log('Done');
-      if (_this.collection.length) {
-        console.log(_this.collection.length);
-        _this.model.set({ noAds: false });
-      }
-      _this.emptyView = app.views.SpinnerView;
-      _this.model.set({ loading: false });
-      console.log(_this.model);
-    }, function () {
-      _this.model.set({
-        loading: false,
-        isError: true,
-        errorMessage: 'Unable to get service data. Please try later.'
-      });
-    });
-  }
-
-});
-'use strict';
-
 app.views.adView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.ad_item,
@@ -1464,6 +1442,41 @@ app.views.MainView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
+app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  collection: new app.collections.AdsHomeCollection(),
+
+  /**
+   * @see Marionette.Object#initialize
+   *
+   * @memberOf app.views.RecommendedChannelsTableView
+   * @instance
+   */
+  initialize: function initialize() {
+    var _this = this;
+
+    this.childView = app.views.adView;
+    this.collection.fetch().then(function () {
+      console.log('Done');
+      if (_this.collection.length) {
+        console.log(_this.collection.length);
+        _this.model.set({ noAds: false });
+      }
+      _this.emptyView = app.views.SpinnerView;
+      _this.model.set({ loading: false });
+      console.log(_this.model);
+    }, function () {
+      _this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Unable to get service data. Please try later.'
+      });
+    });
+  }
+
+});
+'use strict';
+
 app.views.FilterView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.filter_home,
@@ -1517,7 +1530,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     this.showChildView('filter', new app.views.FilterView());
-    this.showChildView('adsList', new app.views.adsCollectionView({ model: new app.models.AdsListModel() }));
+    this.showChildView('adsList', new app.views.adsHomeCollectionView({ model: new app.models.AdsListModel() }));
   }
 
 });
@@ -2034,6 +2047,41 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     var result = new Date();
     result.setDate(result.getDate() + parseInt(days));
     return result;
+  }
+
+});
+'use strict';
+
+app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  collection: new app.collections.AdsCollection(),
+
+  /**
+   * @see Marionette.Object#initialize
+   *
+   * @memberOf app.views.RecommendedChannelsTableView
+   * @instance
+   */
+  initialize: function initialize() {
+    var _this = this;
+
+    this.childView = app.views.adView;
+    this.collection.fetch().then(function () {
+      console.log('Done');
+      if (_this.collection.length) {
+        console.log(_this.collection.length);
+        _this.model.set({ noAds: false });
+      }
+      _this.emptyView = app.views.SpinnerView;
+      _this.model.set({ loading: false });
+      console.log(_this.model);
+    }, function () {
+      _this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Unable to get service data. Please try later.'
+      });
+    });
   }
 
 });
