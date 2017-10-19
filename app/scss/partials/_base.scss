@@ -88,6 +88,10 @@ label.error {
   height: 50px;
   animation: spin 1s linear infinite;
 }
+.loader-wrapper {
+  text-align: center;
+  margin: 7rem 0;
+}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

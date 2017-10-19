@@ -13,13 +13,8 @@
       <button type="button" class="btn btn-default">Избранное <span class="icon ion-ios-star-outline star"></span></button>
       <button type="button" class="btn btn-default go-to-archive" disabled>Архив <span class="ion-filing"></span></button>
     </div>
-    {{#if loading}}
-      <div>LOADER</div>
-    {{else if noAds}}
-      <div>noAds</div>
-    {{else}}
-      <div class="ads-list"></div>
-    {{/if}}
+
+    <div class="ads-list"></div>
 
   </div>
 </div>

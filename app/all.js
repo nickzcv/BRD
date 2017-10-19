@@ -1440,38 +1440,19 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsHomeCollection(),
 
-  /**
-   * @see Marionette.Object#initialize
-   *
-   * @memberOf app.views.RecommendedChannelsTableView
-   * @instance
-   */
+  emptyView: app.views.SpinnerView,
+
+  childView: app.views.adView,
+
   initialize: function initialize() {
-    var _this = this;
 
-    this.childView = app.views.adView;
-    this.collection.fetch().then(function () {
-
-      if (_this.collection.length) {
-        //this.model.set({noAds: false});
-      }
-
-      _this.emptyView = app.views.SpinnerView;
-      _this.model.set({ loading: false });
-      console.log(_this.model);
-    }, function () {
-      _this.model.set({
-        loading: false,
-        isError: true,
-        errorMessage: 'Unable to get service data. Please try later.'
-      });
-    });
+    this.collection.fetch().then(function () {}, function () {});
   }
 
 });
@@ -1530,7 +1511,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     this.showChildView('filter', new app.views.FilterView());
-    this.showChildView('adsList', new app.views.adsHomeCollectionView({ model: new app.models.AdsListModel() }));
+    this.showChildView('adsList', new app.views.adsHomeCollectionView());
   }
 
 });
@@ -2050,38 +2031,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
-  /**
-   * @see Marionette.Object#initialize
-   *
-   * @memberOf app.views.RecommendedChannelsTableView
-   * @instance
-   */
-  initialize: function initialize() {
-    var _this = this;
+  emptyView: app.views.SpinnerView,
 
-    this.childView = app.views.adView;
-    this.collection.fetch().then(function () {
-      console.log('Done');
-      if (_this.collection.length) {
-        console.log(_this.collection.length);
-        _this.model.set({ noAds: false });
-      }
-      _this.emptyView = app.views.SpinnerView;
-      _this.model.set({ loading: false });
-      console.log(_this.model);
-    }, function () {
-      _this.model.set({
-        loading: false,
-        isError: true,
-        errorMessage: 'Unable to get service data. Please try later.'
-      });
-    });
+  childView: app.views.adView,
+
+  initialize: function initialize() {
+
+    this.collection.fetch().then(function () {}, function () {});
   }
 
 });

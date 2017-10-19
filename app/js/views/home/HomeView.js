@@ -15,17 +15,17 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   events: {
-    'click @ui.mobileFilterBtn': function () {
+    'click @ui.mobileFilterBtn': function() {
       $('.filters').toggleClass('visible');
     },
-    'click @ui.closeFilter': function () {
+    'click @ui.closeFilter': function() {
       $('.filters').removeClass('visible');
     }
   },
 
   onRender: function() {
     this.showChildView('filter', new app.views.FilterView());
-    this.showChildView('adsList', new app.views.adsHomeCollectionView({model: new app.models.AdsListModel()}));
+    this.showChildView('adsList', new app.views.adsHomeCollectionView());
   }
 
 });
