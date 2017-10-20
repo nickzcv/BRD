@@ -1,7 +1,7 @@
 app.models.AdsListModel = Backbone.Model.extend({
 
   defaults: {
-    isLoggedIn: false
+    isItemsExist: false
   },
 
   initialize: function() {

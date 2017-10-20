@@ -7,9 +7,7 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
   childView: app.views.adView,
 
   initialize: function() {
-
     this.childViewOptions = {isLoggedIn: brd.controllers.isLoggedIn()};
-
     this.collection.fetch().then(
       () => {
         console.log('test');
@@ -19,7 +17,6 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
       }
     );
-
 
   },
 

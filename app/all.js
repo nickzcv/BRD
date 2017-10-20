@@ -408,7 +408,7 @@ app.models.AdModel = Backbone.Model.extend({
 app.models.AdsListModel = Backbone.Model.extend({
 
   defaults: {
-    isLoggedIn: false
+    isItemsExist: false
   },
 
   initialize: function initialize() {
@@ -1248,24 +1248,6 @@ app.models.FiltersModel = Backbone.Model.extend({
   }
 
 });
-"use strict";
-
-/**
- * Spinner view
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.SpinnerView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.SpinnerView
-   */
-  template: tpl.templates.spinner
-});
 'use strict';
 
 app.views.adView = Backbone.Marionette.View.extend({
@@ -1455,9 +1437,7 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
   childView: app.views.adView,
 
   initialize: function initialize() {
-
     this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
-
     this.collection.fetch().then(function () {
       console.log('test');
     }, function () {});
@@ -2039,7 +2019,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
 
@@ -2050,8 +2030,25 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
   childView: app.views.adView,
 
   initialize: function initialize() {
+    var _this = this;
 
-    this.collection.fetch().then(function () {}, function () {});
+    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    this.collection.fetch().then(function () {
+      if (!_this.collection.length) {
+        // Show message if no items
+        _this.emptyView = app.views.MessageView;
+        _this.emptyViewOptions = {
+          message: 'Список пуст.'
+        };
+        _this.render();
+      }
+    }, function () {
+      _this.emptyView = app.views.MessageView;
+      _this.emptyViewOptions = {
+        message: 'Error'
+      };
+      _this.render();
+    });
   }
 
 });
@@ -2426,6 +2423,19 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
+app.views.MessageView = Marionette.View.extend({
+
+  template: tpl.templates.message,
+
+  templateContext: function templateContext() {
+    return {
+      message: this.getOption('message')
+    };
+  }
+
+});
+'use strict';
+
 app.views.SendMessageFormView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.send_message_form,
@@ -2438,4 +2448,22 @@ app.views.SendMessageFormView = Backbone.Marionette.View.extend({
     };
   }
 
+});
+"use strict";
+
+/**
+ * Spinner view
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.SpinnerView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.SpinnerView
+   */
+  template: tpl.templates.spinner
 });
