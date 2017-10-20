@@ -78,7 +78,9 @@
 
       <div class="phones">
       {{#each contacts.phones}}
-        <span class="ion-android-call"> {{this}}</span>
+        {{#if this}}
+          <span class="ion-android-call"> {{this}}</span>
+        {{/if}}
       {{/each}}
       </div>
 
