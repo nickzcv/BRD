@@ -8,15 +8,18 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
   initialize: function() {
 
+    this.childViewOptions = {isLoggedIn: brd.controllers.isLoggedIn()};
+
     this.collection.fetch().then(
       () => {
+        console.log('test');
 
       },
       () => {
 
-
       }
     );
+
 
   },
 

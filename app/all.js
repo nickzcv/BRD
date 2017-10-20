@@ -408,12 +408,12 @@ app.models.AdModel = Backbone.Model.extend({
 app.models.AdsListModel = Backbone.Model.extend({
 
   defaults: {
-    loading: true,
-    noAds: true
+    isLoggedIn: false
   },
 
   initialize: function initialize() {
     console.log('initialize AdsListModel');
+    console.log(this.attributes);
   }
 
 });
@@ -1296,6 +1296,10 @@ app.views.adView = Backbone.Marionette.View.extend({
     }
   },
 
+  initialize: function initialize(options) {
+    this.model.set({ isLoggedIn: options.isLoggedIn }, { silent: true });
+  },
+
   /*
   *   Expanded/hide filter section
   */
@@ -1440,7 +1444,7 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
@@ -1452,7 +1456,11 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
   initialize: function initialize() {
 
-    this.collection.fetch().then(function () {}, function () {});
+    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+
+    this.collection.fetch().then(function () {
+      console.log('test');
+    }, function () {});
   }
 
 });

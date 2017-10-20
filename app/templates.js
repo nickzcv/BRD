@@ -29,121 +29,123 @@ this["tpl"]["templates"]["ads"] = Handlebars.template({"compiler":[6,">= 2.0.0-b
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Мои объявления</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <div class=\"btns-section\">\r\n      <button type=\"button\" class=\"btn btn-default add-button\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default\">Избранное <span class=\"icon ion-ios-star-outline star\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default go-to-archive\" disabled>Архив <span class=\"ion-filing\"></span></button>\r\n    </div>\r\n\r\n    <div class=\"ads-list\"></div>\r\n\r\n  </div>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n";
+},"3":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <table class=\"filters-table\">\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
     + "</th>\r\n        </tr>\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\r\n      </table>\r\n\r\n";
-},"2":function(depth0,helpers,partials,data) {
+},"4":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(3, data, 0),"inverse":this.program(11, data, 0),"data":data})) != null ? stack1 : "");
-},"3":function(depth0,helpers,partials,data) {
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(13, data, 0),"data":data})) != null ? stack1 : "");
+},"5":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "            <tr class=\"filter-row\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              <td>\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(8, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              </td>\r\n            </tr>\r\n";
-},"4":function(depth0,helpers,partials,data) {
+},"6":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                <td>\r\n                  <span class=\"filter-title\">"
     + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span>\r\n                </td>\r\n";
-},"6":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(7, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"7":function(depth0,helpers,partials,data) {
-    var stack1, helper;
-
-  return "                    <div class=\"parent\">\r\n                      <span class=\"parent-title\">"
-    + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</span>\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(8, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "                    </div>\r\n";
 },"8":function(depth0,helpers,partials,data) {
     var stack1;
 
   return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(9, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
 },"9":function(depth0,helpers,partials,data) {
+    var stack1, helper;
+
+  return "                    <div class=\"parent\">\r\n                      <span class=\"parent-title\">"
+    + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</span>\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "                    </div>\r\n";
+},"10":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"11":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                          <i>"
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</i>\r\n";
-},"11":function(depth0,helpers,partials,data) {
+},"13":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "            <tr class=\"filter-row\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(12, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              <td class=\"first-level\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(16, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              </td>\r\n            </tr>\r\n";
-},"12":function(depth0,helpers,partials,data) {
+},"14":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                <td><span class=\"filter-title\">"
     + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span></td>\r\n";
-},"14":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input",{"name":"compare","hash":{},"fn":this.program(15, data, 0),"inverse":this.program(23, data, 0),"data":data})) != null ? stack1 : "");
-},"15":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(16, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
 },"16":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(17, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "                      "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n                      "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n                      <br>\r\n";
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input",{"name":"compare","hash":{},"fn":this.program(17, data, 0),"inverse":this.program(25, data, 0),"data":data})) != null ? stack1 : "");
 },"17":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(18, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"18":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "                      "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n                      "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(23, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n                      <br>\r\n";
+},"19":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                        <i>"
     + this.escapeExpression(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
     + "</i>:\r\n";
-},"19":function(depth0,helpers,partials,data) {
+},"21":function(depth0,helpers,partials,data) {
     var helper;
 
   return "от "
     + this.escapeExpression(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"from","hash":{},"data":data}) : helper)));
-},"21":function(depth0,helpers,partials,data) {
+},"23":function(depth0,helpers,partials,data) {
     var helper;
 
   return "до "
     + this.escapeExpression(((helper = (helper = helpers.to || (depth0 != null ? depth0.to : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"to","hash":{},"data":data}) : helper)));
-},"23":function(depth0,helpers,partials,data) {
+},"25":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"24":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(26, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"26":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                      <span>"
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
-},"26":function(depth0,helpers,partials,data) {
+},"28":function(depth0,helpers,partials,data) {
     return "        <span class=\"ion-android-call\"> "
     + this.escapeExpression(this.lambda(depth0, depth0))
     + "</span>\r\n";
-},"28":function(depth0,helpers,partials,data) {
+},"30":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span>"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
-},"30":function(depth0,helpers,partials,data) {
+},"32":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
   return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span>"
@@ -158,14 +160,16 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</div>\r\n      <div class=\"ad-description\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <button type=\"button\" class=\"btn btn-default send-message\">\r\n        <span class=\"ion-ios-email-outline\"></span>\r\n      </button>\r\n    </div>\r\n\r\n    <div class=\"category\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\r\n\r\n    <div class=\"category\">\r\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      <div class=\"message hidden\"></div>\r\n\r\n      <div class=\"phones\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(26, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(28, data, 0),"inverse":this.program(30, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(30, data, 0),"inverse":this.program(32, data, 0),"data":data})) != null ? stack1 : "")
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span>"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "
@@ -497,5 +501,5 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
     + " -->\r\n\r\n    <div class=\"form-group\">\r\n      <label for=\"text_message\">Текст сообщения:</label>\r\n      <textarea class=\"form-control\" rows=\"3\" id=\"text_message\" name=\"text_message\"></textarea>\r\n    </div>\r\n    <button type=\"button\" class=\"btn btn-default send\" disabled>Отправить</button>\r\n  </form>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"loader-wrapper\">\n  <div class=\"loader\"></div>\n</div>\n";
+    return "<div class=\"loader-wrapper\">\r\n  <div class=\"loader\"></div>\r\n</div>\r\n";
 },"useData":true});

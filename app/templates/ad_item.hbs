@@ -8,9 +8,11 @@
   </div>
   <div class="section2">
     <div class="ad-info">
-      <button type="button" class="btn btn-default send-message">
-        <span class="ion-ios-email-outline"></span>
-      </button>
+      {{#if isLoggedIn}}
+        <button type="button" class="btn btn-default send-message">
+          <span class="ion-ios-email-outline"></span>
+        </button>
+      {{/if}}
     </div>
 
     <div class="category">

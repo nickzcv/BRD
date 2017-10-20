@@ -26,6 +26,10 @@ app.views.adView = Backbone.Marionette.View.extend({
     }
   },
 
+  initialize: function(options) {
+    this.model.set({isLoggedIn: options.isLoggedIn}, {silent: true});
+  },
+
   /*
   *   Expanded/hide filter section
   */
