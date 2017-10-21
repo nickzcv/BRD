@@ -2356,6 +2356,9 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     } else if (isVisible && city) {
       thisView.ui.cityDropdown.removeClass('show');
       thisView.ui.city.val(city.title);
+    } else if (isVisible && !city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val('');
     }
   }
 

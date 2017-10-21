@@ -65,7 +65,7 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
 
   // Check if city exist
   // Do not allow enter random text
-  checkCity: function () {
+  checkCity: function() {
     let thisView = this,
         isVisible = thisView.ui.cityDropdown.is(":visible"),
         city = thisView.model.get('city'),
@@ -77,8 +77,10 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     } else if(isVisible && city) {
       thisView.ui.cityDropdown.removeClass('show');
       thisView.ui.city.val(city.title);
+    } else if(isVisible && !city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val('');
     }
-  },
-
+  }
 
 });

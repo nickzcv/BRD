@@ -150,13 +150,17 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
 },"33":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":this.program(34, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"34":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
   return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + " "
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.lastName : stack1), depth0))
-    + "</span></span>\r\n";
+    + "</span></span>\r\n    ";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=this.lambda;
 
