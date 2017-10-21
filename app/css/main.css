@@ -742,7 +742,7 @@ nav.navigation .user .logout:hover {
   display: inline-block;
   background: #fff;
   position: relative;
-  z-index: 1; }
+  z-index: 2; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span:nth-child(1n):after {
   content: ', '; }
@@ -754,6 +754,9 @@ nav.navigation .user .logout:hover {
   padding-bottom: 1rem; }
 
 .ads .ad-item.expanded .section2 .phones {
+  background: #fff;
+  z-index: 1;
+  position: relative;
   padding: 0.5rem 0;
   margin: 0.5rem;
   font-size: 1rem; }

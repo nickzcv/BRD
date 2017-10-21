@@ -1906,8 +1906,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
    */
   saveAd: function saveAd() {
     var thisView = this,
-        contacts = thisView.model.get('contacts') || [],
-        error = false;
+        contacts = thisView.model.get('contacts') || [];
+
     // Set selected filters
     this.model.setCategoryObject();
     // Set model to save it to the server
@@ -1935,9 +1935,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
           contacts.phones.push(phone1, phone2);
           // Set contacts to the model
           thisView.model.set({ contacts: contacts });
-        } else {
-          error = true;
-          console.log('No profile phones');
         }
         break;
       case 'other':
@@ -1948,21 +1945,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       default:
         console.log('default');
     }
-    // If no Errors - Save the model
-    if (!error) {
-      thisView.model.save(null, {
-        headers: {
-          'Authorization': 'Bearer ' + brd.controllers.getToken()
-        },
-        success: function success() {
-          // Redirect to Ads profile page
-          brd.router.navigate('#ads', { trigger: true });
-        },
-        error: function error() {
-          console.log('error');
-        }
-      });
-    }
+    // Save the model into database
+    thisView.model.save(null, {
+      headers: {
+        'Authorization': 'Bearer ' + brd.controllers.getToken()
+      },
+      success: function success() {
+        // Redirect to Ads profile page
+        brd.router.navigate('#ads', { trigger: true });
+      },
+      error: function error() {
+        console.log('error');
+      }
+    });
   },
 
   /*
