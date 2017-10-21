@@ -17,7 +17,7 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
   },
 
   modelEvents: {
-  'change': 'render'
+    'change': 'render'
   },
 
   selectCountry: function(event) {

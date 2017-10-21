@@ -1919,12 +1919,20 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       price: thisView.ui.price.val().trim(),
       //photo: thisView.ui.photo.val(),
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      userId: app.user.get('_id'),
-      userName: {
-        name: app.user.get('name'),
-        lastName: app.user.get('lastName')
-      }
+      userId: app.user.get('_id')
     });
+    // Set name if exist
+    if (app.user.get('name') || app.user.get('lastName') || app.user.get('middleName')) {
+      thisView.model.set({
+        userName: {
+          name: app.user.get('name'),
+          lastName: app.user.get('lastName'),
+          middleName: app.user.get('middleName')
+        }
+      });
+    } else {
+      thisView.model.set({ userName: null });
+    }
     // Set contacts
     switch (contacts.takeFrom) {
       case 'profile':

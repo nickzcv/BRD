@@ -76,6 +76,10 @@
     {{/if}}
       <div class="message hidden"></div>
 
+      {{#if price}}
+        <div>Цена: {{price}}</div>
+      {{/if}}
+
       <div class="phones">
       {{#each contacts.phones}}
         {{#if this}}
@@ -91,8 +95,8 @@
     <span class="date"><i class="ion-ios-calendar-outline"></i><span>{{formatDate updated_at 'll'}}</span></span>
     {{#if company}}
       <span class="name"><i class="ion-ios-briefcase-outline"></i><span>{{userName.name}}</span></span>
-    {{else if userName.name}}
-      <span class="name"><i class="ion-ios-person-outline"></i><span>{{userName.name}} {{userName.lastName}}</span></span>
+    {{else if userName}}
+      <span class="name"><i class="ion-ios-person-outline"></i><span>{{userName.name}} {{userName.lastName}} {{userName.middleName}}</span></span>
     {{/if}}
     <span class="location"><i class="ion-ios-location-outline"></i><span>{{city.title}}, {{country.title}}</span></span>
 

@@ -136,30 +136,38 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
 },"28":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "        <div>Цена: "
+    + this.escapeExpression(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"price","hash":{},"data":data}) : helper)))
+    + "</div>\r\n";
+},"30":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,depth0,{"name":"if","hash":{},"fn":this.program(29, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"29":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,depth0,{"name":"if","hash":{},"fn":this.program(31, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"31":function(depth0,helpers,partials,data) {
     return "          <span class=\"ion-android-call\"> "
     + this.escapeExpression(this.lambda(depth0, depth0))
     + "</span>\r\n";
-},"31":function(depth0,helpers,partials,data) {
+},"33":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span>"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
-},"33":function(depth0,helpers,partials,data) {
+},"35":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":this.program(34, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"34":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":this.program(36, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"36":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
   return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + " "
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.lastName : stack1), depth0))
+    + " "
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
     + "</span></span>\r\n    ";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=this.lambda;
@@ -172,12 +180,14 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "      <div class=\"message hidden\"></div>\r\n\r\n      <div class=\"phones\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "      <div class=\"message hidden\"></div>\r\n\r\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n      <div class=\"phones\">\r\n"
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(30, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\r\n\r\n    </div>\r\n\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(31, data, 0),"inverse":this.program(33, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(33, data, 0),"inverse":this.program(35, data, 0),"data":data})) != null ? stack1 : "")
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span>"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "

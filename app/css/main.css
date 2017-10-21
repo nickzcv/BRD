@@ -736,7 +736,8 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .category .filter-row .first-level:after {
   content: '-';
   position: absolute;
-  left: 0; }
+  left: 0;
+  top: 0; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span {
   display: inline-block;
