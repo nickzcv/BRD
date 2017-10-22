@@ -1265,11 +1265,15 @@ app.views.adView = Backbone.Marionette.View.extend({
     categoryBlock: '.category',
     message: '.message',
     close: '.close',
-    table: '.filters-table'
+    table: '.filters-table',
+    tab: '.tab',
+    star: '.star'
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
+    'click @ui.tab': 'newTab',
+    'click @ui.star': 'addStar',
     'click @ui.sendMessage': 'showMessageForm',
     'click @ui.close': function clickUiClose() {
       this.getRegion('message').empty();
@@ -1289,10 +1293,26 @@ app.views.adView = Backbone.Marionette.View.extend({
     this.ui.item.toggleClass('expanded');
   },
 
+  /*
+   *  Show send message form
+   */
   showMessageForm: function showMessageForm() {
     this.ui.table.addClass('hidden');
     this.ui.message.removeClass('hidden');
     this.showChildView('message', new app.views.SendMessageFormView({ userId: this.model.get('userId') }));
+  },
+
+  /*
+   *  Go to full page view
+   */
+  newTab: function newTab() {
+    console.log('newTab');
+    console.log(this.model.get('_id'));
+  },
+
+  addStar: function addStar() {
+    console.log('addStar');
+    console.log(this.model.get('userId'));
   }
 
 });
@@ -1931,7 +1951,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         }
       });
     } else {
-      thisView.model.set({ userName: null });
+      thisView.model.set({
+        userName: null });
     }
     // Set contacts
     switch (contacts.takeFrom) {

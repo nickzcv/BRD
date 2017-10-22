@@ -631,15 +631,14 @@ nav.navigation .user .logout:hover {
   background: #FFFFFF; }
 
 .ads .ad-item .icon.star {
-  top: 0;
+  top: 2rem;
   color: gold; }
 
 .ads .ad-item .icon.star:hover {
   color: goldenrod; }
 
 .ads .ad-item .icon.tab {
-  top: 2.5rem;
-  right: 0.6rem;
+  top: 0;
   color: #b6b6b6; }
 
 .ads .ad-item .icon.tab:hover {
@@ -769,6 +768,12 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .phones span:before {
   padding-right: 3px; }
 
+.ads .ad-item.expanded .section2 .price {
+  padding-top: 0.5rem; }
+
+.ads .ad-item.expanded .section2 .price i {
+  font-weight: bold; }
+
 .ads .ad-item.expanded .section2 .message {
   width: 100%;
   z-index: 2;
@@ -789,6 +794,9 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .message .send_message_form label {
   font-weight: normal; }
+
+.ads .ad-item.expanded .section2 .message .send_message_form #text_message {
+  resize: vertical; }
 
 .ads .ad-item.expanded .section2 .message .send_message_form .send {
   line-height: 1rem;

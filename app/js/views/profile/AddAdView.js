@@ -157,7 +157,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         }
       });
     } else {
-      thisView.model.set({userName: null});
+      thisView.model.set({
+        userName: null});
     }
     // Set contacts
     switch (contacts.takeFrom) {

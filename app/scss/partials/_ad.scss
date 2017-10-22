@@ -76,15 +76,14 @@
       cursor: pointer;
       background: $white;
       &.star {
-        top: 0;
+        top: 2rem;
         color: gold;
         &:hover {
           color: goldenrod;
         }
       }
       &.tab {
-        top: 2.5rem;
-        right: 0.6rem;
+        top: 0;
         color: $gray-dark;
         &:hover {
           color: $gray-dark2;
@@ -223,6 +222,12 @@
             }
           }
         }
+        .price {
+          padding-top: 0.5rem;
+          i {
+            font-weight: bold;
+          }
+        }
         .message {
           width: 100%;
           z-index: 2;
@@ -242,6 +247,9 @@
             }
             label {
               font-weight: normal;
+            }
+            #text_message {
+              resize: vertical;
             }
             .send {
               line-height: 1rem;

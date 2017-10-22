@@ -70,16 +70,16 @@
             </tr>
           {{/compare}}
         {{/each}}
-
+        <tr>
+          <td>
+            {{#if price}}
+              <div class="price"><i>Цена:</i> {{price}}</div>
+            {{/if}}
+          </td>
+        </tr>
       </table>
-
     {{/if}}
       <div class="message hidden"></div>
-
-      {{#if price}}
-        <div>Цена: {{price}}</div>
-      {{/if}}
-
       <div class="phones">
       {{#each contacts.phones}}
         {{#if this}}
@@ -87,9 +87,7 @@
         {{/if}}
       {{/each}}
       </div>
-
     </div>
-
   </div>
   <div class="i-bottom">
     <span class="date"><i class="ion-ios-calendar-outline"></i><span>{{formatDate updated_at 'll'}}</span></span>
@@ -101,7 +99,9 @@
     <span class="location"><i class="ion-ios-location-outline"></i><span>{{city.title}}, {{country.title}}</span></span>
 
   </div>
-  <div class="icon ion-ios-star-outline star"></div>
   <div class="icon ion-ios-browsers-outline tab"></div>
+  {{#if isLoggedIn}}
+    <div class="icon ion-ios-star-outline star"></div>
+  {{/if}}
   <div class="icon ion-chevron-down arrow"></div>
 </div>

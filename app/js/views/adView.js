@@ -14,10 +14,14 @@ app.views.adView = Backbone.Marionette.View.extend({
     message: '.message',
     close: '.close',
     table: '.filters-table',
+    tab: '.tab',
+    star: '.star',
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
+    'click @ui.tab': 'newTab',
+    'click @ui.star': 'addStar',
     'click @ui.sendMessage': 'showMessageForm',
     'click @ui.close': function() {
       this.getRegion('message').empty();
@@ -37,10 +41,26 @@ app.views.adView = Backbone.Marionette.View.extend({
     this.ui.item.toggleClass('expanded');
   },
 
+  /*
+   *  Show send message form
+   */
   showMessageForm: function() {
     this.ui.table.addClass('hidden');
     this.ui.message.removeClass('hidden');
     this.showChildView('message', new app.views.SendMessageFormView({userId: this.model.get('userId')}));
-  }
+  },
+
+  /*
+   *  Go to full page view
+   */
+  newTab: function() {
+    console.log('newTab');
+    console.log(this.model.get('_id'));
+  },
+
+  addStar: function() {
+    console.log('addStar');
+    console.log(this.model.get('userId'));
+  },
 
 });
