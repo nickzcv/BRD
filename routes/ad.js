@@ -33,6 +33,7 @@ router.route('/ads')
     ad.userId = req.body.userId;
     ad.userName = req.body.userName;
     ad.company = null;
+    ad.favorites = [];
 
 		// save the ad and check for errors
     ad.save(function(err) {

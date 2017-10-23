@@ -59,8 +59,18 @@ app.views.adView = Backbone.Marionette.View.extend({
   },
 
   addStar: function() {
-    console.log('addStar');
-    console.log(this.model.get('userId'));
+    let favorites = this.model.get('favorites');
+    // If array not empty
+    if (favorites.length) {
+      let userId = brd.controllers.getUserId();
+      // If not favorited before
+      if (!favorites.includes(userId)) {
+        // Add to favorite
+        // TODO: run service request
+      }
+
+    }
+
   },
 
 });

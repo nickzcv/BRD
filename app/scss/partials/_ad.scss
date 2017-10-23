@@ -196,6 +196,11 @@
               position: relative;
               z-index: 2;
             }
+            .first-level .overlay {
+              background: #fff;
+              position: relative;
+              z-index: 2;
+            }
             .first-level span:nth-child(1n):after {
               content: ', ';
             }

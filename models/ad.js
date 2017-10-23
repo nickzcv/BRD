@@ -19,7 +19,8 @@ var adSchema = new mongoose.Schema({
   isActive: {type: Boolean, default: false},
   userId: {type: mongoose.Schema.ObjectId},
   userName: {type: Object},
-  company: String
+  company: String,
+  favorites: {type: []},
 });
 
 

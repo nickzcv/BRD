@@ -53,12 +53,13 @@
                 {{#each items}}
                   {{#compare type '===' 'input'}}
                     {{#if selected}}
-                      {{#if label}}
-                        <i>{{label}}</i>:
-                      {{/if}}
-                      {{#if from}}от {{from}}{{/if}}
-                      {{#if to}}до {{to}}{{/if}}
-                      <br>
+                      <div class="overlay">
+                        {{#if label}}
+                          <i>{{label}}</i>:
+                        {{/if}}
+                        {{#if from}}от {{from}}{{/if}}
+                        {{#if to}}до {{to}}{{/if}}
+                      </div>
                     {{/if}}
                   {{else}}
                     {{#if selected}}

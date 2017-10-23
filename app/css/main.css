@@ -744,6 +744,11 @@ nav.navigation .user .logout:hover {
   position: relative;
   z-index: 2; }
 
+.ads .ad-item.expanded .section2 .category .filter-row .first-level .overlay {
+  background: #fff;
+  position: relative;
+  z-index: 2; }
+
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span:nth-child(1n):after {
   content: ', '; }
 

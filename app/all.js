@@ -120,6 +120,8 @@ var brd = {
       if (token) {
         try {
           payload = token.split('.')[1];
+          // TODO: fix
+          // DOMException: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.
           payload = atob(payload);
           payload = JSON.parse(payload);
         } catch (e) {
@@ -1311,8 +1313,16 @@ app.views.adView = Backbone.Marionette.View.extend({
   },
 
   addStar: function addStar() {
-    console.log('addStar');
-    console.log(this.model.get('userId'));
+    var favorites = this.model.get('favorites');
+    // If array not empty
+    if (favorites.length) {
+      var userId = brd.controllers.getUserId();
+      // If not favorited before
+      if (!favorites.includes(userId)) {
+        // Add to favorite
+        // TODO: run service request
+      }
+    }
   }
 
 });

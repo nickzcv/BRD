@@ -49,6 +49,8 @@ let brd = {
       if(token){
         try {
           payload = token.split('.')[1];
+          // TODO: fix
+          // DOMException: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.
           payload = atob(payload);
           payload = JSON.parse(payload);
         } catch(e) {
