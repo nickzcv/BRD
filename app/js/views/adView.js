@@ -67,8 +67,12 @@ app.views.adView = Backbone.Marionette.View.extend({
       if (!favorites.includes(userId)) {
         // Add to favorite
         // TODO: run service request
+      } else {
+        // TODO: remove from favorite
       }
-
+    } else {
+      // Add to favorite
+      // TODO: run service request
     }
 
   },
