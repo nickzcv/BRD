@@ -5,8 +5,8 @@ app.models.AdsListModel = Backbone.Model.extend({
   },
 
   initialize: function() {
-    console.log('initialize AdsListModel');
-    console.log(this.attributes);
+    //console.log('initialize AdsListModel');
+    //console.log(this.attributes);
 
   },
 

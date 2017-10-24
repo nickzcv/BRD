@@ -21,7 +21,7 @@ app.models.AdModel = Backbone.Model.extend({
     let thisModel = this;
 
     thisModel.on('invalid', function(model, error){
-      console.log(error);
+      //console.log(error);
     });
 
     // Init child Countries model

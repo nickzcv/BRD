@@ -8,7 +8,7 @@ app.models.LoginModel = Backbone.Model.extend({
   initialize: function() {
     // console.log('initialize Login Model');
     this.on('invalid', function(model, error){
-      console.log(error);
+      //console.log(error);
     });
   },
 

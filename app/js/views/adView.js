@@ -54,8 +54,8 @@ app.views.adView = Backbone.Marionette.View.extend({
    *  Go to full page view
    */
   newTab: function() {
-    console.log('newTab');
-    console.log(this.model.get('_id'));
+    //console.log('newTab');
+    //console.log(this.model.get('_id'));
   },
 
   addStar: function() {

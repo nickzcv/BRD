@@ -371,7 +371,7 @@ app.models.AdModel = Backbone.Model.extend({
     var thisModel = this;
 
     thisModel.on('invalid', function (model, error) {
-      console.log(error);
+      //console.log(error);
     });
 
     // Init child Countries model
@@ -405,7 +405,7 @@ app.models.AdModel = Backbone.Model.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.models.AdsListModel = Backbone.Model.extend({
 
@@ -414,8 +414,9 @@ app.models.AdsListModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    console.log('initialize AdsListModel');
-    console.log(this.attributes);
+    //console.log('initialize AdsListModel');
+    //console.log(this.attributes);
+
   }
 
 });
@@ -454,7 +455,7 @@ app.models.LoginModel = Backbone.Model.extend({
   initialize: function initialize() {
     // console.log('initialize Login Model');
     this.on('invalid', function (model, error) {
-      console.log(error);
+      //console.log(error);
     });
   },
 
@@ -497,7 +498,7 @@ app.models.RegistrationModel = Backbone.Model.extend({
 
   initialize: function initialize() {
     this.on('invalid', function (model, error) {
-      console.log(error);
+      //console.log(error);
     });
   },
 
@@ -1308,8 +1309,8 @@ app.views.adView = Backbone.Marionette.View.extend({
    *  Go to full page view
    */
   newTab: function newTab() {
-    console.log('newTab');
-    console.log(this.model.get('_id'));
+    //console.log('newTab');
+    //console.log(this.model.get('_id'));
   },
 
   addStar: function addStar() {
@@ -1649,10 +1650,10 @@ app.views.LoginView = app.views.HeaderView.extend({
         var useId = brd.controllers.getUserId();
         app.user = new app.models.UserModel({ _id: useId });
         app.user.fetch().then(function () {
-          console.log('SUCCESS');
+          // console.log('SUCCESS');
           //console.log(app.user.attributes);
         }, function () {
-          console.log('FAIL');
+          // console.log('FAIL');
           //console.log(app.user.attributes);
         });
       }
