@@ -1,3 +1,21 @@
-<div>
+{{#if placeholder}}
+  <div class="ad-item">
+    <div class="ion-ios-plus-outline placeholder add-button"></div>
+    <div class="section1">
+      <div class="photo"><span class="ion-image"></span></div>
+      <div class="content">
+        <div class="ad-title">{{title}}</div>
+        <div class="ad-description">{{description}}</div>
+      </div>
+    </div>
+    <div class="i-bottom">
+      <span class="date"><i class="ion-ios-calendar-outline"></i><span  class="blur-text">24 окт. 2017</span></span>
+      <span class="name"><i class="ion-ios-person-outline"></i><span class="blur-text">Your Name</span></span>
+      <span class="location"><i class="ion-ios-location-outline"></i><span class="blur-text">Belarus, Minsk</span></span>
+    </div>
+    <div class="icon ion-ios-browsers-outline tab"></div>
+    <div class="icon ion-ios-star-outline star"></div>
+  </div>
+{{else}}
   {{message}}
-</div>
+{{/if}}

@@ -359,12 +359,24 @@ this["tpl"]["templates"]["home"] = Handlebars.template({"compiler":[6,">= 2.0.0-
 this["tpl"]["templates"]["main"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!-- Header -->\r\n<header class=\"container-fluid\"></header>\r\n<!-- /end header -->\r\n\r\n<section class=\"container-fluid section home-banner\"></section>\r\n\r\n<!-- Main content -->\r\n<section class=\"container-fluid section home\">\r\n  <div class=\"row home-wrapper content\">\r\n  </div>\r\n</section>\r\n<!-- /end main content -->\r\n\r\n<!-- Footer -->\r\n<footer class=\"footer\"></footer>\r\n<!-- /end Footer  -->";
 },"useData":true});
-this["tpl"]["templates"]["message"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["tpl"]["templates"]["message"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "  <div class=\"ad-item\">\r\n    <div class=\"ion-ios-plus-outline placeholder add-button\"></div>\r\n    <div class=\"section1\">\r\n      <div class=\"photo\"><span class=\"ion-image\"></span></div>\r\n      <div class=\"content\">\r\n        <div class=\"ad-title\">"
+    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</div>\r\n        <div class=\"ad-description\">"
+    + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
+    + "</div>\r\n      </div>\r\n    </div>\r\n    <div class=\"i-bottom\">\r\n      <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span  class=\"blur-text\">24 окт. 2017</span></span>\r\n      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span class=\"blur-text\">Your Name</span></span>\r\n      <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"blur-text\">Belarus, Minsk</span></span>\r\n    </div>\r\n    <div class=\"icon ion-ios-browsers-outline tab\"></div>\r\n    <div class=\"icon ion-ios-star-outline star\"></div>\r\n  </div>\r\n";
+},"3":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "<div>\r\n  "
+  return "  "
     + this.escapeExpression(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"message","hash":{},"data":data}) : helper)))
-    + "\r\n</div>";
+    + "\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.placeholder : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "");
 },"useData":true});
 this["tpl"]["templates"]["settings"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n\r\n<div class=\"profile settings\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-settings\"></span>\r\n    <span class=\"title-text\">Настройки</span>\r\n  </div>\r\n\r\n\r\n  <div class=\"tabs\">\r\n    <div class=\"tab profile-settings-link\">Настройки профиля</div>\r\n    <div class=\"tab account-settings-link\">Настройки аккаунта</div>\r\n  </div>\r\n\r\n  <!--  page (inner sections comes here) -->\r\n  <div class=\"page\"></div>\r\n  <!-- /end  page -->\r\n\r\n\r\n</div>\r\n";

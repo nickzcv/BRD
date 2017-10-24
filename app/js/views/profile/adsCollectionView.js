@@ -14,7 +14,8 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
           // Show message if no items
           this.emptyView = app.views.MessageView;
           this.emptyViewOptions = {
-            message: 'Список пуст.'
+            message: 'Список пуст.',
+            placeholder: true
           };
           this.render();
         }
@@ -22,7 +23,8 @@ app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
       () => {
         this.emptyView = app.views.MessageView;
         this.emptyViewOptions = {
-          message: 'Error'
+          message: 'Ошибка сервиса. Попробуйте обновить страницу.',
+          placeholder: false
         };
         this.render();
       }

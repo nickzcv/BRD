@@ -4,7 +4,8 @@ app.views.MessageView = Marionette.View.extend({
 
   templateContext: function() {
     return {
-      message: this.getOption('message')
+      message: this.getOption('message'),
+      placeholder: this.getOption('placeholder')
     }
   },
 
