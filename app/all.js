@@ -1481,9 +1481,14 @@ app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 });
 'use strict';
 
-app.views.FilterView = Backbone.Marionette.View.extend({
+app.views.FiltersHomeView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.filter_home,
+
+  regions: {
+    filters: '.filters',
+    countriesPicker: '.country-picker'
+  },
 
   ui: {
     addNewBtn: '.add-new'
@@ -1502,6 +1507,15 @@ app.views.FilterView = Backbone.Marionette.View.extend({
       brd.regions.mainRegion.show(new app.views.MainView());
       brd.regions.bodyRegion.show(new app.views.ForbiddenView());
     }
+  },
+
+  initialize: function initialize() {
+    // Show country picker
+    this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
+  },
+
+  onRender: function onRender() {
+    console.log(this.model);
   }
 
 });
@@ -1533,7 +1547,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('filter', new app.views.FilterView());
+    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersModel() }));
     this.showChildView('adsList', new app.views.adsHomeCollectionView());
   }
 

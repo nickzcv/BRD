@@ -371,38 +371,38 @@ nav.navigation .user .logout:hover {
   content: "\f216";
   color: #559797; }
 
-.filter-home .filters {
+.filter-home .filters-wrapper {
   background: #fcfcf4;
   border: 1px solid #edebdc;
   border-top: none; }
 
-.filter-home .filters.visible {
+.filter-home .filters-wrapper.visible {
   display: block !important; }
 
-.filter-home .filters .close-btn {
+.filter-home .filters-wrapper .close-btn {
   position: absolute;
   right: 2rem;
   cursor: pointer;
   color: #b6b6b6; }
 
-.filter-home .filters .close-btn:hover {
+.filter-home .filters-wrapper .close-btn:hover {
   color: #000; }
 
-.filter-home .filters .line-breaker {
+.filter-home .filters-wrapper .line-breaker {
   border-top: 1px solid #edebdc;
   margin: 1rem 0; }
 
-.filter-home .filters .form-group {
+.filter-home .filters-wrapper .form-group {
   margin: 1rem 0; }
 
 @media only screen and (min-width: 992px) {
-  .filter-home .filters {
+  .filter-home .filters-wrapper {
     padding: 1rem; } }
 
 @media only screen and (min-width: 1200px) {
   .filter-home {
     max-width: 22rem; }
-  .filter-home .filters {
+  .filter-home .filters-wrapper {
     padding: 1rem 1.5rem; } }
 
 /* Left navigation styles
