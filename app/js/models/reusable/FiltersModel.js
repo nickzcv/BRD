@@ -764,23 +764,15 @@ app.models.FiltersModel = Backbone.Model.extend({
             if (currentValue.type === 'input-sizes') {
 
               for (let i = 0; i < currentValue.values.length; i++) {
-                if (dataset === i) {
-                  console.log(currentValue.values[i])
+                if (parseInt(dataset) === i) {
+                  currentValue.values[i][filterLabel] = value;
                 }
-
               }
 
-              console.log('-----------------');
-              console.log(currentValue.values.length);
-              console.log(filterLabel);
-              console.log(type);
-              console.log( value);
-              console.log( dataset);
             }
           });
         }
       });
-
 
     } else {
       //Input from-to
@@ -824,6 +816,52 @@ app.models.FiltersModel = Backbone.Model.extend({
     let category = _.findWhere(categories, {id: catId});
     // Selected filters category
     this.set({category});
+  },
+
+  addSize: function() {
+    let category = this.get('category'),
+        sizeRow = {
+          t: 0,
+          s: 0,
+          d: 0
+        };
+
+    category.filters.forEach((currentValue) => {
+      // Retrive array of inner filter items
+      let items = this.retriveItems(currentValue);
+      // Process inner items
+      if (items) {
+        items.forEach((currentValue) => {
+          if (currentValue.type === 'input-sizes') {
+            currentValue.values.push(sizeRow);
+          }
+        });
+      }
+    });
+    this.trigger('change', this);
+  },
+
+  removeSize: function(position) {
+    let category = this.get('category'),
+      sizeRow = {
+        t: 0,
+        s: 0,
+        d: 0
+      };
+
+    category.filters.forEach((currentValue) => {
+      // Retrive array of inner filter items
+      let items = this.retriveItems(currentValue);
+      // Process inner items
+      if (items) {
+        items.forEach((currentValue) => {
+          if (currentValue.type === 'input-sizes') {
+            currentValue.values.splice(position, 1);
+          }
+        });
+      }
+    });
+    this.trigger('change', this);
   }
 
 });

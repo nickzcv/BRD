@@ -762,6 +762,15 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span:last-child:after {
   content: ''; }
 
+.ads .ad-item.expanded .section2 .category .filter-row .iks {
+  color: #888;
+  font-weight: normal; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .size-row {
+  background: #fff;
+  position: relative;
+  z-index: 2; }
+
 .ads .ad-item.expanded .section2 .category .table-header {
   padding-bottom: 1rem; }
 

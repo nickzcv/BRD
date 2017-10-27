@@ -61,6 +61,17 @@
                         {{#if to}}до {{to}}{{/if}}
                       </div>
                     {{/if}}
+                  {{else compare type '===' 'input-sizes'}}
+                    {{#each values}}
+                      {{#if t}}
+                        {{#if s}}
+                          {{#if d}}
+                            <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
+                          {{/if}}
+                        {{/if}}
+                      {{/if}}
+
+                    {{/each}}
                   {{else}}
                     {{#if selected}}
                       <span>{{value}}</span>
@@ -95,7 +106,7 @@
     {{#if company}}
       <span class="name"><i class="ion-ios-briefcase-outline"></i><span>{{userName.name}}</span></span>
     {{else if userName}}
-      <span class="name"><i class="ion-ios-person-outline"></i><span>{{userName.name}} {{userName.lastName}} {{userName.middleName}}</span></span>
+      <span class="name"><i class="ion-ios-person-outline"></i><span>{{userName.lastName}} {{userName.name}} {{userName.middleName}}</span></span>
     {{/if}}
     <span class="location"><i class="ion-ios-location-outline"></i><span>{{city.title}}, {{country.title}}</span></span>
 

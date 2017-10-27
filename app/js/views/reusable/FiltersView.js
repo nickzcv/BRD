@@ -6,7 +6,9 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
     parent: '.parent',
     sizes: '.subtitle',
     checkbox: 'input[type="checkbox"]',
-    number: 'input[type="number"]'
+    number: 'input[type="number"]',
+    addSize: '.add-size',
+    removeSize: '.remove-size',
   },
 
   events: {
@@ -29,9 +31,22 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
       }
     },
     'change @ui.checkbox': 'changeFilter',
-    'change @ui.number': 'changeFilter'
+    'change @ui.number': 'changeFilter',
+    'click @ui.addSize': 'addSize',
+    'click @ui.removeSize': 'removeSize',
   },
 
+  modelEvents: {
+    'change': 'render'
+  },
+
+  addSize: function() {
+    this.model.addSize();
+  },
+
+  removeSize: function(event) {
+    this.model.removeSize(event.target.dataset.id);
+  },
 
   changeFilter: function(event) {
     let type = event.target.type,
