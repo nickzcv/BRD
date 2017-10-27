@@ -191,154 +191,22 @@ app.models.FiltersModel = Backbone.Model.extend({
             level: 'child',
             items: [
               {
-                type: 'input',
-                id: 'dlina',
-                label: 'Длина, мм',
-                from: null,
-                to: null,
-              },
-              {
-                type: 'input',
-                id: 'shirina',
-                label: 'Ширина, мм',
-                from: null,
-                to: null,
-              },
-              {
-                type: 'input',
-                id: 'tolshina',
-                label: 'Толщина, мм',
-                from: null,
-                to: null,
-              },
+                type: 'input-sizes',
+                id: 'sizes',
+                values: [
+                  {
+                    t: null,
+                    s: null,
+                    d: null
+                  }
+                ]
+              }
             ]
           }
         ],
       },
       {
         id: 2,
-        title: 'Древесные отходы',
-        filters: [
-          {
-            label: null,
-            title: '',
-            level: 'child',
-            type: 'checkbox',
-            separator: true,
-            items: [
-              {
-                label: 'gorbil',
-                value: 'Горбыль',
-              },
-              {
-                label: 'struzhka',
-                value: 'Стружка',
-              },
-              {
-                label: 'obapol',
-                value: 'Обапол',
-              },
-              {
-                label: 'opilki',
-                value: 'Опилки',
-              },
-              {
-                label: 'kora',
-                value: 'Кора',
-              },
-              {
-                label: 'shepa',
-                value: 'Щепа',
-              }
-            ]
-          },
-          {
-            label: null,
-            title: 'Порода',
-            level: 'parent',
-            items: [
-              {
-                label: 'hvoya',
-                title: 'Хвойные',
-                level: 'child',
-                type: 'checkbox',
-                items: [
-                  {
-                    label: 'el',
-                    value: 'Ель',
-                  },
-                  {
-                    label: 'kedr',
-                    value: 'Кедр',
-                  },
-                  {
-                    label: 'listvenica',
-                    value: 'Лиственница',
-                  },
-                  {
-                    label: 'pihta',
-                    value: 'Пихта',
-                  },
-                  {
-                    label: 'sosna',
-                    value: 'Сосна',
-                  }
-                ]
-              },
-              {
-                label: 'listva',
-                title: 'Лиственные',
-                level: 'child',
-                type: 'checkbox',
-                items: [
-                  {
-                    label: 'bereza',
-                    value: 'Береза',
-                  },
-                  {
-                    label: 'buk',
-                    value: 'Бук',
-                  },
-                  {
-                    label: 'vyaz',
-                    value: 'Вяз',
-                  },
-                  {
-                    label: 'dub',
-                    value: 'Дуб',
-                  },
-                  {
-                    label: 'klen',
-                    value: 'Клен',
-                  },
-                  {
-                    label: 'lipa',
-                    value: 'Липа',
-                  },
-                  {
-                    label: 'olha',
-                    value: 'Ольха',
-                  },
-                  {
-                    label: 'osina',
-                    value: 'Осина',
-                  },
-                  {
-                    label: 'topol',
-                    value: 'Тополь',
-                  },
-                  {
-                    label: 'yasen',
-                    value: 'Ясень',
-                  },
-                ]
-              }
-            ]
-          }
-        ],
-      },
-      {
-        id: 3,
         title: 'Лесоматериалы',
         filters: [
           {
@@ -472,16 +340,16 @@ app.models.FiltersModel = Backbone.Model.extend({
             type: 'checkbox',
             items: [
               {
-                label: '',
+                label: 'do2',
                 value: 'до 2 м',
               },
               {
-                label: '',
-                value: 'от 2,1 до 6,5 м',
+                label: 'ot2do6',
+                value: 'от 2 до 6 м',
               },
               {
-                label: '',
-                value: 'более 6,5 м',
+                label: '6more',
+                value: 'более 6 м',
               },
             ]
           },
@@ -492,20 +360,142 @@ app.models.FiltersModel = Backbone.Model.extend({
             type: 'checkbox',
             items: [
               {
-                label: '',
+                label: 'pervi',
                 value: 'Первый',
               },
               {
-                label: '',
+                label: 'vtoroi',
                 value: 'Второй',
               },
               {
-                label: '',
+                label: 'treti',
                 value: 'Третий',
               },
               {
-                label: '',
+                label: 'chetverti',
                 value: 'Четвертый',
+              }
+            ]
+          }
+        ],
+      },
+      {
+        id: 3,
+        title: 'Древесные отходы',
+        filters: [
+          {
+            label: null,
+            title: '',
+            level: 'child',
+            type: 'checkbox',
+            separator: true,
+            items: [
+              {
+                label: 'gorbil',
+                value: 'Горбыль',
+              },
+              {
+                label: 'struzhka',
+                value: 'Стружка',
+              },
+              {
+                label: 'obapol',
+                value: 'Обапол',
+              },
+              {
+                label: 'opilki',
+                value: 'Опилки',
+              },
+              {
+                label: 'kora',
+                value: 'Кора',
+              },
+              {
+                label: 'shepa',
+                value: 'Щепа',
+              }
+            ]
+          },
+          {
+            label: null,
+            title: 'Порода',
+            level: 'parent',
+            items: [
+              {
+                label: 'hvoya',
+                title: 'Хвойные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'el',
+                    value: 'Ель',
+                  },
+                  {
+                    label: 'kedr',
+                    value: 'Кедр',
+                  },
+                  {
+                    label: 'listvenica',
+                    value: 'Лиственница',
+                  },
+                  {
+                    label: 'pihta',
+                    value: 'Пихта',
+                  },
+                  {
+                    label: 'sosna',
+                    value: 'Сосна',
+                  }
+                ]
+              },
+              {
+                label: 'listva',
+                title: 'Лиственные',
+                level: 'child',
+                type: 'checkbox',
+                items: [
+                  {
+                    label: 'bereza',
+                    value: 'Береза',
+                  },
+                  {
+                    label: 'buk',
+                    value: 'Бук',
+                  },
+                  {
+                    label: 'vyaz',
+                    value: 'Вяз',
+                  },
+                  {
+                    label: 'dub',
+                    value: 'Дуб',
+                  },
+                  {
+                    label: 'klen',
+                    value: 'Клен',
+                  },
+                  {
+                    label: 'lipa',
+                    value: 'Липа',
+                  },
+                  {
+                    label: 'olha',
+                    value: 'Ольха',
+                  },
+                  {
+                    label: 'osina',
+                    value: 'Осина',
+                  },
+                  {
+                    label: 'topol',
+                    value: 'Тополь',
+                  },
+                  {
+                    label: 'yasen',
+                    value: 'Ясень',
+                  },
+                ]
               }
             ]
           }
@@ -764,24 +754,33 @@ app.models.FiltersModel = Backbone.Model.extend({
       })
     } else {
       // For inputs
-      // Retrive Id and Destination
-      let filterLabelArray = filterLabel.split('-'),
+      // TODO: add logic for sizes
+
+      if (filterLabel === 'sizes') {
+        console.log('TEST')
+      } else {
+        // Retrive Id and Destination
+        let filterLabelArray = filterLabel.split('-'),
           id = filterLabelArray[0],
           destination = filterLabelArray[1];
-      // Iterate over all filters in current category
-      category.filters.forEach((currentValue) => {
-        // Retrive array of inner filter items
-        let items = this.retriveItems(currentValue);
-        // Process inner items
-        if (items) {
-          items.forEach((currentValue) => {
-            if (currentValue.id === id) {
-              currentValue[destination] = value;
-              currentValue.selected = true;
-            }
-          });
-        }
-      });
+        // Iterate over all filters in current category
+        category.filters.forEach((currentValue) => {
+          // Retrive array of inner filter items
+          let items = this.retriveItems(currentValue);
+          // Process inner items
+          if (items) {
+            items.forEach((currentValue) => {
+              if (currentValue.id === id) {
+                currentValue[destination] = value;
+                currentValue.selected = true;
+              }
+            });
+          }
+        });
+      }
+
+
+
 
     }
 

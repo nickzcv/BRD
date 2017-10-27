@@ -34,7 +34,7 @@
           <div class="input-label">{{label}}</div>
         {{/if}}
         <div class="from-to-inline">
-          <div class="input-filter m-r-1">
+          <div class="input-filter m-r-05">
             <label for="{{id}}-from">от</label>
             <input type="number" name="inputFilter" class="form-control" id="{{id}}-from" min="0" {{#if from}}value="{{from}}{{/if}}">
           </div>
@@ -43,6 +43,24 @@
             <input type="number" name="inputFilter" class="form-control" id="{{id}}-to" min="0" {{#if to}}value="{{to}}{{/if}}">
           </div>
         </div>
+      {{else compare type '===' 'input-sizes'}}
+
+
+
+        <div class="from-to-inline">
+          <div class="input-filter">
+            <input type="number" name="inputFilter" class="form-control" id="t" min="0" placeholder="{{placeholder}}" {{#if from}}value="{{from}}{{/if}}">
+          </div>
+          <div class="input-filter">
+            <label>&#9747;</label>
+            <input type="number" name="inputFilter" class="form-control" id="s" min="0" {{#if to}}value="{{to}}{{/if}}">
+          </div>
+          <div class="input-filter">
+            <label>&#9747;</label>
+            <input type="number" name="inputFilter" class="form-control" id="d" min="0" {{#if to}}value="{{to}}{{/if}}">
+          </div>
+        </div>
+
       {{else}}
         <div class="checkbox">
           <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
