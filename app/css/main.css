@@ -907,6 +907,21 @@ nav.navigation .user .logout:hover {
   display: inline-block;
   width: 5rem; }
 
+.new-ad .btn.add-size {
+  vertical-align: top; }
+
+.new-ad .btn.add-size:hover {
+  background: #559797;
+  color: #fff; }
+
+.new-ad .btn.remove-size {
+  vertical-align: top;
+  margin-left: .5rem; }
+
+.new-ad .btn.remove-size:hover {
+  background: goldenrod;
+  color: #fff; }
+
 @media only screen and (min-width: 992px) {
   .new-ad .ad-photo span {
     font-size: 5rem; } }

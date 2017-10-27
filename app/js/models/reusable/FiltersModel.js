@@ -192,12 +192,12 @@ app.models.FiltersModel = Backbone.Model.extend({
             items: [
               {
                 type: 'input-sizes',
-                id: 'sizes',
+                label: '(ТxШxД, мм)',
                 values: [
                   {
-                    t: null,
-                    s: null,
-                    d: null
+                    t: 0,
+                    s: 0,
+                    d: 0
                   }
                 ]
               }
@@ -723,9 +723,10 @@ app.models.FiltersModel = Backbone.Model.extend({
   * @param filterLabel - unique label of the selected filter
   * @param type - checkbox or input
   * @param value - value of the selected filter
+  * @param dataset - id of the row for sizes inputs
   *
    */
-  setFilter: function(filterLabel, type, value) {
+  setFilter: function(filterLabel, type, value, dataset) {
     let category = this.get('category');
     // For checkboxes
     if (type === 'checkbox') {
@@ -752,36 +753,55 @@ app.models.FiltersModel = Backbone.Model.extend({
           });
         }
       })
-    } else {
-      // For inputs
-      // TODO: add logic for sizes
+    } else if (type === 'input-sizes') {
+      //Input sizes
+      category.filters.forEach((currentValue) => {
+        // Retrive array of inner filter items
+        let items = this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach((currentValue) => {
+            if (currentValue.type === 'input-sizes') {
 
-      if (filterLabel === 'sizes') {
-        console.log('TEST')
-      } else {
-        // Retrive Id and Destination
-        let filterLabelArray = filterLabel.split('-'),
+              for (let i = 0; i < currentValue.values.length; i++) {
+                if (dataset === i) {
+                  console.log(currentValue.values[i])
+                }
+
+              }
+
+              console.log('-----------------');
+              console.log(currentValue.values.length);
+              console.log(filterLabel);
+              console.log(type);
+              console.log( value);
+              console.log( dataset);
+            }
+          });
+        }
+      });
+
+
+    } else {
+      //Input from-to
+      // Retrive Id and Destination
+      let filterLabelArray = filterLabel.split('-'),
           id = filterLabelArray[0],
           destination = filterLabelArray[1];
-        // Iterate over all filters in current category
-        category.filters.forEach((currentValue) => {
-          // Retrive array of inner filter items
-          let items = this.retriveItems(currentValue);
-          // Process inner items
-          if (items) {
-            items.forEach((currentValue) => {
-              if (currentValue.id === id) {
-                currentValue[destination] = value;
-                currentValue.selected = true;
-              }
-            });
-          }
-        });
-      }
-
-
-
-
+      // Iterate over all filters in current category
+      category.filters.forEach((currentValue) => {
+        // Retrive array of inner filter items
+        let items = this.retriveItems(currentValue);
+        // Process inner items
+        if (items) {
+          items.forEach((currentValue) => {
+            if (currentValue.id === id) {
+              currentValue[destination] = value;
+              currentValue.selected = true;
+            }
+          });
+        }
+      });
     }
 
   },

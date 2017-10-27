@@ -37,14 +37,19 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
     let type = event.target.type,
         label = event.target.value,
         value = label;
-
+    // Checkboxes
     if (type === 'checkbox') {
       value = event.target.checked;
     } else {
+      // Inputs
       label = event.target.id;
       value = event.target.value;
+      // Add additional param for sizes input
+      if (event.target.dataset.id) {
+        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
+        return;
+      }
     }
-
     this.model.setFilter(label, type, value);
   },
 

@@ -208,7 +208,7 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
   return "\r\n"
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(2, data, 0),"inverse":this.program(6, data, 0),"data":data})) != null ? stack1 : "")
     + "\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.separator : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.separator : depth0),{"name":"if","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\r\n";
 },"2":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
@@ -304,20 +304,47 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
 },"17":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input-sizes",{"name":"compare","hash":{},"fn":this.program(18, data, 0),"inverse":this.program(20, data, 0),"data":data})) != null ? stack1 : "");
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input-sizes",{"name":"compare","hash":{},"fn":this.program(18, data, 0),"inverse":this.program(26, data, 0),"data":data})) != null ? stack1 : "");
 },"18":function(depth0,helpers,partials,data) {
-    var stack1, helper;
+    var stack1;
 
-  return "\r\n\r\n\r\n        <div class=\"from-to-inline\">\r\n          <div class=\"input-filter\">\r\n            <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"t\" min=\"0\" placeholder=\""
-    + this.escapeExpression(((helper = (helper = helpers.placeholder || (depth0 != null ? depth0.placeholder : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"placeholder","hash":{},"data":data}) : helper)))
-    + "\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\">\r\n          </div>\r\n          <div class=\"input-filter\">\r\n            <label>&#9747;</label>\r\n            <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"s\" min=\"0\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\">\r\n          </div>\r\n          <div class=\"input-filter\">\r\n            <label>&#9747;</label>\r\n            <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"d\" min=\"0\" "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\">\r\n          </div>\r\n        </div>\r\n\r\n";
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.values : depth0),{"name":"each","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "        <button type=\"button\" class=\"btn ion-plus add-size\"></button>\r\n";
+},"19":function(depth0,helpers,partials,data) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "          <div class=\"from-to-inline m-b-1\">\r\n            <div class=\"input-filter\">\r\n              <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"t\" min=\"0\" data-id=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + " "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.t : depth0),{"name":"if","hash":{},"fn":this.program(20, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\">\r\n            </div>\r\n            <div class=\"input-filter\">\r\n              <label>&#9747;</label>\r\n              <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"s\" min=\"0\" data-id=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + " "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.s : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\">\r\n            </div>\r\n            <div class=\"input-filter\">\r\n              <label>&#9747;</label>\r\n              <input type=\"number\" name=\"inputFilter\" class=\"form-control\" id=\"d\" min=\"0\" data-id=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + " "
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.d : depth0),{"name":"if","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\">\r\n            </div>\r\n            <button type=\"button\" class=\"btn ion-minus remove-size\" data-id=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + "\"></button>\r\n          </div>\r\n\r\n";
 },"20":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "value=\""
+    + this.escapeExpression(((helper = (helper = helpers.t || (depth0 != null ? depth0.t : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"t","hash":{},"data":data}) : helper)));
+},"22":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "value=\""
+    + this.escapeExpression(((helper = (helper = helpers.s || (depth0 != null ? depth0.s : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"s","hash":{},"data":data}) : helper)));
+},"24":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "value=\""
+    + this.escapeExpression(((helper = (helper = helpers.d || (depth0 != null ? depth0.d : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"d","hash":{},"data":data}) : helper)));
+},"26":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "        <div class=\"checkbox\">\r\n          <label><input type=\"checkbox\" id=\""
@@ -329,16 +356,16 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,h
     + "\">"
     + alias3(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</label>\r\n        </div>\r\n      ";
-},"22":function(depth0,helpers,partials,data) {
+},"28":function(depth0,helpers,partials,data) {
     return "    </div>\r\n    <div class=\"col-md-6\">\r\n";
-},"24":function(depth0,helpers,partials,data) {
+},"30":function(depth0,helpers,partials,data) {
     return "    </div>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "<div class=\"row\">\r\n  <div class=\"col-md-6\">\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.subtitle : depth0),{"name":"if","hash":{},"fn":this.program(24, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.subtitle : depth0),{"name":"if","hash":{},"fn":this.program(30, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["filter_home"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {

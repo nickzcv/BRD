@@ -53,6 +53,21 @@
       }
     }
   }
+  .btn.add-size {
+    vertical-align: top;
+    &:hover {
+      background: $blue-dark;
+      color: #fff;
+    }
+  }
+  .btn.remove-size {
+    vertical-align: top;
+    margin-left: .5rem;
+    &:hover {
+      background: goldenrod;
+      color: #fff;
+    }
+  }
 
   /* Tablets */
   @media only screen and (min-width: 768px) {

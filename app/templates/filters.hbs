@@ -44,23 +44,27 @@
           </div>
         </div>
       {{else compare type '===' 'input-sizes'}}
-
-
-
-        <div class="from-to-inline">
-          <div class="input-filter">
-            <input type="number" name="inputFilter" class="form-control" id="t" min="0" placeholder="{{placeholder}}" {{#if from}}value="{{from}}{{/if}}">
+        {{#if label}}
+          <div class="input-label">{{label}}</div>
+        {{/if}}
+        {{#each values}}
+          <div class="from-to-inline m-b-1">
+            <div class="input-filter">
+              <input type="number" name="inputFilter" class="form-control" id="t" min="0" data-id="{{@index}} {{#if t}}value="{{t}}{{/if}}">
+            </div>
+            <div class="input-filter">
+              <label>&#9747;</label>
+              <input type="number" name="inputFilter" class="form-control" id="s" min="0" data-id="{{@index}} {{#if s}}value="{{s}}{{/if}}">
+            </div>
+            <div class="input-filter">
+              <label>&#9747;</label>
+              <input type="number" name="inputFilter" class="form-control" id="d" min="0" data-id="{{@index}} {{#if d}}value="{{d}}{{/if}}">
+            </div>
+            <button type="button" class="btn ion-minus remove-size" data-id="{{@index}}"></button>
           </div>
-          <div class="input-filter">
-            <label>&#9747;</label>
-            <input type="number" name="inputFilter" class="form-control" id="s" min="0" {{#if to}}value="{{to}}{{/if}}">
-          </div>
-          <div class="input-filter">
-            <label>&#9747;</label>
-            <input type="number" name="inputFilter" class="form-control" id="d" min="0" {{#if to}}value="{{to}}{{/if}}">
-          </div>
-        </div>
 
+        {{/each}}
+        <button type="button" class="btn ion-plus add-size"></button>
       {{else}}
         <div class="checkbox">
           <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>

@@ -5,7 +5,7 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
   },
 
   comparator: function(m) {
-    return -Date.parse(m.get('updated_at'));
+    return -Date.parse(m.get('created_at'));
   },
 
 });
