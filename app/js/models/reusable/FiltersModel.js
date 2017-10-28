@@ -187,12 +187,12 @@ app.models.FiltersModel = Backbone.Model.extend({
           },
           {
             label: null,
-            title: 'Размеры',
+            title: 'Размеры, мм',
             level: 'child',
             items: [
               {
                 type: 'input-sizes',
-                label: '(ТxШxД, мм)',
+                label: 'Толщина x Ширина x Длина',
                 values: [
                   {
                     t: 0,

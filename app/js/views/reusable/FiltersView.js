@@ -68,10 +68,9 @@ app.views.FiltersView = Backbone.Marionette.View.extend({
     this.model.setFilter(label, type, value);
   },
 
-
   initialize: function() {
     this.model.showFilters();
-  }
+  },
 
 
 });

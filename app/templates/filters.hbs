@@ -8,12 +8,12 @@
     <p class="lbl" data-label="{{label}}">{{title}}</p>
     {{#each items}}
       <div class="checkbox parent">
-        <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{title}}</label>
+        <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}" {{#if selected}}checked{{/if}}>{{title}}</label>
       </div>
-      <div class="child-filters hidden">
+      <div class="child-filters {{#if selected}}{{else}}hidden{{/if}}">
         {{#each items}}
           <div class="checkbox">
-            <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
+            <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}" {{#if selected}}checked{{/if}}>{{value}}</label>
           </div>
         {{/each}}
       </div>
@@ -50,15 +50,15 @@
         {{#each values}}
           <div class="from-to-inline m-b-1">
             <div class="input-filter">
-              <input type="number" name="inputFilter" class="form-control" id="t" min="0" data-id="{{@index}} {{#if t}}value="{{t}}{{/if}}">
+              <input type="number" name="inputFilter" class="form-control" id="t" min="0" data-id="{{@index}}" {{#if t}}value="{{t}}"{{/if}}>
             </div>
             <div class="input-filter">
               <label>&#9747;</label>
-              <input type="number" name="inputFilter" class="form-control" id="s" min="0" data-id="{{@index}} {{#if s}}value="{{s}}{{/if}}">
+              <input type="number" name="inputFilter" class="form-control" id="s" min="0" data-id="{{@index}}" {{#if s}}value="{{s}}"{{/if}}>
             </div>
             <div class="input-filter">
               <label>&#9747;</label>
-              <input type="number" name="inputFilter" class="form-control" id="d" min="0" data-id="{{@index}} {{#if d}}value="{{d}}{{/if}}">
+              <input type="number" name="inputFilter" class="form-control" id="d" min="0" data-id="{{@index}}" {{#if d}}value="{{d}}"{{/if}}>
             </div>
             <button type="button" class="btn ion-minus remove-size" data-id="{{@index}}"></button>
           </div>
@@ -67,7 +67,7 @@
         <button type="button" class="btn ion-plus add-size"></button>
       {{else}}
         <div class="checkbox">
-          <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}">{{value}}</label>
+          <label><input type="checkbox" id="{{label}}" name="{{label}}" value="{{label}}" {{#if selected}}checked{{/if}}>{{value}}</label>
         </div>
       {{/compare}}
     {{/each}}
