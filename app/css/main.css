@@ -609,9 +609,9 @@ nav.navigation .user .logout:hover {
   width: 90%; }
 
 .ads .ad-item .content .ad-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 0.5rem;
-  min-height: 3rem; }
+  min-height: 4rem; }
 
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem; }
