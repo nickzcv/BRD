@@ -330,6 +330,9 @@ nav.navigation .user .logout:hover {
 .section.home .content-filter .btn i:before {
   font-size: 1.2rem; }
 
+.section.home .rside {
+  display: none; }
+
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {
     float: left;
@@ -340,14 +343,18 @@ nav.navigation .user .logout:hover {
 @media only screen and (min-width: 992px) {
   .section.home {
     padding: 0; }
-  .section.home .rside {
-    display: block;
-    background: #fcfcf4;
-    height: 10rem; }
   .section.home .content-filter {
     padding: 1.3rem 0; }
   .section.home .content-filter .search .input-group, .section.home .content-filter .btn-toolbar {
     padding: 0; } }
+
+@media only screen and (min-width: 1200px) {
+  .section.home {
+    padding: 0; }
+  .section.home .rside {
+    display: block;
+    background: #fcfcf4;
+    height: 10rem; } }
 
 /* Sections styles
 -------------------------------------------------- */
@@ -585,23 +592,25 @@ nav.navigation .user .logout:hover {
   margin: 1rem 0; }
 
 .ads .ad-item .photo {
-  float: left;
-  width: 7rem;
-  height: 7rem;
+  position: absolute;
+  right: 0;
+  float: none;
+  width: 2.1rem;
+  height: 2rem;
   background: #f0eedf; }
 
 .ads .ad-item .photo span {
   color: #b6b6b6;
-  font-size: 5rem;
-  padding: 0 20px; }
+  font-size: 1.5rem;
+  padding: 0 .4rem; }
 
 .ads .ad-item .content {
   float: left;
-  width: 80%; }
+  width: 90%; }
 
 .ads .ad-item .content .ad-title {
   font-size: 1.1rem;
-  padding: 0.5rem 0.5rem 0; }
+  padding: 0.5rem 0.5rem 0 0.5rem; }
 
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem; }
@@ -632,7 +641,8 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .icon {
   position: absolute;
-  right: 0.5rem;
+  right: 0;
+  padding-right: 0.5rem;
   font-size: 1.7rem;
   cursor: pointer;
   background: #FFFFFF; }
@@ -703,8 +713,7 @@ nav.navigation .user .logout:hover {
   position: relative;
   float: left;
   margin: 0 1rem 2rem 0;
-  padding-top: 1rem;
-  width: 85%; }
+  padding-top: 1rem; }
 
 .ads .ad-item.expanded .section2 .category table {
   margin-left: .5rem; }
@@ -860,6 +869,24 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .placeholder:hover:before {
   color: #559797; }
+
+@media only screen and (min-width: 768px) {
+  .ads .ad-item .photo {
+    position: relative;
+    float: left;
+    width: 7rem;
+    height: 7rem;
+    background: #f0eedf; }
+  .ads .ad-item .photo span {
+    color: #b6b6b6;
+    font-size: 5rem;
+    padding: 0 20px; }
+  .ads .ad-item .content {
+    float: left;
+    width: 80%; }
+  .ads .ad-item .content .ad-title {
+    font-size: 1.1rem;
+    padding: 0.5rem 0.5rem 0; } }
 
 /* Ads styles
 -------------------------------------------------- */

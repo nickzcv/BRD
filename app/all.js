@@ -1330,7 +1330,8 @@ app.views.adView = Backbone.Marionette.View.extend({
     close: '.close',
     table: '.filters-table',
     tab: '.tab',
-    star: '.star'
+    star: '.star',
+    adDescription: '.ad-description'
   },
 
   events: {
@@ -1354,6 +1355,8 @@ app.views.adView = Backbone.Marionette.View.extend({
   */
   changeAdView: function changeAdView() {
     this.ui.item.toggleClass('expanded');
+    // toggle ad description for mobile
+    this.ui.adDescription.toggleClass('hidden-xs');
   },
 
   /*

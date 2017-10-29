@@ -52,7 +52,7 @@
       }
     }
     .rside {
-
+      display: none;
     }
 
   }
@@ -62,8 +62,6 @@
   @media only screen and (min-width: 768px) {
     &.home {
       .content-filter {
-
-
         .search {
           float: left;
           width: 50%;
@@ -83,13 +81,6 @@
     &.home {
       padding: 0;
 
-      .rside {
-        display: block;
-        background: $gray-light;
-        height: 10rem;
-      }
-
-
       .content-filter {
         padding: 1.3rem 0;
 
@@ -103,7 +94,16 @@
 
   /* Large screens */
   @media only screen and (min-width: 1200px) {
+    &.home {
+      padding: 0;
 
+      .rside {
+        display: block;
+        background: $gray-light;
+        height: 10rem;
+      }
+
+    }
 
   }
 
