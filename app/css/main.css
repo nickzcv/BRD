@@ -610,7 +610,8 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .content .ad-title {
   font-size: 1.1rem;
-  padding: 0.5rem; }
+  padding: 0.5rem;
+  min-height: 3rem; }
 
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem; }
