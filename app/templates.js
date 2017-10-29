@@ -187,7 +187,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 },"40":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span>"
+  return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span class=\"m-l-05\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
 },"42":function(depth0,helpers,partials,data) {
@@ -197,7 +197,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 },"43":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
-  return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span>"
+  return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span class=\"m-l-05\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.lastName : stack1), depth0))
     + " "
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
@@ -219,11 +219,11 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      <div class=\"message hidden\"></div>\r\n      <div class=\"phones\">\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(37, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span>"
+    + "      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span class=\"m-l-05\">"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(40, data, 0),"inverse":this.program(42, data, 0),"data":data})) != null ? stack1 : "")
-    + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span>"
+    + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))

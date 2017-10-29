@@ -584,7 +584,7 @@ nav.navigation .user .logout:hover {
   max-width: 70rem; }
 
 .ads .ad-item {
-  max-height: 7rem;
+  max-height: none;
   position: relative;
   overflow: hidden;
   border: 1px solid #edebdc;
@@ -610,52 +610,47 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .content .ad-title {
   font-size: 1.1rem;
-  padding: 0.5rem 0.5rem 0 0.5rem; }
+  padding: 0.5rem; }
 
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem; }
 
 .ads .ad-item .i-bottom {
-  position: absolute;
-  left: 7.5rem;
-  bottom: 0;
-  width: 86%;
+  position: relative;
   font-size: 0.9rem;
-  line-height: 2rem;
-  max-height: 2rem;
+  line-height: 1.5rem;
+  width: 100%;
   background: #FFFFFF;
   color: #666; }
 
 .ads .ad-item .i-bottom i {
+  float: left;
   position: relative;
-  top: 1px;
-  font-size: 1.2rem; }
+  font-size: 1rem; }
 
-.ads .ad-item .i-bottom span {
+.ads .ad-item .i-bottom > span {
+  display: block;
   font-size: 0.9rem;
   padding-left: .5rem;
   padding-right: 3%; }
 
-.ads .ad-item .i-bottom span.date {
-  padding-left: 0; }
-
 .ads .ad-item .icon {
   position: absolute;
   right: 0;
-  padding-right: 0.5rem;
+  padding: 0 0.5rem;
   font-size: 1.7rem;
   cursor: pointer;
   background: #FFFFFF; }
 
 .ads .ad-item .icon.star {
-  top: 2rem;
+  top: 4rem;
   color: gold; }
 
 .ads .ad-item .icon.star:hover {
   color: goldenrod; }
 
 .ads .ad-item .icon.tab {
-  top: 0;
+  top: 2rem;
   color: #b6b6b6; }
 
 .ads .ad-item .icon.tab:hover {
@@ -689,9 +684,9 @@ nav.navigation .user .logout:hover {
   overflow: hidden; }
 
 .ads .ad-item.expanded .section2 {
+  overflow: hidden;
   position: relative;
-  height: auto;
-  padding-bottom: 2rem; }
+  height: auto; }
 
 .ads .ad-item.expanded .section2 .ad-info {
   float: left;
@@ -712,7 +707,7 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .category {
   position: relative;
   float: left;
-  margin: 0 1rem 2rem 0;
+  margin: 0 1rem 0 0;
   padding-top: 1rem; }
 
 .ads .ad-item.expanded .section2 .category table {
@@ -871,6 +866,8 @@ nav.navigation .user .logout:hover {
   color: #559797; }
 
 @media only screen and (min-width: 768px) {
+  .ads .ad-item {
+    max-height: 7rem; }
   .ads .ad-item .photo {
     position: relative;
     float: left;
@@ -886,7 +883,159 @@ nav.navigation .user .logout:hover {
     width: 80%; }
   .ads .ad-item .content .ad-title {
     font-size: 1.1rem;
-    padding: 0.5rem 0.5rem 0; } }
+    padding: 0.5rem 0.5rem 0; }
+  .ads .ad-item .i-bottom {
+    position: absolute;
+    left: 7.5rem;
+    bottom: 0;
+    width: 86%;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    max-height: 2rem;
+    background: #FFFFFF;
+    color: #666; }
+  .ads .ad-item .i-bottom i {
+    float: none;
+    position: relative;
+    top: 1px;
+    font-size: 1.2rem; }
+  .ads .ad-item .i-bottom span {
+    display: inline;
+    font-size: 0.9rem;
+    padding-right: 3%; }
+  .ads .ad-item .i-bottom span.date {
+    padding-left: 0; }
+  .ads .ad-item .icon.star {
+    top: 2rem; }
+  .ads .ad-item .icon.tab {
+    top: 0; }
+  .ads .ad-item.expanded {
+    max-height: none;
+    border-color: #e1d1c4; }
+  .ads .ad-item.expanded .icon.arrow:before {
+    content: "\f126"; }
+  .ads .ad-item.expanded .section1 {
+    overflow: hidden; }
+  .ads .ad-item.expanded .section2 {
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    padding-bottom: 2rem; }
+  .ads .ad-item.expanded .section2 .ad-info {
+    float: left;
+    width: 7rem;
+    text-align: center;
+    padding-top: 1rem; }
+  .ads .ad-item.expanded .section2 .ad-info .send-message {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem; }
+  .ads .ad-item.expanded .section2 .ad-info .send-message:hover {
+    border-color: #559797; }
+  .ads .ad-item.expanded .section2 .ad-info .send-message:hover span:before {
+    content: '\f423'; }
+  .ads .ad-item.expanded .section2 .category {
+    position: relative;
+    float: left;
+    margin: 0 1rem 0 0;
+    padding-top: 1rem; }
+  .ads .ad-item.expanded .section2 .category table {
+    margin-left: .5rem; }
+  .ads .ad-item.expanded .section2 .category .category-title {
+    color: #777;
+    font-size: 1.1rem;
+    font-weight: normal; }
+  .ads .ad-item.expanded .section2 .category .filter-row {
+    line-height: 1.5rem; }
+  .ads .ad-item.expanded .section2 .category .filter-row td {
+    vertical-align: text-top; }
+  .ads .ad-item.expanded .section2 .category .filter-row .filter-title {
+    color: #202124;
+    font-weight: bold;
+    padding-right: 1rem; }
+  .ads .ad-item.expanded .section2 .category .filter-row .parent i:nth-child(1n):after {
+    content: ', '; }
+  .ads .ad-item.expanded .section2 .category .filter-row .parent i:last-child:after {
+    content: ''; }
+  .ads .ad-item.expanded .section2 .category .filter-row .parent-title {
+    color: #202124;
+    font-weight: bold;
+    font-style: italic; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level {
+    position: relative; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level:after {
+    content: '-';
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level span {
+    display: inline-block;
+    background: #fff;
+    position: relative;
+    z-index: 2; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level .overlay {
+    background: #fff;
+    position: relative;
+    z-index: 2; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level span:nth-child(1n):after {
+    content: ', '; }
+  .ads .ad-item.expanded .section2 .category .filter-row .first-level span:last-child:after {
+    content: ''; }
+  .ads .ad-item.expanded .section2 .category .filter-row .iks {
+    color: #888;
+    font-weight: normal; }
+  .ads .ad-item.expanded .section2 .category .filter-row .size-row {
+    background: #fff;
+    position: relative;
+    z-index: 2; }
+  .ads .ad-item.expanded .section2 .category .table-header {
+    padding-bottom: 1rem; }
+  .ads .ad-item.expanded .section2 .phones {
+    background: #fff;
+    z-index: 1;
+    position: relative;
+    padding: 0.5rem 0;
+    margin: 0.5rem;
+    font-size: 1rem; }
+  .ads .ad-item.expanded .section2 .phones span {
+    padding-right: 1rem;
+    white-space: nowrap; }
+  .ads .ad-item.expanded .section2 .phones span:before {
+    padding-right: 3px; }
+  .ads .ad-item.expanded .section2 .price {
+    padding-top: 0.5rem; }
+  .ads .ad-item.expanded .section2 .price i {
+    font-weight: bold; }
+  .ads .ad-item.expanded .section2 .message {
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    top: 0;
+    background-color: #f0eedf; }
+  .ads .ad-item.expanded .section2 .message .send_message_form {
+    padding: 1rem 1.5rem; }
+  .ads .ad-item.expanded .section2 .message .send_message_form:before {
+    content: '';
+    position: absolute;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #f0eedf;
+    left: -10px; }
+  .ads .ad-item.expanded .section2 .message .send_message_form label {
+    font-weight: normal; }
+  .ads .ad-item.expanded .section2 .message .send_message_form #text_message {
+    resize: vertical; }
+  .ads .ad-item.expanded .section2 .message .send_message_form .send {
+    line-height: 1rem;
+    padding: 0.5rem 1.5rem; }
+  .ads .ad-item.expanded .section2 .close {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #b6b6b6;
+    opacity: .7; }
+  .ads .ad-item.expanded .section2 .close:hover {
+    opacity: 1; } }
 
 /* Ads styles
 -------------------------------------------------- */

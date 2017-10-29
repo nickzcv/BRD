@@ -12,12 +12,13 @@
   }
 
   .ad-item {
-    max-height: 7rem;
+    max-height: none;
     position: relative;
     overflow: hidden;
     border: 1px solid $gray;
     background: #fff;
     margin: 1rem 0;
+
 
     .photo {
       position: absolute;
@@ -38,55 +39,48 @@
 
       .ad-title {
         font-size: 1.1rem;
-        padding: 0.5rem 0.5rem 0 0.5rem;
+        padding: 0.5rem;
       }
       .ad-description {
         padding: 0.2rem 0.5rem;
       }
     }
     .i-bottom {
-      position: absolute;
-      left: 7.5rem;
-      bottom: 0;
-      width: 86%;
+      position: relative;
       font-size: 0.9rem;
-      line-height: 2rem;
-      max-height: 2rem;
+      line-height: 1.5rem;
+      width: 100%;
+
       background: $white;
       color: $gray-from-hell;
       i {
+        float: left;
         position: relative;
-        top: 1px;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
-      span {
+      &>span {
+        display: block;
         font-size: 0.9rem;
         padding-left: .5rem;
         padding-right: 3%;
-        &:hover {
-          // color: $blue-dark;
-        }
-        &.date {
-          padding-left: 0;
-        }
       }
     }
     .icon {
       position: absolute;
       right: 0;
-      padding-right: 0.5rem;
+      padding: 0 0.5rem;
       font-size: 1.7rem;
       cursor: pointer;
       background: $white;
       &.star {
-        top: 2rem;
+        top: 4rem;
         color: gold;
         &:hover {
           color: goldenrod;
         }
       }
       &.tab {
-        top: 0;
+        top: 2rem;
         color: $gray-dark;
         &:hover {
           color: $gray-dark2;
@@ -124,9 +118,9 @@
       }
 
       .section2 {
+        overflow: hidden;
         position: relative;
         height: auto;
-        padding-bottom: 2rem;
 
 
         .ad-info {
@@ -149,7 +143,7 @@
         .category {
           position: relative;
           float: left;
-          margin: 0 1rem 2rem 0;
+          margin: 0 1rem 0 0;
           padding-top: 1rem;
 
           table {
@@ -321,6 +315,8 @@
   /* Tablets */
   @media only screen and (min-width: 768px) {
     .ad-item {
+      max-height: 7rem;
+
       .photo {
         position: relative;
         float: left;
@@ -342,6 +338,219 @@
           padding: 0.5rem 0.5rem 0;
         }
       }
+      .i-bottom {
+        position: absolute;
+        left: 7.5rem;
+        bottom: 0;
+        width: 86%;
+        font-size: 0.9rem;
+        line-height: 2rem;
+        max-height: 2rem;
+        background: $white;
+        color: $gray-from-hell;
+        i {
+          float: none;
+          position: relative;
+          top: 1px;
+          font-size: 1.2rem;
+        }
+        span {
+          display: inline;
+          font-size: 0.9rem;
+          padding-right: 3%;
+          &:hover {
+            // color: $blue-dark;
+          }
+          &.date {
+            padding-left: 0;
+          }
+        }
+      }
+      .icon {
+        &.star {
+          top: 2rem;
+        }
+        &.tab {
+          top: 0;
+        }
+      }
+      &.expanded {
+        max-height: none;
+        border-color: #e1d1c4;
+
+        .icon.arrow:before {
+          content: "\f126";
+        }
+
+        .section1 {
+          overflow: hidden;
+        }
+
+        .section2 {
+          overflow: hidden;
+          position: relative;
+          height: auto;
+          padding-bottom: 2rem;
+
+
+          .ad-info {
+            float: left;
+            width: 7rem;
+            text-align: center;
+            padding-top: 1rem;
+            .send-message {
+              padding: 0.5rem 1rem;
+              margin-bottom: 1rem;
+
+              &:hover {
+                border-color: $blue-dark;
+                span:before {
+                  content: '\f423';
+                }
+              }
+            }
+          }
+          .category {
+            position: relative;
+            float: left;
+            margin: 0 1rem 0 0;
+            padding-top: 1rem;
+
+            table {
+              margin-left: .5rem;
+            }
+
+            .category-title {
+              color: $gray-dark2;
+              font-size: 1.1rem;
+              font-weight: normal;
+            }
+            .filter-row {
+              line-height: 1.5rem;
+
+              td {
+                vertical-align: text-top;
+              }
+              .filter-title {
+                color: $main-dark;
+                font-weight: bold;
+                padding-right: 1rem;
+              }
+              .parent i:nth-child(1n):after {
+                content: ', ';
+              }
+              .parent i:last-child:after {
+                content: '';
+              }
+              .parent-title {
+                color: $main-dark;
+                font-weight: bold;
+                font-style: italic;
+              }
+              .first-level {
+                position: relative;
+              }
+              .first-level:after {
+                content: '-';
+                position: absolute;
+                left: 0;
+                top: 0;
+              }
+              .first-level span {
+                display: inline-block;
+                background: #fff;
+                position: relative;
+                z-index: 2;
+              }
+              .first-level .overlay {
+                background: #fff;
+                position: relative;
+                z-index: 2;
+              }
+              .first-level span:nth-child(1n):after {
+                content: ', ';
+              }
+              .first-level span:last-child:after {
+                content: '';
+              }
+              .iks {
+                color: $gray-dark3;
+                font-weight: normal;
+              }
+              .size-row {
+                background: #fff;
+                position: relative;
+                z-index: 2;
+              }
+            }
+            .table-header {
+              padding-bottom: 1rem;
+            }
+          }
+          .phones {
+            background: #fff;
+            z-index: 1;
+            position: relative;
+            padding: 0.5rem 0;
+            margin: 0.5rem;
+            font-size: 1rem;
+            span {
+              padding-right: 1rem;
+              white-space: nowrap;
+              &:before {
+                padding-right: 3px;
+              }
+            }
+          }
+          .price {
+            padding-top: 0.5rem;
+            i {
+              font-weight: bold;
+            }
+          }
+          .message {
+            width: 100%;
+            z-index: 2;
+            position: relative;
+            top: 0;
+            background-color: #f0eedf;
+
+            .send_message_form {
+              padding: 1rem 1.5rem;
+              &:before {
+                content: '';
+                position: absolute;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid #f0eedf;
+                left: -10px;
+              }
+              label {
+                font-weight: normal;
+              }
+              #text_message {
+                resize: vertical;
+              }
+              .send {
+                line-height: 1rem;
+                padding: 0.5rem 1.5rem;
+              }
+            }
+          }
+          .close {
+            position: absolute;
+            top: .5rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #b6b6b6;
+            opacity: .7;
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
     }
 
   }
