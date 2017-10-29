@@ -884,7 +884,8 @@ nav.navigation .user .logout:hover {
     width: 80%; }
   .ads .ad-item .content .ad-title {
     font-size: 1.1rem;
-    padding: 0.5rem 0.5rem 0; }
+    padding: 0.5rem 0.5rem 0;
+    min-height: 0; }
   .ads .ad-item .i-bottom {
     position: absolute;
     left: 7.5rem;
