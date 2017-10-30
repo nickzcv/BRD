@@ -614,13 +614,15 @@ nav.navigation .user .logout:hover {
   min-height: 4rem; }
 
 .ads .ad-item .content .ad-description {
-  padding: 0.2rem 0.5rem; }
+  padding: 0.2rem 0.5rem;
+  min-height: 1rem; }
 
 .ads .ad-item .i-bottom {
   position: relative;
   font-size: 0.9rem;
   line-height: 1.5rem;
   width: 100%;
+  min-height: 4rem;
   background: #FFFFFF;
   color: #666; }
 
@@ -690,17 +692,18 @@ nav.navigation .user .logout:hover {
   height: auto; }
 
 .ads .ad-item.expanded .section2 .ad-info {
-  float: left;
-  width: 7rem;
-  text-align: center;
-  padding-top: 1rem; }
+  position: absolute;
+  right: 0;
+  top: 1rem; }
 
 .ads .ad-item.expanded .section2 .ad-info .send-message {
-  padding: 0.5rem 1rem;
-  margin-bottom: 1rem; }
+  padding: 0;
+  margin-bottom: 1rem;
+  border-color: #fff; }
 
-.ads .ad-item.expanded .section2 .ad-info .send-message:hover {
-  border-color: #559797; }
+.ads .ad-item.expanded .section2 .ad-info .send-message span {
+  font-size: 2rem;
+  padding: 0 .5rem; }
 
 .ads .ad-item.expanded .section2 .ad-info .send-message:hover span:before {
   content: '\f423'; }
@@ -895,7 +898,8 @@ nav.navigation .user .logout:hover {
     line-height: 2rem;
     max-height: 2rem;
     background: #FFFFFF;
-    color: #666; }
+    color: #666;
+    min-height: 0; }
   .ads .ad-item .i-bottom i {
     float: none;
     position: relative;
@@ -924,13 +928,20 @@ nav.navigation .user .logout:hover {
     height: auto;
     padding-bottom: 2rem; }
   .ads .ad-item.expanded .section2 .ad-info {
+    position: relative;
+    right: auto;
+    top: auto;
     float: left;
     width: 7rem;
     text-align: center;
     padding-top: 1rem; }
   .ads .ad-item.expanded .section2 .ad-info .send-message {
     padding: 0.5rem 1rem;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    border-color: #ccc; }
+  .ads .ad-item.expanded .section2 .ad-info .send-message span {
+    font-size: 1.5rem;
+    padding: 0; }
   .ads .ad-item.expanded .section2 .ad-info .send-message:hover {
     border-color: #559797; }
   .ads .ad-item.expanded .section2 .ad-info .send-message:hover span:before {
