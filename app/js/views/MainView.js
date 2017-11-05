@@ -9,15 +9,13 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   initialize: function() {
-    let thisView = this;
     // Initialize main content region
-    brd.regions.bodyRegion = thisView.getRegion('bodyRegion');
+    brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
   onRender: function() {
-    let thisView = this;
-    thisView.showChildView('headerRegion', new app.views.HeaderView({model: new app.models.HeaderModel}));
-    thisView.showChildView('footerRegion', new app.views.FooterView());
+    this.showChildView('headerRegion', new app.views.HeaderView({model: new app.models.HeaderModel}));
+    this.showChildView('footerRegion', new app.views.FooterView());
   }
 
 });

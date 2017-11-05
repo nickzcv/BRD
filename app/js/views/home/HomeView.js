@@ -24,7 +24,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    this.showChildView('filter', new app.views.FiltersHomeView({model: new app.models.FiltersModel()}));
+    this.showChildView('filter', new app.views.FiltersHomeView({model: new app.models.FiltersHomeModel()}));
     this.showChildView('adsList', new app.views.adsHomeCollectionView());
   }
 

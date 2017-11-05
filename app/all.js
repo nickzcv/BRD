@@ -422,6 +422,44 @@ app.models.AdsListModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.FiltersHomeModel = Backbone.Model.extend({
+
+  defaults: {
+    countriesModel: null,
+    type: null,
+    object: null,
+    category: null,
+    selectedCategoryId: null,
+    country: null,
+    city: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // Init child Filters model under categories
+    this.set({ categoryModel: new app.models.FiltersModel() });
+
+    var categoryModel = this.get('categoryModel');
+    this.set({ categories: categoryModel.attributes.categories });
+
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
+    });
+  }
+
+});
+'use strict';
+
 app.models.HeaderModel = Backbone.Model.extend({
 
   defaults: {
@@ -1513,15 +1551,13 @@ app.views.MainView = Backbone.Marionette.View.extend({
   },
 
   initialize: function initialize() {
-    var thisView = this;
     // Initialize main content region
-    brd.regions.bodyRegion = thisView.getRegion('bodyRegion');
+    brd.regions.bodyRegion = this.getRegion('bodyRegion');
   },
 
   onRender: function onRender() {
-    var thisView = this;
-    thisView.showChildView('headerRegion', new app.views.HeaderView({ model: new app.models.HeaderModel() }));
-    thisView.showChildView('footerRegion', new app.views.FooterView());
+    this.showChildView('headerRegion', new app.views.HeaderView({ model: new app.models.HeaderModel() }));
+    this.showChildView('footerRegion', new app.views.FooterView());
   }
 
 });
@@ -1610,7 +1646,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersModel() }));
+    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
     this.showChildView('adsList', new app.views.adsHomeCollectionView());
   }
 
