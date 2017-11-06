@@ -3,7 +3,6 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
   template: tpl.templates.filter_home,
 
   regions: {
-    filters: '.filters',
     countriesPicker: '.country-picker',
   },
 
@@ -21,6 +20,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
       // Redirect to add view
       brd.router.navigate('#ads/new', {trigger:true});
     } else {
+      // Show forbidden view
       brd.regions.mainRegion.show(new app.views.MainView());
       brd.regions.bodyRegion.show(new app.views.ForbiddenView());
     }

@@ -104,6 +104,9 @@ label.error {
 .m-r-05 {
   margin-right: 0.5rem; }
 
+.p-l-0 {
+  padding-left: 0; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -1037,8 +1040,7 @@ nav.navigation .user .logout:hover {
   margin: 5px 0 0; }
 
 .new-ad .form-divider {
-  margin: 1rem 0;
-  width: 50%;
+  margin: 1rem 2rem 1rem 0;
   border-top: 1px solid #eee; }
 
 .new-ad .lbl {
