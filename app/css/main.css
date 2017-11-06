@@ -1049,6 +1049,18 @@ nav.navigation .user .logout:hover {
 .new-ad .add-company {
   font-size: 0.8rem; }
 
+.new-ad .marker {
+  position: absolute;
+  top: 25px;
+  padding: 5px;
+  color: #fff; }
+
+.new-ad .marker.buy {
+  background: darkgreen; }
+
+.new-ad .marker.sell {
+  background: darkred; }
+
 .new-ad .ad-photo {
   margin: 0;
   width: 10rem;

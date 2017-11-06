@@ -15,6 +15,18 @@
   .add-company {
     font-size: 0.8rem;
   }
+  .marker {
+    position: absolute;
+    top: 25px;
+    padding: 5px;
+    color: #fff;
+    &.buy {
+      background: darkgreen;
+    }
+    &.sell {
+      background: darkred;
+    }
+  }
   .ad-photo {
     margin: 0;
     width: 10rem;

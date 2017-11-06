@@ -23,12 +23,16 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     otherRadio: '#otherRadio',
     otherPhoneWrapper: '.otherPhoneWrapper',
     otherPhone: '#otherPhone',
-    backBtn: '.back'
+    backBtn: '.back',
+    marker: '.marker',
+    buyMarker: '.buy',
+    sellMarker: '.sell',
   },
 
   events: {
     'change @ui.getContacts': 'setContacts',
     'change @ui.category': 'setFilter',
+    'change @ui.type': 'changeType',
     'click @ui.backBtn': function() {
       brd.router.navigate('#ads', {trigger:true});
     }
@@ -249,6 +253,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     let result = new Date();
     result.setDate(result.getDate() + parseInt(days));
     return result;
+  },
+
+  changeType: function(event) {
+    // Hide both first
+    this.ui.marker.addClass('hidden');
+    switch (event.target.value) {
+    case 'buy':
+      this.ui.buyMarker.removeClass('hidden');
+      break;
+    case 'sell':
+      this.ui.sellMarker.removeClass('hidden');
+      break;
+    }
   }
 
 
