@@ -1,0 +1,34 @@
+/* Welcome-section styles
+-------------------------------------------------- */
+.faq {
+
+  h2 {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+  }
+  a {
+    text-decoration: none;
+  }
+
+
+  /* SmartPhones */
+  @media only screen and (min-width: 450px) {
+
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+}

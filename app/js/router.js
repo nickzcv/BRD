@@ -2,6 +2,7 @@ app.router = Marionette.AppRouter.extend({
 
   routes: {
     '': 'showMainPage',
+    'faq': 'showFAQPage',
     'dashboard': 'showDashboardPage',
     'ads': 'showAdsPage',
     'ads/new': 'showAdNewForm',
@@ -16,6 +17,12 @@ app.router = Marionette.AppRouter.extend({
   showMainPage: function() {
     brd.regions.mainRegion.show(new app.views.MainView());
     brd.regions.bodyRegion.show(new app.views.HomeView());
+  },
+
+  // FAQ
+  showFAQPage: function() {
+    brd.regions.mainRegion.show(new app.views.MainView());
+    brd.regions.bodyRegion.show(new app.views.FaqView());
   },
 
   // Dashboard

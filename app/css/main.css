@@ -1209,6 +1209,24 @@ nav.navigation .user .logout:hover {
 .cityDropdown ul li .region {
   color: #BBB; }
 
+/* Welcome-section styles
+-------------------------------------------------- */
+.faq {
+  /* SmartPhones */
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.faq h2 {
+  margin: 1rem 0;
+  font-size: 1.3rem; }
+
+.faq a {
+  text-decoration: none; }
+
+@media only screen and (min-width: 768px) {
+  .faq h2 {
+    font-size: 1.5rem; } }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {
