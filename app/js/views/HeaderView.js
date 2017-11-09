@@ -13,6 +13,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     loginBtn: '.login',
     logout: '.logout',
     homeLink: '.home-link',
+    faqLink: '.faq-link',
     userProfile: '.user-profile'
   },
 
@@ -22,6 +23,9 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
     'click @ui.loginBtn': 'showLoginView',
     'click @ui.homeLink': function () {
       brd.router.navigate('#', {trigger:true});
+    },
+    'click @ui.faqLink': function () {
+      brd.router.navigate('#faq', {trigger:true});
     },
     'click @ui.logout': function () {
       brd.controllers.logout();
