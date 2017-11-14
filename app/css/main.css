@@ -392,7 +392,6 @@ nav.navigation .user .logout:hover {
   cursor: pointer;
   text-align: center;
   background: #edebdc;
-  border-top: 1px solid #b6b6b6;
   border-bottom: 1px solid #b6b6b6;
   height: 2rem; }
 
