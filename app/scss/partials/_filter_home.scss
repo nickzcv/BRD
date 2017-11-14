@@ -8,6 +8,8 @@
     padding: 1rem;
     background: $gray-light;
     border: 1px solid $gray;
+    text-align: center;
+
     .add-new {
       width: 100%;
       padding: 6px 12px;
@@ -21,6 +23,21 @@
       }
     }
   }
+  .show-mobile-filters {
+    cursor: pointer;
+    text-align: center;
+    background: $gray;
+    border-top: 1px solid $gray-dark;
+    border-bottom: 1px solid $gray-dark;
+    height: 2rem;
+    span {
+      font-size: 1.5rem;
+      color: $gray-dark2;
+    }
+    &.opened span:before {
+      content: "\f10d";
+    }
+  }
   .filters-wrapper {
     background: $gray-light;
     border: 1px solid $gray;
@@ -31,9 +48,12 @@
     }
     .close-btn {
       position: absolute;
-      right: 2rem;
+      right: 1rem;
       cursor: pointer;
       color: $gray-dark;
+      font-size: 1.5rem;
+      z-index: 10;
+
       &:hover {
         color: #000;
       }
@@ -54,6 +74,10 @@
   /* Tablets */
   @media only screen and (min-width: 768px) {
 
+    .actions .add-new {
+      width: 50%;
+    }
+
   }
 
 
@@ -61,6 +85,9 @@
   @media only screen and (min-width: 992px) {
     .filters-wrapper {
       padding: 1rem;
+    }
+    .actions .add-new {
+      width: 100%;
     }
 
   }

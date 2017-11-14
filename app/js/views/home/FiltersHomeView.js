@@ -8,10 +8,15 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
 
   ui: {
     addNewBtn: '.add-new',
+    toggleMobileFilters: '.show-mobile-filters',
+    filters: '.filters-wrapper',
+    closeFiltersBtn: '.close-btn',
   },
 
   events: {
-    'click @ui.addNewBtn': 'addNew'
+    'click @ui.addNewBtn': 'addNew',
+    'click @ui.toggleMobileFilters': 'toggleFilters',
+    'click @ui.closeFiltersBtn': 'toggleFilters',
   },
 
   addNew: function() {
@@ -24,6 +29,12 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
       brd.regions.mainRegion.show(new app.views.MainView());
       brd.regions.bodyRegion.show(new app.views.ForbiddenView());
     }
+  },
+
+  toggleFilters: function() {
+    this.ui.toggleMobileFilters.toggleClass('opened');
+    this.ui.filters.toggleClass('visible');
+
   },
 
   initialize: function() {

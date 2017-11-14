@@ -373,7 +373,8 @@ nav.navigation .user .logout:hover {
 .filter-home .actions {
   padding: 1rem;
   background: #fcfcf4;
-  border: 1px solid #edebdc; }
+  border: 1px solid #edebdc;
+  text-align: center; }
 
 .filter-home .actions .add-new {
   width: 100%;
@@ -387,6 +388,21 @@ nav.navigation .user .logout:hover {
   content: "\f216";
   color: #559797; }
 
+.filter-home .show-mobile-filters {
+  cursor: pointer;
+  text-align: center;
+  background: #edebdc;
+  border-top: 1px solid #b6b6b6;
+  border-bottom: 1px solid #b6b6b6;
+  height: 2rem; }
+
+.filter-home .show-mobile-filters span {
+  font-size: 1.5rem;
+  color: #777; }
+
+.filter-home .show-mobile-filters.opened span:before {
+  content: "\f10d"; }
+
 .filter-home .filters-wrapper {
   background: #fcfcf4;
   border: 1px solid #edebdc;
@@ -397,9 +413,11 @@ nav.navigation .user .logout:hover {
 
 .filter-home .filters-wrapper .close-btn {
   position: absolute;
-  right: 2rem;
+  right: 1rem;
   cursor: pointer;
-  color: #b6b6b6; }
+  color: #b6b6b6;
+  font-size: 1.5rem;
+  z-index: 10; }
 
 .filter-home .filters-wrapper .close-btn:hover {
   color: #000; }
@@ -412,9 +430,15 @@ nav.navigation .user .logout:hover {
   font-weight: bold;
   margin-bottom: 5px; }
 
+@media only screen and (min-width: 768px) {
+  .filter-home .actions .add-new {
+    width: 50%; } }
+
 @media only screen and (min-width: 992px) {
   .filter-home .filters-wrapper {
-    padding: 1rem; } }
+    padding: 1rem; }
+  .filter-home .actions .add-new {
+    width: 100%; } }
 
 @media only screen and (min-width: 1200px) {
   .filter-home {
