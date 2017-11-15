@@ -399,6 +399,10 @@ nav.navigation .user .logout:hover {
   font-size: 1.5rem;
   color: #777; }
 
+.filter-home .show-mobile-filters span:before {
+  text-shadow: -1px 0 #777, 0 1px #777, 1px 0 #777, 0 -1px #777;
+  color: #fff; }
+
 .filter-home .show-mobile-filters.opened span:before {
   content: "\f10d"; }
 

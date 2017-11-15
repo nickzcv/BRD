@@ -32,9 +32,14 @@
     span {
       font-size: 1.5rem;
       color: $gray-dark2;
+      &:before {
+        text-shadow: -1px 0 $gray-dark2, 0 1px $gray-dark2, 1px 0 $gray-dark2, 0 -1px $gray-dark2;
+        color: #fff;
+      }
     }
     &.opened span:before {
       content: "\f10d";
+
     }
   }
   .filters-wrapper {
