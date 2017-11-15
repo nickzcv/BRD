@@ -39,13 +39,13 @@
     }
     &.opened span:before {
       content: "\f10d";
-
     }
   }
   .filters-wrapper {
     background: $gray-light;
     border: 1px solid $gray;
     border-top: none;
+    padding: 1rem ;
 
     &.visible {
       display: block !important;
@@ -71,7 +71,6 @@
       margin-bottom: 5px;
     }
 
-
   }
 
 
@@ -91,6 +90,9 @@
       padding: 1rem;
     }
     .actions .add-new {
+      width: 100%;
+    }
+    .country-picker .col-md-6 {
       width: 100%;
     }
 

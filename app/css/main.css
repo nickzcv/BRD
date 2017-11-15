@@ -409,7 +409,8 @@ nav.navigation .user .logout:hover {
 .filter-home .filters-wrapper {
   background: #fcfcf4;
   border: 1px solid #edebdc;
-  border-top: none; }
+  border-top: none;
+  padding: 1rem; }
 
 .filter-home .filters-wrapper.visible {
   display: block !important; }
@@ -441,6 +442,8 @@ nav.navigation .user .logout:hover {
   .filter-home .filters-wrapper {
     padding: 1rem; }
   .filter-home .actions .add-new {
+    width: 100%; }
+  .filter-home .country-picker .col-md-6 {
     width: 100%; } }
 
 @media only screen and (min-width: 1200px) {
