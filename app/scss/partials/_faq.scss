@@ -1,6 +1,7 @@
 /* Welcome-section styles
 -------------------------------------------------- */
 .faq {
+  font-size: 1rem;
 
   h2 {
     margin: 1rem 0;
@@ -8,6 +9,9 @@
   }
   a {
     text-decoration: none;
+  }
+  ul {
+    padding: 0 1rem;
   }
 
 

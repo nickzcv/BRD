@@ -1242,6 +1242,7 @@ nav.navigation .user .logout:hover {
 /* Welcome-section styles
 -------------------------------------------------- */
 .faq {
+  font-size: 1rem;
   /* SmartPhones */
   /* Tablets */
   /* Desktop and larger */ }
@@ -1252,6 +1253,9 @@ nav.navigation .user .logout:hover {
 
 .faq a {
   text-decoration: none; }
+
+.faq ul {
+  padding: 0 1rem; }
 
 @media only screen and (min-width: 768px) {
   .faq h2 {
