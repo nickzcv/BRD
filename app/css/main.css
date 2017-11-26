@@ -614,6 +614,20 @@ nav.navigation .user .logout:hover {
   font-size: 1.5rem;
   padding: 0 .4rem; }
 
+.ads .ad-item .photo .type {
+  color: #edebdc;
+  position: absolute;
+  padding: 1px 4px;
+  font-size: 0.7rem; }
+
+.ads .ad-item .photo .type.buy {
+  background: darkgreen;
+  left: -2.6rem; }
+
+.ads .ad-item .photo .type.sell {
+  left: -3rem;
+  background: darkred; }
+
 .ads .ad-item .content {
   float: left;
   width: 90%; }
@@ -893,11 +907,14 @@ nav.navigation .user .logout:hover {
   .ads .ad-item .photo .type {
     color: #edebdc;
     position: absolute;
-    padding: 1px 4px; }
+    padding: 1px 4px;
+    font-size: 0.7rem; }
   .ads .ad-item .photo .type.buy {
-    background: darkgreen; }
+    background: darkgreen;
+    left: 0; }
   .ads .ad-item .photo .type.sell {
-    background: darkred; }
+    background: darkred;
+    left: 0; }
   .ads .ad-item .content {
     float: left;
     width: 80%; }

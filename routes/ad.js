@@ -46,11 +46,24 @@ router.route('/ads')
 	})
 	// get all the ads (accessed at GET /api/ads)
 	.get(function(req, res) {
-    Ad.find({}, function(err, ad) {
-      if (err)
-        res.json(err);
+    var limitParam = 3,
+        skipParam = 0;
 
-      res.json(ad);
+    if (req.query.limit) {
+      limitParam = parseInt(req.query.limit);
+    }
+
+    if (req.query.skip) {
+      skipParam = parseInt(req.query.skip);
+    }
+
+    var q = Ad.find({}).sort({'created_at': -1}).skip(skipParam).limit(limitParam);
+    q.exec(function(err, ad) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(ad);
+      }
     });
 	});
 

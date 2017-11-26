@@ -32,6 +32,21 @@
         font-size: 1.5rem;
         padding: 0 .4rem;
       }
+      .type {
+        color: $gray;
+        position: absolute;
+        padding: 1px 4px;
+        font-size: 0.7rem;
+
+        &.buy {
+          background: $buy;
+          left: -2.6rem;
+        }
+        &.sell {
+          left: -3rem;
+          background: $sell;
+        }
+      }
     }
     .content {
       float: left;
@@ -337,12 +352,15 @@
            color: $gray;
            position: absolute;
            padding: 1px 4px;
+           font-size: 0.7rem;
 
             &.buy {
               background: $buy;
+              left: 0;
             }
             &.sell {
               background: $sell;
+              left: 0;
             }
          }
       }
