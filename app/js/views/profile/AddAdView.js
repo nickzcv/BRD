@@ -33,6 +33,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     'change @ui.getContacts': 'setContacts',
     'change @ui.category': 'setFilter',
     'change @ui.type': 'changeType',
+    'change @ui.object': 'changeObject',
     'click @ui.backBtn': function() {
       brd.router.navigate('#ads', {trigger:true});
     }
@@ -137,13 +138,10 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   saveAd: function() {
     let thisView = this,
         contacts = thisView.model.get('contacts') || [];
-
     // Set selected filters
     this.model.setCategoryObject();
     // Set model to save it to the server
     thisView.model.set({
-      type: thisView.ui.type.val(),
-      object: thisView.ui.object.val(),
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),
@@ -162,7 +160,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       });
     } else {
       thisView.model.set({
-        userName: null});
+        userName: null
+      });
     }
     // Set contacts
     switch (contacts.takeFrom) {
@@ -197,8 +196,6 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         console.log('error')
       }
     });
-
-
   },
 
   /*
@@ -255,6 +252,10 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     return result;
   },
 
+  /*
+   * Handle change type checkbox
+   *
+   */
   changeType: function(event) {
     // Hide both first
     this.ui.marker.addClass('hidden');
@@ -266,7 +267,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       this.ui.sellMarker.removeClass('hidden');
       break;
     }
-  }
+    this.model.set({
+      type: event.target.value,
+    });
+  },
 
+  /*
+   * Handle change object checkbox
+   *
+   */
+  changeObject: function(event) {
+    this.model.set({
+      object: event.target.value,
+    });
+  }
 
 });

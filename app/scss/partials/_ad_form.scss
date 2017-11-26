@@ -21,10 +21,10 @@
     padding: 5px;
     color: #fff;
     &.buy {
-      background: darkgreen;
+      background: $buy;
     }
     &.sell {
-      background: darkred;
+      background: $sell;
     }
   }
   .ad-photo {

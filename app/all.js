@@ -1583,6 +1583,106 @@ app.views.MainView = Backbone.Marionette.View.extend({
   }
 
 });
+"use strict";
+
+app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  collection: new app.collections.AdsHomeCollection(),
+
+  //emptyView: app.views.SpinnerView,
+
+  childView: app.views.adView,
+
+  initialize: function initialize() {
+    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    this.emptyView = app.views.SpinnerView;
+    this.collection.fetch().then(function () {}, function () {});
+  }
+
+});
+'use strict';
+
+app.views.FiltersHomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filter_home,
+
+  regions: {
+    countriesPicker: '.country-picker'
+  },
+
+  ui: {
+    addNewBtn: '.add-new',
+    toggleMobileFilters: '.show-mobile-filters',
+    filters: '.filters-wrapper',
+    closeFiltersBtn: '.close-btn'
+  },
+
+  events: {
+    'click @ui.addNewBtn': 'addNew',
+    'click @ui.toggleMobileFilters': 'toggleFilters',
+    'click @ui.closeFiltersBtn': 'toggleFilters'
+  },
+
+  addNew: function addNew() {
+    // Check is user logged in
+    if (brd.controllers.isLoggedIn()) {
+      // Redirect to add view
+      brd.router.navigate('#ads/new', { trigger: true });
+    } else {
+      // Show forbidden view
+      brd.regions.mainRegion.show(new app.views.MainView());
+      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+    }
+  },
+
+  toggleFilters: function toggleFilters() {
+    this.ui.toggleMobileFilters.toggleClass('opened');
+    this.ui.filters.toggleClass('visible');
+  },
+
+  initialize: function initialize() {
+    // Show country picker
+    this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
+  },
+
+  onRender: function onRender() {
+    console.log(this.model);
+  }
+
+});
+'use strict';
+
+app.views.HomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.home,
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn',
+    listRegion: '.ads-list'
+  },
+
+  regions: {
+    filter: '.filter-home',
+    adsFilter: '.content-filter',
+    adsList: '@ui.listRegion'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    }
+  },
+
+  onRender: function onRender() {
+    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
+    this.showChildView('adsList', new app.views.adsHomeCollectionView());
+  }
+
+});
 'use strict';
 
 app.views.ForgotView = app.views.HeaderView.extend({
@@ -1857,106 +1957,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   }
 
 });
-"use strict";
-
-app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
-
-  collection: new app.collections.AdsHomeCollection(),
-
-  //emptyView: app.views.SpinnerView,
-
-  childView: app.views.adView,
-
-  initialize: function initialize() {
-    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
-    this.emptyView = app.views.SpinnerView;
-    this.collection.fetch().then(function () {}, function () {});
-  }
-
-});
-'use strict';
-
-app.views.FiltersHomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filter_home,
-
-  regions: {
-    countriesPicker: '.country-picker'
-  },
-
-  ui: {
-    addNewBtn: '.add-new',
-    toggleMobileFilters: '.show-mobile-filters',
-    filters: '.filters-wrapper',
-    closeFiltersBtn: '.close-btn'
-  },
-
-  events: {
-    'click @ui.addNewBtn': 'addNew',
-    'click @ui.toggleMobileFilters': 'toggleFilters',
-    'click @ui.closeFiltersBtn': 'toggleFilters'
-  },
-
-  addNew: function addNew() {
-    // Check is user logged in
-    if (brd.controllers.isLoggedIn()) {
-      // Redirect to add view
-      brd.router.navigate('#ads/new', { trigger: true });
-    } else {
-      // Show forbidden view
-      brd.regions.mainRegion.show(new app.views.MainView());
-      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
-    }
-  },
-
-  toggleFilters: function toggleFilters() {
-    this.ui.toggleMobileFilters.toggleClass('opened');
-    this.ui.filters.toggleClass('visible');
-  },
-
-  initialize: function initialize() {
-    // Show country picker
-    this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
-  },
-
-  onRender: function onRender() {
-    console.log(this.model);
-  }
-
-});
-'use strict';
-
-app.views.HomeView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.home,
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn',
-    listRegion: '.ads-list'
-  },
-
-  regions: {
-    filter: '.filter-home',
-    adsFilter: '.content-filter',
-    adsList: '@ui.listRegion'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    }
-  },
-
-  onRender: function onRender() {
-    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
-    this.showChildView('adsList', new app.views.adsHomeCollectionView());
-  }
-
-});
 'use strict';
 
 app.views.AddAdView = Backbone.Marionette.View.extend({
@@ -1994,6 +1994,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     'change @ui.getContacts': 'setContacts',
     'change @ui.category': 'setFilter',
     'change @ui.type': 'changeType',
+    'change @ui.object': 'changeObject',
     'click @ui.backBtn': function clickUiBackBtn() {
       brd.router.navigate('#ads', { trigger: true });
     }
@@ -2091,13 +2092,10 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   saveAd: function saveAd() {
     var thisView = this,
         contacts = thisView.model.get('contacts') || [];
-
     // Set selected filters
     this.model.setCategoryObject();
     // Set model to save it to the server
     thisView.model.set({
-      type: thisView.ui.type.val(),
-      object: thisView.ui.object.val(),
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),
@@ -2116,7 +2114,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       });
     } else {
       thisView.model.set({
-        userName: null });
+        userName: null
+      });
     }
     // Set contacts
     switch (contacts.takeFrom) {
@@ -2206,6 +2205,10 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     return result;
   },
 
+  /*
+   * Handle change type checkbox
+   *
+   */
   changeType: function changeType(event) {
     // Hide both first
     this.ui.marker.addClass('hidden');
@@ -2217,6 +2220,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
         this.ui.sellMarker.removeClass('hidden');
         break;
     }
+    this.model.set({
+      type: event.target.value
+    });
+  },
+
+  /*
+   * Handle change object checkbox
+   *
+   */
+  changeObject: function changeObject(event) {
+    this.model.set({
+      object: event.target.value
+    });
   }
 
 });

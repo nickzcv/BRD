@@ -333,6 +333,18 @@
           font-size: 5rem;
           padding: 0 20px;
         }
+         .type {
+           color: $gray;
+           position: absolute;
+           padding: 1px 4px;
+
+            &.buy {
+              background: $buy;
+            }
+            &.sell {
+              background: $sell;
+            }
+         }
       }
       .content {
         float: left;

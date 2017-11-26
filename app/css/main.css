@@ -890,6 +890,14 @@ nav.navigation .user .logout:hover {
     color: #b6b6b6;
     font-size: 5rem;
     padding: 0 20px; }
+  .ads .ad-item .photo .type {
+    color: #edebdc;
+    position: absolute;
+    padding: 1px 4px; }
+  .ads .ad-item .photo .type.buy {
+    background: darkgreen; }
+  .ads .ad-item .photo .type.sell {
+    background: darkred; }
   .ads .ad-item .content {
     float: left;
     width: 80%; }

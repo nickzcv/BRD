@@ -1,6 +1,15 @@
 <div class="ad-item">
   <div class="section1">
-    <div class="photo"><span class="ion-image"></span></div>
+    <div class="photo">
+      <div class="type {{type}}">
+        {{#compare type '===' 'buy'}}
+          Куплю
+        {{else}}
+          Продам
+        {{/compare}}
+      </div>
+      <span class="ion-image"></span>
+    </div>
     <div class="content">
       <div class="ad-title">{{title}}</div>
       <div class="ad-description hidden-xs">{{description}}</div>

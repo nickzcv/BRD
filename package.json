@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "author": "Zaicev Nick",
+  "scripts": {
+    "serve": "node server.js"
+  },
   "dependencies": {
     "body-parser": "",
     "cookie-parser": "",

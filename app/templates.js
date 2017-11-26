@@ -29,127 +29,131 @@ this["tpl"]["templates"]["ads"] = Handlebars.template({"compiler":[6,">= 2.0.0-b
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile ads\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Мои объявления</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <div class=\"btns-section\">\r\n      <button type=\"button\" class=\"btn btn-default add-button\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default\">Избранное <span class=\"icon ion-ios-star-outline star\"></span></button>\r\n      <button type=\"button\" class=\"btn btn-default go-to-archive\" disabled>Архив <span class=\"ion-filing\"></span></button>\r\n    </div>\r\n\r\n    <div class=\"ads-list\"></div>\r\n\r\n  </div>\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n";
+    return "          Куплю\r\n";
 },"3":function(depth0,helpers,partials,data) {
+    return "          Продам\r\n";
+},"5":function(depth0,helpers,partials,data) {
+    return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n";
+},"7":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <table class=\"filters-table\">\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
     + "</th>\r\n        </tr>\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(4, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(8, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "        <tr>\r\n          <td>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":this.program(35, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":this.program(39, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "          </td>\r\n        </tr>\r\n      </table>\r\n";
-},"4":function(depth0,helpers,partials,data) {
+},"8":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(13, data, 0),"data":data})) != null ? stack1 : "");
-},"5":function(depth0,helpers,partials,data) {
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.level : depth0),"===","parent",{"name":"compare","hash":{},"fn":this.program(9, data, 0),"inverse":this.program(17, data, 0),"data":data})) != null ? stack1 : "");
+},"9":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "            <tr class=\"filter-row\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(6, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              <td>\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(8, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(12, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              </td>\r\n            </tr>\r\n";
-},"6":function(depth0,helpers,partials,data) {
+},"10":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                <td>\r\n                  <span class=\"filter-title\">"
     + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span>\r\n                </td>\r\n";
-},"8":function(depth0,helpers,partials,data) {
+},"12":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(9, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"9":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(13, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"13":function(depth0,helpers,partials,data) {
     var stack1, helper;
 
   return "                    <div class=\"parent\">\r\n                      <span class=\"parent-title\">"
     + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span>\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(10, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "                    </div>\r\n";
-},"10":function(depth0,helpers,partials,data) {
+},"14":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(11, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"11":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"15":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                          <i>"
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</i>\r\n";
-},"13":function(depth0,helpers,partials,data) {
+},"17":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "            <tr class=\"filter-row\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(18, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              <td class=\"first-level\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(16, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(20, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              </td>\r\n            </tr>\r\n";
-},"14":function(depth0,helpers,partials,data) {
+},"18":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                <td><span class=\"filter-title\">"
     + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span></td>\r\n";
-},"16":function(depth0,helpers,partials,data) {
+},"20":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input",{"name":"compare","hash":{},"fn":this.program(17, data, 0),"inverse":this.program(25, data, 0),"data":data})) != null ? stack1 : "");
-},"17":function(depth0,helpers,partials,data) {
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input",{"name":"compare","hash":{},"fn":this.program(21, data, 0),"inverse":this.program(29, data, 0),"data":data})) != null ? stack1 : "");
+},"21":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(18, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"18":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(22, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"22":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "                      <div class=\"overlay\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(19, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":this.program(23, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "                        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":this.program(21, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":this.program(25, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\r\n                        "
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(23, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":this.program(27, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\r\n                      </div>\r\n";
-},"19":function(depth0,helpers,partials,data) {
+},"23":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                          <i>"
     + this.escapeExpression(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"label","hash":{},"data":data}) : helper)))
     + "</i>:\r\n";
-},"21":function(depth0,helpers,partials,data) {
+},"25":function(depth0,helpers,partials,data) {
     var helper;
 
   return "от "
     + this.escapeExpression(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"from","hash":{},"data":data}) : helper)));
-},"23":function(depth0,helpers,partials,data) {
+},"27":function(depth0,helpers,partials,data) {
     var helper;
 
   return "до "
     + this.escapeExpression(((helper = (helper = helpers.to || (depth0 != null ? depth0.to : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"to","hash":{},"data":data}) : helper)));
-},"25":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input-sizes",{"name":"compare","hash":{},"fn":this.program(26, data, 0),"inverse":this.program(32, data, 0),"data":data})) != null ? stack1 : "");
-},"26":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.values : depth0),{"name":"each","hash":{},"fn":this.program(27, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"27":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.t : depth0),{"name":"if","hash":{},"fn":this.program(28, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n";
-},"28":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.s : depth0),{"name":"if","hash":{},"fn":this.program(29, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
 },"29":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.d : depth0),{"name":"if","hash":{},"fn":this.program(30, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+  return ((stack1 = (helpers.compare || (depth0 && depth0.compare) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.type : depth0),"===","input-sizes",{"name":"compare","hash":{},"fn":this.program(30, data, 0),"inverse":this.program(36, data, 0),"data":data})) != null ? stack1 : "");
 },"30":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.values : depth0),{"name":"each","hash":{},"fn":this.program(31, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"31":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.t : depth0),{"name":"if","hash":{},"fn":this.program(32, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n";
+},"32":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.s : depth0),{"name":"if","hash":{},"fn":this.program(33, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"33":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.d : depth0),{"name":"if","hash":{},"fn":this.program(34, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"34":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "                            <div class=\"size-row\">"
@@ -159,42 +163,42 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + "<b class=\"iks\">&#9747;</b>"
     + alias3(((helper = (helper = helpers.d || (depth0 != null ? depth0.d : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"d","hash":{},"data":data}) : helper)))
     + "</div>\r\n";
-},"32":function(depth0,helpers,partials,data) {
+},"36":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(33, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":this.program(37, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "                  ";
-},"33":function(depth0,helpers,partials,data) {
+},"37":function(depth0,helpers,partials,data) {
     var helper;
 
   return "                      <span>"
     + this.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
-},"35":function(depth0,helpers,partials,data) {
+},"39":function(depth0,helpers,partials,data) {
     var helper;
 
   return "              <div class=\"price\"><i>Цена:</i> "
     + this.escapeExpression(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"price","hash":{},"data":data}) : helper)))
     + "</div>\r\n";
-},"37":function(depth0,helpers,partials,data) {
+},"41":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,depth0,{"name":"if","hash":{},"fn":this.program(38, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"38":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,depth0,{"name":"if","hash":{},"fn":this.program(42, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"42":function(depth0,helpers,partials,data) {
     return "          <span class=\"ion-android-call\"> "
     + this.escapeExpression(this.lambda(depth0, depth0))
     + "</span>\r\n";
-},"40":function(depth0,helpers,partials,data) {
+},"44":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "      <span class=\"name\"><i class=\"ion-ios-briefcase-outline\"></i><span class=\"m-l-05\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + "</span></span>\r\n";
-},"42":function(depth0,helpers,partials,data) {
+},"46":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":this.program(43, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
-},"43":function(depth0,helpers,partials,data) {
+  return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":this.program(47, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
+},"47":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
   return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span class=\"m-l-05\">"
@@ -204,38 +208,42 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + " "
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
     + "</span></span>\r\n    ";
-},"45":function(depth0,helpers,partials,data) {
+},"49":function(depth0,helpers,partials,data) {
     return "    <div class=\"icon ion-ios-star-outline star\"></div>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression, alias4=this.lambda;
 
-  return "<div class=\"ad-item\">\r\n  <div class=\"section1\">\r\n    <div class=\"photo\"><span class=\"ion-image\"></span></div>\r\n    <div class=\"content\">\r\n      <div class=\"ad-title\">"
+  return "<div class=\"ad-item\">\r\n  <div class=\"section1\">\r\n    <div class=\"photo\">\r\n      <div class=\"type "
+    + alias3(((helper = (helper = helpers.type || (depth0 != null ? depth0.type : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"type","hash":{},"data":data}) : helper)))
+    + "\">\r\n"
+    + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias1).call(depth0,(depth0 != null ? depth0.type : depth0),"===","buy",{"name":"compare","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "      </div>\r\n      <span class=\"ion-image\"></span>\r\n    </div>\r\n    <div class=\"content\">\r\n      <div class=\"ad-title\">"
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
     + "</div>\r\n      <div class=\"ad-description hidden-xs\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
     + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n\r\n    <div class=\"category\">\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(7, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      <div class=\"message hidden\"></div>\r\n      <div class=\"phones\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(37, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(41, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"i-bottom\">\r\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span class=\"m-l-05\">"
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
     + "</span></span>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(40, data, 0),"inverse":this.program(42, data, 0),"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":this.program(44, data, 0),"inverse":this.program(46, data, 0),"data":data})) != null ? stack1 : "")
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
     + "</span></span>\r\n\r\n  </div>\r\n  <div class=\"icon ion-ios-browsers-outline tab\"></div>\r\n"
-    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(45, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(49, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "  <div class=\"icon ion-chevron-down arrow\"></div>\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["dashboard"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile dashboard\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-person\"></span>\r\n    <span class=\"title-text\">Мой кабинет</span>\r\n  </div>\r\n  <div class=\"page\">\r\n\r\n    dashboard\r\n\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["faq"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"container faq\">\r\n\r\n  <h2>FAQ - часто задаваемые вопросы</h2>\r\n\r\n  <div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\r\n        <h4 class=\"panel-title\">\r\n          <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\r\n            1. Что это за сервис и для кого он?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\r\n        <div class=\"panel-body\">\r\n          Lignum.by – это сервис, предназначенный для людей которые связаны с древесной продукцией,\r\n          а так же для тех кто работает в деревообрабатывающей сфере и дереводобывающей промышленности.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">\r\n            2. Для чего нужно проходить регистрацию?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseTwo\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\r\n        <div class=\"panel-body\">\r\n          Зарегистрированным пользователям предоставляется больше возможностей:\r\n          <ul>\r\n            <li>доступ в личный кабинет;</li>\r\n            <li>возможность добавлять свои объявления и компании;</li>\r\n            <li>сохранять понравившиеся объявления и компании в раздел «Избранное»;</li>\r\n            <li>получать и отправлять сообщения;</li>\r\n            <li>и некоторые другие.</li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingThree\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">\r\n            3. Могу ли я добавить объявление, не регистрируясь?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">\r\n        <div class=\"panel-body\">\r\n          Нет, чтобы добавить свое объявление, необходимо пройти регистрацию.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading4\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse4\" aria-expanded=\"false\" aria-controls=\"collapse4\">\r\n            4. Видны ли мне все объявления, если я не зарегистрирован(а)?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse4\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading4\">\r\n        <div class=\"panel-body\">\r\n          Да. Все объявления доступны для просмотра как зарегистрированным, так и незарегистрированным пользователям.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading5\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse5\" aria-expanded=\"false\" aria-controls=\"collapse5\">\r\n            5. Я прошел регистрацию, но мне на почту не пришло письмо с ссылкой на активацию.\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse5\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading5\">\r\n        <div class=\"panel-body\">\r\n          В первую очередь проверьте папку «Спам». Если письмо действительно не пришло, напишите о своей проблеме в техподдержку.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading6\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse6\" aria-expanded=\"false\" aria-controls=\"collapse6\">\r\n            6.	Как мне зайти в личный кабинет?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse6\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading6\">\r\n        <div class=\"panel-body\">\r\n          Если Вы уже зарегистрированы, то нажмите кнопку «Войти» в правом верхнем углу на главной странице.\r\n          Если Вы новый пользователь, пройдите регистрацию, нажав на кнопку «Регистрация» в правом верхнем углу на главной странице.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading7\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse7\" aria-expanded=\"false\" aria-controls=\"collapse7\">\r\n            7.	Что делать, если забыл пароль?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse7\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading7\">\r\n        <div class=\"panel-body\">\r\n          Если Вы забыли пароль, нажмите на ссылку <a>Забыли пароль?</a>, расположенную в окне входа под полем пароля.\r\n          Вам на почту будет отправлено письмо с Вашим паролем.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\" role=\"tab\" id=\"heading8\">\r\n      <h4 class=\"panel-title\">\r\n        <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse8\" aria-expanded=\"false\" aria-controls=\"collapse8\">\r\n          8. Что я могу делать в личном кабинете?\r\n        </a>\r\n      </h4>\r\n    </div>\r\n    <div id=\"collapse8\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading8\">\r\n      <div class=\"panel-body\">\r\n        В Личном кабинете можно:\r\n        <ul>\r\n          <li>просматривать, редактировать свои объявления и создавать новые (Личный кабинет > Объявления);</li>\r\n          <li>создавать, просматривать и редактировать профиль компании (Личный кабинет > Компании);</li>\r\n          <li>просматривать сообщения, полученные от других пользователей (Личный кабинет > Сообщения);</li>\r\n          <li>просматривать объявления и компании других пользователей, которые Вы отметили и сохранили как понравившиеся (Личный кабинет > Избранное)</li>\r\n          <li>изменять настройки профиля (Личный кабинет > Настройки профиля) и аккаунта (Личный кабинет > Настройки аккаунта)</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading9\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse9\" aria-expanded=\"false\" aria-controls=\"collapse9\">\r\n            9. Для чего нужен раздел «Избранное»?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse9\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading9\">\r\n        <div class=\"panel-body\">\r\n          В разделе «Избранное» хранятся отмеченные Вами объявления и компании, которые Вы сохранили для дальнейшего просмотра и использования\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading10\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse10\" aria-expanded=\"false\" aria-controls=\"collapse10\">\r\n            10.	Какие объявления попадают в «Архив»?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse10\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading10\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading11\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse11\" aria-expanded=\"false\" aria-controls=\"collapse11\">\r\n            11.	Как мне добавить объявление?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse11\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading11\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading12\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse12\" aria-expanded=\"false\" aria-controls=\"collapse12\">\r\n            12.	Как мне добавить компанию?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse12\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading12\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading13\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse13\" aria-expanded=\"false\" aria-controls=\"collapse13\">\r\n            13.	При добавлении объявления обязательно ли заполнять все поля?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse13\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading13\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading14\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse14\" aria-expanded=\"false\" aria-controls=\"collapse14\">\r\n            14.	Как мне продлить срок размещения объявления?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse14\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading14\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading15\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse15\" aria-expanded=\"false\" aria-controls=\"collapse15\">\r\n            15.	Что делать если я нашел ошибку?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse15\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading15\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n";
+    return "<div class=\"container faq\">\r\n\r\n  <h2>FAQ - часто задаваемые вопросы</h2>\r\n\r\n  <div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\r\n        <h4 class=\"panel-title\">\r\n          <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\r\n            1. Что это за сервис и для кого он?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\r\n        <div class=\"panel-body\">\r\n          Lignum.by – это сервис, предназначенный для людей которые хотят продать либо приобрести древесную продукцию,\r\n          а так же для тех, кто работает в деревообрабатывающей сфере и дереводобывающей промышленности.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingTwo\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">\r\n            2. Для чего нужно проходить регистрацию?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseTwo\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingTwo\">\r\n        <div class=\"panel-body\">\r\n          Зарегистрированным пользователям предоставляется больше возможностей:\r\n          <ul>\r\n            <li>доступ в личный кабинет;</li>\r\n            <li>возможность добавлять свои объявления и компании;</li>\r\n            <li>сохранять понравившиеся объявления и компании в раздел «Избранное»;</li>\r\n            <li>получать и отправлять сообщения;</li>\r\n            <li>и некоторые другие.</li>\r\n          </ul>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"headingThree\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">\r\n            3. Могу ли я добавить объявление, не регистрируясь?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapseThree\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"headingThree\">\r\n        <div class=\"panel-body\">\r\n          Нет, чтобы добавить свое объявление, необходимо пройти регистрацию.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading4\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse4\" aria-expanded=\"false\" aria-controls=\"collapse4\">\r\n            4. Видны ли мне все объявления, если я не зарегистрирован(а)?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse4\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading4\">\r\n        <div class=\"panel-body\">\r\n          Да. Все объявления доступны для просмотра как зарегистрированным, так и незарегистрированным пользователям.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading5\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse5\" aria-expanded=\"false\" aria-controls=\"collapse5\">\r\n            5. Я прошел регистрацию, но мне на почту не пришло письмо с ссылкой на активацию.\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse5\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading5\">\r\n        <div class=\"panel-body\">\r\n          В первую очередь проверьте папку «Спам». Если письмо действительно не пришло, напишите о своей проблеме в техподдержку.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading6\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse6\" aria-expanded=\"false\" aria-controls=\"collapse6\">\r\n            6.	Как мне зайти в личный кабинет?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse6\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading6\">\r\n        <div class=\"panel-body\">\r\n          Если Вы уже зарегистрированы, то нажмите кнопку «Войти» в правом верхнем углу на главной странице.\r\n          Если Вы новый пользователь, пройдите регистрацию, нажав на кнопку «Регистрация» в правом верхнем углу на главной странице.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading7\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse7\" aria-expanded=\"false\" aria-controls=\"collapse7\">\r\n            7.	Что делать, если забыл пароль?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse7\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading7\">\r\n        <div class=\"panel-body\">\r\n          Если Вы забыли пароль, нажмите на ссылку <a>Забыли пароль?</a>, расположенную в окне входа под полем пароля.\r\n          Вам на почту будет отправлено письмо с Вашим паролем.\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\" role=\"tab\" id=\"heading8\">\r\n      <h4 class=\"panel-title\">\r\n        <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse8\" aria-expanded=\"false\" aria-controls=\"collapse8\">\r\n          8. Что я могу делать в личном кабинете?\r\n        </a>\r\n      </h4>\r\n    </div>\r\n    <div id=\"collapse8\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading8\">\r\n      <div class=\"panel-body\">\r\n        В Личном кабинете можно:\r\n        <ul>\r\n          <li>просматривать, редактировать свои объявления и создавать новые (Личный кабинет > Объявления);</li>\r\n          <li>создавать, просматривать и редактировать профиль компании (Личный кабинет > Компании);</li>\r\n          <li>просматривать сообщения, полученные от других пользователей (Личный кабинет > Сообщения);</li>\r\n          <li>просматривать объявления и компании других пользователей, которые Вы отметили и сохранили как понравившиеся (Личный кабинет > Избранное)</li>\r\n          <li>изменять настройки профиля (Личный кабинет > Настройки профиля) и аккаунта (Личный кабинет > Настройки аккаунта)</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading9\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse9\" aria-expanded=\"false\" aria-controls=\"collapse9\">\r\n            9. Для чего нужен раздел «Избранное»?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse9\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading9\">\r\n        <div class=\"panel-body\">\r\n          В разделе «Избранное» хранятся отмеченные Вами объявления и компании, которые Вы сохранили для дальнейшего просмотра и использования\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading10\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse10\" aria-expanded=\"false\" aria-controls=\"collapse10\">\r\n            10.	Какие объявления попадают в «Архив»?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse10\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading10\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading11\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse11\" aria-expanded=\"false\" aria-controls=\"collapse11\">\r\n            11.	Как мне добавить объявление?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse11\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading11\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading12\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse12\" aria-expanded=\"false\" aria-controls=\"collapse12\">\r\n            12.	Как мне добавить компанию?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse12\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading12\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading13\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse13\" aria-expanded=\"false\" aria-controls=\"collapse13\">\r\n            13.	При добавлении объявления обязательно ли заполнять все поля?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse13\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading13\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading14\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse14\" aria-expanded=\"false\" aria-controls=\"collapse14\">\r\n            14.	Как мне продлить срок размещения объявления?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse14\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading14\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"panel panel-default\">\r\n      <div class=\"panel-heading\" role=\"tab\" id=\"heading15\">\r\n        <h4 class=\"panel-title\">\r\n          <a class=\"collapsed\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse15\" aria-expanded=\"false\" aria-controls=\"collapse15\">\r\n            15.	Что делать если я нашел ошибку?\r\n          </a>\r\n        </h4>\r\n      </div>\r\n      <div id=\"collapse15\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading15\">\r\n        <div class=\"panel-body\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
@@ -562,15 +570,6 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
     + this.escapeExpression((helpers.formatDate || (depth0 && depth0.formatDate) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"LLLL",{"name":"formatDate","hash":{},"data":data}))
     + "</p>\r\n    </div>\r\n  </div>\r\n\r\n</form>";
 },"useData":true});
-this["tpl"]["templates"]["forgot"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"forgot\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"forgotModalLabel\">Восстановление пароля</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <label for=\"exampleInputEmail1\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email адрес\">\r\n          </div>\r\n\r\n          <button type=\"button\" class=\"btn btn-default login-btn\">Выслать пароль</button>\r\n        </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
-},"useData":true});
-this["tpl"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<!-- Login modal -->\r\n<div class=\"modal fade\" id=\"login\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"loginModalLabel\">Вход</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n\r\n        <div class=\"alert alert-danger\" role=\"alert\"></div>\r\n\r\n        <form id=\"login-form\">\r\n          <div class=\"form-group\">\r\n            <label for=\"email\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Email адрес\" required=\"required\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Пароль</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Пароль\">\r\n          </div>\r\n          <div>\r\n            <a class=\"forgot-password\">Забыли пароль?</a>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-default login-btn\">Войти</button>\r\n        </form>\r\n        <div class=\"loader-wrapper\">\r\n          <div class=\"loader\"></div>\r\n        </div>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
-},"useData":true});
-this["tpl"]["templates"]["registration"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<!-- Registration modal -->\r\n<div class=\"modal fade\" id=\"registration\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"registrationModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"registrationModalLabel\">Регистрация</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n\r\n        <div class=\"alert alert-danger\" role=\"alert\"></div>\r\n        <div class=\"alert alert-success\" role=\"alert\"></div>\r\n\r\n        <form id=\"registration-form\">\r\n          <div class=\"form-group\">\r\n            <label for=\"email\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Email адрес\" required=\"required\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Пароль</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Выберите пароль\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"confirm_password\">Пароль еще раз</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"confirm_password\" id=\"confirm_password\" placeholder=\"Подтвердите выбранный пароль\">\r\n          </div>\r\n          <div class=\"form-group checkbox\">\r\n            <label>\r\n              <input type=\"checkbox\" name=\"confirm\" id=\"confirm\"> Я соглашаюсь с правилами ресурса.\r\n            </label>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-default registration-submit\">Зарегистрироваться</button>\r\n        </form>\r\n\r\n        <div class=\"loader-wrapper\">\r\n          <div class=\"loader\"></div>\r\n        </div>\r\n\r\n        <div class=\"checkmark\">\r\n          <span class=\"ion-checkmark-circled\"></span>\r\n        </div>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
-},"useData":true});
 this["tpl"]["templates"]["countries_picker"] = Handlebars.template({"1":function(depth0,helpers,partials,data,blockParams,depths) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
@@ -647,4 +646,13 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"loader-wrapper\">\r\n  <div class=\"loader\"></div>\r\n</div>";
+},"useData":true});
+this["tpl"]["templates"]["forgot"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"forgot\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"forgotModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"forgotModalLabel\">Восстановление пароля</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form>\r\n          <div class=\"form-group\">\r\n            <label for=\"exampleInputEmail1\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" id=\"exampleInputEmail1\" placeholder=\"Email адрес\">\r\n          </div>\r\n\r\n          <button type=\"button\" class=\"btn btn-default login-btn\">Выслать пароль</button>\r\n        </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
+},"useData":true});
+this["tpl"]["templates"]["login"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<!-- Login modal -->\r\n<div class=\"modal fade\" id=\"login\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"loginModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"loginModalLabel\">Вход</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n\r\n        <div class=\"alert alert-danger\" role=\"alert\"></div>\r\n\r\n        <form id=\"login-form\">\r\n          <div class=\"form-group\">\r\n            <label for=\"email\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Email адрес\" required=\"required\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Пароль</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Пароль\">\r\n          </div>\r\n          <div>\r\n            <a class=\"forgot-password\">Забыли пароль?</a>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-default login-btn\">Войти</button>\r\n        </form>\r\n        <div class=\"loader-wrapper\">\r\n          <div class=\"loader\"></div>\r\n        </div>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
+},"useData":true});
+this["tpl"]["templates"]["registration"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<!-- Registration modal -->\r\n<div class=\"modal fade\" id=\"registration\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"registrationModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"registrationModalLabel\">Регистрация</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n\r\n        <div class=\"alert alert-danger\" role=\"alert\"></div>\r\n        <div class=\"alert alert-success\" role=\"alert\"></div>\r\n\r\n        <form id=\"registration-form\">\r\n          <div class=\"form-group\">\r\n            <label for=\"email\">Email</label>\r\n            <input type=\"email\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Email адрес\" required=\"required\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"password\">Пароль</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Выберите пароль\">\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label for=\"confirm_password\">Пароль еще раз</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"confirm_password\" id=\"confirm_password\" placeholder=\"Подтвердите выбранный пароль\">\r\n          </div>\r\n          <div class=\"form-group checkbox\">\r\n            <label>\r\n              <input type=\"checkbox\" name=\"confirm\" id=\"confirm\"> Я соглашаюсь с правилами ресурса.\r\n            </label>\r\n          </div>\r\n          <button type=\"submit\" class=\"btn btn-default registration-submit\">Зарегистрироваться</button>\r\n        </form>\r\n\r\n        <div class=\"loader-wrapper\">\r\n          <div class=\"loader\"></div>\r\n        </div>\r\n\r\n        <div class=\"checkmark\">\r\n          <span class=\"ion-checkmark-circled\"></span>\r\n        </div>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
 },"useData":true});
