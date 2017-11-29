@@ -1,4 +1,4 @@
-app.views.adsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
+app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsHomeCollection(),
 

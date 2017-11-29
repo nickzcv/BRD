@@ -1,4 +1,4 @@
-app.models.adsHomeModel = Backbone.Model.extend({
+app.models.AdsHomeModel = Backbone.Model.extend({
 
   defaults: {
 
