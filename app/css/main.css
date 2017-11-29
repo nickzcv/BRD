@@ -68,7 +68,8 @@ label.error {
   text-align: center; }
 
 .forbidden .icon {
-  font-size: 5rem; }
+  font-size: 5rem;
+  color: #559797; }
 
 .blur-text {
   text-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
