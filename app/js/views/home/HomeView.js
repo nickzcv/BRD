@@ -23,20 +23,22 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     }
   },
 
-  modelEvents: {
-    'filterCollection': 'reRenderCollection'
+  childViewEvents: {
+    'select:category': 'reRenderCollection',
+    'select:country': 'reRenderCollection',
+    'select:city': 'reRenderCollection',
+    'select:type': 'reRenderCollection',
+    'select:object': 'reRenderCollection'
   },
 
   onRender: function() {
     this.showChildView('filter', new app.views.FiltersHomeView({model: new app.models.FiltersHomeModel()}));
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      model: new app.models.AdsHomeModel()
-    }));
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
   },
 
-  reRenderCollection: function() {
+  reRenderCollection: function(childView) {
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      model: new app.models.AdsHomeModel({test: 'test'})
+      model: childView.model
     }));
   }
 

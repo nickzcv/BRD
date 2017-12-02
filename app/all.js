@@ -344,8 +344,40 @@ app.collections.AdsCollection = Backbone.Collection.extend({
 
 app.collections.AdsHomeCollection = Backbone.Collection.extend({
 
+  initialize: function initialize(options) {
+    if (options) {
+      var params = {};
+      // Category
+      if (options.parameters.selectedCategoryId) {
+        params.category = options.parameters.selectedCategoryId;
+      }
+      // Country
+      if (options.parameters.country) {
+        params.country = options.parameters.country.id;
+      }
+      // City
+      if (options.parameters.city) {
+        params.city = options.parameters.city.id;
+      }
+      // Type
+      if (options.parameters.type) {
+        params.type = options.parameters.type;
+      }
+      // Object
+      if (options.parameters.object) {
+        params.object = options.parameters.object;
+      }
+      // Save params object
+      this.parameters = params;
+    }
+  },
+
   url: function url() {
-    return 'api/ads';
+    if (this.parameters) {
+      return 'api/ads?' + $.param(this.parameters, true);
+    } else {
+      return 'api/ads';
+    }
   }
 
 });
@@ -1586,11 +1618,19 @@ app.views.MainView = Backbone.Marionette.View.extend({
 
 app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 
-  collection: new app.collections.AdsHomeCollection(),
-
   childView: app.views.adView,
 
   initialize: async function initialize() {
+    var parameters = null;
+
+    if (this.model) {
+      parameters = this.model.attributes;
+      // After changing filter model will exist
+      this.collection = new app.collections.AdsHomeCollection({ parameters: parameters });
+    } else {
+      this.collection = new app.collections.AdsHomeCollection();
+    }
+
     this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
     this.emptyView = app.views.SpinnerView;
     await this.collection.fetch();
@@ -1611,13 +1651,82 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     addNewBtn: '.add-new',
     toggleMobileFilters: '.show-mobile-filters',
     filters: '.filters-wrapper',
-    closeFiltersBtn: '.close-btn'
+    closeFiltersBtn: '.close-btn',
+    categorySelect: '#category',
+    type: 'input[name=type]',
+    object: 'input[name=object]'
   },
 
   events: {
     'click @ui.addNewBtn': 'addNew',
     'click @ui.toggleMobileFilters': 'toggleFilters',
     'click @ui.closeFiltersBtn': 'toggleFilters'
+  },
+
+  modelEvents: {
+    'change:country': function changeCountry() {
+      this.triggerMethod('select:country', this);
+    },
+    'change:city': function changeCity() {
+      this.triggerMethod('select:city', this);
+    }
+  },
+
+  triggers: {
+    'change @ui.categorySelect': 'select:category',
+    'change @ui.type': 'select:type',
+    'change @ui.object': 'select:object'
+  },
+
+  onSelectCategory: function onSelectCategory(view, event) {
+    var selectedCategoryId = parseInt(event.target.value);
+    this.model.set({ selectedCategoryId: selectedCategoryId });
+  },
+
+  onSelectType: function onSelectType(view, event) {
+    var type = this.model.get('type');
+    var arr = [];
+    // copy existed array into new one
+    if (type && type.length) {
+      arr = type.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      var index = arr.indexOf(event.target.value);
+      arr.splice(index, 1);
+    }
+    // set type to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save type
+    this.model.set({
+      type: arr
+    });
+  },
+
+  onSelectObject: function onSelectObject(view, event) {
+    var object = this.model.get('object');
+    var arr = [];
+    // copy existed array into new one
+    if (object && object.length) {
+      arr = object.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      var index = arr.indexOf(event.target.value);
+      arr.splice(index, 1);
+    }
+    // set object to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save object
+    this.model.set({
+      object: arr
+    });
   },
 
   addNew: function addNew() {
@@ -1674,20 +1783,22 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     }
   },
 
-  modelEvents: {
-    'filterCollection': 'reRenderCollection'
+  childViewEvents: {
+    'select:category': 'reRenderCollection',
+    'select:country': 'reRenderCollection',
+    'select:city': 'reRenderCollection',
+    'select:type': 'reRenderCollection',
+    'select:object': 'reRenderCollection'
   },
 
   onRender: function onRender() {
     this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      model: new app.models.AdsHomeModel()
-    }));
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
   },
 
-  reRenderCollection: function reRenderCollection() {
+  reRenderCollection: function reRenderCollection(childView) {
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      model: new app.models.AdsHomeModel({ test: 'test' })
+      model: childView.model
     }));
   }
 

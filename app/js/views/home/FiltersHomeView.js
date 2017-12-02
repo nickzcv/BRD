@@ -11,12 +11,81 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     toggleMobileFilters: '.show-mobile-filters',
     filters: '.filters-wrapper',
     closeFiltersBtn: '.close-btn',
+    categorySelect: '#category',
+    type: 'input[name=type]',
+    object: 'input[name=object]',
   },
 
   events: {
     'click @ui.addNewBtn': 'addNew',
     'click @ui.toggleMobileFilters': 'toggleFilters',
     'click @ui.closeFiltersBtn': 'toggleFilters',
+  },
+
+  modelEvents: {
+    'change:country': function () {
+      this.triggerMethod('select:country', this);
+    },
+    'change:city': function () {
+      this.triggerMethod('select:city', this);
+    }
+  },
+
+  triggers: {
+    'change @ui.categorySelect': 'select:category',
+    'change @ui.type': 'select:type',
+    'change @ui.object': 'select:object',
+  },
+
+  onSelectCategory: function(view, event) {
+    let selectedCategoryId = parseInt(event.target.value);
+    this.model.set({selectedCategoryId});
+  },
+
+  onSelectType: function(view, event) {
+    let type = this.model.get('type');
+    let arr = [];
+    // copy existed array into new one
+    if (type && type.length) {
+      arr = type.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      let index = arr.indexOf(event.target.value);
+      arr.splice(index, 1)
+    }
+    // set type to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save type
+    this.model.set({
+      type: arr,
+    });
+  },
+
+  onSelectObject: function(view, event) {
+    let object = this.model.get('object');
+    let arr = [];
+    // copy existed array into new one
+    if (object && object.length) {
+      arr = object.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      let index = arr.indexOf(event.target.value);
+      arr.splice(index, 1)
+    }
+    // set object to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save object
+    this.model.set({
+      object: arr,
+    });
   },
 
   addNew: function() {
