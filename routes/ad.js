@@ -72,8 +72,6 @@ router.route('/ads')
       searchParams['city.id'] = parseInt(req.query.city);
     }
 
-    console.log(searchParams);
-
     var q = Ad.find({"$and": [searchParams]}).sort({'created_at': -1}).skip(skipParam).limit(limitParam);
     q.exec(function(err, ad) {
       if (err) {

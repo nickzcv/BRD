@@ -1630,10 +1630,14 @@ app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
     } else {
       this.collection = new app.collections.AdsHomeCollection();
     }
-
     this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
     this.emptyView = app.views.SpinnerView;
     await this.collection.fetch();
+    // If nothing found
+    if (!this.collection.length) {
+      this.emptyView = app.views.EmptyView;
+      this.render();
+    }
   }
 
 });
@@ -2706,6 +2710,24 @@ app.views.CountriesPickerView = Backbone.Marionette.View.extend({
     }
   }
 
+});
+"use strict";
+
+/**
+ *
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.EmptyView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.EmptyView
+   */
+  template: tpl.templates.empty
 });
 'use strict';
 

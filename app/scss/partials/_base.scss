@@ -114,6 +114,11 @@ label.error {
   text-shadow: 0 0 7px rgba(0,0,0,0.7);
   color: transparent;
 }
+.empty-message {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 10% 0 0;
+}
 
 // Margins & Paddings shorthands
 .m-b-05 {
