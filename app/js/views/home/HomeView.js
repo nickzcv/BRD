@@ -28,7 +28,8 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     'select:country': 'reRenderCollection',
     'select:city': 'reRenderCollection',
     'select:type': 'reRenderCollection',
-    'select:object': 'reRenderCollection'
+    'select:object': 'reRenderCollection',
+    'clear:filter': 'render',
   },
 
   onRender: function() {
@@ -40,6 +41,10 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
       model: childView.model
     }));
+  },
+
+  dropFilerCollection: function() {
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
   }
 
 });

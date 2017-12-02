@@ -1658,7 +1658,8 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     closeFiltersBtn: '.close-btn',
     categorySelect: '#category',
     type: 'input[name=type]',
-    object: 'input[name=object]'
+    object: 'input[name=object]',
+    dropFilter: '.drop-filter'
   },
 
   events: {
@@ -1679,7 +1680,8 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
   triggers: {
     'change @ui.categorySelect': 'select:category',
     'change @ui.type': 'select:type',
-    'change @ui.object': 'select:object'
+    'change @ui.object': 'select:object',
+    'click @ui.dropFilter': 'clear:filter'
   },
 
   onSelectCategory: function onSelectCategory(view, event) {
@@ -1753,10 +1755,6 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
   initialize: function initialize() {
     // Show country picker
     this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
-  },
-
-  onRender: function onRender() {
-    console.log(this.model);
   }
 
 });
@@ -1792,7 +1790,8 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     'select:country': 'reRenderCollection',
     'select:city': 'reRenderCollection',
     'select:type': 'reRenderCollection',
-    'select:object': 'reRenderCollection'
+    'select:object': 'reRenderCollection',
+    'clear:filter': 'render'
   },
 
   onRender: function onRender() {
@@ -1804,6 +1803,10 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
       model: childView.model
     }));
+  },
+
+  dropFilerCollection: function dropFilerCollection() {
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
   }
 
 });

@@ -70,6 +70,20 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+    .drop-filter {
+      padding: 0 1rem;
+      font-size: 0.9rem;
+      span {
+        font-size: 1.1rem;
+      }
+      &:hover {
+        border-color: goldenrod;
+        span {
+          color: goldenrod;
+        }
+      }
+
+    }
 
   }
 

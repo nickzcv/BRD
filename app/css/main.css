@@ -440,6 +440,19 @@ nav.navigation .user .logout:hover {
   font-weight: bold;
   margin-bottom: 5px; }
 
+.filter-home .filters-wrapper .drop-filter {
+  padding: 0 1rem;
+  font-size: 0.9rem; }
+
+.filter-home .filters-wrapper .drop-filter span {
+  font-size: 1.1rem; }
+
+.filter-home .filters-wrapper .drop-filter:hover {
+  border-color: goldenrod; }
+
+.filter-home .filters-wrapper .drop-filter:hover span {
+  color: goldenrod; }
+
 @media only screen and (min-width: 768px) {
   .filter-home .actions .add-new {
     width: 50%; } }

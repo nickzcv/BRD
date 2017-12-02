@@ -14,6 +14,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     categorySelect: '#category',
     type: 'input[name=type]',
     object: 'input[name=object]',
+    dropFilter: '.drop-filter',
   },
 
   events: {
@@ -35,7 +36,10 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     'change @ui.categorySelect': 'select:category',
     'change @ui.type': 'select:type',
     'change @ui.object': 'select:object',
+    'click @ui.dropFilter': 'clear:filter',
   },
+
+
 
   onSelectCategory: function(view, event) {
     let selectedCategoryId = parseInt(event.target.value);
@@ -109,12 +113,6 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
   initialize: function() {
     // Show country picker
     this.showChildView('countriesPicker', new app.views.CountriesPickerView({model: this.model.get('countriesModel')}));
-
-  },
-
-  onRender: function() {
-    console.log(this.model)
   }
-
 
 });
