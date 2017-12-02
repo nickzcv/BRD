@@ -342,6 +342,10 @@ nav.navigation .user .logout:hover {
 .section.home .content-filter .btn i:before {
   font-size: 1.2rem; }
 
+.section.home .up span {
+  padding: 1rem 0;
+  font-size: 1rem; }
+
 .section.home .rside {
   display: none; }
 

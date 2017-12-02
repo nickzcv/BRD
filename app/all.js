@@ -1767,7 +1767,8 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   ui: {
     mobileFilterBtn: '.mobile-filter-btn .btn',
     closeFilter: 'a.close-btn',
-    listRegion: '.ads-list'
+    listRegion: '.ads-list',
+    upBtn: '.up'
   },
 
   regions: {
@@ -1782,6 +1783,9 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     },
     'click @ui.closeFilter': function clickUiCloseFilter() {
       $('.filters').removeClass('visible');
+    },
+    'click @ui.upBtn': function clickUiUpBtn() {
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
     }
   },
 
