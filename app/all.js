@@ -1807,10 +1807,6 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
       model: childView.model
     }));
-  },
-
-  dropFilerCollection: function dropFilerCollection() {
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
   }
 
 });

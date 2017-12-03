@@ -47,8 +47,4 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     }));
   },
 
-  dropFilerCollection: function() {
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
-  }
-
 });
