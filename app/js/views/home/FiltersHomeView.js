@@ -96,7 +96,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
     // Check is user logged in
     if (brd.controllers.isLoggedIn()) {
       // Redirect to add view
-      brd.router.navigate('#ads/new', {trigger:true});
+      brd.router.navigateToRoute('ads', 'new');
     } else {
       // Show forbidden view
       brd.regions.mainRegion.show(new app.views.MainView());

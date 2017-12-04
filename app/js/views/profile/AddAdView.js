@@ -35,7 +35,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     'change @ui.type': 'changeType',
     'change @ui.object': 'changeObject',
     'click @ui.backBtn': function() {
-      brd.router.navigate('#ads', {trigger:true});
+      brd.router.navigateToRoute('ads');
     }
   },
 
@@ -190,7 +190,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       },
       success: function() {
         // Redirect to Ads profile page
-        brd.router.navigate('#ads', {trigger:true});
+        brd.router.navigateToRoute('ads');
       },
       error: function() {
         console.log('error')

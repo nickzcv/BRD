@@ -16,7 +16,7 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.addButton': function() {
-      brd.router.navigate('#ads/new', {trigger:true});
+      brd.router.navigateToRoute('ads', 'new');
     },
     'click @ui.showArchive': function() {
       // TODO: show archive in case any ads axist in archive

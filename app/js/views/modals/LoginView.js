@@ -98,7 +98,7 @@ app.views.LoginView = app.views.HeaderView.extend({
         });
       }
       // Navigate to user dashboard after login successful
-      brd.router.navigate('#dashboard',{trigger:true});
+      brd.router.navigateToRoute('dashboard');
     }, function () {
       thisView.ui.loader.hide();
       thisView.ui.loginForm.fadeIn();
