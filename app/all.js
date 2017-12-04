@@ -205,6 +205,10 @@ app.router = Marionette.AppRouter.extend({
       case 'home':
         brd.regions.bodyRegion.show(new app.views.HomeView());
         break;
+      // Forbidden page
+      case 'forbidden':
+        brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+        break;
       // FAQ page route
       case 'faq':
         brd.regions.bodyRegion.show(new app.views.FaqView());
@@ -215,7 +219,7 @@ app.router = Marionette.AppRouter.extend({
           brd.regions.bodyRegion.show(new app.views.DashboardView());
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page1 }));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Settings
@@ -224,7 +228,7 @@ app.router = Marionette.AppRouter.extend({
           brd.regions.bodyRegion.show(new app.views.SettingsView());
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page1 }));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Ads
@@ -239,7 +243,7 @@ app.router = Marionette.AppRouter.extend({
           }
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page1 }));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Default redirect to home
@@ -547,7 +551,7 @@ app.models.FiltersHomeModel = Backbone.Model.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.models.HeaderModel = Backbone.Model.extend({
 
@@ -556,12 +560,8 @@ app.models.HeaderModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    //console.log('initialize Header Model');
-
     if (app.user) {
       this.updateUser();
-    } else {
-      console.log('NO app user');
     }
   },
 
@@ -1598,6 +1598,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
       brd.controllers.logout();
       app.user = null;
       brd.router.navigateToRoute('home');
+      window.location.reload();
     },
     'click @ui.userProfile': function clickUiUserProfile() {
       brd.router.navigateToRoute('dashboard');
@@ -1785,8 +1786,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
       brd.router.navigateToRoute('ads', 'new');
     } else {
       // Show forbidden view
-      brd.regions.mainRegion.show(new app.views.MainView());
-      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+      brd.router.navigateToRoute('forbidden');
     }
   },
 

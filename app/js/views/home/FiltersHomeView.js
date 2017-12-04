@@ -99,8 +99,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
       brd.router.navigateToRoute('ads', 'new');
     } else {
       // Show forbidden view
-      brd.regions.mainRegion.show(new app.views.MainView());
-      brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+      brd.router.navigateToRoute('forbidden');
     }
   },
 

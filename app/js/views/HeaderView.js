@@ -23,6 +23,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
       brd.controllers.logout();
       app.user = null;
       brd.router.navigateToRoute('home');
+      window.location.reload();
     },
     'click @ui.userProfile': function () {
       brd.router.navigateToRoute('dashboard');

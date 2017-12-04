@@ -43,6 +43,10 @@ app.router = Marionette.AppRouter.extend({
       case 'home':
         brd.regions.bodyRegion.show(new app.views.HomeView());
         break;
+      // Forbidden page
+      case 'forbidden':
+        brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+        break;
       // FAQ page route
       case 'faq':
         brd.regions.bodyRegion.show(new app.views.FaqView());
@@ -53,7 +57,7 @@ app.router = Marionette.AppRouter.extend({
           brd.regions.bodyRegion.show(new app.views.DashboardView());
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Settings
@@ -62,7 +66,7 @@ app.router = Marionette.AppRouter.extend({
           brd.regions.bodyRegion.show(new app.views.SettingsView());
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Ads
@@ -77,7 +81,7 @@ app.router = Marionette.AppRouter.extend({
           }
           brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
         } else {
-          brd.regions.bodyRegion.show(new app.views.ForbiddenView());
+          this.navigateToRoute('forbidden');
         }
         break;
       // Default redirect to home
