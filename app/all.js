@@ -162,15 +162,6 @@ var brd = {
 
 app.router = Marionette.AppRouter.extend({
 
-  /*  routes: {
-      '': 'showMainPage',
-      'faq': 'showFAQPage',
-      'dashboard': 'showDashboardPage',
-      'ads': 'showAdsPage',
-      'ads/new': 'showAdNewForm',
-      'settings': 'showSettingsPage'
-    },*/
-
   /**
    * Ordered priority list for determining which route the URL matches
    *
@@ -2408,7 +2399,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.adsCollectionView = Backbone.Marionette.CollectionView.extend({
+app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
@@ -2474,7 +2465,9 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
-    this.showChildView('adsList', new app.views.adsCollectionView({ model: new app.models.AdsListModel() }));
+    this.showChildView('adsList', new app.views.AdsCollectionView({
+      model: new app.models.AdsListModel()
+    }));
   }
 
 });

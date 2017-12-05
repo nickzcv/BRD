@@ -1,45 +1,6 @@
 /* Content
 -------------------------------------------------- */
 .settings {
-
-  .tabs {
-    background: gray;
-    overflow: hidden;
-
-    .tab {
-      position: relative;
-      font-size: 0.8rem;
-      color: gray;
-      background: #EAEAE2;
-      border: 1px solid $gray;
-      padding: 1rem;
-      float: left;
-      width: 50%;
-      text-align: center;
-      cursor: pointer;
-
-      &.active {
-        border: none;
-        background: #fcfdfb;
-        color: $header-dark;
-        cursor: default;
-        &:after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 0;
-          border-left: 8px solid transparent;
-          border-right: 8px solid transparent;
-          border-bottom: 8px solid #808080;
-          bottom: 0;
-          left: 50%;
-        }
-      }
-      &:hover {
-        color: $header-dark;
-      }
-    }
-  }
   .saveProfile {
     width: 100%;
   }
@@ -64,13 +25,6 @@
 
   /* Desktop and larger */
   @media only screen and (min-width: 992px) {
-
-    .tabs {
-      .tab {
-        font-size: 1rem;
-      }
-    }
-
     .page {
       max-width: 50rem;
 
@@ -80,9 +34,9 @@
       .form-group.row {
 
       }
-
     }
 
   }
+
 
 }

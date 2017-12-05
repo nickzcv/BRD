@@ -29,7 +29,9 @@ app.views.AdsView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
-    this.showChildView('adsList', new app.views.adsCollectionView({model: new app.models.AdsListModel()}));
+    this.showChildView('adsList', new app.views.AdsCollectionView({
+      model: new app.models.AdsListModel()
+    }));
   }
 
 });

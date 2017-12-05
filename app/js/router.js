@@ -1,14 +1,5 @@
 app.router = Marionette.AppRouter.extend({
 
-/*  routes: {
-    '': 'showMainPage',
-    'faq': 'showFAQPage',
-    'dashboard': 'showDashboardPage',
-    'ads': 'showAdsPage',
-    'ads/new': 'showAdNewForm',
-    'settings': 'showSettingsPage'
-  },*/
-
   /**
    * Ordered priority list for determining which route the URL matches
    *

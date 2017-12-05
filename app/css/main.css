@@ -1309,6 +1309,28 @@ nav.navigation .user .logout:hover {
   .faq h2 {
     font-size: 1.5rem; } }
 
+/* Content
+-------------------------------------------------- */
+.settings {
+  /* SmartPhones */
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.settings .saveProfile {
+  width: 100%; }
+
+.settings .updated {
+  border-left: 5px solid #edebdc;
+  color: #777;
+  padding: 5px 10px;
+  margin-top: 10px; }
+
+@media only screen and (min-width: 992px) {
+  .settings .page {
+    max-width: 50rem; }
+  .settings .page .form-group.short {
+    width: 25rem; } }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {
