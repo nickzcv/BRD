@@ -1846,19 +1846,22 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.ForgotView = app.views.HeaderView.extend({
+app.views.AddAvatarView = Backbone.Marionette.View.extend({
 
-  template: tpl.templates.forgot,
+  template: tpl.templates.avatar,
 
   ui: {
-    forgotPasswordModal: '#forgot'
+    avatarModal: '#avatar'
   },
 
-  events: {},
+  events: {
+    'hide.bs.modal': function hideBsModal() {
+      this.destroy();
+    }
+  },
 
   onRender: function onRender() {
-    //console.log('onRender forgotPasswordModal');
-    //this.ui.forgotPasswordModal.modal('show');
+    this.ui.avatarModal.modal('show');
   }
 
 });
@@ -2530,12 +2533,13 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings_profile_section,
 
   regions: {
-    countriesPicker: '.countries-picker'
+    countriesPicker: '.countries-picker',
+    modalSection: '.modal-avatar-section'
   },
 
   ui: {
     form: 'form',
-    photo: '#photo',
+    photo: '.photo',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -2549,7 +2553,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.saveProfile': 'saveProfileData',
-    'change @ui.photo': 'addPhoto'
+    'click @ui.photo': 'showAddAvatarView'
   },
 
   initialize: function initialize() {
@@ -2564,15 +2568,9 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
-  // Preview user profile photo
-  addPhoto: function addPhoto(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#preview').attr('src', e.target.result).css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
+  showAddAvatarView: function showAddAvatarView() {
+    console.log('test');
+    this.showChildView('modalSection', new app.views.AddAvatarView());
   },
 
   saveProfileData: function saveProfileData(event) {

@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads/');
+    callback(null, './app/img/avatar/');
   },
   filename: function (req, file, callback) {
-    callback(null, file.originalname + '.jpg');
+    callback(null, file.originalname);
   }
 });
-var upload = multer({storage: storage}).single('userPhoto');
+let upload = multer({storage: storage}).single('userPhoto');
 
 router.route('/upload/profile')
 	.post(function(req, res) {

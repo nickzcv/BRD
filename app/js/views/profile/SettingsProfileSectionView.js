@@ -3,12 +3,13 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   template: tpl.templates.settings_profile_section,
 
   regions: {
-    countriesPicker: '.countries-picker'
+    countriesPicker: '.countries-picker',
+    modalSection: '.modal-avatar-section'
   },
 
   ui: {
     form: 'form',
-    photo: '#photo',
+    photo: '.photo',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -22,7 +23,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 
   events: {
     'click @ui.saveProfile': 'saveProfileData',
-    'change @ui.photo': 'addPhoto'
+    'click @ui.photo': 'showAddAvatarView',
   },
 
   initialize: function() {
@@ -37,15 +38,9 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     });
   },
 
-  // Preview user profile photo
-  addPhoto: function(event) {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = function (e) {
-        $('#preview').attr('src', e.target.result).css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
+  showAddAvatarView: function() {
+    console.log('test');
+    this.showChildView('modalSection', new app.views.AddAvatarView());
   },
 
   saveProfileData: function(event) {

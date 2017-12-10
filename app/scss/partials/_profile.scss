@@ -31,32 +31,25 @@
     }
   }
 
-  .image-upload {
-    text-align: center;
+  .photo {
+    position: relative;
+    cursor: pointer;
+    margin: 1.5rem auto;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-image: url(../img/profile_placeholder.png);
 
-    label {
-      position: relative;
-      cursor: pointer;
-      margin: 1.5rem 0 0 0;
-      height: 16rem;
-      width: 16rem;
-      background-size: cover;
-      background-image: url(../img/profile_placeholder.png);
+    &:hover {
+      border: 1px solid orange;
 
-      &:hover {
-        border: 1px solid orange;
-
-        &:after {
-          content: "\002b";
-          position: absolute;
-          left: 1rem;
-          font-size: 5rem;
-          color: orange;
-        }
+      &:after {
+        content: "\002b";
+        position: absolute;
+        left: 1rem;
+        font-size: 5rem;
+        color: orange;
       }
-    }
-    #photo {
-      display: none;
     }
   }
 
