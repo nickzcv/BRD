@@ -592,6 +592,10 @@ nav.navigation .user .logout:hover {
   font-size: 5rem;
   color: orange; }
 
+.profile #upload {
+  margin-bottom: 1rem;
+  cursor: pointer; }
+
 .profile #upload-preview {
   width: 350px;
   height: 350px;
