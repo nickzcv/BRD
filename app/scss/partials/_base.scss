@@ -81,6 +81,14 @@ label.error {
   }
 }
 
+.btn-danger {
+  &:hover {
+    background: $gray-light;
+    color: #ac2925;
+    border-color: #ac2925;
+  }
+}
+
 // Loader
 .loader {
   display: inline-block;

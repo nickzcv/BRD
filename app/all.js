@@ -1851,23 +1851,58 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
   template: tpl.templates.avatar,
 
   ui: {
-    avatarModal: '#avatar'
+    avatarModal: '#avatar',
+    uploader: '#upload',
+    uploadPreview: '#upload-preview'
   },
 
   events: {
     'hide.bs.modal': function hideBsModal() {
       this.destroy();
-    }
+    },
+    'change @ui.uploader': 'uploadImage'
   },
 
   onRender: function onRender() {
     this.ui.avatarModal.modal('show');
+  },
+
+  uploadImage: function uploadImage(event) {
+    // Clear preview div
+    this.ui.uploadPreview.empty();
+    // Init croppie
+    var $uploadCrop = this.ui.uploadPreview.croppie({
+      viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+      },
+      boundary: {
+        width: 300,
+        height: 300
+      },
+      enableExif: true
+    });
+    // Preview image
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $uploadCrop.croppie('bind', {
+          url: event.target.result
+        }).then(function () {
+          console.log('jQuery bind complete');
+        });
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    } else {
+      console.log("Sorry - you're browser doesn't support the FileReader API");
+    }
   }
 
 });
 'use strict';
 
-app.views.LoginView = app.views.HeaderView.extend({
+app.views.LoginView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.login,
 
@@ -2569,7 +2604,6 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   showAddAvatarView: function showAddAvatarView() {
-    console.log('test');
     this.showChildView('modalSection', new app.views.AddAvatarView());
   },
 

@@ -45,6 +45,11 @@ label.error {
   background: #fcfcf4;
   border-color: #777; }
 
+.btn-danger:hover {
+  background: #fcfcf4;
+  color: #ac2925;
+  border-color: #ac2925; }
+
 .loader {
   display: inline-block;
   border: 5px solid #fcfcf4;
@@ -574,7 +579,8 @@ nav.navigation .user .logout:hover {
   height: 200px;
   width: 200px;
   background-size: cover;
-  background-image: url(../img/profile_placeholder.png); }
+  background-image: url(../img/profile_placeholder.png);
+  border-radius: 50%; }
 
 .profile .photo:hover {
   border: 1px solid orange; }
@@ -585,6 +591,11 @@ nav.navigation .user .logout:hover {
   left: 1rem;
   font-size: 5rem;
   color: orange; }
+
+.profile #upload-preview {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto; }
 
 @media only screen and (min-width: 768px) {
   .profile .page .lead {

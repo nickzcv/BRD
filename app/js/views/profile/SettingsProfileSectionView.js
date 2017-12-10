@@ -39,7 +39,6 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   showAddAvatarView: function() {
-    console.log('test');
     this.showChildView('modalSection', new app.views.AddAvatarView());
   },
 

@@ -7,12 +7,12 @@
         <h4 class="modal-title" id="avatarModalLabel">Загрузка личного фото</h4>
       </div>
       <div class="modal-body">
-        <form>
-          <button type="button" class="btn btn-default">Загрузка</button>
-        </form>
+        <input id="upload" type="file" name="avatar" accept="image/gif, image/jpeg, image/png">
+        <div id="upload-preview"></div>
       </div>
       <div class="modal-footer">
-
+        <button type="button" class="btn btn-default btn-danger pull-left" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-default">Загрузить</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

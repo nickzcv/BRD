@@ -39,10 +39,9 @@
     width: 200px;
     background-size: cover;
     background-image: url(../img/profile_placeholder.png);
-
+    border-radius: 50%;
     &:hover {
       border: 1px solid orange;
-
       &:after {
         content: "\002b";
         position: absolute;
@@ -51,6 +50,12 @@
         color: orange;
       }
     }
+  }
+
+  #upload-preview {
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
   }
 
 
