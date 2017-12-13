@@ -59,7 +59,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     // Bind upload event action
     $('.upload-avatar').on('click', function() {
       $uploadCrop.croppie('result', {
-        type: 'canvas',
+        type: 'blob',
         size: 'viewport'
       }).then((resp) => {
         console.log(resp);
@@ -67,6 +67,8 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         $.ajax({
           url: 'api/upload/profile',
           type: 'POST',
+          processData: false,
+          contentType: false,
           data: {
             'image': resp
           },
