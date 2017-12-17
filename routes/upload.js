@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
+const path = require('path');
+const bodyparser = require('body-parser');
 const multer = require('multer');
 
+router.use(bodyparser.urlencoded({
+  extended: true
+}));
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -13,18 +19,16 @@ var storage = multer.diskStorage({
     callback(null, file.originalname + '.jpg');
   }
 });
-var upload = multer({storage: storage}).single('userPhoto');
+var upload = multer({storage: storage}).single('file');
+
+
 
 router.route('/upload/profile')
 	.post(function(req, res) {
-
-	  console.log(req.file.image);
-
-    if(req.file){
-      image = req.file.filename;
-    }
+    console.log('post');
     upload(req, res, function(err) {
       if(err) {
+        console.log(err)
         return res.end("Error uploading file.");
       }
       res.end("File is uploaded");

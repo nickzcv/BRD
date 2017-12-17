@@ -1852,7 +1852,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
 
   ui: {
     avatarModal: '#avatar',
-    uploader: '#upload',
+    uploader: '#file',
     uploadPreview: '#upload-preview'
     //uploadAvatar: '#upload-avatar',
   },
@@ -1887,7 +1887,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         width: 300,
         height: 300
       },
-      enableExif: true
+      mouseWheelZoom: true
     });
     // Preview image
     if (event.target.files && event.target.files[0]) {
@@ -1903,25 +1903,36 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     } else {
       console.log("Sorry - you're browser doesn't support the FileReader API");
     }
+
     // Bind upload event action
     $('.upload-avatar').on('click', function () {
       $uploadCrop.croppie('result', {
-        type: 'blob',
-        size: 'viewport'
+        type: "blob",
+        format: "png"
       }).then(function (resp) {
         console.log(resp);
+        $('input[type=file]')[0] = resp;
+        //$('#form').submit();
+        //var file = $('#form').files[0];
+        var form = $('#form');
+        // Create an FormData object
+        var data = new FormData(form);
+
+        var formData = new FormData();
+        formData.append('file', $('input[type=file]')[0].files[0]);
+
+        console.log($('input[type=file]')[0].files[0]);
 
         $.ajax({
           url: 'api/upload/profile',
-          type: 'POST',
+          method: 'POST',
           processData: false,
           contentType: false,
-          data: {
-            'image': resp
-          },
-          success: function success(data) {
-            console.log('Done');
-          }
+          //dataType: "binary",
+          cache: false,
+          data: formData //{ 'avatar': resp},
+        }).done(function (data) {
+          console.log(data);
         });
       });
     });
