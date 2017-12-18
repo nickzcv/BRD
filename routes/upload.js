@@ -28,7 +28,7 @@ router.route('/upload/profile')
     console.log('post');
     upload(req, res, function(err) {
       if(err) {
-        console.log(err)
+        console.log(req.file)
         return res.end("Error uploading file.");
       }
       res.end("File is uploaded");

@@ -68,24 +68,31 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         //$('#form').submit();
         //var file = $('#form').files[0];
         var form = $('#form');
+
+        let img = new Image();
+        img.src = resp;
+        $('input[type=file]')[0] = img;
+
         // Create an FormData object
         var data = new FormData(form);
 
 
 
         var formData = new FormData();
+
         formData.append('file', $('input[type=file]')[0].files[0]);
 
+        console.log('+++++++')
         console.log($('input[type=file]')[0].files[0])
 
         $.ajax({
           url: 'api/upload/profile',
           method: 'POST',
           processData: false,
-          contentType: false,
+          contentType: 'application/json',
           //dataType: "binary",
           cache: false,
-          data: formData//{ 'avatar': resp},
+          data: JSON.stringify({ 'image': resp}),//formData//
         }).done(function(data) {
           console.log(data);
         });
