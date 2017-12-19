@@ -4,9 +4,8 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
 
   ui: {
     avatarModal: '#avatar',
-    uploader: '#file',
+    uploader: '#upload',
     uploadPreview: '#upload-preview',
-    //uploadAvatar: '#upload-avatar',
   },
 
   events: {
@@ -14,7 +13,6 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
       this.destroy();
     },
     'change @ui.uploader': 'uploadImage',
-    //'click @ui.uploadAvatar': 'uploadToServer',
   },
 
 
@@ -49,7 +47,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         $uploadCrop.croppie('bind', {
           url: event.target.result
         }).then(() => {
-          console.log('jQuery bind complete');
+          // console.log('jQuery bind complete');
         });
       };
       reader.readAsDataURL(event.target.files[0]);
@@ -60,42 +58,20 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     // Bind upload event action
     $('.upload-avatar').on('click', function() {
       $uploadCrop.croppie('result', {
-        type: "blob",
-        format: "png"
+        type: 'canvas',
+        size: 'viewport'
       }).then((resp) => {
-        console.log(resp)
-        $('input[type=file]')[0] = resp;
-        //$('#form').submit();
-        //var file = $('#form').files[0];
-        var form = $('#form');
-
-        let img = new Image();
-        img.src = resp;
-        $('input[type=file]')[0] = img;
-
-        // Create an FormData object
-        var data = new FormData(form);
-
-
-
-        var formData = new FormData();
-
-        formData.append('file', $('input[type=file]')[0].files[0]);
-
-        console.log('+++++++')
-        console.log($('input[type=file]')[0].files[0])
 
         $.ajax({
           url: 'api/upload/profile',
           method: 'POST',
-          processData: false,
-          contentType: 'application/json',
-          //dataType: "binary",
-          cache: false,
-          data: JSON.stringify({ 'image': resp}),//formData//
+          contentType: "application/json",
+          dataType: 'json',
+          data: JSON.stringify({'image': resp})
         }).done(function(data) {
-          console.log(data);
+           console.log(data);
         });
+
       });
     });
 
