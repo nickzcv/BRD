@@ -15,10 +15,6 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     'change @ui.uploader': 'uploadImage',
   },
 
-  triggers: {
-    'hide.bs.modal': 'update:avatar',
-  },
-
   onRender: function() {
     this.ui.avatarModal.modal('show');
   },
@@ -60,11 +56,10 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         type: 'canvas',
         size: 'viewport'
       }).then((resp) => {
-
         $.ajax({
           url: 'api/upload/profile',
           method: 'POST',
-          contentType: "application/json",
+          contentType: 'application/json',
           dataType: 'json',
           data: JSON.stringify({
             'user': brd.controllers.getUserId(),

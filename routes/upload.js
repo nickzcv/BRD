@@ -11,7 +11,7 @@ router.route('/upload/profile')
     // Save image
     fs.writeFile('./app/img/avatar/'+userId+'.png', base64Data, 'base64', function(err) {
       if (err) {
-        res.json({ success: false });
+        console.log(err)
       }
     });
     res.json({ success: true });

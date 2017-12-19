@@ -38,16 +38,15 @@
     height: 200px;
     width: 200px;
     background-size: cover;
-    background-image: url(../img/profile_placeholder.png);
     border-radius: 50%;
     &:hover {
-      border: 1px solid orange;
+      border: 1px solid $white;
       &:after {
         content: "\002b";
         position: absolute;
         left: 1rem;
         font-size: 5rem;
-        color: orange;
+        color: $white;
       }
     }
   }

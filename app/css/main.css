@@ -579,18 +579,17 @@ nav.navigation .user .logout:hover {
   height: 200px;
   width: 200px;
   background-size: cover;
-  background-image: url(../img/profile_placeholder.png);
   border-radius: 50%; }
 
 .profile .photo:hover {
-  border: 1px solid orange; }
+  border: 1px solid #FFFFFF; }
 
 .profile .photo:hover:after {
   content: "\002b";
   position: absolute;
   left: 1rem;
   font-size: 5rem;
-  color: orange; }
+  color: #FFFFFF; }
 
 .profile #upload {
   margin-bottom: 1rem;
