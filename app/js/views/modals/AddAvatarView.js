@@ -67,9 +67,18 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
           method: 'POST',
           contentType: "application/json",
           dataType: 'json',
-          data: JSON.stringify({'image': resp})
-        }).done(function(data) {
-           console.log(data);
+          data: JSON.stringify({
+            'user': brd.controllers.getUserId(),
+            'image': resp
+          })
+        }).done(function(response) {
+           if (response) {
+             $("[data-dismiss=modal]").trigger({ type: "click" });
+           } else {
+
+           }
+        }).fail(function() {
+
         });
 
       });
