@@ -15,12 +15,11 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     'change @ui.uploader': 'uploadImage',
   },
 
-
-  onRender: function() {
-    this.ui.avatarModal.modal('show');
+  triggers: {
+    'hide.bs.modal': 'update:avatar',
   },
 
-  uploadToServer: function() {
+  onRender: function() {
     this.ui.avatarModal.modal('show');
   },
 
@@ -74,6 +73,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
         }).done(function(response) {
            if (response) {
              $("[data-dismiss=modal]").trigger({ type: "click" });
+
            } else {
 
            }

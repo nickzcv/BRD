@@ -1863,11 +1863,11 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
     'change @ui.uploader': 'uploadImage'
   },
 
-  onRender: function onRender() {
-    this.ui.avatarModal.modal('show');
+  triggers: {
+    'hide.bs.modal': 'update:avatar'
   },
 
-  uploadToServer: function uploadToServer() {
+  onRender: function onRender() {
     this.ui.avatarModal.modal('show');
   },
 
@@ -2617,6 +2617,10 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   events: {
     'click @ui.saveProfile': 'saveProfileData',
     'click @ui.photo': 'showAddAvatarView'
+  },
+
+  childViewEvents: {
+    'update:avatar': 'render'
   },
 
   initialize: function initialize() {

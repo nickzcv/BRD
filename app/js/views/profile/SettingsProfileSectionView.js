@@ -26,6 +26,10 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
     'click @ui.photo': 'showAddAvatarView',
   },
 
+  childViewEvents: {
+    'update:avatar': 'render',
+  },
+
   initialize: function() {
     let thisView = this;
     // Get user data from server
