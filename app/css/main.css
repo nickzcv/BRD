@@ -572,7 +572,7 @@ nav.navigation .user .logout:hover {
   font-size: 0.8rem;
   margin-bottom: 20px; }
 
-.profile .photo {
+.profile .avatar {
   position: relative;
   cursor: pointer;
   margin: 1.5rem auto;
@@ -581,10 +581,10 @@ nav.navigation .user .logout:hover {
   background-size: cover;
   border-radius: 50%; }
 
-.profile .photo:hover {
+.profile .avatar:hover {
   border: 1px solid #FFFFFF; }
 
-.profile .photo:hover:after {
+.profile .avatar:hover:after {
   content: "\002b";
   position: absolute;
   left: 1rem;

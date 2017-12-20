@@ -1913,11 +1913,14 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
             'user': brd.controllers.getUserId(),
             'image': resp
           })
-        }).done(function (response) {
-          if (response) {
-            $("[data-dismiss=modal]").trigger({ type: "click" });
-          } else {}
-        }).fail(function () {});
+        }).done(function () {
+          $("[data-dismiss=modal]").trigger({ type: "click" });
+          var message = 'Фото загружено, Обновите страницу чтобы увидеть результат.';
+          $('.alert').addClass('alert-success').text(message).show();
+        }).fail(function () {
+          $("[data-dismiss=modal]").trigger({ type: "click" });
+          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show();
+        });
       });
     });
   }
@@ -2596,8 +2599,9 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   ui: {
+    alert: '.alert',
     form: 'form',
-    photo: '.photo',
+    photo: '.avatar',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',

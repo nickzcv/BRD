@@ -8,8 +8,9 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
   },
 
   ui: {
+    alert: '.alert',
     form: 'form',
-    photo: '.photo',
+    photo: '.avatar',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',

@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
+// Upload profile avatar
 router.route('/upload/profile')
 	.post(function(req, res) {
     // Get base64 string from json request
@@ -17,5 +19,29 @@ router.route('/upload/profile')
     res.json({ success: true });
   });
 
+// Upload ads covers
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    console.log('1');
+    callback(null, './app/img/ad/');
+  },
+  filename: function (req, file, callback) {
+    console.log('2');
+    callback(null, file.originalname + '.png');
+  }
+});
+var upload = multer({storage: storage}).single('file');
+
+router.route('/upload/ad')
+.post(function(req, res) {
+  console.log('post');
+  upload(req, res, function(err) {
+    if(err) {
+      console.log(err)
+      return res.end("Error uploading file.");
+    }
+    res.end("File is uploaded");
+  });
+});
 
 module.exports = router;
