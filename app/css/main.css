@@ -1158,7 +1158,7 @@ nav.navigation .user .logout:hover {
   border: 1px solid orange; }
 
 .new-ad .ad-photo span {
-  font-size: 2.4rem;
+  font-size: 6rem;
   color: #fff; }
 
 .new-ad .back {
@@ -1195,10 +1195,6 @@ nav.navigation .user .logout:hover {
 .new-ad .btn.remove-size:hover {
   background: goldenrod;
   color: #fff; }
-
-@media only screen and (min-width: 992px) {
-  .new-ad .ad-photo span {
-    font-size: 5rem; } }
 
 @media only screen and (min-width: 1200px) {
   .new-ad .page {
