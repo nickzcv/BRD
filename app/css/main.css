@@ -274,8 +274,7 @@ nav.navigation .user .profile-photo {
   width: 1.5rem;
   display: inline-block;
   z-index: 5;
-  position: relative;
-  top: -1px; }
+  position: relative; }
 
 nav.navigation .user .ion-person {
   position: absolute;
@@ -309,7 +308,9 @@ nav.navigation .user .logout:hover {
   nav.navigation ul li a {
     padding: 3px 0; }
   nav.navigation .user .ion-person {
-    top: -7px; } }
+    top: -7px; }
+  nav.navigation .user .profile-photo {
+    top: -1px; } }
 
 /* Sections styles
 -------------------------------------------------- */

@@ -77,7 +77,6 @@ nav.navigation {
       display: inline-block;
       z-index: 5;
       position: relative;
-      top: -1px;
     }
     .ion-person {
       position: absolute;
@@ -122,6 +121,9 @@ nav.navigation {
     .user {
       .ion-person {
         top: -7px;
+      }
+      .profile-photo {
+        top: -1px;
       }
     }
 
