@@ -624,9 +624,9 @@ this["tpl"]["templates"]["footer"] = Handlebars.template({"compiler":[6,">= 2.0.
 this["tpl"]["templates"]["header"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, alias1=this.lambda, alias2=this.escapeExpression;
 
-  return "\r\n          <div class=\"user\">\r\n            <div class=\"user-profile\">\r\n              <div class=\"border\" style=\"background-image: url('img/avatar/"
+  return "\r\n          <div class=\"user\">\r\n            <div class=\"user-profile\">\r\n              <div class=\"border\">\r\n                <span class=\"profile-photo\" style=\"background-image: url('img/avatar/"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1._id : stack1), depth0))
-    + ".png')\">\r\n                <i class=\"ion-person\"></i>\r\n              </div>\r\n              "
+    + ".png')\"></span>\r\n                <i class=\"ion-person\"></i>\r\n              </div>\r\n              "
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1), depth0))
     + "\r\n            </div>\r\n            <span class=\"ion-log-out logout\"></span>\r\n          </div>\r\n\r\n";
 },"3":function(depth0,helpers,partials,data) {
