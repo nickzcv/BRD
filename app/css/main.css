@@ -1135,6 +1135,10 @@ nav.navigation .user .logout:hover {
 .new-ad .typeError, .new-ad .objectError {
   margin: 5px 0 0; }
 
+.new-ad .image-error-message {
+  color: #a80200;
+  margin-top: 10px; }
+
 .new-ad .form-divider {
   margin: 1rem 2rem 1rem 0;
   border-top: 1px solid #eee; }

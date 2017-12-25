@@ -12,6 +12,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     addAdForm: '#add-ad-form',
     type: 'input[name=type]',
     object: 'input[name=object]',
+    photoInput: '.photo-input',
     category: '#category',
     title: '#title',
     description: '#description',
@@ -36,7 +37,8 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     'change @ui.object': 'changeObject',
     'click @ui.backBtn': function() {
       brd.router.navigateToRoute('ads');
-    }
+    },
+    'change @ui.photoInput': 'addPhoto'
   },
 
   initialize: function() {
@@ -280,6 +282,47 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     this.model.set({
       object: event.target.value,
     });
-  }
+  },
+
+  addPhoto: function(event) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        // Check size of the uploaded image
+        let image = new Image();
+        image.src = e.target.result;
+        image.onload = function() {
+          // Prevent uploading big images
+          if(this.width <= 1100 && this.height <= 1100) {
+            $('#preview').css('background', 'url('+e.target.result+')').css('background-size', 'cover');
+            $('#preview .ion-image').hide();
+            $('.image-error-message').hide();
+
+            let input = document.getElementById('photo');
+            let formData = new FormData();
+            formData.append('photo', input.files[0]); // Append your file
+            formData.append('filename', 'test'); // Append your file
+            // Upload image
+            $.ajax({
+              url: 'api/upload/ad',
+              method: 'POST',
+              data: formData,
+              processData: false,
+              contentType: false
+            }).done(function() {
+              console.log('done')
+            }).fail(function() {
+              console.log('fail')
+            });
+          } else {
+            $('.image-error-message').removeClass('hidden');
+            $('.image-error-message').show();
+          }
+        };
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  },
 
 });

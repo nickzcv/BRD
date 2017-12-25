@@ -27,12 +27,13 @@
       <div class="col-xs-12 col-sm-6 m-b-1">
         <p class="lbl">Фото:</p>
 
-        <label class="btn ad-photo">
+        <label class="btn ad-photo" id="preview">
           <span class="ion-image"></span>
-          <input type="file" name="photo" class="hidden">
+          <input type="file" name="photo" id="photo" class="hidden photo-input" >
         </label>
         <div class="marker buy hidden">Куплю</div>
         <div class="marker sell hidden">Продам</div>
+        <div class="image-error-message hidden">Изображение слишком большое. Загрузка отменена.</div>
       </div>
       <div class="form-group">
         <p class="lbl">Раздел</p>

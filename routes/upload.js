@@ -22,22 +22,20 @@ router.route('/upload/profile')
 // Upload ads covers
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    console.log('1');
-    callback(null, './app/img/ad/');
+    callback(null, './app/img/ads/');
   },
   filename: function (req, file, callback) {
-    console.log('2');
     callback(null, file.originalname + '.png');
   }
 });
-var upload = multer({storage: storage}).single('file');
+var upload = multer({storage: storage}).single('photo');
 
 router.route('/upload/ad')
 .post(function(req, res) {
-  console.log('post');
+  console.log(req.body.filename);
   upload(req, res, function(err) {
     if(err) {
-      console.log(err)
+      console.log(err);
       return res.end("Error uploading file.");
     }
     res.end("File is uploaded");

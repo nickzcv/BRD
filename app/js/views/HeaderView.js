@@ -36,7 +36,6 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
       thisView.model.updateUser();
       thisView.render();
     });
-    console.log(this.model)
   },
 
   showRegistrationView: function() {
