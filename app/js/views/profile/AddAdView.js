@@ -300,8 +300,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 
             let input = document.getElementById('photo');
             let formData = new FormData();
-            formData.append('photo', input.files[0]); // Append your file
-            formData.append('filename', 'test'); // Append your file
+            formData.append('photo', input.files[0]);
             // Upload image
             $.ajax({
               url: 'api/upload/ad',

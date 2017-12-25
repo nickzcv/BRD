@@ -1846,570 +1846,6 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.AddAdView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.add_ad,
-
-  regions: {
-    leftNavRegion: '.left-navigation',
-    countriesPicker: '.country-picker',
-    filters: '.filters'
-  },
-
-  ui: {
-    addAdForm: '#add-ad-form',
-    type: 'input[name=type]',
-    object: 'input[name=object]',
-    photoInput: '.photo-input',
-    category: '#category',
-    title: '#title',
-    description: '#description',
-    price: '#price',
-    expirationDate: '#expirationDate',
-    getContacts: 'input[name=getContacts]',
-    profileRadio: '#profileRadio',
-    companyRadio: '#companyRadio',
-    otherRadio: '#otherRadio',
-    otherPhoneWrapper: '.otherPhoneWrapper',
-    otherPhone: '#otherPhone',
-    backBtn: '.back',
-    marker: '.marker',
-    buyMarker: '.buy',
-    sellMarker: '.sell'
-  },
-
-  events: {
-    'change @ui.getContacts': 'setContacts',
-    'change @ui.category': 'setFilter',
-    'change @ui.type': 'changeType',
-    'change @ui.object': 'changeObject',
-    'click @ui.backBtn': function clickUiBackBtn() {
-      brd.router.navigateToRoute('ads');
-    },
-    'change @ui.photoInput': 'addPhoto'
-  },
-
-  initialize: function initialize() {
-    var thisView = this;
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
-    // Show country picker
-    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
-    // Disable radio btns by default
-    thisView.ui.otherPhoneWrapper.hide();
-    thisView.ui.companyRadio.prop('disabled', true);
-  },
-
-  onRender: function onRender() {
-    this.formAddValidation();
-  },
-
-  /*
-   * Validation rules for the add Ad form.
-   *
-   */
-  formAddValidation: function formAddValidation() {
-    var thisView = this;
-    thisView.ui.addAdForm.validate({
-      rules: {
-        type: {
-          required: true
-        },
-        object: {
-          required: true
-        },
-        category: {
-          required: true
-        },
-        title: {
-          required: true,
-          maxlength: 120
-        },
-        otherPhone: {
-          required: true
-        },
-        country: {
-          required: true
-        },
-        city: {
-          required: true
-        }
-      },
-      messages: {
-        type: {
-          required: 'Укажите тип объявления'
-        },
-        object: {
-          required: 'Укажите объект объявления'
-        },
-        category: {
-          required: 'Выберите раздел'
-        },
-        title: {
-          required: 'Введите заголовок',
-          maxlength: jQuery.validator.format('Заголовок не должен превышать {0} символов')
-        },
-        otherPhone: {
-          required: 'Введите контактный телефон'
-        },
-        country: {
-          required: 'Выберите страну'
-        },
-        city: {
-          required: 'Введите название города'
-        },
-        inputFilter: {
-          number: '',
-          min: ''
-        }
-      },
-
-      errorPlacement: function errorPlacement(error, element) {
-        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else if (element.attr('id') === 'otherPhone') error.insertAfter('.otherPhoneError');else error.insertAfter(element);
-      },
-
-      submitHandler: function submitHandler() {
-        thisView.saveAd();
-      }
-    });
-  },
-
-  /*
-   * Save Ad
-   *
-   */
-  saveAd: function saveAd() {
-    var thisView = this,
-        contacts = thisView.model.get('contacts') || [];
-    // Set selected filters
-    this.model.setCategoryObject();
-    // Set model to save it to the server
-    thisView.model.set({
-      title: thisView.ui.title.val().trim(),
-      description: thisView.ui.description.val().trim(),
-      price: thisView.ui.price.val().trim(),
-      //photo: thisView.ui.photo.val(),
-      expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
-      userId: app.user.get('_id')
-    });
-    // Set name if exist
-    if (app.user.get('name') || app.user.get('lastName') || app.user.get('middleName')) {
-      thisView.model.set({
-        userName: {
-          name: app.user.get('name'),
-          lastName: app.user.get('lastName'),
-          middleName: app.user.get('middleName')
-        }
-      });
-    } else {
-      thisView.model.set({
-        userName: null
-      });
-    }
-    // Set contacts
-    switch (contacts.takeFrom) {
-      case 'profile':
-        var phone1 = app.user.get('phone1'),
-            phone2 = app.user.get('phone2');
-        // check if profile phones are exist
-        if (phone1 || phone2) {
-          contacts.phones.push(phone1, phone2);
-          // Set contacts to the model
-          thisView.model.set({ contacts: contacts });
-        }
-        break;
-      case 'other':
-        contacts.phones.push(thisView.ui.otherPhone.val().trim());
-        // Set contacts to the model
-        thisView.model.set({ contacts: contacts });
-        break;
-      default:
-        console.log('default');
-    }
-    // Save the model into database
-    thisView.model.save(null, {
-      headers: {
-        'Authorization': 'Bearer ' + brd.controllers.getToken()
-      },
-      success: function success() {
-        // Redirect to Ads profile page
-        brd.router.navigateToRoute('ads');
-      },
-      error: function error() {
-        console.log('error');
-      }
-    });
-  },
-
-  /*
-   * Set contacts based on user selection
-   *
-   */
-  setContacts: function setContacts(event) {
-    var thisView = this;
-    if (event.target.value === 'other') {
-      thisView.ui.otherPhoneWrapper.show();
-      thisView.model.set('contacts', {
-        takeFrom: 'other',
-        phones: []
-      });
-    } else {
-      thisView.ui.otherPhoneWrapper.hide();
-      thisView.model.set('contacts', {
-        takeFrom: 'profile',
-        phones: []
-      });
-    }
-  },
-
-  /*
-   * Show filter section for selected category
-   *
-   */
-  setFilter: function setFilter(event) {
-    var selectedCategoryId = parseInt(event.target.value);
-    // If selected some item
-    if (selectedCategoryId) {
-      var categoryModel = this.model.get('categoryModel');
-      // Show filters in child view
-      this.showChildView('filters', new app.views.FiltersView({
-        model: new app.models.FiltersModel({ catId: selectedCategoryId })
-      }));
-      this.model.set({ selectedCategoryId: selectedCategoryId });
-    } else {
-      // Clear region
-      this.getRegion('filters').empty();
-      this.model.set({ selectedCategoryId: null });
-    }
-  },
-
-  /*
-   * Count Expiration date
-   *
-   * @param days - plus to current date
-   */
-  returnExpirationDate: function returnExpirationDate(days) {
-    var result = new Date();
-    result.setDate(result.getDate() + parseInt(days));
-    return result;
-  },
-
-  /*
-   * Handle change type checkbox
-   *
-   */
-  changeType: function changeType(event) {
-    // Hide both first
-    this.ui.marker.addClass('hidden');
-    switch (event.target.value) {
-      case 'buy':
-        this.ui.buyMarker.removeClass('hidden');
-        break;
-      case 'sell':
-        this.ui.sellMarker.removeClass('hidden');
-        break;
-    }
-    this.model.set({
-      type: event.target.value
-    });
-  },
-
-  /*
-   * Handle change object checkbox
-   *
-   */
-  changeObject: function changeObject(event) {
-    this.model.set({
-      object: event.target.value
-    });
-  },
-
-  addPhoto: function addPhoto(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        // Check size of the uploaded image
-        var image = new Image();
-        image.src = e.target.result;
-        image.onload = function () {
-          // Prevent uploading big images
-          if (this.width <= 1100 && this.height <= 1100) {
-            $('#preview').css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
-            $('#preview .ion-image').hide();
-            $('.image-error-message').hide();
-
-            var input = document.getElementById('photo');
-            var formData = new FormData();
-            formData.append('photo', input.files[0]); // Append your file
-            formData.append('filename', 'test'); // Append your file
-            // Upload image
-            $.ajax({
-              url: 'api/upload/ad',
-              method: 'POST',
-              data: formData,
-              processData: false,
-              contentType: false
-            }).done(function () {
-              console.log('done');
-            }).fail(function () {
-              console.log('fail');
-            });
-          } else {
-            $('.image-error-message').removeClass('hidden');
-            $('.image-error-message').show();
-          }
-        };
-      };
-
-      reader.readAsDataURL(event.target.files[0]);
-    }
-  }
-
-});
-'use strict';
-
-app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
-
-  collection: new app.collections.AdsCollection(),
-
-  childView: app.views.adView,
-
-  initialize: function initialize() {
-    var _this = this;
-
-    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
-    this.emptyView = app.views.SpinnerView;
-
-    this.collection.fetch().then(function () {
-      if (!_this.collection.length) {
-        // Show message if no items
-        _this.emptyView = app.views.MessageView;
-        _this.emptyViewOptions = {
-          message: 'Список пуст.',
-          placeholder: true
-        };
-        _this.render();
-      }
-    }, function () {
-      _this.emptyView = app.views.MessageView;
-      _this.emptyViewOptions = {
-        message: 'Ошибка сервиса. Попробуйте обновить страницу.',
-        placeholder: false
-      };
-      _this.render();
-    });
-  }
-
-});
-'use strict';
-
-app.views.AdsView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.ads,
-
-  ui: {
-    leftNavRegion: '.left-navigation',
-    listRegion: '.ads-list',
-    addButton: '.add-button',
-    showArchive: '.go-to-archive'
-  },
-
-  regions: {
-    leftNav: '@ui.leftNavRegion',
-    adsList: '@ui.listRegion'
-  },
-
-  events: {
-    'click @ui.addButton': function clickUiAddButton() {
-      brd.router.navigateToRoute('ads', 'new');
-    },
-    'click @ui.showArchive': function clickUiShowArchive() {
-      // TODO: show archive in case any ads axist in archive
-    }
-  },
-
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNav');
-  },
-
-  onRender: function onRender() {
-    this.showChildView('adsList', new app.views.AdsCollectionView({
-      model: new app.models.AdsListModel()
-    }));
-  }
-
-});
-'use strict';
-
-app.views.DashboardView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.dashboard,
-
-  regions: {
-    leftNavRegion: '.left-navigation'
-  },
-
-  ui: {},
-
-  events: {},
-
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
-  }
-
-});
-'use strict';
-
-app.views.LeftNavigation = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.left_navigation,
-
-  templateContext: function templateContext() {
-    return {
-      activePage: this.getOption('page')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings_account_section,
-
-  regions: {},
-
-  initialize: function initialize() {},
-
-  onRender: function onRender() {},
-
-  templateContext: function templateContext() {
-    return {
-      email: this.getOption('email')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings_profile_section,
-
-  regions: {
-    countriesPicker: '.countries-picker',
-    modalSection: '.modal-avatar-section'
-  },
-
-  ui: {
-    alert: '.alert',
-    form: 'form',
-    photo: '.avatar',
-    lastName: '#lastName',
-    name: '#name',
-    middleName: '#middleName',
-    work: '#work',
-    position: '#position',
-    workEmail: '#workEmail',
-    phone1: '#phone1',
-    phone2: '#phone2',
-    saveProfile: '.saveProfile'
-  },
-
-  events: {
-    'click @ui.saveProfile': 'saveProfileData',
-    'click @ui.photo': 'showAddAvatarView'
-  },
-
-  initialize: function initialize() {
-    var thisView = this;
-    // Get user data from server
-    thisView.model.fetch().then(function () {
-      thisView.render();
-      // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
-    }, function () {
-      console.log('FAIL: Get user data from server');
-    });
-  },
-
-  showAddAvatarView: function showAddAvatarView() {
-    this.showChildView('modalSection', new app.views.AddAvatarView());
-  },
-
-  saveProfileData: function saveProfileData(event) {
-    var thisView = this;
-    event.preventDefault();
-    // Update model
-    thisView.model.set({
-      lastName: thisView.ui.lastName.val().trim(),
-      name: thisView.ui.name.val().trim(),
-      middleName: thisView.ui.middleName.val().trim(),
-      work: thisView.ui.work.val().trim(),
-      position: thisView.ui.position.val().trim(),
-      phone1: thisView.ui.phone1.val().trim(),
-      phone2: thisView.ui.phone2.val().trim()
-    });
-    // Save data on server
-    thisView.model.save(null, {
-      headers: {
-        'Authorization': 'Bearer ' + brd.controllers.getToken()
-      },
-      success: function success() {
-        app.user.fetch();
-        brd.router.navigateToRoute('dashboard');
-      }
-    });
-  }
-
-});
-'use strict';
-
-app.views.SettingsView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.settings,
-
-  regions: {
-    leftNavRegion: '.left-navigation',
-    page: '.page'
-  },
-
-  ui: {
-    profileSettings: '.profile-settings-link',
-    accountSettings: '.account-settings-link'
-  },
-
-  events: {
-    'click @ui.profileSettings': function clickUiProfileSettings() {
-      var useId = brd.controllers.getUserId();
-      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
-      this.ui.profileSettings.addClass('active');
-      this.ui.accountSettings.removeClass('active');
-    },
-    'click @ui.accountSettings': function clickUiAccountSettings() {
-      this.showChildView('page', new app.views.SettingsAccountSectionView({ email: app.user.get('email') }));
-      this.ui.accountSettings.addClass('active');
-      this.ui.profileSettings.removeClass('active');
-    }
-  },
-
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
-  },
-
-  onRender: function onRender() {
-    var useId = brd.controllers.getUserId();
-    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
-    this.ui.profileSettings.addClass('active');
-    this.ui.accountSettings.removeClass('active');
-  }
-
-});
-'use strict';
-
 app.views.AddAvatarView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.avatar,
@@ -2743,6 +2179,569 @@ app.views.RegistrationView = app.views.HeaderView.extend({
         thisView.ui.form.fadeIn();
       }
     });
+  }
+
+});
+'use strict';
+
+app.views.AddAdView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.add_ad,
+
+  regions: {
+    leftNavRegion: '.left-navigation',
+    countriesPicker: '.country-picker',
+    filters: '.filters'
+  },
+
+  ui: {
+    addAdForm: '#add-ad-form',
+    type: 'input[name=type]',
+    object: 'input[name=object]',
+    photoInput: '.photo-input',
+    category: '#category',
+    title: '#title',
+    description: '#description',
+    price: '#price',
+    expirationDate: '#expirationDate',
+    getContacts: 'input[name=getContacts]',
+    profileRadio: '#profileRadio',
+    companyRadio: '#companyRadio',
+    otherRadio: '#otherRadio',
+    otherPhoneWrapper: '.otherPhoneWrapper',
+    otherPhone: '#otherPhone',
+    backBtn: '.back',
+    marker: '.marker',
+    buyMarker: '.buy',
+    sellMarker: '.sell'
+  },
+
+  events: {
+    'change @ui.getContacts': 'setContacts',
+    'change @ui.category': 'setFilter',
+    'change @ui.type': 'changeType',
+    'change @ui.object': 'changeObject',
+    'click @ui.backBtn': function clickUiBackBtn() {
+      brd.router.navigateToRoute('ads');
+    },
+    'change @ui.photoInput': 'addPhoto'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
+    // Show country picker
+    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    // Disable radio btns by default
+    thisView.ui.otherPhoneWrapper.hide();
+    thisView.ui.companyRadio.prop('disabled', true);
+  },
+
+  onRender: function onRender() {
+    this.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the add Ad form.
+   *
+   */
+  formAddValidation: function formAddValidation() {
+    var thisView = this;
+    thisView.ui.addAdForm.validate({
+      rules: {
+        type: {
+          required: true
+        },
+        object: {
+          required: true
+        },
+        category: {
+          required: true
+        },
+        title: {
+          required: true,
+          maxlength: 120
+        },
+        otherPhone: {
+          required: true
+        },
+        country: {
+          required: true
+        },
+        city: {
+          required: true
+        }
+      },
+      messages: {
+        type: {
+          required: 'Укажите тип объявления'
+        },
+        object: {
+          required: 'Укажите объект объявления'
+        },
+        category: {
+          required: 'Выберите раздел'
+        },
+        title: {
+          required: 'Введите заголовок',
+          maxlength: jQuery.validator.format('Заголовок не должен превышать {0} символов')
+        },
+        otherPhone: {
+          required: 'Введите контактный телефон'
+        },
+        country: {
+          required: 'Выберите страну'
+        },
+        city: {
+          required: 'Введите название города'
+        },
+        inputFilter: {
+          number: '',
+          min: ''
+        }
+      },
+
+      errorPlacement: function errorPlacement(error, element) {
+        if (element.attr('name') === 'type') error.insertAfter('.typeError');else if (element.attr('name') === 'object') error.insertAfter('.objectError');else if (element.attr('id') === 'otherPhone') error.insertAfter('.otherPhoneError');else error.insertAfter(element);
+      },
+
+      submitHandler: function submitHandler() {
+        thisView.saveAd();
+      }
+    });
+  },
+
+  /*
+   * Save Ad
+   *
+   */
+  saveAd: function saveAd() {
+    var thisView = this,
+        contacts = thisView.model.get('contacts') || [];
+    // Set selected filters
+    this.model.setCategoryObject();
+    // Set model to save it to the server
+    thisView.model.set({
+      title: thisView.ui.title.val().trim(),
+      description: thisView.ui.description.val().trim(),
+      price: thisView.ui.price.val().trim(),
+      //photo: thisView.ui.photo.val(),
+      expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
+      userId: app.user.get('_id')
+    });
+    // Set name if exist
+    if (app.user.get('name') || app.user.get('lastName') || app.user.get('middleName')) {
+      thisView.model.set({
+        userName: {
+          name: app.user.get('name'),
+          lastName: app.user.get('lastName'),
+          middleName: app.user.get('middleName')
+        }
+      });
+    } else {
+      thisView.model.set({
+        userName: null
+      });
+    }
+    // Set contacts
+    switch (contacts.takeFrom) {
+      case 'profile':
+        var phone1 = app.user.get('phone1'),
+            phone2 = app.user.get('phone2');
+        // check if profile phones are exist
+        if (phone1 || phone2) {
+          contacts.phones.push(phone1, phone2);
+          // Set contacts to the model
+          thisView.model.set({ contacts: contacts });
+        }
+        break;
+      case 'other':
+        contacts.phones.push(thisView.ui.otherPhone.val().trim());
+        // Set contacts to the model
+        thisView.model.set({ contacts: contacts });
+        break;
+      default:
+        console.log('default');
+    }
+    // Save the model into database
+    thisView.model.save(null, {
+      headers: {
+        'Authorization': 'Bearer ' + brd.controllers.getToken()
+      },
+      success: function success() {
+        // Redirect to Ads profile page
+        brd.router.navigateToRoute('ads');
+      },
+      error: function error() {
+        console.log('error');
+      }
+    });
+  },
+
+  /*
+   * Set contacts based on user selection
+   *
+   */
+  setContacts: function setContacts(event) {
+    var thisView = this;
+    if (event.target.value === 'other') {
+      thisView.ui.otherPhoneWrapper.show();
+      thisView.model.set('contacts', {
+        takeFrom: 'other',
+        phones: []
+      });
+    } else {
+      thisView.ui.otherPhoneWrapper.hide();
+      thisView.model.set('contacts', {
+        takeFrom: 'profile',
+        phones: []
+      });
+    }
+  },
+
+  /*
+   * Show filter section for selected category
+   *
+   */
+  setFilter: function setFilter(event) {
+    var selectedCategoryId = parseInt(event.target.value);
+    // If selected some item
+    if (selectedCategoryId) {
+      var categoryModel = this.model.get('categoryModel');
+      // Show filters in child view
+      this.showChildView('filters', new app.views.FiltersView({
+        model: new app.models.FiltersModel({ catId: selectedCategoryId })
+      }));
+      this.model.set({ selectedCategoryId: selectedCategoryId });
+    } else {
+      // Clear region
+      this.getRegion('filters').empty();
+      this.model.set({ selectedCategoryId: null });
+    }
+  },
+
+  /*
+   * Count Expiration date
+   *
+   * @param days - plus to current date
+   */
+  returnExpirationDate: function returnExpirationDate(days) {
+    var result = new Date();
+    result.setDate(result.getDate() + parseInt(days));
+    return result;
+  },
+
+  /*
+   * Handle change type checkbox
+   *
+   */
+  changeType: function changeType(event) {
+    // Hide both first
+    this.ui.marker.addClass('hidden');
+    switch (event.target.value) {
+      case 'buy':
+        this.ui.buyMarker.removeClass('hidden');
+        break;
+      case 'sell':
+        this.ui.sellMarker.removeClass('hidden');
+        break;
+    }
+    this.model.set({
+      type: event.target.value
+    });
+  },
+
+  /*
+   * Handle change object checkbox
+   *
+   */
+  changeObject: function changeObject(event) {
+    this.model.set({
+      object: event.target.value
+    });
+  },
+
+  addPhoto: function addPhoto(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        // Check size of the uploaded image
+        var image = new Image();
+        image.src = e.target.result;
+        image.onload = function () {
+          // Prevent uploading big images
+          if (this.width <= 1100 && this.height <= 1100) {
+            $('#preview').css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
+            $('#preview .ion-image').hide();
+            $('.image-error-message').hide();
+
+            var input = document.getElementById('photo');
+            var formData = new FormData();
+            formData.append('photo', input.files[0]);
+            // Upload image
+            $.ajax({
+              url: 'api/upload/ad',
+              method: 'POST',
+              data: formData,
+              processData: false,
+              contentType: false
+            }).done(function () {
+              console.log('done');
+            }).fail(function () {
+              console.log('fail');
+            });
+          } else {
+            $('.image-error-message').removeClass('hidden');
+            $('.image-error-message').show();
+          }
+        };
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+});
+'use strict';
+
+app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
+
+  collection: new app.collections.AdsCollection(),
+
+  childView: app.views.adView,
+
+  initialize: function initialize() {
+    var _this = this;
+
+    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    this.emptyView = app.views.SpinnerView;
+
+    this.collection.fetch().then(function () {
+      if (!_this.collection.length) {
+        // Show message if no items
+        _this.emptyView = app.views.MessageView;
+        _this.emptyViewOptions = {
+          message: 'Список пуст.',
+          placeholder: true
+        };
+        _this.render();
+      }
+    }, function () {
+      _this.emptyView = app.views.MessageView;
+      _this.emptyViewOptions = {
+        message: 'Ошибка сервиса. Попробуйте обновить страницу.',
+        placeholder: false
+      };
+      _this.render();
+    });
+  }
+
+});
+'use strict';
+
+app.views.AdsView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.ads,
+
+  ui: {
+    leftNavRegion: '.left-navigation',
+    listRegion: '.ads-list',
+    addButton: '.add-button',
+    showArchive: '.go-to-archive'
+  },
+
+  regions: {
+    leftNav: '@ui.leftNavRegion',
+    adsList: '@ui.listRegion'
+  },
+
+  events: {
+    'click @ui.addButton': function clickUiAddButton() {
+      brd.router.navigateToRoute('ads', 'new');
+    },
+    'click @ui.showArchive': function clickUiShowArchive() {
+      // TODO: show archive in case any ads axist in archive
+    }
+  },
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNav');
+  },
+
+  onRender: function onRender() {
+    this.showChildView('adsList', new app.views.AdsCollectionView({
+      model: new app.models.AdsListModel()
+    }));
+  }
+
+});
+'use strict';
+
+app.views.DashboardView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.dashboard,
+
+  regions: {
+    leftNavRegion: '.left-navigation'
+  },
+
+  ui: {},
+
+  events: {},
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  }
+
+});
+'use strict';
+
+app.views.LeftNavigation = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.left_navigation,
+
+  templateContext: function templateContext() {
+    return {
+      activePage: this.getOption('page')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_account_section,
+
+  regions: {},
+
+  initialize: function initialize() {},
+
+  onRender: function onRender() {},
+
+  templateContext: function templateContext() {
+    return {
+      email: this.getOption('email')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings_profile_section,
+
+  regions: {
+    countriesPicker: '.countries-picker',
+    modalSection: '.modal-avatar-section'
+  },
+
+  ui: {
+    alert: '.alert',
+    form: 'form',
+    photo: '.avatar',
+    lastName: '#lastName',
+    name: '#name',
+    middleName: '#middleName',
+    work: '#work',
+    position: '#position',
+    workEmail: '#workEmail',
+    phone1: '#phone1',
+    phone2: '#phone2',
+    saveProfile: '.saveProfile'
+  },
+
+  events: {
+    'click @ui.saveProfile': 'saveProfileData',
+    'click @ui.photo': 'showAddAvatarView'
+  },
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Get user data from server
+    thisView.model.fetch().then(function () {
+      thisView.render();
+      // Show countries picker
+      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: thisView.model.get('countriesModel') }));
+    }, function () {
+      console.log('FAIL: Get user data from server');
+    });
+  },
+
+  showAddAvatarView: function showAddAvatarView() {
+    this.showChildView('modalSection', new app.views.AddAvatarView());
+  },
+
+  saveProfileData: function saveProfileData(event) {
+    var thisView = this;
+    event.preventDefault();
+    // Update model
+    thisView.model.set({
+      lastName: thisView.ui.lastName.val().trim(),
+      name: thisView.ui.name.val().trim(),
+      middleName: thisView.ui.middleName.val().trim(),
+      work: thisView.ui.work.val().trim(),
+      position: thisView.ui.position.val().trim(),
+      phone1: thisView.ui.phone1.val().trim(),
+      phone2: thisView.ui.phone2.val().trim()
+    });
+    // Save data on server
+    thisView.model.save(null, {
+      headers: {
+        'Authorization': 'Bearer ' + brd.controllers.getToken()
+      },
+      success: function success() {
+        app.user.fetch();
+        brd.router.navigateToRoute('dashboard');
+      }
+    });
+  }
+
+});
+'use strict';
+
+app.views.SettingsView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.settings,
+
+  regions: {
+    leftNavRegion: '.left-navigation',
+    page: '.page'
+  },
+
+  ui: {
+    profileSettings: '.profile-settings-link',
+    accountSettings: '.account-settings-link'
+  },
+
+  events: {
+    'click @ui.profileSettings': function clickUiProfileSettings() {
+      var useId = brd.controllers.getUserId();
+      this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
+      this.ui.profileSettings.addClass('active');
+      this.ui.accountSettings.removeClass('active');
+    },
+    'click @ui.accountSettings': function clickUiAccountSettings() {
+      this.showChildView('page', new app.views.SettingsAccountSectionView({ email: app.user.get('email') }));
+      this.ui.accountSettings.addClass('active');
+      this.ui.profileSettings.removeClass('active');
+    }
+  },
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  },
+
+  onRender: function onRender() {
+    var useId = brd.controllers.getUserId();
+    this.showChildView('page', new app.views.SettingsProfileSectionView({ model: new app.models.UserModel({ _id: useId }) }));
+    this.ui.profileSettings.addClass('active');
+    this.ui.accountSettings.removeClass('active');
   }
 
 });

@@ -32,7 +32,6 @@ var upload = multer({storage: storage}).single('photo');
 
 router.route('/upload/ad')
 .post(function(req, res) {
-  console.log(req.body.filename);
   upload(req, res, function(err) {
     if(err) {
       console.log(err);
