@@ -61,7 +61,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 
   return "            <tr class=\"filter-row\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "              <td>\r\n"
+    + "              <td class=\"parent-col\"><span class=\"dash\">-</span>\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":this.program(16, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "              </td>\r\n            </tr>\r\n";
 },"14":function(depth0,helpers,partials,data) {

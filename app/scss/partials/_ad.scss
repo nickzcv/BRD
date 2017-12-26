@@ -184,9 +184,15 @@
               vertical-align: text-top;
             }
             .filter-title {
+              position: relative;
+              background: $white;
               color: $main-dark;
               font-weight: bold;
               padding-right: 1rem;
+            }
+            .parent {
+              position: relative;
+              background: $white;
             }
             .parent i:nth-child(1n):after {
               content: ', ';
@@ -198,6 +204,13 @@
               color: $main-dark;
               font-weight: bold;
               font-style: italic;
+            }
+            .parent-col {
+              position: relative;
+              .dash {
+                display: inline-block;
+                position: absolute;
+              }
             }
             .first-level {
               position: relative;

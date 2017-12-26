@@ -794,9 +794,15 @@ nav.navigation .user .logout:hover {
   vertical-align: text-top; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .filter-title {
+  position: relative;
+  background: #FFFFFF;
   color: #202124;
   font-weight: bold;
   padding-right: 1rem; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .parent {
+  position: relative;
+  background: #FFFFFF; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .parent i:nth-child(1n):after {
   content: ', '; }
@@ -808,6 +814,13 @@ nav.navigation .user .logout:hover {
   color: #202124;
   font-weight: bold;
   font-style: italic; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .parent-col {
+  position: relative; }
+
+.ads .ad-item.expanded .section2 .category .filter-row .parent-col .dash {
+  display: inline-block;
+  position: absolute; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .first-level {
   position: relative; }
