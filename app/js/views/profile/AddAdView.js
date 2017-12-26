@@ -332,7 +332,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
               $('.image-error-message').show();
             });
           } else {
-            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 px.');
+            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 пикс.');
             $('.image-error-message').removeClass('hidden');
             $('.image-error-message').show();
 

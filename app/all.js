@@ -452,6 +452,9 @@ app.models.AdModel = Backbone.Model.extend({
     // Init child Filters model under categories
     thisModel.set({ categoryModel: new app.models.FiltersModel() });
     var categoryModel = thisModel.get('categoryModel');
+
+    console.log(categoryModel);
+
     thisModel.set({ categories: categoryModel.attributes.categories });
 
     // get countries Model
@@ -504,6 +507,19 @@ app.models.AdsListModel = Backbone.Model.extend({
   }
 
 });
+"use strict";
+
+/**
+ * Get a deep copy of an object, to ensure Backbone doesn't think it's identical
+ * to the original object
+ *
+ * @param {Object} object Object to clone
+ * @return {Object}
+ * @function external:"Backbone.Model"#deepClone
+ */
+Backbone.Model.prototype.deepClone = function (object) {
+  return JSON.parse(JSON.stringify(object));
+};
 'use strict';
 
 app.models.FiltersHomeModel = Backbone.Model.extend({
@@ -2184,6 +2200,233 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
+app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    } else if (isVisible && !city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val('');
+    }
+  }
+
+});
+"use strict";
+
+/**
+ *
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.EmptyView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.EmptyView
+   */
+  template: tpl.templates.empty
+});
+'use strict';
+
+app.views.FiltersView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.filters,
+
+  ui: {
+    parent: '.parent',
+    sizes: '.subtitle',
+    checkbox: 'input[type="checkbox"]',
+    number: 'input[type="number"]',
+    addSize: '.add-size',
+    removeSize: '.remove-size'
+  },
+
+  events: {
+    // Handle parent checkbox
+    'change @ui.parent': function changeUiParent(event) {
+      var $element = $(event.target);
+      // Toggle hidden class
+      if ($element.prop('checked')) {
+        $element.parent().parent().next().removeClass('hidden');
+      } else {
+        $element.parent().parent().next().addClass('hidden');
+      }
+    },
+    'change #delovaya': function changeDelovaya(event) {
+      var $element = $(event.target);
+      if ($element.prop('checked')) {
+        this.ui.sizes.removeClass('hidden');
+      } else {
+        this.ui.sizes.addClass('hidden');
+      }
+    },
+    'change @ui.checkbox': 'changeFilter',
+    'change @ui.number': 'changeFilter',
+    'click @ui.addSize': 'addSize',
+    'click @ui.removeSize': 'removeSize'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  addSize: function addSize() {
+    this.model.addSize();
+  },
+
+  removeSize: function removeSize(event) {
+    this.model.removeSize(event.target.dataset.id);
+  },
+
+  changeFilter: function changeFilter(event) {
+    var type = event.target.type,
+        label = event.target.value,
+        value = label;
+    // Checkboxes
+    if (type === 'checkbox') {
+      value = event.target.checked;
+    } else {
+      // Inputs
+      label = event.target.id;
+      value = event.target.value;
+      // Add additional param for sizes input
+      if (event.target.dataset.id) {
+        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
+        return;
+      }
+    }
+    this.model.setFilter(label, type, value);
+  },
+
+  initialize: function initialize() {
+    this.model.showFilters();
+  }
+
+});
+'use strict';
+
+app.views.MessageView = Marionette.View.extend({
+
+  template: tpl.templates.message,
+
+  templateContext: function templateContext() {
+    return {
+      message: this.getOption('message'),
+      placeholder: this.getOption('placeholder')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SendMessageFormView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.send_message_form,
+
+  initialize: function initialize() {},
+
+  templateContext: function templateContext() {
+    return {
+      userId: this.getOption('userId')
+    };
+  }
+
+});
+"use strict";
+
+/**
+ * Spinner view
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.SpinnerView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.SpinnerView
+   */
+  template: tpl.templates.spinner
+});
+'use strict';
+
 app.views.AddAdView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.add_ad,
@@ -2510,7 +2753,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
               $('.image-error-message').show();
             });
           } else {
-            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 px.');
+            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 пикс.');
             $('.image-error-message').removeClass('hidden');
             $('.image-error-message').show();
           }
@@ -2763,231 +3006,4 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
     this.ui.accountSettings.removeClass('active');
   }
 
-});
-'use strict';
-
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    } else if (isVisible && !city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val('');
-    }
-  }
-
-});
-"use strict";
-
-/**
- *
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.EmptyView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.EmptyView
-   */
-  template: tpl.templates.empty
-});
-'use strict';
-
-app.views.FiltersView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.filters,
-
-  ui: {
-    parent: '.parent',
-    sizes: '.subtitle',
-    checkbox: 'input[type="checkbox"]',
-    number: 'input[type="number"]',
-    addSize: '.add-size',
-    removeSize: '.remove-size'
-  },
-
-  events: {
-    // Handle parent checkbox
-    'change @ui.parent': function changeUiParent(event) {
-      var $element = $(event.target);
-      // Toggle hidden class
-      if ($element.prop('checked')) {
-        $element.parent().parent().next().removeClass('hidden');
-      } else {
-        $element.parent().parent().next().addClass('hidden');
-      }
-    },
-    'change #delovaya': function changeDelovaya(event) {
-      var $element = $(event.target);
-      if ($element.prop('checked')) {
-        this.ui.sizes.removeClass('hidden');
-      } else {
-        this.ui.sizes.addClass('hidden');
-      }
-    },
-    'change @ui.checkbox': 'changeFilter',
-    'change @ui.number': 'changeFilter',
-    'click @ui.addSize': 'addSize',
-    'click @ui.removeSize': 'removeSize'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  addSize: function addSize() {
-    this.model.addSize();
-  },
-
-  removeSize: function removeSize(event) {
-    this.model.removeSize(event.target.dataset.id);
-  },
-
-  changeFilter: function changeFilter(event) {
-    var type = event.target.type,
-        label = event.target.value,
-        value = label;
-    // Checkboxes
-    if (type === 'checkbox') {
-      value = event.target.checked;
-    } else {
-      // Inputs
-      label = event.target.id;
-      value = event.target.value;
-      // Add additional param for sizes input
-      if (event.target.dataset.id) {
-        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
-        return;
-      }
-    }
-    this.model.setFilter(label, type, value);
-  },
-
-  initialize: function initialize() {
-    this.model.showFilters();
-  }
-
-});
-'use strict';
-
-app.views.MessageView = Marionette.View.extend({
-
-  template: tpl.templates.message,
-
-  templateContext: function templateContext() {
-    return {
-      message: this.getOption('message'),
-      placeholder: this.getOption('placeholder')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SendMessageFormView = Backbone.Marionette.View.extend({
-
-  template: tpl.templates.send_message_form,
-
-  initialize: function initialize() {},
-
-  templateContext: function templateContext() {
-    return {
-      userId: this.getOption('userId')
-    };
-  }
-
-});
-"use strict";
-
-/**
- * Spinner view
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.SpinnerView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.SpinnerView
-   */
-  template: tpl.templates.spinner
 });
