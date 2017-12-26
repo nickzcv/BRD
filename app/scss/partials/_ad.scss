@@ -26,7 +26,9 @@
       float: none;
       width: 2.1rem;
       height: 2rem;
-      background: #f0eedf;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: #f0eedf;
       span {
         color: $gray-dark;
         font-size: 1.5rem;
@@ -342,7 +344,7 @@
         float: left;
         width: 7rem;
         height: 7rem;
-        background: #f0eedf;
+        background-color: #f0eedf;
         span {
           color: $gray-dark;
           font-size: 5rem;

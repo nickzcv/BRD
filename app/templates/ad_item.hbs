@@ -1,6 +1,6 @@
 <div class="ad-item">
   <div class="section1">
-    <div class="photo">
+    <div class="photo" style="background-image: url('img/ads/{{photo}}')">
       <div class="type {{type}}">
         {{#compare type '===' 'buy'}}
           Куплю
@@ -8,7 +8,10 @@
           Продам
         {{/compare}}
       </div>
-      <span class="ion-image"></span>
+      {{#if photo}}
+      {{else}}
+        <span class="ion-image">{{photo}}</span>
+      {{/if}}
     </div>
     <div class="content">
       <div class="ad-title">{{title}}</div>

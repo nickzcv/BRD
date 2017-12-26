@@ -50,6 +50,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
     // Disable radio btns by default
     thisView.ui.otherPhoneWrapper.hide();
     thisView.ui.companyRadio.prop('disabled', true);
+    brd.controllers.imageName = null;
   },
 
   onRender: function() {
@@ -147,10 +148,17 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),
-      photo: brd.controllers.imageName + '.png',
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
       userId: app.user.get('_id')
     });
+    // Check if image uploaded
+    if (brd.controllers.imageName) {
+      thisView.model.set({
+        photo: brd.controllers.imageName + '.png'
+      });
+    } else {
+      thisView.model.set({photo: null});
+    }
     // Set name if exist
     if (app.user.get('name') || app.user.get('lastName') || app.user.get('middleName')) {
       thisView.model.set({

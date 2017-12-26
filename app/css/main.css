@@ -648,7 +648,9 @@ nav.navigation .user .logout:hover {
   float: none;
   width: 2.1rem;
   height: 2rem;
-  background: #f0eedf; }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #f0eedf; }
 
 .ads .ad-item .photo span {
   color: #b6b6b6;
@@ -940,7 +942,7 @@ nav.navigation .user .logout:hover {
     float: left;
     width: 7rem;
     height: 7rem;
-    background: #f0eedf; }
+    background-color: #f0eedf; }
   .ads .ad-item .photo span {
     color: #b6b6b6;
     font-size: 5rem;
