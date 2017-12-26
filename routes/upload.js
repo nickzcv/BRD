@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 
+
 // Upload profile avatar
 router.route('/upload/profile')
 	.post(function(req, res) {
@@ -19,13 +20,14 @@ router.route('/upload/profile')
     res.json({ success: true });
   });
 
+
 // Upload ads covers
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './app/img/ads/');
   },
   filename: function (req, file, callback) {
-    callback(null, file.originalname + '.png');
+    callback(null, req.body.newfilename + '.png');
   }
 });
 var upload = multer({storage: storage}).single('photo');
@@ -35,9 +37,9 @@ router.route('/upload/ad')
   upload(req, res, function(err) {
     if(err) {
       console.log(err);
-      return res.end("Error uploading file.");
+      return res.json({imageUploaded: false});
     }
-    res.end("File is uploaded");
+    return res.json({imageUploaded: true});
   });
 });
 

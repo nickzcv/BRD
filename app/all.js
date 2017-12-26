@@ -1915,7 +1915,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
           })
         }).done(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          var message = 'Фото загружено, Обновите страницу чтобы увидеть результат.';
+          var message = 'Фото загружено. Сохраните изменения чтобы увидеть результат.';
           $('.alert').addClass('alert-success').text(message).show();
         }).fail(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
@@ -2326,7 +2326,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
       title: thisView.ui.title.val().trim(),
       description: thisView.ui.description.val().trim(),
       price: thisView.ui.price.val().trim(),
-      //photo: thisView.ui.photo.val(),
+      photo: brd.controllers.imageName + '.png',
       expirationDate: thisView.returnExpirationDate(thisView.ui.expirationDate.val()),
       userId: app.user.get('_id')
     });
@@ -2463,9 +2463,12 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
   },
 
   addPhoto: function addPhoto(event) {
+    // Prepare new name for uploaded image
+    brd.controllers.imageName = brd.controllers.getUserId() + '-' + Date.now();
+
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function (e, test) {
         // Check size of the uploaded image
         var image = new Image();
         image.src = e.target.result;
@@ -2475,9 +2478,10 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
             $('#preview').css('background', 'url(' + e.target.result + ')').css('background-size', 'cover');
             $('#preview .ion-image').hide();
             $('.image-error-message').hide();
-
+            // Prepare formData object
             var input = document.getElementById('photo');
             var formData = new FormData();
+            formData.append('newfilename', brd.controllers.imageName);
             formData.append('photo', input.files[0]);
             // Upload image
             $.ajax({
@@ -2486,12 +2490,19 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
               data: formData,
               processData: false,
               contentType: false
-            }).done(function () {
-              console.log('done');
+            }).done(function (response) {
+              if (!response.imageUploaded) {
+                $('.image-error-message').text('Ошибка загрузки изображения.');
+                $('.image-error-message').removeClass('hidden');
+                $('.image-error-message').show();
+              }
             }).fail(function () {
-              console.log('fail');
+              $('.image-error-message').text('Ошибка загрузки изображения.');
+              $('.image-error-message').removeClass('hidden');
+              $('.image-error-message').show();
             });
           } else {
+            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 px.');
             $('.image-error-message').removeClass('hidden');
             $('.image-error-message').show();
           }
