@@ -14,7 +14,15 @@
       {{/if}}
     </div>
     <div class="content">
-      <div class="ad-title">{{title}}</div>
+      <div class="ad-title">
+        {{title}}
+        {{#if isLoggedIn}}
+          {{#compare currentUserId '===' userId}}
+            <a class="edit-ad"><span class="ion-edit"></span></a>
+            <a class="delete-ad"><span class="ion-trash-b"></span></a>
+          {{/compare}}
+        {{/if}}
+      </div>
       <div class="ad-description hidden-xs">{{description}}</div>
     </div>
   </div>

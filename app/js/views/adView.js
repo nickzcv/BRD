@@ -32,7 +32,10 @@ app.views.adView = Backbone.Marionette.View.extend({
   },
 
   initialize: function(options) {
-    this.model.set({isLoggedIn: options.isLoggedIn}, {silent: true});
+    this.model.set({
+      isLoggedIn: options.isLoggedIn,
+      currentUserId: options.currentUserId,
+    }, {silent: true});
   },
 
   /*

@@ -1485,7 +1485,10 @@ app.views.adView = Backbone.Marionette.View.extend({
   },
 
   initialize: function initialize(options) {
-    this.model.set({ isLoggedIn: options.isLoggedIn }, { silent: true });
+    this.model.set({
+      isLoggedIn: options.isLoggedIn,
+      currentUserId: options.currentUserId
+    }, { silent: true });
   },
 
   /*
@@ -2553,7 +2556,10 @@ app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
   initialize: function initialize() {
     var _this = this;
 
-    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    this.childViewOptions = {
+      isLoggedIn: brd.controllers.isLoggedIn(),
+      currentUserId: brd.controllers.getUserId()
+    };
     this.emptyView = app.views.SpinnerView;
 
     this.collection.fetch().then(function () {

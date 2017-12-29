@@ -680,6 +680,15 @@ nav.navigation .user .logout:hover {
   padding: 0.9rem 0.5rem 0.5rem;
   min-height: 4rem; }
 
+.ads .ad-item .content .edit-ad {
+  padding: 0 .5rem 0 1rem; }
+
+.ads .ad-item .content .delete-ad {
+  color: darkred; }
+
+.ads .ad-item .content .delete-ad:hover {
+  color: red; }
+
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem;
   min-height: 1rem; }

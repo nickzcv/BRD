@@ -5,7 +5,10 @@ app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
   childView: app.views.adView,
 
   initialize: function() {
-    this.childViewOptions = {isLoggedIn: brd.controllers.isLoggedIn()};
+    this.childViewOptions = {
+      isLoggedIn: brd.controllers.isLoggedIn(),
+      currentUserId: brd.controllers.getUserId()
+    };
     this.emptyView = app.views.SpinnerView;
 
     this.collection.fetch().then(
