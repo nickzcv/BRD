@@ -144,6 +144,9 @@ router.route('/ad/:ad_id')
 	})
 	// delete
 	.delete(auth, function(req, res) {
+	  /*
+	  TODO: uncomment when admin panel will be ready
+	  TODO: check for hacking
 		Ad.remove({
 			_id: req.params.ad_id
 		}, function(err, ad) {
@@ -152,6 +155,7 @@ router.route('/ad/:ad_id')
 
 			res.json({ message: 'Successfully deleted' });
 		});
+		*/
 	});
 
 

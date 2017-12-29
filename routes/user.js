@@ -98,6 +98,9 @@ router.route('/user/:user_id')
 	})
 	// delete
 	.delete(function(req, res) {
+	  /*
+     TODO: uncomment when admin panel will be ready
+     TODO: check for hacking
 		User.remove({
 			_id: req.params.user_id
 		}, function(err, user) {
@@ -106,6 +109,7 @@ router.route('/user/:user_id')
 
 			res.json({ message: 'Successfully deleted' });
 		});
+		*/
 	});
 
 router.route('/user-email-check/')
