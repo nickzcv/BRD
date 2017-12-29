@@ -42,39 +42,42 @@ app.router = Marionette.AppRouter.extend({
       case 'faq':
         brd.regions.bodyRegion.show(new app.views.FaqView());
         break;
-      // Dashboard
-      case 'dashboard':
+      // Profile routing
+      case 'profile': {
+        // Check if user logged in
         if (brd.controllers.isLoggedIn()) {
-          brd.regions.bodyRegion.show(new app.views.DashboardView());
-          brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
-        } else {
-          this.navigateToRoute('forbidden');
-        }
-        break;
-      // Settings
-      case 'settings':
-        if (brd.controllers.isLoggedIn()) {
-          brd.regions.bodyRegion.show(new app.views.SettingsView());
-          brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
-        } else {
-          this.navigateToRoute('forbidden');
-        }
-        break;
-      // Ads
-      case 'ads':
-        if (brd.controllers.isLoggedIn()) {
-          if (page2 && page2 === 'new') {
-            // Add new ad form
-            brd.regions.bodyRegion.show(new app.views.AddAdView({model: new app.models.AdModel()}));
-          } else {
-            // Main ads page
-            brd.regions.bodyRegion.show(new app.views.AdsView());
+          switch (page2) {
+            // Dashboard
+            case 'dashboard':
+              brd.regions.bodyRegion.show(new app.views.DashboardView());
+              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
+              break;
+            // Settings
+            case 'settings':
+              brd.regions.bodyRegion.show(new app.views.SettingsView());
+              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
+              break;
+            // Ads
+            case 'ads':
+              if (page3 && page3 === 'new') {
+                // Add new ad form
+                brd.regions.bodyRegion.show(new app.views.AddAdView({model: new app.models.AdModel()}));
+              } else {
+                // Main ads page
+                brd.regions.bodyRegion.show(new app.views.AdsView());
+              }
+              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
+              break;
+            // Default redirect to home
+            default:
+              this.navigateToRoute('home');
           }
-          brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page1}));
         } else {
+          // If not logged in - redirect to forbidden page
           this.navigateToRoute('forbidden');
         }
         break;
+      }
       // Default redirect to home
       default:
         this.navigateToRoute('home');

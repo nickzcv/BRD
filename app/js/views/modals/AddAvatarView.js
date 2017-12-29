@@ -67,7 +67,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
           })
         }).done(function() {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          let message = 'Фото загружено. Сохраните изменения чтобы увидеть результат.';
+          let message = `Фото загружено. Сохраните изменения и обновите страницу чтобы увидеть результат.`;
           $('.alert').addClass('alert-success').text(message).show()
         }).fail(function() {
           $("[data-dismiss=modal]").trigger({ type: "click" });

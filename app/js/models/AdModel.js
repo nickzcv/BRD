@@ -30,7 +30,7 @@ app.models.AdModel = Backbone.Model.extend({
     thisModel.set({categoryModel: new app.models.FiltersModel()});
     let categoryModel = thisModel.get('categoryModel');
 
-    console.log(categoryModel);
+    // console.log(categoryModel);
 
     thisModel.set({categories: categoryModel.attributes.categories});
 

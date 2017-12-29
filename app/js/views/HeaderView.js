@@ -26,7 +26,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
       window.location.reload();
     },
     'click @ui.userProfile': function () {
-      brd.router.navigateToRoute('dashboard');
+      brd.router.navigateToRoute('profile', 'dashboard');
     }
   },
 

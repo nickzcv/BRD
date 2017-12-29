@@ -98,7 +98,7 @@ app.views.LoginView = Backbone.Marionette.View.extend({
         });
       }
       // Navigate to user dashboard after login successful
-      brd.router.navigateToRoute('dashboard');
+      brd.router.navigateToRoute('profile', 'dashboard');
     }, function () {
       thisView.ui.loader.hide();
       thisView.ui.loginForm.fadeIn();
