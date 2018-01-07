@@ -56,7 +56,8 @@
       font-size: 1rem;
     }
     .rside {
-      display: none;
+      background: goldenrod;
+      height: 5rem;
     }
 
   }
@@ -102,9 +103,8 @@
       padding: 0;
 
       .rside {
-        display: block;
-        background: $gray-light;
-        height: 10rem;
+
+
       }
 
     }

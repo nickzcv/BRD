@@ -362,7 +362,8 @@ nav.navigation .user .logout:hover {
   font-size: 1rem; }
 
 .section.home .rside {
-  display: none; }
+  background: goldenrod;
+  height: 5rem; }
 
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {
@@ -381,11 +382,7 @@ nav.navigation .user .logout:hover {
 
 @media only screen and (min-width: 1200px) {
   .section.home {
-    padding: 0; }
-  .section.home .rside {
-    display: block;
-    background: #fcfcf4;
-    height: 10rem; } }
+    padding: 0; } }
 
 /* Sections styles
 -------------------------------------------------- */
@@ -485,8 +482,6 @@ nav.navigation .user .logout:hover {
     width: 100%; } }
 
 @media only screen and (min-width: 1200px) {
-  .filter-home {
-    max-width: 22rem; }
   .filter-home .filters-wrapper {
     padding: 1rem 1.5rem; } }
 
@@ -681,7 +676,11 @@ nav.navigation .user .logout:hover {
   min-height: 4rem; }
 
 .ads .ad-item .content .edit-ad {
-  padding: 0 .5rem 0 1rem; }
+  padding: 0 .5rem 0 1rem;
+  color: #559797; }
+
+.ads .ad-item .content .edit-ad:hover {
+  color: #74BDC1; }
 
 .ads .ad-item .content .delete-ad {
   color: darkred; }
