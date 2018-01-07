@@ -361,10 +361,6 @@ nav.navigation .user .logout:hover {
   padding: 0;
   font-size: 1rem; }
 
-.section.home .rside {
-  background: goldenrod;
-  height: 5rem; }
-
 @media only screen and (min-width: 768px) {
   .section.home .content-filter .search {
     float: left;
@@ -390,6 +386,7 @@ nav.navigation .user .logout:hover {
   padding: 0;
   /* Tablets */
   /* Desktop */
+  /* Large screens */
   /* Large screens */ }
 
 .filter-home .actions {
@@ -399,6 +396,7 @@ nav.navigation .user .logout:hover {
   text-align: center; }
 
 .filter-home .actions .add-new {
+  overflow: hidden;
   width: 100%;
   padding: 6px 12px; }
 
@@ -483,7 +481,57 @@ nav.navigation .user .logout:hover {
 
 @media only screen and (min-width: 1200px) {
   .filter-home .filters-wrapper {
-    padding: 1rem 1.5rem; } }
+    padding: 1rem 1.5rem; }
+  .filter-home .actions .add-new {
+    font-size: .9rem; } }
+
+@media only screen and (min-width: 1400px) {
+  .filter-home .actions .add-new {
+    font-size: 1rem; } }
+
+/* companies home styles
+-------------------------------------------------- */
+.companies-home {
+  padding: 0;
+  /* Tablets */
+  /* Desktop */
+  /* Large screens */
+  /* Large screens */ }
+
+.companies-home .actions {
+  padding: 1rem;
+  background: #fcfcf4;
+  border: 1px solid #edebdc;
+  text-align: center; }
+
+.companies-home .actions .add-new {
+  overflow: hidden;
+  width: 60%;
+  padding: 6px 12px;
+  border-color: goldenrod; }
+
+.companies-home .actions .add-new:hover {
+  border-color: gold;
+  background: gold; }
+
+.companies-home .actions .add-new:hover span:before {
+  color: white; }
+
+@media only screen and (min-width: 768px) {
+  .companies-home .actions .add-new {
+    width: 50%; } }
+
+@media only screen and (min-width: 992px) {
+  .companies-home .actions .add-new {
+    width: 40%; } }
+
+@media only screen and (min-width: 1200px) {
+  .companies-home .actions .add-new {
+    width: 100%; } }
+
+@media only screen and (min-width: 1400px) {
+  .companies-home .actions .add-new {
+    width: 70%; } }
 
 /* Left navigation styles
 -------------------------------------------------- */

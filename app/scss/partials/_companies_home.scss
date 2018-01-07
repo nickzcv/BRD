@@ -1,0 +1,62 @@
+/* companies home styles
+-------------------------------------------------- */
+.companies-home {
+  padding: 0;
+
+  .actions {
+    padding: 1rem;
+    background: $gray-light;
+    border: 1px solid $gray;
+    text-align: center;
+
+    .add-new {
+      overflow: hidden;
+      width: 60%;
+      padding: 6px 12px;
+      border-color: goldenrod;
+
+      &:hover {
+        border-color: gold;
+        background: gold;
+        span:before {
+          color: white;
+        }
+      }
+    }
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+    .actions .add-new {
+      width: 50%;
+    }
+
+  }
+
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+    .actions .add-new {
+      width: 40%;
+    }
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1200px) {
+    .actions .add-new {
+      width: 100%;
+    }
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1400px) {
+    .actions .add-new {
+      width: 70%;
+    }
+  }
+
+
+
+}

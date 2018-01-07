@@ -11,6 +11,7 @@
     text-align: center;
 
     .add-new {
+      overflow: hidden;
       width: 100%;
       padding: 6px 12px;
       &:hover {
@@ -114,12 +115,19 @@
 
   /* Large screens */
   @media only screen and (min-width: 1200px) {
-    //max-width: 22rem;
-
     .filters-wrapper {
       padding: 1rem 1.5rem;
     }
+    .actions .add-new {
+      font-size: .9rem;
+    }
+  }
 
+  /* Large screens */
+  @media only screen and (min-width: 1400px) {
+    .actions .add-new {
+      font-size: 1rem;
+    }
   }
 
 

@@ -1706,6 +1706,17 @@ app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 });
 'use strict';
 
+app.views.CompaniesHomeView = Backbone.Marionette.View.extend({
+
+  template: tpl.templates.companies_home,
+
+  initialize: function initialize() {
+    console.log('initialize - CompaniesHomeView');
+  }
+
+});
+'use strict';
+
 app.views.FiltersHomeView = Backbone.Marionette.View.extend({
 
   template: tpl.templates.filter_home,
@@ -1830,13 +1841,15 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     mobileFilterBtn: '.mobile-filter-btn .btn',
     closeFilter: 'a.close-btn',
     listRegion: '.ads-list',
-    upBtn: '.up'
+    upBtn: '.up',
+    companies: '.companies-home'
   },
 
   regions: {
     filter: '.filter-home',
     adsFilter: '.content-filter',
-    adsList: '@ui.listRegion'
+    adsList: '@ui.listRegion',
+    companiesList: '@ui.companies'
   },
 
   events: {
@@ -1861,8 +1874,12 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function onRender() {
+    // Filter section
     this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
+    // Main ads section
     this.showChildView('adsList', new app.views.AdsHomeCollectionView());
+    // Companies on home
+    this.showChildView('companiesList', new app.views.CompaniesHomeView());
   },
 
   reRenderCollection: function reRenderCollection(childView) {

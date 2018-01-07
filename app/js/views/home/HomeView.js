@@ -7,12 +7,14 @@ app.views.HomeView = Backbone.Marionette.View.extend({
     closeFilter: 'a.close-btn',
     listRegion: '.ads-list',
     upBtn: '.up',
+    companies: '.companies-home',
   },
 
   regions: {
     filter: '.filter-home',
     adsFilter: '.content-filter',
-    adsList: '@ui.listRegion'
+    adsList: '@ui.listRegion',
+    companiesList: '@ui.companies'
   },
 
   events: {
@@ -37,8 +39,12 @@ app.views.HomeView = Backbone.Marionette.View.extend({
   },
 
   onRender: function() {
+    // Filter section
     this.showChildView('filter', new app.views.FiltersHomeView({model: new app.models.FiltersHomeModel()}));
+    // Main ads section
     this.showChildView('adsList', new app.views.AdsHomeCollectionView());
+    // Companies on home
+    this.showChildView('companiesList', new app.views.CompaniesHomeView());
   },
 
   reRenderCollection: function(childView) {
