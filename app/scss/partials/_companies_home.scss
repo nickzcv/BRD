@@ -16,7 +16,7 @@
       border-color: goldenrod;
 
       &:hover {
-        border-color: gold;
+        border-color: $gray-dark2;
         background: gold;
         span:before {
           color: white;

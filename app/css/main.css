@@ -402,11 +402,8 @@ nav.navigation .user .logout:hover {
 
 .filter-home .actions .add-new:hover {
   border-color: #559797;
-  background: #f2f2ea; }
-
-.filter-home .actions .add-new:hover span:before {
-  content: "\f216";
-  color: #559797; }
+  background: #74BDC1;
+  color: #FFFFFF; }
 
 .filter-home .show-mobile-filters {
   cursor: pointer;
@@ -511,7 +508,7 @@ nav.navigation .user .logout:hover {
   border-color: goldenrod; }
 
 .companies-home .actions .add-new:hover {
-  border-color: gold;
+  border-color: #777;
   background: gold; }
 
 .companies-home .actions .add-new:hover span:before {
@@ -666,6 +663,7 @@ nav.navigation .user .logout:hover {
 /* Ads list styles
 -------------------------------------------------- */
 .ads {
+  margin-bottom: 2rem;
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
