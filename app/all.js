@@ -22,7 +22,7 @@ var app = function () {
 
   objApp.init = function () {
     // console.log('app.init');
-    var App = Backbone.Marionette.Application.extend({
+    var App = Mn.Application.extend({
 
       region: '#app',
 
@@ -1451,7 +1451,7 @@ app.models.FiltersModel = Backbone.Model.extend({
 });
 'use strict';
 
-app.views.adView = Backbone.Marionette.View.extend({
+app.views.adView = Mn.View.extend({
 
   template: tpl.templates.ad_item,
 
@@ -1538,7 +1538,7 @@ app.views.adView = Backbone.Marionette.View.extend({
 });
 "use strict";
 
-app.views.FaqView = Backbone.Marionette.View.extend({
+app.views.FaqView = Mn.View.extend({
 
   template: tpl.templates.faq,
 
@@ -1549,12 +1549,12 @@ app.views.FaqView = Backbone.Marionette.View.extend({
 });
 "use strict";
 
-app.views.FooterView = Backbone.Marionette.View.extend({
+app.views.FooterView = Mn.View.extend({
   template: tpl.templates.footer
 });
 'use strict';
 
-app.views.ForbiddenView = Backbone.Marionette.View.extend({
+app.views.ForbiddenView = Mn.View.extend({
 
   template: tpl.templates.forbidden,
 
@@ -1587,7 +1587,7 @@ app.views.ForbiddenView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.HeaderView = Backbone.Marionette.View.extend({
+app.views.HeaderView = Mn.View.extend({
 
   template: tpl.templates.header,
 
@@ -1651,7 +1651,7 @@ app.views.HeaderView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.MainView = Backbone.Marionette.View.extend({
+app.views.MainView = Mn.View.extend({
 
   template: tpl.templates.main,
 
@@ -1674,9 +1674,11 @@ app.views.MainView = Backbone.Marionette.View.extend({
 });
 "use strict";
 
-app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
+app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
 
   childView: app.views.adView,
+
+  emptyView: app.views.SpinnerView,
 
   initialize: async function initialize() {
     var parameters = null;
@@ -1692,7 +1694,6 @@ app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
     // Start fetching collection data
     try {
       await this.collection.fetch();
-      this.emptyView = app.views.SpinnerView;
       // If nothing found
       if (!this.collection.length) {
         this.emptyView = app.views.EmptyView;
@@ -1706,7 +1707,7 @@ app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
 });
 'use strict';
 
-app.views.CompaniesHomeView = Backbone.Marionette.View.extend({
+app.views.CompaniesHomeView = Mn.View.extend({
 
   template: tpl.templates.companies_home,
 
@@ -1717,7 +1718,7 @@ app.views.CompaniesHomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.FiltersHomeView = Backbone.Marionette.View.extend({
+app.views.FiltersHomeView = Mn.View.extend({
 
   template: tpl.templates.filter_home,
 
@@ -1833,7 +1834,7 @@ app.views.FiltersHomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.HomeView = Backbone.Marionette.View.extend({
+app.views.HomeView = Mn.View.extend({
 
   template: tpl.templates.home,
 
@@ -1875,9 +1876,11 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   onRender: function onRender() {
     // Filter section
-    this.showChildView('filter', new app.views.FiltersHomeView({ model: new app.models.FiltersHomeModel() }));
+    this.showChildView('filter', new app.views.FiltersHomeView({
+      model: new app.models.FiltersHomeModel()
+    }));
     // Main ads section
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView({}));
     // Companies on home
     this.showChildView('companiesList', new app.views.CompaniesHomeView());
   },
@@ -1891,7 +1894,7 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.AddAvatarView = Backbone.Marionette.View.extend({
+app.views.AddAvatarView = Mn.View.extend({
 
   template: tpl.templates.avatar,
 
@@ -1973,7 +1976,7 @@ app.views.AddAvatarView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.LoginView = Backbone.Marionette.View.extend({
+app.views.LoginView = Mn.View.extend({
 
   template: tpl.templates.login,
 
@@ -2229,7 +2232,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
-app.views.AddAdView = Backbone.Marionette.View.extend({
+app.views.AddAdView = Mn.View.extend({
 
   template: tpl.templates.add_ad,
 
@@ -2569,7 +2572,7 @@ app.views.AddAdView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
+app.views.AdsCollectionView = Mn.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
@@ -2607,7 +2610,7 @@ app.views.AdsCollectionView = Backbone.Marionette.CollectionView.extend({
 });
 'use strict';
 
-app.views.AdsView = Backbone.Marionette.View.extend({
+app.views.AdsView = Mn.View.extend({
 
   template: tpl.templates.ads,
 
@@ -2646,7 +2649,7 @@ app.views.AdsView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.DashboardView = Backbone.Marionette.View.extend({
+app.views.DashboardView = Mn.View.extend({
 
   template: tpl.templates.dashboard,
 
@@ -2666,7 +2669,7 @@ app.views.DashboardView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.LeftNavigation = Backbone.Marionette.View.extend({
+app.views.LeftNavigation = Mn.View.extend({
 
   template: tpl.templates.left_navigation,
 
@@ -2679,7 +2682,7 @@ app.views.LeftNavigation = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+app.views.SettingsAccountSectionView = Mn.View.extend({
 
   template: tpl.templates.settings_account_section,
 
@@ -2698,7 +2701,7 @@ app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
+app.views.SettingsProfileSectionView = Mn.View.extend({
 
   template: tpl.templates.settings_profile_section,
 
@@ -2771,7 +2774,7 @@ app.views.SettingsProfileSectionView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.SettingsView = Backbone.Marionette.View.extend({
+app.views.SettingsView = Mn.View.extend({
 
   template: tpl.templates.settings,
 
@@ -2814,7 +2817,7 @@ app.views.SettingsView = Backbone.Marionette.View.extend({
 });
 'use strict';
 
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+app.views.CountriesPickerView = Mn.View.extend({
 
   template: tpl.templates.countries_picker,
 
@@ -2917,7 +2920,7 @@ app.views.EmptyView = Marionette.View.extend({
 });
 'use strict';
 
-app.views.FiltersView = Backbone.Marionette.View.extend({
+app.views.FiltersView = Mn.View.extend({
 
   template: tpl.templates.filters,
 
@@ -3008,7 +3011,7 @@ app.views.MessageView = Marionette.View.extend({
 });
 'use strict';
 
-app.views.SendMessageFormView = Backbone.Marionette.View.extend({
+app.views.SendMessageFormView = Mn.View.extend({
 
   template: tpl.templates.send_message_form,
 

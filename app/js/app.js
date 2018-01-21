@@ -20,7 +20,7 @@ let app = (function() {
 
   objApp.init = function() {
     // console.log('app.init');
-    const App = Backbone.Marionette.Application.extend({
+    const App = Mn.Application.extend({
 
       region: '#app',
 

@@ -1,3 +1,3 @@
-app.views.FooterView = Backbone.Marionette.View.extend({
+app.views.FooterView = Mn.View.extend({
   template: tpl.templates.footer
 });

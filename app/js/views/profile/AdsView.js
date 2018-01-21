@@ -1,4 +1,4 @@
-app.views.AdsView = Backbone.Marionette.View.extend({
+app.views.AdsView = Mn.View.extend({
 
   template: tpl.templates.ads,
 

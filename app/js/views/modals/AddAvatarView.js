@@ -1,4 +1,4 @@
-app.views.AddAvatarView = Backbone.Marionette.View.extend({
+app.views.AddAvatarView = Mn.View.extend({
 
   template: tpl.templates.avatar,
 

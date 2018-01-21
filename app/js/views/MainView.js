@@ -1,4 +1,4 @@
-app.views.MainView = Backbone.Marionette.View.extend({
+app.views.MainView = Mn.View.extend({
 
   template: tpl.templates.main,
 

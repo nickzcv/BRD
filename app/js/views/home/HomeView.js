@@ -1,4 +1,4 @@
-app.views.HomeView = Backbone.Marionette.View.extend({
+app.views.HomeView = Mn.View.extend({
 
   template: tpl.templates.home,
 
@@ -40,9 +40,13 @@ app.views.HomeView = Backbone.Marionette.View.extend({
 
   onRender: function() {
     // Filter section
-    this.showChildView('filter', new app.views.FiltersHomeView({model: new app.models.FiltersHomeModel()}));
+    this.showChildView('filter', new app.views.FiltersHomeView({
+      model: new app.models.FiltersHomeModel()
+    }));
     // Main ads section
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView());
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
+
+    }));
     // Companies on home
     this.showChildView('companiesList', new app.views.CompaniesHomeView());
   },

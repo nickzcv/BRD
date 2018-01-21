@@ -1,4 +1,4 @@
-app.views.FaqView = Backbone.Marionette.View.extend({
+app.views.FaqView = Mn.View.extend({
 
   template: tpl.templates.faq,
 

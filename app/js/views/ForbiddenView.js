@@ -1,4 +1,4 @@
-app.views.ForbiddenView = Backbone.Marionette.View.extend({
+app.views.ForbiddenView = Mn.View.extend({
 
   template: tpl.templates.forbidden,
 

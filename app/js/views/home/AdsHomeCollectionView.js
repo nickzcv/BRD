@@ -1,6 +1,8 @@
-app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
+app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
 
   childView: app.views.adView,
+
+  emptyView: app.views.SpinnerView,
 
   initialize: async function() {
     let parameters = null;
@@ -16,7 +18,6 @@ app.views.AdsHomeCollectionView = Backbone.Marionette.CollectionView.extend({
     // Start fetching collection data
     try {
       await this.collection.fetch();
-      this.emptyView = app.views.SpinnerView;
       // If nothing found
       if (!this.collection.length) {
         this.emptyView = app.views.EmptyView;

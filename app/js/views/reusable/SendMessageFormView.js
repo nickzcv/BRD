@@ -1,4 +1,4 @@
-app.views.SendMessageFormView = Backbone.Marionette.View.extend({
+app.views.SendMessageFormView = Mn.View.extend({
 
   template: tpl.templates.send_message_form,
 
@@ -11,7 +11,5 @@ app.views.SendMessageFormView = Backbone.Marionette.View.extend({
       userId: this.getOption('userId')
     }
   }
-
-
 
 });

@@ -1,4 +1,4 @@
-app.views.CountriesPickerView = Backbone.Marionette.View.extend({
+app.views.CountriesPickerView = Mn.View.extend({
 
   template: tpl.templates.countries_picker,
 

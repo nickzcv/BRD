@@ -1,4 +1,4 @@
-app.views.DashboardView = Backbone.Marionette.View.extend({
+app.views.DashboardView = Mn.View.extend({
 
   template: tpl.templates.dashboard,
 

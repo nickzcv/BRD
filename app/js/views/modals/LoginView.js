@@ -1,4 +1,4 @@
-app.views.LoginView = Backbone.Marionette.View.extend({
+app.views.LoginView = Mn.View.extend({
 
   template: tpl.templates.login,
 

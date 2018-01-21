@@ -1,4 +1,4 @@
-app.views.SettingsView = Backbone.Marionette.View.extend({
+app.views.SettingsView = Mn.View.extend({
 
   template: tpl.templates.settings,
 

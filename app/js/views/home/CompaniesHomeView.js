@@ -1,4 +1,4 @@
-app.views.CompaniesHomeView = Backbone.Marionette.View.extend({
+app.views.CompaniesHomeView = Mn.View.extend({
 
   template: tpl.templates.companies_home,
 

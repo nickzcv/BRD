@@ -1,4 +1,4 @@
-app.views.SettingsAccountSectionView = Backbone.Marionette.View.extend({
+app.views.SettingsAccountSectionView = Mn.View.extend({
 
   template: tpl.templates.settings_account_section,
 

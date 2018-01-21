@@ -1,4 +1,4 @@
-app.views.FiltersView = Backbone.Marionette.View.extend({
+app.views.FiltersView = Mn.View.extend({
 
   template: tpl.templates.filters,
 

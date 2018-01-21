@@ -1,4 +1,4 @@
-app.views.HeaderView = Backbone.Marionette.View.extend({
+app.views.HeaderView = Mn.View.extend({
 
   template: tpl.templates.header,
 

@@ -1,4 +1,4 @@
-app.views.LeftNavigation = Backbone.Marionette.View.extend({
+app.views.LeftNavigation = Mn.View.extend({
 
   template: tpl.templates.left_navigation,
 
