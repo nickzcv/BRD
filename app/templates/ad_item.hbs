@@ -126,10 +126,13 @@
     {{#if company}}
       <span class="name"><i class="ion-person-stalker"></i><span class="m-l-05">{{userName.name}}</span></span>
     {{else if userName}}
-      <span class="name"><i class="ion-ios-person-outline"></i><span class="m-l-05">{{userName.lastName}} {{userName.name}} {{userName.middleName}}</span></span>
+      <span class="name">
+        <span class="user-avatar" style="background-image: url('img/avatar/{{userId}}.png')"></span>
+        <i class="ion-ios-person-outline"></i>
+        <span class="m-l-05">{{userName.lastName}} {{userName.name}} {{userName.middleName}}</span>
+      </span>
     {{/if}}
     <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{city.title}}, {{country.title}}</span></span>
-
   </div>
   <div class="icon ion-ios-browsers-outline tab"></div>
   {{#if isLoggedIn}}

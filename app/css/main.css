@@ -758,6 +758,19 @@ nav.navigation .user .logout:hover {
   padding-left: .5rem;
   padding-right: 3%; }
 
+.ads .ad-item .i-bottom .name {
+  position: relative; }
+
+.ads .ad-item .i-bottom .name .user-avatar {
+  position: absolute;
+  bottom: 3px;
+  left: 4px;
+  height: 1.2rem;
+  width: 1.2rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1; }
+
 .ads .ad-item .icon {
   position: absolute;
   right: 0;
@@ -1053,6 +1066,13 @@ nav.navigation .user .logout:hover {
     padding-right: 3%; }
   .ads .ad-item .i-bottom span.date {
     padding-left: 0; }
+  .ads .ad-item .i-bottom .name {
+    position: relative; }
+  .ads .ad-item .i-bottom .name .user-avatar {
+    bottom: -3px;
+    left: 2px;
+    height: 1.5rem;
+    width: 1.5rem; }
   .ads .ad-item .icon.star {
     top: 2rem; }
   .ads .ad-item .icon.tab {

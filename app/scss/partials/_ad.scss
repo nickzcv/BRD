@@ -97,6 +97,20 @@
         padding-left: .5rem;
         padding-right: 3%;
       }
+      .name {
+        position: relative;
+
+        .user-avatar {
+          position: absolute;
+          bottom: 3px;
+          left: 4px;
+          height: 1.2rem;
+          width: 1.2rem;
+          background-size: contain;
+          background-repeat: no-repeat;
+          z-index: 1;
+        }
+      }
     }
     .icon {
       position: absolute;
@@ -428,6 +442,16 @@
           }
           &.date {
             padding-left: 0;
+          }
+        }
+        .name {
+          position: relative;
+
+          .user-avatar {
+            bottom: -3px;
+            left: 2px;
+            height: 1.5rem;
+            width: 1.5rem;
           }
         }
       }

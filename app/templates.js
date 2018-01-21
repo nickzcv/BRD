@@ -213,15 +213,17 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 
   return ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":this.program(54, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "");
 },"54":function(depth0,helpers,partials,data) {
-    var stack1, alias1=this.lambda, alias2=this.escapeExpression;
+    var stack1, helper, alias1=this.escapeExpression, alias2=this.lambda;
 
-  return "      <span class=\"name\"><i class=\"ion-ios-person-outline\"></i><span class=\"m-l-05\">"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.lastName : stack1), depth0))
+  return "      <span class=\"name\">\r\n        <span class=\"user-avatar\" style=\"background-image: url('img/avatar/"
+    + alias1(((helper = (helper = helpers.userId || (depth0 != null ? depth0.userId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"userId","hash":{},"data":data}) : helper)))
+    + ".png')\"></span>\r\n        <i class=\"ion-ios-person-outline\"></i>\r\n        <span class=\"m-l-05\">"
+    + alias1(alias2(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.lastName : stack1), depth0))
     + " "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
+    + alias1(alias2(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
     + " "
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
-    + "</span></span>\r\n    ";
+    + alias1(alias2(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
+    + "</span>\r\n      </span>\r\n    ";
 },"56":function(depth0,helpers,partials,data) {
     return "    <div class=\"icon ion-ios-star-outline star\"></div>\r\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -255,7 +257,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ", "
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</span></span>\r\n\r\n  </div>\r\n  <div class=\"icon ion-ios-browsers-outline tab\"></div>\r\n"
+    + "</span></span>\r\n  </div>\r\n  <div class=\"icon ion-ios-browsers-outline tab\"></div>\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(56, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "  <div class=\"icon ion-chevron-down arrow\"></div>\r\n</div>";
 },"useData":true});
