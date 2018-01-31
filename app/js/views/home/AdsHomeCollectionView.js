@@ -2,19 +2,20 @@ app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
 
   childView: app.views.adView,
 
-  emptyView: app.views.SpinnerView,
-
-  initialize: async function() {
+  initialize: async function(options) {
     let parameters = null;
 
-    if (this.model) {
-      parameters = this.model.attributes;
+    if (options.filters) {
+      parameters = options.filters;
       // After changing filter model will exist
       this.collection = new app.collections.AdsHomeCollection({parameters});
     } else {
       this.collection = new app.collections.AdsHomeCollection();
     }
     this.childViewOptions = {isLoggedIn: brd.controllers.isLoggedIn()};
+    this.collection.reset();
+    this.emptyView = app.views.SpinnerView;
+
     // Start fetching collection data
     try {
       await this.collection.fetch();
@@ -24,7 +25,7 @@ app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
         this.render();
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
 

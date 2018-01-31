@@ -583,6 +583,20 @@ app.models.HeaderModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.HomeContentModel = Backbone.Model.extend({
+
+  defaults: {
+    loading: true
+  },
+
+  initialize: function initialize() {
+    console.log('++ HomeContentModel');
+    console.log(this.attributes);
+  }
+
+});
+'use strict';
+
 app.models.LoginModel = Backbone.Model.extend({
 
   defaults: {
@@ -1678,19 +1692,20 @@ app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
 
   childView: app.views.adView,
 
-  emptyView: app.views.SpinnerView,
-
-  initialize: async function initialize() {
+  initialize: async function initialize(options) {
     var parameters = null;
 
-    if (this.model) {
-      parameters = this.model.attributes;
+    if (options.filters) {
+      parameters = options.filters;
       // After changing filter model will exist
       this.collection = new app.collections.AdsHomeCollection({ parameters: parameters });
     } else {
       this.collection = new app.collections.AdsHomeCollection();
     }
     this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    this.collection.reset();
+    this.emptyView = app.views.SpinnerView;
+
     // Start fetching collection data
     try {
       await this.collection.fetch();
@@ -1834,6 +1849,36 @@ app.views.FiltersHomeView = Mn.View.extend({
 });
 'use strict';
 
+app.views.HomeContentView = Mn.View.extend({
+
+  template: tpl.templates.home_content,
+
+  ui: {
+    listRegion: '.ads-list'
+  },
+
+  regions: {
+    adsList: '@ui.listRegion'
+  },
+
+  onRender: function onRender() {
+    // Main ads section
+    if (this.model.get('filters')) {
+      this.reRenderCollection();
+    } else {
+      this.showChildView('adsList', new app.views.AdsHomeCollectionView({}));
+    }
+  },
+
+  reRenderCollection: function reRenderCollection() {
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
+      filters: this.model.get('filters')
+    }));
+  }
+
+});
+'use strict';
+
 app.views.HomeView = Mn.View.extend({
 
   template: tpl.templates.home,
@@ -1841,7 +1886,7 @@ app.views.HomeView = Mn.View.extend({
   ui: {
     mobileFilterBtn: '.mobile-filter-btn .btn',
     closeFilter: 'a.close-btn',
-    listRegion: '.ads-list',
+    homeContent: '.home-content',
     upBtn: '.up',
     companies: '.companies-home'
   },
@@ -1849,7 +1894,7 @@ app.views.HomeView = Mn.View.extend({
   regions: {
     filter: '.filter-home',
     adsFilter: '.content-filter',
-    adsList: '@ui.listRegion',
+    homeContentRegion: '@ui.homeContent',
     companiesList: '@ui.companies'
   },
 
@@ -1879,15 +1924,19 @@ app.views.HomeView = Mn.View.extend({
     this.showChildView('filter', new app.views.FiltersHomeView({
       model: new app.models.FiltersHomeModel()
     }));
-    // Main ads section
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView({}));
+    // Content
+    this.showChildView('homeContentRegion', new app.views.HomeContentView({
+      model: new app.models.HomeContentModel({ filters: null })
+    }));
     // Companies on home
     this.showChildView('companiesList', new app.views.CompaniesHomeView());
   },
 
   reRenderCollection: function reRenderCollection(childView) {
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      model: childView.model
+    var filtersModel = childView.model.attributes;
+    // Re-render content view if filters has been selected
+    this.showChildView('homeContentRegion', new app.views.HomeContentView({
+      model: new app.models.HomeContentModel({ filters: filtersModel })
     }));
   }
 

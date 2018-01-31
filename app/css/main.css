@@ -326,30 +326,31 @@ nav.navigation .user .logout:hover {
   margin: 0; }
 
 .section.home .content-filter {
-  display: none;
+  padding: 1rem 0;
   overflow: hidden; }
 
 .section.home .content-filter .btn-default {
-  line-height: 14px;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem; }
+  line-height: 1rem;
+  font-size: 1.3rem;
+  height: 2.9rem; }
 
 .section.home .content-filter .btn-default span {
-  font-size: 1rem;
+  font-size: 1.2rem;
   position: relative;
   top: 0;
   padding-left: 0; }
 
 .section.home .content-filter .mobile-filter-btn {
   overflow: hidden;
-  float: left;
+  float: right;
   background: #fcfcf4; }
 
-.section.home .content-filter .mobile-filter-btn .btn {
-  margin: 0.5rem; }
+.section.home .content-filter .settings-btn {
+  margin-left: 1rem; }
 
-.section.home .content-filter .search .input-group {
-  padding: 0.5rem; }
+.section.home .content-filter .search .search-input {
+  font-size: 1rem;
+  height: 2.9rem; }
 
 .section.home .content-filter .btn-toolbar {
   padding: 0.5rem; }
@@ -372,7 +373,7 @@ nav.navigation .user .logout:hover {
   .section.home {
     padding: 0; }
   .section.home .content-filter {
-    padding: 1.3rem 0; }
+    padding: 1.1rem 0; }
   .section.home .content-filter .search .input-group, .section.home .content-filter .btn-toolbar {
     padding: 0; } }
 
