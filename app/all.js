@@ -581,18 +581,11 @@ app.models.HeaderModel = Backbone.Model.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.models.HomeContentModel = Backbone.Model.extend({
 
-  defaults: {
-    loading: true
-  },
-
-  initialize: function initialize() {
-    console.log('++ HomeContentModel');
-    console.log(this.attributes);
-  }
+  initialize: function initialize() {}
 
 });
 'use strict';
@@ -1703,6 +1696,7 @@ app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
       this.collection = new app.collections.AdsHomeCollection();
     }
     this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    // Reset collection to show spinner when filtering
     this.collection.reset();
     this.emptyView = app.views.SpinnerView;
 

@@ -13,6 +13,7 @@ app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
       this.collection = new app.collections.AdsHomeCollection();
     }
     this.childViewOptions = {isLoggedIn: brd.controllers.isLoggedIn()};
+    // Reset collection to show spinner when filtering
     this.collection.reset();
     this.emptyView = app.views.SpinnerView;
 

@@ -19,7 +19,6 @@ app.views.HomeContentView = Mn.View.extend({
     }
   },
 
-
   reRenderCollection: function() {
     this.showChildView('adsList', new app.views.AdsHomeCollectionView({
       filters: this.model.get('filters')

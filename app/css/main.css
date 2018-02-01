@@ -326,6 +326,7 @@ nav.navigation .user .logout:hover {
   margin: 0; }
 
 .section.home .content-filter {
+  display: none;
   padding: 1rem 0;
   overflow: hidden; }
 
