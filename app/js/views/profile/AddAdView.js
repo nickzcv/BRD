@@ -298,46 +298,37 @@ app.views.AddAdView = Mn.View.extend({
 
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
-      reader.onload = function(e, test) {
+      reader.onload = function(event) {
         // Check size of the uploaded image
         let image = new Image();
-        image.src = e.target.result;
+        image.src = event.target.result;
         image.onload = function() {
-          // Prevent uploading big images
-          if(this.width <= 1100 && this.height <= 1100) {
-            $('#preview').css('background', 'url('+e.target.result+')').css('background-size', 'cover');
-            $('#preview .ion-image').hide();
-            $('.image-error-message').hide();
-            // Prepare formData object
-            let input = document.getElementById('photo');
-            let formData = new FormData();
-            formData.append('newfilename', brd.controllers.imageName);
-            formData.append('photo', input.files[0]);
-            // Upload image
-            $.ajax({
-              url: 'api/upload/ad',
-              method: 'POST',
-              data: formData,
-              processData: false,
-              contentType: false
-            }).done(function(response) {
-              if (!response.imageUploaded) {
-                $('.image-error-message').text('Ошибка загрузки изображения.');
-                $('.image-error-message').removeClass('hidden');
-                $('.image-error-message').show();
-              }
-            }).fail(function() {
+          $('#preview').css('background', 'url('+event.target.result+')').css('background-size', 'cover');
+          $('#preview .ion-image').hide();
+          $('.image-error-message').hide();
+          // Prepare formData object
+          let input = document.getElementById('photo');
+          let formData = new FormData();
+          formData.append('newfilename', brd.controllers.imageName);
+          formData.append('photo', input.files[0]);
+          // Upload image
+          $.ajax({
+            url: 'api/upload/ad',
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false
+          }).done(function(response) {
+            if (!response.imageUploaded) {
               $('.image-error-message').text('Ошибка загрузки изображения.');
               $('.image-error-message').removeClass('hidden');
               $('.image-error-message').show();
-            });
-          } else {
-            $('.image-error-message').text('Максимальный размер изображения: 1100 X 1100 пикс.');
+            }
+          }).fail(function() {
+            $('.image-error-message').text('Ошибка загрузки изображения.');
             $('.image-error-message').removeClass('hidden');
             $('.image-error-message').show();
-
-
-          }
+          });
         };
       };
 
