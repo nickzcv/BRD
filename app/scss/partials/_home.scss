@@ -14,17 +14,18 @@
     }
 
     .content-filter {
-      display: none; // ------------
+      display: none; // TODO: remove for search
+      padding: 1rem 0;
       overflow: hidden;
 
       // Buttons
       .btn-default {
-        line-height: 14px;
-        font-size: 1rem;
-        padding: 0.5rem 1.5rem;
+        line-height: 1rem;
+        font-size: 1.3rem;
+        height: 2.9rem;
 
         span {
-          font-size: 1rem;
+          font-size: 1.2rem;
           position: relative;
           top: 0;
           padding-left: 0;
@@ -34,15 +35,17 @@
 
       .mobile-filter-btn {
         overflow: hidden;
-        float: left;
+        float: right;
         background: $gray-light;
 
-        .btn{
-          margin: 0.5rem;
-        }
+
       }
-      .search .input-group{
-        padding: 0.5rem;
+      .settings-btn {
+        margin-left: 1rem;
+      }
+      .search .search-input {
+        font-size: 1rem;
+        height: 2.9rem;
       }
       .btn-toolbar {
         padding: 0.5rem;
@@ -83,7 +86,7 @@
       padding: 0;
 
       .content-filter {
-        padding: 1.3rem 0;
+        padding: 1.1rem 0;
 
         .search .input-group, .btn-toolbar{
           padding: 0;
