@@ -15,9 +15,13 @@ app.views.RegistrationView = app.views.HeaderView.extend({
   },
 
   events: {
-    'hide.bs.modal' : function () {
+    'hide.bs.modal' : function() {
       this.destroy();
-    }
+    },
+    'click @ui.checkmark' : function() {
+      this.ui.registrationModal.modal('hide');
+      this.destroy();
+    },
   },
 
   onRender: function() {

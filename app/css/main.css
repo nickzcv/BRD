@@ -723,6 +723,13 @@ nav.navigation .user .logout:hover {
   padding: 0.9rem 0.5rem 0.5rem;
   min-height: 4rem; }
 
+.ads .ad-item .content .filter-icon {
+  position: absolute;
+  width: 2rem;
+  right: 2.7rem;
+  top: 1.5rem;
+  opacity: 0.1; }
+
 .ads .ad-item .content .edit-ad {
   padding: 0 .5rem 0 1rem;
   color: #559797; }
@@ -821,6 +828,9 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section1 {
   overflow: hidden; }
+
+.ads .ad-item.expanded .filter-icon {
+  opacity: .3; }
 
 .ads .ad-item.expanded .section2 {
   overflow: hidden;
@@ -1046,6 +1056,11 @@ nav.navigation .user .logout:hover {
   .ads .ad-item .content .ad-title {
     padding: 0.5rem 0.5rem 0;
     min-height: 0; }
+  .ads .ad-item .content .filter-icon {
+    position: absolute;
+    width: 2.5rem;
+    right: 3rem;
+    top: .5rem; }
   .ads .ad-item .i-bottom {
     position: absolute;
     left: 7.5rem;
@@ -1473,4 +1488,5 @@ nav.navigation .user .logout:hover {
   display: none;
   color: #008023;
   font-size: 5rem;
-  text-align: center; }
+  text-align: center;
+  cursor: pointer; }

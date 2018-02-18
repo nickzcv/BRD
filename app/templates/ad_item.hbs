@@ -16,6 +16,7 @@
     <div class="content">
       <div class="ad-title">
         {{title}}
+        <img class="filter-icon" src="img/filter-icons/{{category.id}}.svg"></img>
         {{#if isLoggedIn}}
           {{#compare currentUserId '===' userId}}
             <a class="edit-ad"><span class="ion-edit"></span></a>
