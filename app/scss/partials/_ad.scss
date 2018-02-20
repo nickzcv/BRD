@@ -21,10 +21,7 @@
     margin: 1rem 0;
 
     .photo-filter-icon {
-      position: absolute;
-      width: 4.5rem;
-      left: 1.2rem;
-      top: 1.4rem;
+      width: 1.9rem;
       opacity: .3;
     }
     .photo {
@@ -151,6 +148,12 @@
     .section1 {
       overflow: hidden;
     }
+    .tab-button {
+      padding: .5rem;
+      &:hover {
+        color: #000;
+      }
+    }
 
     &.expanded {
       max-height: none;
@@ -169,14 +172,13 @@
         overflow: hidden;
         position: relative;
         height: auto;
+        min-height: 200px;
         .info-filter-icon {
           opacity: .4;
           padding: .5rem;
-          width: 4.5rem;
+          width: 3.5rem;
           cursor: pointer;
-          position: absolute;
-          left: 1.2rem;
-          bottom: .5rem;
+
           &:hover {
             opacity: .7;
           }
@@ -185,31 +187,20 @@
           position: absolute;
           right: 0;
           top: 1rem;
-          .send-message {
-            padding: 0;
-            margin-bottom: 1rem;
-            border-color: #fff;
-            span {
-              font-size: 2rem;
-              padding: 0 .5rem;
-            }
-            &:hover {
-              //border-color: $blue-dark;
-              span:before {
-                content: '\f423';
-              }
-            }
-          }
-          button {
-            padding: 0.5rem 1rem;
-            border-radius: 50%;
-          }
-          .star {
-            font-size: 1.7rem;
+          .send-form {
+            font-size: 2rem;
             padding: .5rem;
             cursor: pointer;
             color: $gray-dark;
-
+            &:hover {
+              color: #000;
+            }
+          }
+          .star {
+            font-size: 2rem;
+            padding: .5rem;
+            cursor: pointer;
+            color: $gray-dark;
             &:hover {
               color: gold;
             }
@@ -221,7 +212,20 @@
           margin: 0 1rem 0 .5rem;
           padding-top: 1rem;
           width: 80%;
-
+          .left-border {
+            border-left: 1px solid $gray;
+            &:before {
+              content: '';
+              position: absolute;
+              border-top: 10px solid transparent;
+              border-bottom: 10px solid transparent;
+              border-right: 10px solid #f0eedf;
+              left: -10px;
+              top: 30px;
+              border-left: none;
+              right: auto;
+            }
+          }
           .category-title {
             color: $gray-dark2;
             font-size: 1.1rem;
@@ -402,6 +406,13 @@
     .ad-item {
       max-height: 7rem;
 
+      .photo-filter-icon {
+        position: absolute;
+        width: 4.5rem;
+        left: 1.2rem;
+        top: 1.4rem;
+        opacity: .3;
+      }
       .photo {
         position: relative;
         float: left;
@@ -509,24 +520,6 @@
             width: 7rem;
             text-align: center;
             padding-top: 1rem;
-            margin-bottom: 4rem;
-            .send-message {
-              padding: 0.5rem 1rem;
-              margin-bottom: 1rem;
-              border-color: #ccc;
-
-              span {
-                font-size: 1.5rem;
-                padding: 0;
-              }
-
-              &:hover {
-                border-color: $blue-dark;
-                span:before {
-                  content: '\f423';
-                }
-              }
-            }
           }
           .category {
             position: relative;
@@ -642,7 +635,7 @@
                 border-bottom: 10px solid transparent;
                 border-right: 10px solid #f0eedf;
                 left: -10px;
-
+                top: 69px;
                 border-left: none;
                 right: auto;
               }

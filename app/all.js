@@ -1469,11 +1469,11 @@ app.views.adView = Mn.View.extend({
   ui: {
     arrow: '.arrow',
     item: '.ad-item',
-    sendMessage: '.send-message',
+    sendMessage: '.send-form',
     categoryBlock: '.category',
     message: '.message',
     close: '.close',
-    table: '.filters-table',
+    table: '.left-border',
     tab: '.tab',
     star: '.star',
     adDescription: '.ad-description',

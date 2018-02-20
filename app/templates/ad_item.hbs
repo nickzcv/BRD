@@ -28,94 +28,98 @@
   </div>
   <div class="section2">
     <div class="ad-info">
-
+      <div class="tab-button active back">
+        <img class="info-filter-icon back" src="img/filter-icons/{{category.id}}-no-border.svg"></img>
+      </div>
       {{#if isLoggedIn}}
-        <button type="button" class="btn btn-default send-message">
-          <span class="ion-ios-email-outline"></span>
-        </button>
-        <div class="round-button">
+        <div class="tab-button">
+          <span class="ion-ios-email-outline send-form"></span>
+        </div>
+        <div class="tab-button">
           <span class="ion-ios-star-outline star"></span>
         </div>
       {{/if}}
-      
     </div>
-    <img class="info-filter-icon back" src="img/filter-icons/{{category.id}}.svg"></img>
+
 
     <div class="category">
     {{#if category}}
-      <table class="filters-table">
-        <tr class="table-header">
-          <th class="category-title">{{category.title}}</th>
-        </tr>
-        {{#each category.filters}}
-          {{#compare level '===' 'parent'}}
-            <tr class="filter-row">
-              {{#if title}}
-                <td>
-                  <span class="filter-title">{{title}}</span>
-                </td>
-              {{/if}}
-              <td class="parent-col"><span class="dash">-</span>
-                {{#each items}}
-                  {{#if selected}}
-                    <div class="parent">
-                      <span class="parent-title">{{title}}</span>
-                      {{#each items}}
-                        {{#if selected}}
-                          <i>{{value}}</i>
-                        {{/if}}
-                      {{/each}}
-                    </div>
-                  {{/if}}
-                {{/each}}
-              </td>
-            </tr>
-          {{else}}
-            <tr class="filter-row">
-              {{#if title}}
-                <td><span class="filter-title">{{title}}</span></td>
-              {{/if}}
-              <td class="first-level">
-                {{#each items}}
-                  {{#compare type '===' 'input'}}
+      <div class="left-border">
+        <table class="filters-table">
+          <tr class="table-header">
+            <th class="category-title">{{category.title}}</th>
+          </tr>
+          {{#each category.filters}}
+            {{#compare level '===' 'parent'}}
+              <tr class="filter-row">
+                {{#if title}}
+                  <td>
+                    <span class="filter-title">{{title}}</span>
+                  </td>
+                {{/if}}
+                <td class="parent-col"><span class="dash">-</span>
+                  {{#each items}}
                     {{#if selected}}
-                      <div class="overlay">
-                        {{#if label}}
-                          <i>{{label}}</i>:
-                        {{/if}}
-                        {{#if from}}от {{from}}{{/if}}
-                        {{#if to}}до {{to}}{{/if}}
+                      <div class="parent">
+                        <span class="parent-title">{{title}}</span>
+                        {{#each items}}
+                          {{#if selected}}
+                            <i>{{value}}</i>
+                          {{/if}}
+                        {{/each}}
                       </div>
                     {{/if}}
-                  {{else compare type '===' 'input-sizes'}}
-                    {{#each values}}
-                      {{#if t}}
-                        {{#if s}}
-                          {{#if d}}
-                            <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
+                  {{/each}}
+                </td>
+              </tr>
+            {{else}}
+              <tr class="filter-row">
+                {{#if title}}
+                  <td><span class="filter-title">{{title}}</span></td>
+                {{/if}}
+                <td class="first-level">
+                  {{#each items}}
+                    {{#compare type '===' 'input'}}
+                      {{#if selected}}
+                        <div class="overlay">
+                          {{#if label}}
+                            <i>{{label}}</i>:
+                          {{/if}}
+                          {{#if from}}от {{from}}{{/if}}
+                          {{#if to}}до {{to}}{{/if}}
+                        </div>
+                      {{/if}}
+                    {{else compare type '===' 'input-sizes'}}
+                      {{#each values}}
+                        {{#if t}}
+                          {{#if s}}
+                            {{#if d}}
+                              <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
+                            {{/if}}
                           {{/if}}
                         {{/if}}
-                      {{/if}}
 
-                    {{/each}}
-                  {{else}}
-                    {{#if selected}}
-                      <span>{{value}}</span>
-                    {{/if}}
-                  {{/compare}}
-                {{/each}}
-              </td>
-            </tr>
-          {{/compare}}
-        {{/each}}
-        <tr>
-          <td>
-            {{#if price}}
-              <div class="price"><i>Цена:</i> {{price}}</div>
-            {{/if}}
-          </td>
-        </tr>
-      </table>
+                      {{/each}}
+                    {{else}}
+                      {{#if selected}}
+                        <span>{{value}}</span>
+                      {{/if}}
+                    {{/compare}}
+                  {{/each}}
+                </td>
+              </tr>
+            {{/compare}}
+          {{/each}}
+          <tr>
+            <td>
+              {{#if price}}
+                <div class="price"><i>Цена:</i> {{price}}</div>
+              {{/if}}
+            </td>
+          </tr>
+        </table>
+      </div>
+
     {{/if}}
       <div class="message hidden"></div>
       <div class="phones">
