@@ -28,11 +28,17 @@
   </div>
   <div class="section2">
     <div class="ad-info">
+
       {{#if isLoggedIn}}
         <button type="button" class="btn btn-default send-message">
           <span class="ion-ios-email-outline"></span>
         </button>
+        <div class="round-button starring">
+          <span class="ion-ios-star-outline star"></span>
+        </div>
       {{/if}}
+      <img class="info-filter-icon back" src="img/filter-icons/{{category.id}}.svg"></img>
+      
     </div>
 
     <div class="category">
@@ -135,8 +141,5 @@
     <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{city.title}}, {{country.title}}</span></span>
   </div>
   <div class="icon ion-ios-browsers-outline tab"></div>
-  {{#if isLoggedIn}}
-    <div class="icon ion-ios-star-outline star"></div>
-  {{/if}}
   <div class="icon ion-chevron-down arrow"></div>
 </div>

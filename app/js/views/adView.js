@@ -17,6 +17,7 @@ app.views.adView = Mn.View.extend({
     tab: '.tab',
     star: '.star',
     adDescription: '.ad-description',
+    backBtn: '.back',
   },
 
   events: {
@@ -25,6 +26,11 @@ app.views.adView = Mn.View.extend({
     'click @ui.star': 'addStar',
     'click @ui.sendMessage': 'showMessageForm',
     'click @ui.close': function() {
+      this.getRegion('message').empty();
+      this.ui.message.addClass('hidden');
+      this.ui.table.removeClass('hidden');
+    },
+    'click @ui.backBtn': function() {
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
       this.ui.table.removeClass('hidden');
