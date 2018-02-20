@@ -46,7 +46,7 @@
         position: absolute;
         padding: 1px 4px;
         font-size: 0.7rem;
-        box-shadow: 1px 1px 5px 1px rgba(255, 255, 255, 0.5);
+        box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5);
 
         &.buy {
           background: $buy;
@@ -169,33 +169,30 @@
         overflow: hidden;
         position: relative;
         height: auto;
-
-
+        .info-filter-icon {
+          opacity: .4;
+          padding: .5rem;
+          width: 4.5rem;
+          cursor: pointer;
+          position: absolute;
+          left: 1.2rem;
+          bottom: .5rem;
+          &:hover {
+            opacity: .7;
+          }
+        }
         .ad-info {
           position: absolute;
           right: 0;
           top: 1rem;
-
-          .info-filter-icon {
-            opacity: .4;
-            padding: .5rem;
-            width: 4.5rem;
-            cursor: pointer;
-            &:hover {
-              opacity: .7;
-            }
-          }
-
           .send-message {
             padding: 0;
             margin-bottom: 1rem;
             border-color: #fff;
-
             span {
               font-size: 2rem;
               padding: 0 .5rem;
             }
-
             &:hover {
               //border-color: $blue-dark;
               span:before {
@@ -512,6 +509,7 @@
             width: 7rem;
             text-align: center;
             padding-top: 1rem;
+            margin-bottom: 4rem;
             .send-message {
               padding: 0.5rem 1rem;
               margin-bottom: 1rem;

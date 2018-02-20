@@ -47,7 +47,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 },"10":function(depth0,helpers,partials,data) {
     return "            <a class=\"edit-ad\"><span class=\"ion-edit\"></span></a>\r\n            <a class=\"delete-ad\"><span class=\"ion-trash-b\"></span></a>\r\n";
 },"12":function(depth0,helpers,partials,data) {
-    return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n        <div class=\"round-button starring\">\r\n          <span class=\"ion-ios-star-outline star\"></span>\r\n        </div>\r\n";
+    return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n        <div class=\"round-button\">\r\n          <span class=\"ion-ios-star-outline star\"></span>\r\n        </div>\r\n";
 },"14":function(depth0,helpers,partials,data) {
     var stack1;
 
@@ -243,9 +243,9 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
     + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(12, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "      <img class=\"info-filter-icon back\" src=\"img/filter-icons/"
+    + "      \r\n    </div>\r\n    <img class=\"info-filter-icon back\" src=\"img/filter-icons/"
     + alias3(alias4(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
-    + ".svg\"></img>\r\n      \r\n    </div>\r\n\r\n    <div class=\"category\">\r\n"
+    + ".svg\"></img>\r\n\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":this.program(14, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      <div class=\"message hidden\"></div>\r\n      <div class=\"phones\">\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":this.program(48, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")

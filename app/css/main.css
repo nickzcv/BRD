@@ -712,7 +712,7 @@ nav.navigation .user .logout:hover {
   position: absolute;
   padding: 1px 4px;
   font-size: 0.7rem;
-  box-shadow: 1px 1px 5px 1px rgba(255, 255, 255, 0.5); }
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5); }
 
 .ads .ad-item .photo .type.buy {
   background: darkgreen;
@@ -829,19 +829,22 @@ nav.navigation .user .logout:hover {
   position: relative;
   height: auto; }
 
+.ads .ad-item.expanded .section2 .info-filter-icon {
+  opacity: .4;
+  padding: .5rem;
+  width: 4.5rem;
+  cursor: pointer;
+  position: absolute;
+  left: 1.2rem;
+  bottom: .5rem; }
+
+.ads .ad-item.expanded .section2 .info-filter-icon:hover {
+  opacity: .7; }
+
 .ads .ad-item.expanded .section2 .ad-info {
   position: absolute;
   right: 0;
   top: 1rem; }
-
-.ads .ad-item.expanded .section2 .ad-info .info-filter-icon {
-  opacity: .4;
-  padding: .5rem;
-  width: 4.5rem;
-  cursor: pointer; }
-
-.ads .ad-item.expanded .section2 .ad-info .info-filter-icon:hover {
-  opacity: .7; }
 
 .ads .ad-item.expanded .section2 .ad-info .send-message {
   padding: 0;
@@ -1120,7 +1123,8 @@ nav.navigation .user .logout:hover {
     float: left;
     width: 7rem;
     text-align: center;
-    padding-top: 1rem; }
+    padding-top: 1rem;
+    margin-bottom: 4rem; }
   .ads .ad-item.expanded .section2 .ad-info .send-message {
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
