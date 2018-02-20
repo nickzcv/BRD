@@ -685,6 +685,13 @@ nav.navigation .user .logout:hover {
   background: #fff;
   margin: 1rem 0; }
 
+.ads .ad-item .photo-filter-icon {
+  position: absolute;
+  width: 4.5rem;
+  left: 1.2rem;
+  top: 1.4rem;
+  opacity: .3; }
+
 .ads .ad-item .photo {
   position: absolute;
   right: 0;
@@ -723,13 +730,6 @@ nav.navigation .user .logout:hover {
   font-size: 1.1rem;
   padding: 0.9rem 0.5rem 0.5rem;
   min-height: 4rem; }
-
-.ads .ad-item .content .filter-icon {
-  position: absolute;
-  width: 2rem;
-  right: 2.7rem;
-  top: 1.5rem;
-  opacity: 0.1; }
 
 .ads .ad-item .content .edit-ad {
   padding: 0 .5rem 0 1rem;
@@ -830,12 +830,6 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section1 {
   overflow: hidden; }
-
-.ads .ad-item.expanded .filter-icon {
-  opacity: .3;
-  width: 1.5rem;
-  top: -3px;
-  position: relative; }
 
 .ads .ad-item.expanded .section2 {
   overflow: hidden;
@@ -1061,11 +1055,6 @@ nav.navigation .user .logout:hover {
   .ads .ad-item .content .ad-title {
     padding: 0.5rem 0.5rem 0;
     min-height: 0; }
-  .ads .ad-item .content .filter-icon {
-    position: absolute;
-    width: 2.5rem;
-    right: 3rem;
-    top: .5rem; }
   .ads .ad-item .i-bottom {
     position: absolute;
     left: 7.5rem;

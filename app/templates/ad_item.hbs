@@ -10,13 +10,12 @@
       </div>
       {{#if photo}}
       {{else}}
-        <span class="ion-image">{{photo}}</span>
+        <img class="photo-filter-icon" src="img/filter-icons/{{category.id}}.svg"></img>
       {{/if}}
     </div>
     <div class="content">
       <div class="ad-title">
         {{title}}
-        <img class="filter-icon hidden-xs hidden-sm" src="img/filter-icons/{{category.id}}.svg"></img>
         {{#if isLoggedIn}}
           {{#compare currentUserId '===' userId}}
             <a class="edit-ad"><span class="ion-edit"></span></a>
@@ -40,7 +39,7 @@
     {{#if category}}
       <table class="filters-table">
         <tr class="table-header">
-          <th class="category-title">{{category.title}} <img class="filter-icon" src="img/filter-icons/{{category.id}}.svg"></img></th>
+          <th class="category-title">{{category.title}}</th>
         </tr>
         {{#each category.filters}}
           {{#compare level '===' 'parent'}}

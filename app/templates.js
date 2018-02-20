@@ -35,11 +35,11 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 },"5":function(depth0,helpers,partials,data) {
     return "";
 },"7":function(depth0,helpers,partials,data) {
-    var helper;
+    var stack1;
 
-  return "        <span class=\"ion-image\">"
-    + this.escapeExpression(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"photo","hash":{},"data":data}) : helper)))
-    + "</span>\r\n";
+  return "        <img class=\"photo-filter-icon\" src=\"img/filter-icons/"
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
+    + ".svg\"></img>\r\n";
 },"9":function(depth0,helpers,partials,data) {
     var stack1;
 
@@ -49,13 +49,11 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
 },"12":function(depth0,helpers,partials,data) {
     return "        <button type=\"button\" class=\"btn btn-default send-message\">\r\n          <span class=\"ion-ios-email-outline\"></span>\r\n        </button>\r\n";
 },"14":function(depth0,helpers,partials,data) {
-    var stack1, alias1=this.lambda, alias2=this.escapeExpression;
+    var stack1;
 
   return "      <table class=\"filters-table\">\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
-    + " <img class=\"filter-icon\" src=\"img/filter-icons/"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
-    + ".svg\"></img></th>\r\n        </tr>\r\n"
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
+    + "</th>\r\n        </tr>\r\n"
     + ((stack1 = helpers.each.call(depth0,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":this.program(15, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "        <tr>\r\n          <td>\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":this.program(46, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
@@ -241,9 +239,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(depth0,h
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.photo : depth0),{"name":"if","hash":{},"fn":this.program(5, data, 0),"inverse":this.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "    </div>\r\n    <div class=\"content\">\r\n      <div class=\"ad-title\">\r\n        "
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\r\n        <img class=\"filter-icon hidden-xs hidden-sm\" src=\"img/filter-icons/"
-    + alias3(alias4(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
-    + ".svg\"></img>\r\n"
+    + "\r\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":this.program(9, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\r\n      <div class=\"ad-description hidden-xs\">"
     + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
