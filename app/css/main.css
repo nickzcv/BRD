@@ -686,15 +686,11 @@ nav.navigation .user .logout:hover {
   margin: 1rem 0; }
 
 .ads .ad-item .photo-filter-icon {
-  width: 1.9rem;
-  opacity: .3; }
+  display: none; }
 
 .ads .ad-item .photo {
-  position: absolute;
-  right: 0;
-  float: none;
-  width: 2.1rem;
-  height: 2rem;
+  width: 0;
+  height: 0;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #f0eedf; }
@@ -712,11 +708,9 @@ nav.navigation .user .logout:hover {
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.5); }
 
 .ads .ad-item .photo .type.buy {
-  background: darkgreen;
-  left: -2.6rem; }
+  background: darkgreen; }
 
 .ads .ad-item .photo .type.sell {
-  left: -3rem;
   background: darkred; }
 
 .ads .ad-item .content {
@@ -787,7 +781,7 @@ nav.navigation .user .logout:hover {
   background: #FFFFFF; }
 
 .ads .ad-item .icon.tab {
-  top: 2rem;
+  top: 0;
   color: #b6b6b6; }
 
 .ads .ad-item .icon.tab:hover {
@@ -811,7 +805,8 @@ nav.navigation .user .logout:hover {
   overflow: hidden; }
 
 .ads .ad-item .tab-button {
-  padding: .5rem; }
+  padding: .5rem;
+  text-align: center; }
 
 .ads .ad-item .tab-button:hover {
   color: #000; }
@@ -1057,6 +1052,7 @@ nav.navigation .user .logout:hover {
   .ads .ad-item {
     max-height: 7rem; }
   .ads .ad-item .photo-filter-icon {
+    display: block;
     position: absolute;
     width: 4.5rem;
     left: 1.2rem;

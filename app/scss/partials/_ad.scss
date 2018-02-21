@@ -21,15 +21,12 @@
     margin: 1rem 0;
 
     .photo-filter-icon {
-      width: 1.9rem;
-      opacity: .3;
+      display: none;
     }
     .photo {
-      position: absolute;
-      right: 0;
-      float: none;
-      width: 2.1rem;
-      height: 2rem;
+
+      width: 0;
+      height: 0;
       background-size: cover;
       background-repeat: no-repeat;
       background-color: #f0eedf;
@@ -47,10 +44,10 @@
 
         &.buy {
           background: $buy;
-          left: -2.6rem;
+
         }
         &.sell {
-          left: -3rem;
+
           background: $sell;
         }
       }
@@ -124,7 +121,7 @@
       cursor: pointer;
       background: $white;
       &.tab {
-        top: 2rem;
+        top: 0;
         color: $gray-dark;
         &:hover {
           color: $gray-dark2;
@@ -150,6 +147,7 @@
     }
     .tab-button {
       padding: .5rem;
+      text-align: center;
       &:hover {
         color: #000;
       }
@@ -410,6 +408,7 @@
       max-height: 7rem;
 
       .photo-filter-icon {
+        display: block;
         position: absolute;
         width: 4.5rem;
         left: 1.2rem;
