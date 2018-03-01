@@ -57,6 +57,11 @@ app.router = Marionette.AppRouter.extend({
               brd.regions.bodyRegion.show(new app.views.SettingsView());
               brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
               break;
+            // Calculator
+            case 'calc':
+              brd.regions.bodyRegion.show(new app.views.CalcView());
+              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
+              break;
             // Ads
             case 'ads':
               if (page3 && page3 === 'new') {

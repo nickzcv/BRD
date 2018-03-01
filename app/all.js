@@ -220,6 +220,11 @@ app.router = Marionette.AppRouter.extend({
                 brd.regions.bodyRegion.show(new app.views.SettingsView());
                 brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
                 break;
+              // Calculator
+              case 'calc':
+                brd.regions.bodyRegion.show(new app.views.CalcView());
+                brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
+                break;
               // Ads
               case 'ads':
                 if (page3 && page3 === 'new') {
@@ -2690,6 +2695,26 @@ app.views.AdsView = Mn.View.extend({
     this.showChildView('adsList', new app.views.AdsCollectionView({
       model: new app.models.AdsListModel()
     }));
+  }
+
+});
+'use strict';
+
+app.views.CalcView = Mn.View.extend({
+
+  template: tpl.templates.calc,
+
+  regions: {
+    leftNavRegion: '.left-navigation'
+  },
+
+  ui: {},
+
+  events: {},
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
   }
 
 });
