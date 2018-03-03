@@ -22,6 +22,7 @@
       font-size: 1rem;
       display: inline-block;
       width: 20rem;
+      margin-bottom: .5rem;
       .result-v,
       .result-p {
         padding: 0.3rem .5rem;
@@ -58,6 +59,14 @@
         color: red;
       }
     }
+    .total {
+      border-top: 1px solid #999;
+      background: #f3f3f3;
+      font-size: 1.1rem;
+    }
+  }
+  .actions {
+
   }
 }
 

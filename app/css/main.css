@@ -1489,7 +1489,8 @@ nav.navigation .user .logout:hover {
 .calc form .result {
   font-size: 1rem;
   display: inline-block;
-  width: 20rem; }
+  width: 20rem;
+  margin-bottom: .5rem; }
 
 .calc form .result .result-v,
 .calc form .result .result-p {
@@ -1521,6 +1522,11 @@ nav.navigation .user .logout:hover {
 
 .calc .table .remove-row:hover {
   color: red; }
+
+.calc .table .total {
+  border-top: 1px solid #999;
+  background: #f3f3f3;
+  font-size: 1.1rem; }
 
 .tri-down {
   /* Styling block element, not required */
