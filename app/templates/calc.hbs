@@ -1,53 +1,55 @@
 <div class="container calc">
   <h2><span class="icon ion-ios-calculator"></span> Калькулятор</h2>
 
-  <div>
-
-  </div>
-
-  <form>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="form-group">
-          <label class="sr-only" for="tolshina">Толщина</label>
-          <div class="input-group size-field">
-            <div class="input-group-addon">Т</div>
-            <input type="number" class="form-control" id="tolshina" placeholder="Толщина">
-            <div class="input-group-addon">мм</div>
+  <div class="tri-down">
+    <form>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group">
+            <label class="sr-only" for="tolshina">Толщина</label>
+            <div class="input-group size-field">
+              <div class="input-group-addon">Т</div>
+              <input type="number" class="form-control" id="tolshina" placeholder="Толщина">
+              <div class="input-group-addon">мм</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="shirina">Ширина</label>
+            <div class="input-group size-field">
+              <div class="input-group-addon">Ш</div>
+              <input type="number" class="form-control" id="shirina" placeholder="Ширина">
+              <div class="input-group-addon">мм</div>
+            </div>
+          </div>
+          <div class="form-group size-field">
+            <label class="sr-only" for="dlina">Длина</label>
+            <div class="input-group">
+              <div class="input-group-addon">Д</div>
+              <input type="number" class="form-control" id="dlina" placeholder="Длина">
+              <div class="input-group-addon">мм</div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="sr-only" for="shirina">Ширина</label>
-          <div class="input-group size-field">
-            <div class="input-group-addon">Ш</div>
-            <input type="number" class="form-control" id="shirina" placeholder="Ширина">
-            <div class="input-group-addon">мм</div>
-          </div>
+        <div class="col-xs-12 col-sm-6 col-md-8">
+          <div class="result-one"><span>V</span> = <span id="volume">000</span> м<sup><small>3</small></sup></div>
+          <div class="result-one"><span>S</span> = <span id="square">000</span> м<sup><small>2</small></sup></div>
         </div>
-        <div class="form-group size-field">
-          <label class="sr-only" for="dlina">Длина</label>
+      </div>
+      <div class="count-block">
+        <div class="form-group count-field">
+          <label class="sr-only" for="dlina">Количество</label>
           <div class="input-group">
-            <div class="input-group-addon">Д</div>
-            <input type="number" class="form-control" id="dlina" placeholder="Длина">
-            <div class="input-group-addon">мм</div>
+            <input type="number" class="form-control" id="dlina" placeholder="Количество">
+            <div class="input-group-addon">шт</div>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-6 .col-md-4</div>
-    </div>
-    <div>
-      <div class="form-group count-field">
-        <label class="sr-only" for="dlina">Количество</label>
-        <div class="input-group">
-          <input type="number" class="form-control" id="dlina" placeholder="Количество">
-          <div class="input-group-addon">шт</div>
-        </div>
-      </div>
-    </div>
-    <div class="add-to-table">
-      <span class="ion-code-download"></span> <a class="to-table">в таблицу</a>
-    </div>
-  </form>
+      <div class="result">Общий объем = <span class="result-v">111</span> м<sup><small>3</small></sup></div>
+      <div class="result">Погонная длина = <span class="result-p">1111</span> м.п.</div>
+    </form>
+  </div>
+  <!-- Add to table button-->
+  <button type="button" class="btn add-to-table"><span class="ion-clipboard"></span> Вставить в таблицу</button>
 
   <table class="table table-hover">
     <thead>

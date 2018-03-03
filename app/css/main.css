@@ -1476,8 +1476,35 @@ nav.navigation .user .logout:hover {
 .calc form .count-field {
   max-width: 10rem; }
 
+.calc form .result-one {
+  font-size: 1.2rem;
+  padding-bottom: 1rem; }
+
+.calc form .result-one span {
+  font-size: 1.1rem; }
+
+.calc form .count-block {
+  padding: 1rem 0; }
+
+.calc form .result {
+  font-size: 1rem;
+  display: inline-block;
+  width: 20rem; }
+
+.calc form .result .result-v,
+.calc form .result .result-p {
+  padding: 0.3rem .5rem;
+  background-color: #fcfcf4;
+  border-radius: 3px;
+  font-size: 1.2rem; }
+
 .calc .add-to-table {
-  font-size: 1.3rem; }
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  background-color: #fff7b1; }
+
+.calc .add-to-table:hover {
+  border: 1px solid #f7d257; }
 
 .calc .table th {
   font-size: .8rem; }
@@ -1494,6 +1521,39 @@ nav.navigation .user .logout:hover {
 
 .calc .table .remove-row:hover {
   color: red; }
+
+.tri-down {
+  /* Styling block element, not required */
+  position: relative;
+  margin-bottom: 2em;
+  padding: 1em;
+  border-bottom: 1px solid #999;
+  background: #f3f3f3; }
+
+/* Required for Down Triangle */
+.tri-down:before, .tri-down:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom: 0; }
+
+/* Stroke */
+.tri-down:before {
+  bottom: -16px;
+  left: 21px;
+  /* If 1px darken stroke slightly */
+  border-top-color: #777;
+  border-width: 16px; }
+
+/* Fill */
+.tri-down:after {
+  bottom: -15px;
+  left: 22px;
+  border-top-color: #f3f3f3;
+  border-width: 15px; }
 
 /* Modal styles
 -------------------------------------------------- */
