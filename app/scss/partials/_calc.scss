@@ -1,2 +1,35 @@
 .calc {
+  font-size: 1rem;
+
+  form {
+    .size-field {
+      max-width: 20rem;
+    }
+    .count-field {
+      max-width: 10rem;
+    }
+  }
+
+  .add-to-table {
+    font-size: 1.3rem;
+  }
+
+  .table {
+    th {
+      font-size: .8rem;
+    }
+    td {
+      vertical-align: inherit;
+      &:last-child {
+        text-align: center;
+      }
+    }
+    .remove-row {
+      font-size: 1.7rem;
+      color: darkred;
+      &:hover {
+        color: red;
+      }
+    }
+  }
 }

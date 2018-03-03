@@ -1467,6 +1467,34 @@ nav.navigation .user .logout:hover {
   .tabs .tab {
     font-size: 1rem; } }
 
+.calc {
+  font-size: 1rem; }
+
+.calc form .size-field {
+  max-width: 20rem; }
+
+.calc form .count-field {
+  max-width: 10rem; }
+
+.calc .add-to-table {
+  font-size: 1.3rem; }
+
+.calc .table th {
+  font-size: .8rem; }
+
+.calc .table td {
+  vertical-align: inherit; }
+
+.calc .table td:last-child {
+  text-align: center; }
+
+.calc .table .remove-row {
+  font-size: 1.7rem;
+  color: darkred; }
+
+.calc .table .remove-row:hover {
+  color: red; }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {

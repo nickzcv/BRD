@@ -42,6 +42,10 @@ app.router = Marionette.AppRouter.extend({
       case 'faq':
         brd.regions.bodyRegion.show(new app.views.FaqView());
         break;
+      // Calculator
+      case 'calc':
+        brd.regions.bodyRegion.show(new app.views.CalcView());
+        break;
       // Profile routing
       case 'profile': {
         // Check if user logged in
@@ -55,11 +59,6 @@ app.router = Marionette.AppRouter.extend({
             // Settings
             case 'settings':
               brd.regions.bodyRegion.show(new app.views.SettingsView());
-              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
-              break;
-            // Calculator
-            case 'calc':
-              brd.regions.bodyRegion.show(new app.views.CalcView());
               brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
               break;
             // Ads

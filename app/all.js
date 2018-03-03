@@ -204,6 +204,10 @@ app.router = Marionette.AppRouter.extend({
       case 'faq':
         brd.regions.bodyRegion.show(new app.views.FaqView());
         break;
+      // Calculator
+      case 'calc':
+        brd.regions.bodyRegion.show(new app.views.CalcView());
+        break;
       // Profile routing
       case 'profile':
         {
@@ -218,11 +222,6 @@ app.router = Marionette.AppRouter.extend({
               // Settings
               case 'settings':
                 brd.regions.bodyRegion.show(new app.views.SettingsView());
-                brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
-                break;
-              // Calculator
-              case 'calc':
-                brd.regions.bodyRegion.show(new app.views.CalcView());
                 brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
                 break;
               // Ads
@@ -425,288 +424,6 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
     } else {
       return 'api/ads';
     }
-  }
-
-});
-'use strict';
-
-app.models.AdModel = Backbone.Model.extend({
-
-  urlRoot: 'api/ads',
-
-  defaults: {
-    countriesModel: null,
-    type: null,
-    object: null,
-    category: null,
-    selectedCategoryId: null,
-    title: null,
-    country: null,
-    city: null,
-    contacts: {
-      takeFrom: 'profile',
-      phones: []
-    }
-  },
-
-  initialize: function initialize() {
-    var thisModel = this;
-
-    thisModel.on('invalid', function (model, error) {
-      //console.log(error);
-    });
-
-    // Init child Countries model
-    thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // Init child Filters model under categories
-    thisModel.set({ categoryModel: new app.models.FiltersModel() });
-    var categoryModel = thisModel.get('categoryModel');
-
-    // console.log(categoryModel);
-
-    thisModel.set({ categories: categoryModel.attributes.categories });
-
-    // get countries Model
-    var countriesModel = thisModel.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      thisModel.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      thisModel.set({ city: countriesModel.get('city') });
-    });
-  },
-
-  validate: function validate(attr) {
-    if (!attr.type || !attr.category || !attr.title || !attr.country) {
-      return 'empty one of the required fields.';
-    }
-  },
-
-  setCategoryObject: function setCategoryObject() {
-    var category = _.findWhere(this.get('categories'), { id: this.get('selectedCategoryId') });
-    this.set({ category: category });
-  }
-
-});
-'use strict';
-
-app.models.AdsHomeModel = Backbone.Model.extend({
-
-  defaults: {},
-
-  initialize: function initialize() {
-    console.log('initialize adsHomeModel');
-  }
-
-});
-"use strict";
-
-app.models.AdsListModel = Backbone.Model.extend({
-
-  defaults: {
-    isItemsExist: false
-  },
-
-  initialize: function initialize() {
-    //console.log('initialize AdsListModel');
-    //console.log(this.attributes);
-
-  }
-
-});
-"use strict";
-
-/**
- * Get a deep copy of an object, to ensure Backbone doesn't think it's identical
- * to the original object
- *
- * @param {Object} object Object to clone
- * @return {Object}
- * @function external:"Backbone.Model"#deepClone
- */
-Backbone.Model.prototype.deepClone = function (object) {
-  return JSON.parse(JSON.stringify(object));
-};
-'use strict';
-
-app.models.FiltersHomeModel = Backbone.Model.extend({
-
-  defaults: {
-    countriesModel: null,
-    type: null,
-    object: null,
-    category: null,
-    selectedCategoryId: null,
-    country: null,
-    city: null
-  },
-
-  initialize: function initialize() {
-    var _this = this;
-
-    // Init child Countries model
-    this.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // Init child Filters model under categories
-    this.set({ categoryModel: new app.models.FiltersModel() });
-
-    var categoryModel = this.get('categoryModel');
-    this.set({ categories: categoryModel.attributes.categories });
-
-    // get countries Model
-    var countriesModel = this.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      _this.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      _this.set({ city: countriesModel.get('city') });
-    });
-  }
-
-});
-"use strict";
-
-app.models.HeaderModel = Backbone.Model.extend({
-
-  defaults: {
-    user: null
-  },
-
-  initialize: function initialize() {
-    if (app.user) {
-      this.updateUser();
-    }
-  },
-
-  updateUser: function updateUser() {
-    this.set({ user: app.user.attributes });
-  }
-
-});
-"use strict";
-
-app.models.HomeContentModel = Backbone.Model.extend({
-
-  initialize: function initialize() {}
-
-});
-'use strict';
-
-app.models.LoginModel = Backbone.Model.extend({
-
-  defaults: {
-    email: null,
-    password: null
-  },
-
-  initialize: function initialize() {
-    // console.log('initialize Login Model');
-    this.on('invalid', function (model, error) {
-      //console.log(error);
-    });
-  },
-
-  validate: function validate(attributes) {
-    if (!attributes.email) {
-      return 'empty email.';
-    }
-    if (!attributes.password) {
-      return 'empty password.';
-    }
-  },
-
-  /*
-   * Login request
-   *
-   */
-  login: function login() {
-    return $.ajax({
-      url: 'api/login/',
-      method: 'POST',
-      data: {
-        email: this.get('email'),
-        password: this.get('password')
-      }
-    });
-  }
-
-});
-'use strict';
-
-app.models.RegistrationModel = Backbone.Model.extend({
-
-  urlRoot: 'api/users',
-
-  defaults: {
-    email: null,
-    password: null,
-    confirmPassword: null
-  },
-
-  initialize: function initialize() {
-    this.on('invalid', function (model, error) {
-      //console.log(error);
-    });
-  },
-
-  validate: function validate(attributes) {
-    if (!attributes.email) {
-      return 'empty email.';
-    }
-    if (!attributes.password) {
-      return 'empty password.';
-    }
-  },
-
-  /*
-  * Check by email if user exist
-  *
-  */
-  isEmailExist: function isEmailExist(email) {
-    return $.ajax({
-      url: 'api/user-email-check/',
-      data: {
-        email: email
-      }
-    });
-  }
-
-});
-'use strict';
-
-app.models.UserModel = Backbone.Model.extend({
-
-  defaults: {
-    countriesModel: null
-  },
-
-  urlRoot: 'api/user/',
-
-  idAttribute: '_id',
-
-  initialize: function initialize() {
-    var thisModel = this;
-    // when a model has been successfully synced with the server.
-    thisModel.on('sync', function () {
-      // Init countries model
-      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
-          country: thisModel.get('country'),
-          city: thisModel.get('city')
-        }) });
-      // get countries Model
-      var countriesModel = thisModel.get('countriesModel');
-      // Listen to country change
-      countriesModel.on('change:country', function () {
-        thisModel.set({ country: countriesModel.get('country') });
-      });
-      // Listen to city change
-      countriesModel.on('change:city', function () {
-        thisModel.set({ city: countriesModel.get('city') });
-      });
-    });
   }
 
 });
@@ -1458,6 +1175,288 @@ app.models.FiltersModel = Backbone.Model.extend({
       }
     });
     this.trigger('change', this);
+  }
+
+});
+'use strict';
+
+app.models.AdModel = Backbone.Model.extend({
+
+  urlRoot: 'api/ads',
+
+  defaults: {
+    countriesModel: null,
+    type: null,
+    object: null,
+    category: null,
+    selectedCategoryId: null,
+    title: null,
+    country: null,
+    city: null,
+    contacts: {
+      takeFrom: 'profile',
+      phones: []
+    }
+  },
+
+  initialize: function initialize() {
+    var thisModel = this;
+
+    thisModel.on('invalid', function (model, error) {
+      //console.log(error);
+    });
+
+    // Init child Countries model
+    thisModel.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // Init child Filters model under categories
+    thisModel.set({ categoryModel: new app.models.FiltersModel() });
+    var categoryModel = thisModel.get('categoryModel');
+
+    // console.log(categoryModel);
+
+    thisModel.set({ categories: categoryModel.attributes.categories });
+
+    // get countries Model
+    var countriesModel = thisModel.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      thisModel.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      thisModel.set({ city: countriesModel.get('city') });
+    });
+  },
+
+  validate: function validate(attr) {
+    if (!attr.type || !attr.category || !attr.title || !attr.country) {
+      return 'empty one of the required fields.';
+    }
+  },
+
+  setCategoryObject: function setCategoryObject() {
+    var category = _.findWhere(this.get('categories'), { id: this.get('selectedCategoryId') });
+    this.set({ category: category });
+  }
+
+});
+'use strict';
+
+app.models.AdsHomeModel = Backbone.Model.extend({
+
+  defaults: {},
+
+  initialize: function initialize() {
+    console.log('initialize adsHomeModel');
+  }
+
+});
+"use strict";
+
+app.models.AdsListModel = Backbone.Model.extend({
+
+  defaults: {
+    isItemsExist: false
+  },
+
+  initialize: function initialize() {
+    //console.log('initialize AdsListModel');
+    //console.log(this.attributes);
+
+  }
+
+});
+"use strict";
+
+/**
+ * Get a deep copy of an object, to ensure Backbone doesn't think it's identical
+ * to the original object
+ *
+ * @param {Object} object Object to clone
+ * @return {Object}
+ * @function external:"Backbone.Model"#deepClone
+ */
+Backbone.Model.prototype.deepClone = function (object) {
+  return JSON.parse(JSON.stringify(object));
+};
+'use strict';
+
+app.models.FiltersHomeModel = Backbone.Model.extend({
+
+  defaults: {
+    countriesModel: null,
+    type: null,
+    object: null,
+    category: null,
+    selectedCategoryId: null,
+    country: null,
+    city: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // Init child Filters model under categories
+    this.set({ categoryModel: new app.models.FiltersModel() });
+
+    var categoryModel = this.get('categoryModel');
+    this.set({ categories: categoryModel.attributes.categories });
+
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
+    });
+  }
+
+});
+"use strict";
+
+app.models.HeaderModel = Backbone.Model.extend({
+
+  defaults: {
+    user: null
+  },
+
+  initialize: function initialize() {
+    if (app.user) {
+      this.updateUser();
+    }
+  },
+
+  updateUser: function updateUser() {
+    this.set({ user: app.user.attributes });
+  }
+
+});
+"use strict";
+
+app.models.HomeContentModel = Backbone.Model.extend({
+
+  initialize: function initialize() {}
+
+});
+'use strict';
+
+app.models.LoginModel = Backbone.Model.extend({
+
+  defaults: {
+    email: null,
+    password: null
+  },
+
+  initialize: function initialize() {
+    // console.log('initialize Login Model');
+    this.on('invalid', function (model, error) {
+      //console.log(error);
+    });
+  },
+
+  validate: function validate(attributes) {
+    if (!attributes.email) {
+      return 'empty email.';
+    }
+    if (!attributes.password) {
+      return 'empty password.';
+    }
+  },
+
+  /*
+   * Login request
+   *
+   */
+  login: function login() {
+    return $.ajax({
+      url: 'api/login/',
+      method: 'POST',
+      data: {
+        email: this.get('email'),
+        password: this.get('password')
+      }
+    });
+  }
+
+});
+'use strict';
+
+app.models.RegistrationModel = Backbone.Model.extend({
+
+  urlRoot: 'api/users',
+
+  defaults: {
+    email: null,
+    password: null,
+    confirmPassword: null
+  },
+
+  initialize: function initialize() {
+    this.on('invalid', function (model, error) {
+      //console.log(error);
+    });
+  },
+
+  validate: function validate(attributes) {
+    if (!attributes.email) {
+      return 'empty email.';
+    }
+    if (!attributes.password) {
+      return 'empty password.';
+    }
+  },
+
+  /*
+  * Check by email if user exist
+  *
+  */
+  isEmailExist: function isEmailExist(email) {
+    return $.ajax({
+      url: 'api/user-email-check/',
+      data: {
+        email: email
+      }
+    });
+  }
+
+});
+'use strict';
+
+app.models.UserModel = Backbone.Model.extend({
+
+  defaults: {
+    countriesModel: null
+  },
+
+  urlRoot: 'api/user/',
+
+  idAttribute: '_id',
+
+  initialize: function initialize() {
+    var thisModel = this;
+    // when a model has been successfully synced with the server.
+    thisModel.on('sync', function () {
+      // Init countries model
+      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
+          country: thisModel.get('country'),
+          city: thisModel.get('city')
+        }) });
+      // get countries Model
+      var countriesModel = thisModel.get('countriesModel');
+      // Listen to country change
+      countriesModel.on('change:country', function () {
+        thisModel.set({ country: countriesModel.get('country') });
+      });
+      // Listen to city change
+      countriesModel.on('change:city', function () {
+        thisModel.set({ city: countriesModel.get('city') });
+      });
+    });
   }
 
 });
@@ -2698,24 +2697,19 @@ app.views.AdsView = Mn.View.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.views.CalcView = Mn.View.extend({
 
   template: tpl.templates.calc,
 
-  regions: {
-    leftNavRegion: '.left-navigation'
-  },
+  regions: {},
 
   ui: {},
 
   events: {},
 
-  initialize: function initialize() {
-    // Initialize left navigation region
-    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
-  }
+  initialize: function initialize() {}
 
 });
 'use strict';

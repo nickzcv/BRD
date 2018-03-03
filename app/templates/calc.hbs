@@ -1,47 +1,84 @@
-<!--  left-navigation -->
-<div class="left-navigation"></div>
-<!-- /end  left-navigation -->
+<div class="container calc">
+  <h2><span class="icon ion-ios-calculator"></span> Калькулятор</h2>
 
-<div class="profile calc">
-  <div class="title">
-    <span class="icon ion-ios-calculator"></span>
-    <span class="title-text">Калькулятор</span>
+  <div>
+
   </div>
-  <div class="page">
-    <form>
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="form-group">
-            <label class="sr-only" for="tolshina">Толщина</label>
-            <div class="input-group">
-              <div class="input-group-addon">Т</div>
-              <input type="number" class="form-control" id="tolshina" placeholder="Толщина">
-              <div class="input-group-addon">мм</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="shirina">Ширина</label>
-            <div class="input-group">
-              <div class="input-group-addon">Ш</div>
-              <input type="number" class="form-control" id="shirina" placeholder="Ширина">
-              <div class="input-group-addon">мм</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="sr-only" for="dlina">Длина</label>
-            <div class="input-group">
-              <div class="input-group-addon">Д</div>
-              <input type="number" class="form-control" id="dlina" placeholder="Длина">
-              <div class="input-group-addon">мм</div>
-            </div>
+
+  <form>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="form-group">
+          <label class="sr-only" for="tolshina">Толщина</label>
+          <div class="input-group size-field">
+            <div class="input-group-addon">Т</div>
+            <input type="number" class="form-control" id="tolshina" placeholder="Толщина">
+            <div class="input-group-addon">мм</div>
           </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-6 .col-md-4</div>
+        <div class="form-group">
+          <label class="sr-only" for="shirina">Ширина</label>
+          <div class="input-group size-field">
+            <div class="input-group-addon">Ш</div>
+            <input type="number" class="form-control" id="shirina" placeholder="Ширина">
+            <div class="input-group-addon">мм</div>
+          </div>
+        </div>
+        <div class="form-group size-field">
+          <label class="sr-only" for="dlina">Длина</label>
+          <div class="input-group">
+            <div class="input-group-addon">Д</div>
+            <input type="number" class="form-control" id="dlina" placeholder="Длина">
+            <div class="input-group-addon">мм</div>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Transfer cash</button>
-    </form>
-  </div>
+      <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-6 .col-md-4</div>
+    </div>
+    <div>
+      <div class="form-group count-field">
+        <label class="sr-only" for="dlina">Количество</label>
+        <div class="input-group">
+          <input type="number" class="form-control" id="dlina" placeholder="Количество">
+          <div class="input-group-addon">шт</div>
+        </div>
+      </div>
+    </div>
+    <div class="add-to-table">
+      <span class="ion-code-download"></span> <a class="to-table">в таблицу</a>
+    </div>
+  </form>
 
-
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>ТxШxД</th>
+      <th>Кол-во (шт.)</th>
+      <th>Погонная длина (м)</th>
+      <th>Объем (м<sup><small>3</small></sup>)</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>50x100x5000</th>
+      <td>100</td>
+      <td>256</td>
+      <td>34</td>
+      <td>
+        <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
+      </td>
+    </tr>
+    <tr>
+      <td>50x100x5000</th>
+      <td>100</td>
+      <td>256</td>
+      <td>34</td>
+      <td>
+        <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 
 </div>
