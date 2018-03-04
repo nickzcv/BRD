@@ -1468,7 +1468,8 @@ nav.navigation .user .logout:hover {
     font-size: 1rem; } }
 
 .calc {
-  font-size: 1rem; }
+  font-size: 1rem;
+  /* Tablets */ }
 
 .calc form .size-field {
   max-width: 20rem; }
@@ -1497,7 +1498,8 @@ nav.navigation .user .logout:hover {
   padding: 0.3rem .5rem;
   background-color: #fcfcf4;
   border-radius: 3px;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  border: 1px solid #f7d257; }
 
 .calc .add-to-table {
   font-size: 1.2rem;
@@ -1507,8 +1509,11 @@ nav.navigation .user .logout:hover {
 .calc .add-to-table:hover {
   border: 1px solid #f7d257; }
 
-.calc .table th {
+.calc .table {
   font-size: .8rem; }
+
+.calc .table th {
+  font-size: .7rem; }
 
 .calc .table td {
   vertical-align: inherit; }
@@ -1526,7 +1531,33 @@ nav.navigation .user .logout:hover {
 .calc .table .total {
   border-top: 1px solid #999;
   background: #f3f3f3;
-  font-size: 1.1rem; }
+  font-size: .9rem; }
+
+.calc .actions button {
+  display: block;
+  margin: .5rem 0; }
+
+@media only screen and (min-width: 768px) {
+  .calc .table {
+    font-size: 1rem; }
+  .calc .table th {
+    font-size: .8rem; }
+  .calc .table td {
+    vertical-align: inherit; }
+  .calc .table td:last-child {
+    text-align: center; }
+  .calc .table .remove-row {
+    font-size: 1.7rem;
+    color: darkred; }
+  .calc .table .remove-row:hover {
+    color: red; }
+  .calc .table .total {
+    border-top: 1px solid #999;
+    background: #f3f3f3;
+    font-size: 1.1rem; }
+  .calc .actions button {
+    display: inline-block;
+    margin: .5rem 0; } }
 
 .tri-down {
   /* Styling block element, not required */

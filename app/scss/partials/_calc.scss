@@ -29,6 +29,7 @@
         background-color: $gray-light;
         border-radius: 3px;
         font-size: 1.2rem;
+        border: 1px solid #f7d257;
       }
     }
   }
@@ -43,8 +44,9 @@
   }
 
   .table {
+    font-size: .8rem;
     th {
-      font-size: .8rem;
+      font-size: .7rem;
     }
     td {
       vertical-align: inherit;
@@ -62,11 +64,48 @@
     .total {
       border-top: 1px solid #999;
       background: #f3f3f3;
-      font-size: 1.1rem;
+      font-size: .9rem;
     }
   }
   .actions {
+    button {
+      display: block;
+      margin: .5rem 0;
+    }
+  }
 
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+    .table {
+      font-size: 1rem;
+      th {
+        font-size: .8rem;
+      }
+      td {
+        vertical-align: inherit;
+        &:last-child {
+          text-align: center;
+        }
+      }
+      .remove-row {
+        font-size: 1.7rem;
+        color: darkred;
+        &:hover {
+          color: red;
+        }
+      }
+      .total {
+        border-top: 1px solid #999;
+        background: #f3f3f3;
+        font-size: 1.1rem;
+      }
+    }
+    .actions {
+      button {
+        display: inline-block;
+        margin: .5rem 0;
+      }
+    }
   }
 }
 
