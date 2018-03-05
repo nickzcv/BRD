@@ -7,15 +7,23 @@ app.views.CalcView = Mn.View.extend({
   },
 
   ui: {
-
+    form: 'form',
+    tolshina: '#tolshina'
   },
 
   events: {
-
+    'change @ui.tolshina': function () {
+      console.log('test')
+    },
   },
 
   initialize: function() {
 
-  }
+  },
+
+  onRender: function() {
+
+  },
+
 
 });

@@ -44,7 +44,9 @@ app.router = Marionette.AppRouter.extend({
         break;
       // Calculator
       case 'calc':
-        brd.regions.bodyRegion.show(new app.views.CalcView());
+        brd.regions.bodyRegion.show(new app.views.CalcView({
+          model: new app.models.CalcModel()
+        }));
         break;
       // Profile routing
       case 'profile': {

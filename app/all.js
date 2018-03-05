@@ -206,7 +206,9 @@ app.router = Marionette.AppRouter.extend({
         break;
       // Calculator
       case 'calc':
-        brd.regions.bodyRegion.show(new app.views.CalcView());
+        brd.regions.bodyRegion.show(new app.views.CalcView({
+          model: new app.models.CalcModel()
+        }));
         break;
       // Profile routing
       case 'profile':
@@ -512,6 +514,26 @@ app.models.AdsListModel = Backbone.Model.extend({
     //console.log('initialize AdsListModel');
     //console.log(this.attributes);
 
+  }
+
+});
+'use strict';
+
+app.models.CalcModel = Backbone.Model.extend({
+
+  defaults: {
+    tolshina: null,
+    shirina: null,
+    dlina: null,
+    count: null,
+    volume: 0,
+    square: 0,
+    resultV: 0,
+    resultP: 0
+  },
+
+  initialize: function initialize() {
+    console.log('initialize CalcModel');
   }
 
 });
@@ -1551,6 +1573,30 @@ app.views.adView = Mn.View.extend({
         // TODO: run service request
       }
   }
+
+});
+'use strict';
+
+app.views.CalcView = Mn.View.extend({
+
+  template: tpl.templates.calc,
+
+  regions: {},
+
+  ui: {
+    form: 'form',
+    tolshina: '#tolshina'
+  },
+
+  events: {
+    'change @ui.tolshina': function changeUiTolshina() {
+      console.log('test');
+    }
+  },
+
+  initialize: function initialize() {},
+
+  onRender: function onRender() {}
 
 });
 "use strict";
@@ -2695,21 +2741,6 @@ app.views.AdsView = Mn.View.extend({
       model: new app.models.AdsListModel()
     }));
   }
-
-});
-"use strict";
-
-app.views.CalcView = Mn.View.extend({
-
-  template: tpl.templates.calc,
-
-  regions: {},
-
-  ui: {},
-
-  events: {},
-
-  initialize: function initialize() {}
 
 });
 'use strict';
