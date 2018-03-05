@@ -799,7 +799,7 @@ app.models.FiltersModel = Backbone.Model.extend({
       title: 'Пиломатериалы',
       filters: [{
         label: null,
-        title: 'Сортимент',
+        title: '',
         level: 'child',
         type: 'checkbox',
         items: [{
@@ -1094,6 +1094,9 @@ app.models.FiltersModel = Backbone.Model.extend({
         }, {
           label: 'obapol',
           value: 'Обапол'
+        }, {
+          label: 'obrezki',
+          value: 'Обрезки'
         }, {
           label: 'opilki',
           value: 'Опилки'
