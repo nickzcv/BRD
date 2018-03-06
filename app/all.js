@@ -517,23 +517,35 @@ app.models.AdsListModel = Backbone.Model.extend({
   }
 
 });
-'use strict';
+"use strict";
 
 app.models.CalcModel = Backbone.Model.extend({
 
   defaults: {
-    tolshina: null,
-    shirina: null,
-    dlina: null,
-    count: null,
+    tolshina: 0,
+    shirina: 0,
+    dlina: 0,
+    count: 0,
     volume: 0,
     square: 0,
     resultV: 0,
     resultP: 0
   },
 
-  initialize: function initialize() {
-    console.log('initialize CalcModel');
+  initialize: function initialize() {},
+
+  calculateTSD: function calculateTSD(t, s, d) {
+    var tolshina = parseInt(t),
+        shirina = parseInt(s),
+        dlina = parseInt(d);
+
+    this.set({
+      tolshina: tolshina,
+      shirina: shirina,
+      dlina: dlina,
+      volume: tolshina * shirina * dlina,
+      square: shirina * dlina
+    });
   }
 
 });
@@ -1588,18 +1600,33 @@ app.views.CalcView = Mn.View.extend({
 
   ui: {
     form: 'form',
-    tolshina: '#tolshina'
+    tolshina: '#tolshina',
+    shirina: '#shirina',
+    dlina: '#dlina',
+    tsd: '#tolshina, #shirina, #dlina',
+    count: '#count'
   },
 
   events: {
-    'change @ui.tolshina': function changeUiTolshina() {
-      console.log('test');
-    }
+    'change @ui.tsd': 'calculateTSD',
+    'change @ui.count': 'calculateCount'
+  },
+
+  modelEvents: {
+    'change': 'render'
   },
 
   initialize: function initialize() {},
 
-  onRender: function onRender() {}
+  onRender: function onRender() {},
+
+  calculateTSD: function calculateTSD() {
+    var t = this.ui.tolshina.val(),
+        s = this.ui.shirina.val(),
+        d = this.ui.dlina.val();
+
+    this.model.calculateTSD(t, s, d);
+  }
 
 });
 "use strict";
