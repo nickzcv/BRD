@@ -79,3 +79,12 @@ Handlebars.registerHelper('getSelected', function(context, options) {
   }
 
 });
+
+Handlebars.registerHelper('cutFloat', function(value, dec) {
+  if (value) {
+    let string = value.toString();
+    return string.substring(0, string.indexOf('.') + dec);
+  } else {
+  return 0;
+  }
+});

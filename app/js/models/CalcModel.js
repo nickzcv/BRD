@@ -15,18 +15,25 @@ app.models.CalcModel = Backbone.Model.extend({
 
   },
 
-  calculateTSD: function(t, s, d) {
+  calculateResult: function(t, s, d, c) {
     let tolshina = parseInt(t),
         shirina = parseInt(s),
-        dlina = parseInt(d);
+        dlina = parseInt(d),
+        count = parseInt(c);
 
     this.set({
       tolshina,
       shirina,
       dlina,
-      volume: tolshina*shirina*dlina,
-      square: shirina*dlina
+      volume: tolshina*shirina*dlina*0.000000001,
+      square: shirina*dlina*0.000001,
+      count,
     });
-  }
+
+    this.set({
+      resultV: this.get('volume')*count,
+      resultP: Math.floor(count*dlina*0.001)
+    });
+  },
 
 });

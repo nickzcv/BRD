@@ -375,6 +375,15 @@ Handlebars.registerHelper('getSelected', function (context, options) {
     return 'NOTHING';
   }
 });
+
+Handlebars.registerHelper('cutFloat', function (value, dec) {
+  if (value) {
+    var string = value.toString();
+    return string.substring(0, string.indexOf('.') + dec);
+  } else {
+    return 0;
+  }
+});
 'use strict';
 
 app.collections.AdsCollection = Backbone.Collection.extend({
@@ -517,7 +526,7 @@ app.models.AdsListModel = Backbone.Model.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.models.CalcModel = Backbone.Model.extend({
 
@@ -534,17 +543,24 @@ app.models.CalcModel = Backbone.Model.extend({
 
   initialize: function initialize() {},
 
-  calculateTSD: function calculateTSD(t, s, d) {
+  calculateResult: function calculateResult(t, s, d, c) {
     var tolshina = parseInt(t),
         shirina = parseInt(s),
-        dlina = parseInt(d);
+        dlina = parseInt(d),
+        count = parseInt(c);
 
     this.set({
       tolshina: tolshina,
       shirina: shirina,
       dlina: dlina,
-      volume: tolshina * shirina * dlina,
-      square: shirina * dlina
+      volume: tolshina * shirina * dlina * 0.000000001,
+      square: shirina * dlina * 0.000001,
+      count: count
+    });
+
+    this.set({
+      resultV: this.get('volume') * count,
+      resultP: Math.floor(count * dlina * 0.001)
     });
   }
 
@@ -1603,13 +1619,12 @@ app.views.CalcView = Mn.View.extend({
     tolshina: '#tolshina',
     shirina: '#shirina',
     dlina: '#dlina',
-    tsd: '#tolshina, #shirina, #dlina',
+    tsdc: '#tolshina, #shirina, #dlina, #count',
     count: '#count'
   },
 
   events: {
-    'change @ui.tsd': 'calculateTSD',
-    'change @ui.count': 'calculateCount'
+    'change @ui.tsdc': 'calculateResult'
   },
 
   modelEvents: {
@@ -1620,12 +1635,13 @@ app.views.CalcView = Mn.View.extend({
 
   onRender: function onRender() {},
 
-  calculateTSD: function calculateTSD() {
+  calculateResult: function calculateResult() {
     var t = this.ui.tolshina.val(),
         s = this.ui.shirina.val(),
-        d = this.ui.dlina.val();
+        d = this.ui.dlina.val(),
+        c = this.ui.count.val();
 
-    this.model.calculateTSD(t, s, d);
+    this.model.calculateResult(t, s, d, c);
   }
 
 });

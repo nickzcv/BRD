@@ -11,13 +11,12 @@ app.views.CalcView = Mn.View.extend({
     tolshina: '#tolshina',
     shirina: '#shirina',
     dlina: '#dlina',
-    tsd: '#tolshina, #shirina, #dlina',
+    tsdc: '#tolshina, #shirina, #dlina, #count',
     count: '#count'
   },
 
   events: {
-    'change @ui.tsd': 'calculateTSD',
-    'change @ui.count': 'calculateCount'
+    'change @ui.tsdc': 'calculateResult'
   },
 
   modelEvents: {
@@ -32,13 +31,15 @@ app.views.CalcView = Mn.View.extend({
 
   },
 
-  calculateTSD: function() {
+  calculateResult: function() {
     let t = this.ui.tolshina.val(),
         s = this.ui.shirina.val(),
-        d = this.ui.dlina.val();
+        d = this.ui.dlina.val(),
+        c = this.ui.count.val();
 
-    this.model.calculateTSD(t, s, d);
+    this.model.calculateResult(t, s, d, c);
   },
+
 
 
 });

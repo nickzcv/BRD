@@ -31,8 +31,8 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
-          <div class="result-one"><span>V</span> = <span id="volume">{{volume}}</span> м<sup><small>3</small></sup></div>
-          <div class="result-one"><span>S</span> = <span id="square">{{square}}</span> м<sup><small>2</small></sup></div>
+          <div class="result-one"><span>V</span> = <span id="volume">{{cutFloat volume 6}}</span> м<sup><small>3</small></sup></div>
+          <div class="result-one"><span>S</span> = <span id="square">{{cutFloat square 3}}</span> м<sup><small>2</small></sup></div>
         </div>
       </div>
       <div class="count-block">
@@ -44,14 +44,14 @@
           </div>
         </div>
       </div>
-      <div class="result">Общий объем = <span class="result-v">{{resultV}}</span> м<sup><small>3</small></sup></div>
+      <div class="result">Общий объем = <span class="result-v">{{cutFloat resultV 6}}</span> м<sup><small>3</small></sup></div>
       <div class="result">Погонная длина = <span class="result-p">{{resultP}}</span> м</div>
     </form>
   </div>
   <!-- Add to table button-->
   <button type="button" class="btn add-to-table" disabled><span class="ion-clipboard"></span> Вставить в таблицу</button>
 
-  <table class="table table-hover table-responsive">
+  <table class="table table-hover table-responsive hidden">
     <thead>
     <tr>
       <th>ТxШxД (мм)</th>
@@ -90,7 +90,7 @@
     </tbody>
   </table>
 
-  <div class="actions">
+  <div class="actions hidden">
     <button type="button" class="btn btn-success"><span class="ion-help"></span> Узнать цены</button>
     <!--<button type="button" class="btn btn-success">Сохранить</button>-->
     <button type="button" class="btn btn-info"><span class="ion-paper-airplane"></span> Отправить на e-mail</button>
