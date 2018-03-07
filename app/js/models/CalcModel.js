@@ -1,10 +1,10 @@
 app.models.CalcModel = Backbone.Model.extend({
 
   defaults: {
-    tolshina: 0,
-    shirina: 0,
-    dlina: 0,
-    count: 0,
+    tolshina: undefined,
+    shirina: undefined,
+    dlina: undefined,
+    count: undefined,
     volume: 0,
     square: 0,
     resultV: 0,
