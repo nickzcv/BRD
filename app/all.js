@@ -376,9 +376,16 @@ Handlebars.registerHelper('getSelected', function (context, options) {
   }
 });
 
+/*
+ * For calculator
+ */
 Handlebars.registerHelper('cutFloat', function (value, dec) {
   if (value) {
     var string = value.toString();
+    // remove zeros from end of value
+    while (string.substring(0, string.indexOf('.') + dec).slice(-1) === '0' && de > 2) {
+      dec--;
+    }
     return string.substring(0, string.indexOf('.') + dec);
   } else {
     return 0;
