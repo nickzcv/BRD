@@ -16,7 +16,8 @@ app.views.CalcView = Mn.View.extend({
   },
 
   events: {
-    'change @ui.tsdc': 'calculateResult'
+    'change @ui.tsdc': 'calculateResult',
+    'focus @ui.tsdc': 'clearInput'
   },
 
   modelEvents: {
@@ -40,6 +41,9 @@ app.views.CalcView = Mn.View.extend({
     this.model.calculateResult(t, s, d, c);
   },
 
-
+  clearInput: function(event) {
+    let $element = $(event.target);
+    $element.val('')
+  }
 
 });
