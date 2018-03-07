@@ -87,7 +87,7 @@ Handlebars.registerHelper('cutFloat', function(value, dec) {
   if (value) {
     let string = value.toString();
     // remove zeros from end of value
-    while(string.substring(0, string.indexOf('.') + dec).slice(-1) === '0' && de > 2) {
+    while(string.substring(0, string.indexOf('.') + dec).slice(-1) === '0' && dec > 2) {
       dec--;
     }
     return string.substring(0, string.indexOf('.') + dec);
