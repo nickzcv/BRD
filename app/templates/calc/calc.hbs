@@ -31,7 +31,9 @@
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-8">
+          <!-- {{volume}} -->
           <div class="result-one"><span>V</span> = <span id="volume">{{cutFloat volume 6}}</span> м<sup><small>3</small></sup></div>
+          <!-- {{square}} -->
           <div class="result-one"><span>S</span> = <span id="square">{{cutFloat square 3}}</span> м<sup><small>2</small></sup></div>
         </div>
       </div>
@@ -44,51 +46,20 @@
           </div>
         </div>
       </div>
+      <!-- {{resultV}} -->
       <div class="result">Общий объем = <span class="result-v">{{cutFloat resultV 6}}</span> м<sup><small>3</small></sup></div>
+      <!-- {{resultP}} -->
       <div class="result">Погонная длина = <span class="result-p">{{resultP}}</span> м</div>
     </form>
   </div>
   <!-- Add to table button-->
   <button type="button" class="btn add-to-table" disabled><span class="ion-clipboard"></span> Вставить в таблицу</button>
 
-  <table class="table table-hover table-responsive hidden">
-    <thead>
-    <tr>
-      <th>ТxШxД (мм)</th>
-      <th>Кол-во (шт.)</th>
-      <th>Погонная длина (м)</th>
-      <th>Объем (м<sup><small>3</small></sup>)</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>50x100x5000</th>
-      <td>100</td>
-      <td>256</td>
-      <td>34</td>
-      <td>
-        <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
-      </td>
-    </tr>
-    <tr>
-      <td>50x100x5000</th>
-      <td>100</td>
-      <td>256</td>
-      <td>34</td>
-      <td>
-        <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
-      </td>
-    </tr>
-    <tr class="total">
-      <td>Итого:</th>
-      <td>15500</td>
-      <td>2342</td>
-      <td>234234</td>
-      <td></td>
-    </tr>
-    </tbody>
-  </table>
+
+  <div class="table-region">
+
+  </div>
+
 
   <div class="actions hidden">
     <button type="button" class="btn btn-success"><span class="ion-help"></span> Узнать цены</button>

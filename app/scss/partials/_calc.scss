@@ -33,16 +33,19 @@
       }
     }
   }
-
   .add-to-table {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    background-color: #fff7b1;
-    &:hover {
-      border: 1px solid #f7d257;
+    background-color: $blue-dark;
+    color: $white;
+    &:disabled {
+      background-color: #fff7b1;
+      color: $black;
+      &:hover {
+        border: 1px solid #f7d257;
+      }
     }
   }
-
   .table {
     font-size: .8rem;
     th {

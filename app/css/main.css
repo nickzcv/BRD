@@ -1504,9 +1504,14 @@ nav.navigation .user .logout:hover {
 .calc .add-to-table {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  background-color: #fff7b1; }
+  background-color: #559797;
+  color: #FFFFFF; }
 
-.calc .add-to-table:hover {
+.calc .add-to-table:disabled {
+  background-color: #fff7b1;
+  color: #000; }
+
+.calc .add-to-table:disabled:hover {
   border: 1px solid #f7d257; }
 
 .calc .table {
