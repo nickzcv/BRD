@@ -580,8 +580,28 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
     + alias2((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.updated_at : depth0),"LLLL",{"name":"formatDate","hash":{},"data":data}))
     + "</p>\r\n    </div>\r\n  </div>\r\n\r\n</form>";
 },"useData":true});
-this["tpl"]["templates"]["calc"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n    <tr>\r\n      <th>ТxШxД (мм)</th>\r\n      <th>Кол-во (шт.)</th>\r\n      <th>Погонная длина (м)</th>\r\n      <th>Объем (м<sup><small>3</small></sup>)</th>\r\n      <th></th>\r\n    </tr>\r\n    </thead>\r\n  <tbody>\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.table : depth0),{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    <tr class=\"total\">\r\n      <td>Итого:</td>\r\n      <td>15500</td>\r\n      <td>2342</td>\r\n      <td>234234</td>\r\n      <td></td>\r\n    </tr>\r\n  </tbody>\r\n  </table>\r\n";
+},"2":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "      <tr>\r\n        <td>"
+    + alias3(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"tolshina","hash":{},"data":data}) : helper)))
+    + "x"
+    + alias3(((helper = (helper = helpers.shirina || (depth0 != null ? depth0.shirina : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"shirina","hash":{},"data":data}) : helper)))
+    + "x"
+    + alias3(((helper = (helper = helpers.dlina || (depth0 != null ? depth0.dlina : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"dlina","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>"
+    + alias3(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"count","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>"
+    + alias3(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"resultP","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>34</td>\r\n        <td>\r\n          <a class=\"remove-row\"><span class=\"ion-ios-close-outline\"></span></a>\r\n        </td>\r\n      </tr>\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
   return "<div class=\"container calc\">\r\n  <h2><span class=\"icon ion-ios-calculator\"></span> Калькулятор</h2>\r\n\r\n  <div class=\"tri-down\">\r\n    <form>\r\n      <div class=\"row\">\r\n        <div class=\"col-xs-12 col-sm-6 col-md-4\">\r\n          <div class=\"form-group\">\r\n            <label class=\"sr-only\" for=\"tolshina\">Толщина</label>\r\n            <div class=\"input-group size-field\">\r\n              <div class=\"input-group-addon\">Т</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"tolshina\" name=\"tolshina\" placeholder=\"Толщина\" value=\""
     + alias3(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"tolshina","hash":{},"data":data}) : helper)))
@@ -607,7 +627,9 @@ this["tpl"]["templates"]["calc"] = Handlebars.template({"compiler":[6,">= 2.0.0-
     + alias3(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"resultP","hash":{},"data":data}) : helper)))
     + " -->\r\n      <div class=\"result\">Погонная длина = <span class=\"result-p\">"
     + alias3(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"resultP","hash":{},"data":data}) : helper)))
-    + "</span> м</div>\r\n    </form>\r\n  </div>\r\n  <!-- Add to table button-->\r\n  <button type=\"button\" class=\"btn add-to-table\" disabled><span class=\"ion-clipboard\"></span> Вставить в таблицу</button>\r\n\r\n\r\n  <div class=\"table-region\">\r\n\r\n  </div>\r\n\r\n\r\n  <div class=\"actions hidden\">\r\n    <button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>\r\n    <button type=\"button\" class=\"btn btn-info\"><span class=\"ion-printer\"></span> Печать</button>\r\n\r\n    <button type=\"button\" class=\"btn btn-danger pull-right\">Удалить все</button>\r\n  </div>\r\n\r\n</div>\r\n";
+    + "</span> м</div>\r\n    </form>\r\n  </div>\r\n  <!-- Add to table button-->\r\n  <button type=\"button\" class=\"btn add-to-table\" disabled><span class=\"ion-clipboard\"></span> Вставить в таблицу</button>\r\n\r\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.table : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n\r\n\r\n\r\n  <div class=\"actions hidden\">\r\n    <button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>\r\n    <button type=\"button\" class=\"btn btn-info\"><span class=\"ion-printer\"></span> Печать</button>\r\n\r\n    <button type=\"button\" class=\"btn btn-danger pull-right\">Удалить все</button>\r\n  </div>\r\n\r\n</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["avatar"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"avatar\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"avatarModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"avatarModalLabel\">Загрузка личного аватара</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form id=\"form\">\r\n          <input id=\"upload\" type=\"file\" name=\"upload\">\r\n          <div id=\"upload-preview\"></div>\r\n      </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default btn-danger pull-left\" data-dismiss=\"modal\">Отмена</button>\r\n        <button type=\"button\" class=\"btn btn-default upload-avatar\">Загрузить</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";

@@ -2,10 +2,6 @@ app.views.CalcView = Mn.View.extend({
 
   template: tpl.templates.calc,
 
-  regions: {
-    tableRegion: '.table-region'
-  },
-
   ui: {
     form: 'form',
     tolshina: '#tolshina',
@@ -26,9 +22,7 @@ app.views.CalcView = Mn.View.extend({
   },
 
   onAttach: function() {
-    this.showChildView('tableRegion', new app.views.CalcTableView({
-      model: this.model
-    }));
+
   },
 
   onRender: function() {
@@ -37,6 +31,7 @@ app.views.CalcView = Mn.View.extend({
     } else {
       this.ui.addBtn.attr('disabled');
     }
+
   },
 
   calculateResult: function() {
@@ -49,7 +44,8 @@ app.views.CalcView = Mn.View.extend({
   },
 
   addToTable: function() {
-    console.log('addBtn')
+    console.log('addBtn');
+
   }
 
 });

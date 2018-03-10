@@ -55,10 +55,41 @@
   <!-- Add to table button-->
   <button type="button" class="btn add-to-table" disabled><span class="ion-clipboard"></span> Вставить в таблицу</button>
 
+  {{#if table}}
+  <table class="table table-hover table-responsive">
+    <thead>
+    <tr>
+      <th>ТxШxД (мм)</th>
+      <th>Кол-во (шт.)</th>
+      <th>Погонная длина (м)</th>
+      <th>Объем (м<sup><small>3</small></sup>)</th>
+      <th></th>
+    </tr>
+    </thead>
+  <tbody>
+    {{#each table}}
+      <tr>
+        <td>{{tolshina}}x{{shirina}}x{{dlina}}</td>
+        <td>{{count}}</td>
+        <td>{{resultP}}</td>
+        <td>34</td>
+        <td>
+          <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
+        </td>
+      </tr>
+    {{/each}}
+    <tr class="total">
+      <td>Итого:</td>
+      <td>15500</td>
+      <td>2342</td>
+      <td>234234</td>
+      <td></td>
+    </tr>
+  </tbody>
+  </table>
+  {{/if}}
 
-  <div class="table-region">
 
-  </div>
 
 
   <div class="actions hidden">

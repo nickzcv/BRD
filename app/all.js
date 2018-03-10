@@ -739,12 +739,18 @@ app.models.CalcModel = Backbone.Model.extend({
     volume: 0,
     square: 0,
     resultV: 0,
-    resultP: 0
+    resultP: 0,
+    table: [{
+      tolshina: 22,
+      shirina: 11,
+      dlina: 2,
+      count: 1,
+      resultV: 33,
+      resultP: 44
+    }]
   },
 
-  initialize: function initialize() {
-    console.log('test model');
-  },
+  initialize: function initialize() {},
 
   calculateResult: function calculateResult(t, s, d, c) {
     var tolshina = parseInt(t),
@@ -765,19 +771,6 @@ app.models.CalcModel = Backbone.Model.extend({
       resultV: this.get('volume') * count,
       resultP: Math.floor(count * dlina * 0.001)
     });
-  }
-
-});
-
-app.collections.CalcCollection = Backbone.Collection.extend({
-
-  model: app.models.CalcModel,
-
-  initialize: function initialize() {
-    console.log('test collection');
-    console.log(this);
-
-    this.add([{}]);
   }
 
 });
@@ -1766,24 +1759,9 @@ app.views.MainView = Mn.View.extend({
 });
 'use strict';
 
-app.views.CalcTableView = Mn.View.extend({
-
-  template: tpl.templates.calc_table,
-
-  onRender: function onRender() {
-
-    console.log('CalcTableView');
-  }
-});
-'use strict';
-
 app.views.CalcView = Mn.View.extend({
 
   template: tpl.templates.calc,
-
-  regions: {
-    tableRegion: '.table-region'
-  },
 
   ui: {
     form: 'form',
@@ -1804,11 +1782,7 @@ app.views.CalcView = Mn.View.extend({
     'change': 'render'
   },
 
-  onAttach: function onAttach() {
-    this.showChildView('tableRegion', new app.views.CalcTableView({
-      model: this.model
-    }));
-  },
+  onAttach: function onAttach() {},
 
   onRender: function onRender() {
     if (this.model.get('resultV') > 0) {
