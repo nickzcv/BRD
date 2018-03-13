@@ -399,7 +399,6 @@ Handlebars.registerHelper('summColumn', function (value, column) {
   if (value && column) {
     var result = 0;
     value.forEach(function (row) {
-      console.log(row[column]);
       result = result + row[column];
     });
     return result;
@@ -1809,7 +1808,7 @@ app.views.CalcView = Mn.View.extend({
   },
 
   events: {
-    'blur @ui.tsdc': 'calculateResult',
+    'change @ui.tsdc': 'calculateResult',
     'click @ui.addBtn': function clickUiAddBtn() {
       this.model.addToTable();
     },
@@ -1834,7 +1833,9 @@ app.views.CalcView = Mn.View.extend({
         d = this.ui.dlina.val(),
         c = this.ui.count.val();
 
-    this.model.calculateResult(t, s, d, c);
+    if (s && d) {
+      this.model.calculateResult(t, s, d, c);
+    }
   },
 
   removingRow: function removingRow(event) {

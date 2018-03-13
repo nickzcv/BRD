@@ -14,7 +14,7 @@ app.views.CalcView = Mn.View.extend({
   },
 
   events: {
-    'blur @ui.tsdc': 'calculateResult',
+    'change @ui.tsdc': 'calculateResult',
     'click @ui.addBtn': function() {
       this.model.addToTable();
     },
@@ -40,7 +40,9 @@ app.views.CalcView = Mn.View.extend({
         d = this.ui.dlina.val(),
         c = this.ui.count.val();
 
-    this.model.calculateResult(t, s, d, c);
+    if (s && d) {
+      this.model.calculateResult(t, s, d, c);
+    }
   },
 
   removingRow: function(event) {

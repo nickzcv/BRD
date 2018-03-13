@@ -69,10 +69,10 @@
     <tbody>
     {{#each table}}
       <tr>
-        <td>{{tolshina}}x{{shirina}}x{{dlina}}</td>
+        <td>{{tolshina}}<b class="iks">☓</b>{{shirina}}<b class="iks">☓</b>{{dlina}}</td>
         <td>{{count}}</td>
         <td>{{resultP}}</td>
-        <td>{{resultV}}</td>
+        <td>{{cutFloat resultV 6}}</td>
         <td>
           <a class="remove-row" data-row="{{@index}}"><span class="ion-ios-close-outline"></span></a>
         </td>
@@ -82,7 +82,7 @@
         <td>Итого:</td>
         <td>{{summColumn table 'count'}}</td>
         <td>{{summColumn table 'resultP'}}</td>
-        <td>{{summColumn table 'resultV'}}</td>
+        <td>{{cutFloat (summColumn table 'resultV') 6}}</td>
         <td></td>
       </tr>
     </tbody>

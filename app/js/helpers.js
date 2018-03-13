@@ -103,7 +103,6 @@ Handlebars.registerHelper('summColumn', function(value, column) {
   if (value && column) {
     let result = 0;
     value.forEach(function(row) {
-      console.log(row[column]);
       result = result + row[column];
     });
     return result;

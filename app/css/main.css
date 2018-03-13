@@ -85,6 +85,10 @@ label.error {
   font-size: 1.5rem;
   margin: 10% 0 0; }
 
+.iks {
+  color: #888;
+  font-weight: normal; }
+
 .m-b-05 {
   margin-bottom: .5rem; }
 
@@ -947,10 +951,6 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .category .filter-row .first-level span:last-child:after {
   content: ''; }
-
-.ads .ad-item.expanded .section2 .category .filter-row .iks {
-  color: #888;
-  font-weight: normal; }
 
 .ads .ad-item.expanded .section2 .category .filter-row .size-row {
   background: #fff;
