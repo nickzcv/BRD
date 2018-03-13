@@ -13,7 +13,7 @@ app.views.CalcView = Mn.View.extend({
   },
 
   events: {
-    'change @ui.tsdc': 'calculateResult',
+    'blur @ui.tsdc': 'calculateResult',
     'click @ui.addBtn': 'addToTable'
   },
 
