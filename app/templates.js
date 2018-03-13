@@ -583,9 +583,9 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
 this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n    <tr>\r\n      <th>ТxШxД (мм)</th>\r\n      <th>Кол-во (шт.)</th>\r\n      <th>Погонная длина (м)</th>\r\n      <th>Объем (м<sup><small>3</small></sup>)</th>\r\n      <th></th>\r\n    </tr>\r\n    </thead>\r\n  <tbody>\r\n"
+  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n      <tr>\r\n        <th>ТxШxД (мм)</th>\r\n        <th>Кол-во (шт.)</th>\r\n        <th>Погонная длина (м)</th>\r\n        <th>Объем (м<sup><small>3</small></sup>)</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.table : depth0),{"name":"each","hash":{},"fn":this.program(2, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    <tr class=\"total\">\r\n      <td>Итого:</td>\r\n      <td>15500</td>\r\n      <td>2342</td>\r\n      <td>234234</td>\r\n      <td></td>\r\n    </tr>\r\n  </tbody>\r\n  </table>\r\n";
+    + "      <tr class=\"total\">\r\n        <td>Итого:</td>\r\n        <td></td>\r\n        <td></td>\r\n        <td></td>\r\n        <td></td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n";
 },"2":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
