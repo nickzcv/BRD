@@ -391,6 +391,22 @@ Handlebars.registerHelper('cutFloat', function (value, dec) {
     return 0;
   }
 });
+
+/*
+ * For calculator
+ */
+Handlebars.registerHelper('summColumn', function (value, column) {
+  if (value && column) {
+    var result = 0;
+    value.forEach(function (row) {
+      console.log(row[column]);
+      result = result + row[column];
+    });
+    return result;
+  } else {
+    return 0;
+  }
+});
 'use strict';
 
 app.collections.AdsCollection = Backbone.Collection.extend({
@@ -740,14 +756,7 @@ app.models.CalcModel = Backbone.Model.extend({
     square: 0,
     resultV: 0,
     resultP: 0,
-    table: [{
-      tolshina: 22,
-      shirina: 11,
-      dlina: 2,
-      count: 1,
-      resultV: 33,
-      resultP: 44
-    }]
+    table: []
   },
 
   initialize: function initialize() {},
@@ -770,6 +779,31 @@ app.models.CalcModel = Backbone.Model.extend({
     this.set({
       resultV: this.get('volume') * count,
       resultP: Math.floor(count * dlina * 0.001)
+    });
+  },
+
+  addToTable: function addToTable() {
+    var table = this.get('table');
+
+    table.push({
+      tolshina: this.get('tolshina'),
+      shirina: this.get('shirina'),
+      dlina: this.get('dlina'),
+      count: this.get('count'),
+      resultV: this.get('resultV'),
+      resultP: this.get('resultP')
+    });
+
+    this.set({
+      tolshina: undefined,
+      shirina: undefined,
+      dlina: undefined,
+      count: undefined,
+      volume: 0,
+      square: 0,
+      resultV: 0,
+      resultP: 0,
+      table: table
     });
   }
 
@@ -1770,19 +1804,21 @@ app.views.CalcView = Mn.View.extend({
     dlina: '#dlina',
     tsdc: '#tolshina, #shirina, #dlina, #count',
     count: '#count',
-    addBtn: '.add-to-table'
+    addBtn: '.add-to-table',
+    removeRow: '.remove-row'
   },
 
   events: {
-    'change @ui.tsdc': 'calculateResult',
-    'click @ui.addBtn': 'addToTable'
+    'blur @ui.tsdc': 'calculateResult',
+    'click @ui.addBtn': function clickUiAddBtn() {
+      this.model.addToTable();
+    },
+    'click @ui.removeRow': 'removingRow'
   },
 
   modelEvents: {
     'change': 'render'
   },
-
-  onAttach: function onAttach() {},
 
   onRender: function onRender() {
     if (this.model.get('resultV') > 0) {
@@ -1801,8 +1837,13 @@ app.views.CalcView = Mn.View.extend({
     this.model.calculateResult(t, s, d, c);
   },
 
-  addToTable: function addToTable() {
-    console.log('addBtn');
+  removingRow: function removingRow(event) {
+    var rowNumber = $(event.target).closest('a').data('row');
+    var table = this.model.get('table');
+
+    table.splice(rowNumber, 1);
+    this.model.set({ table: table });
+    this.render();
   }
 
 });

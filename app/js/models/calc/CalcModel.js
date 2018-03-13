@@ -9,14 +9,7 @@ app.models.CalcModel = Backbone.Model.extend({
     square: 0,
     resultV: 0,
     resultP: 0,
-    table: [{
-      tolshina: 22,
-      shirina: 11,
-      dlina: 2,
-      count: 1,
-      resultV: 33,
-      resultP: 44,
-    }]
+    table: []
   },
 
   initialize: function() {
@@ -43,5 +36,30 @@ app.models.CalcModel = Backbone.Model.extend({
       resultP: Math.floor(count*dlina*0.001)
     });
   },
+
+  addToTable: function() {
+    let table = this.get('table');
+
+    table.push({
+      tolshina: this.get('tolshina'),
+      shirina: this.get('shirina'),
+      dlina: this.get('dlina'),
+      count: this.get('count'),
+      resultV: this.get('resultV'),
+      resultP: this.get('resultP'),
+    });
+
+    this.set({
+      tolshina: undefined,
+      shirina: undefined,
+      dlina: undefined,
+      count: undefined,
+      volume: 0,
+      square: 0,
+      resultV: 0,
+      resultP: 0,
+      table
+    });
+  }
 
 });

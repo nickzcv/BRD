@@ -95,3 +95,19 @@ Handlebars.registerHelper('cutFloat', function(value, dec) {
     return 0;
   }
 });
+
+/*
+ * For calculator
+ */
+Handlebars.registerHelper('summColumn', function(value, column) {
+  if (value && column) {
+    let result = 0;
+    value.forEach(function(row) {
+      console.log(row[column]);
+      result = result + row[column];
+    });
+    return result;
+  } else {
+    return 0;
+  }
+});

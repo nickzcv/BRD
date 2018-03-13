@@ -72,17 +72,17 @@
         <td>{{tolshina}}x{{shirina}}x{{dlina}}</td>
         <td>{{count}}</td>
         <td>{{resultP}}</td>
-        <td>34</td>
+        <td>{{resultV}}</td>
         <td>
-          <a class="remove-row"><span class="ion-ios-close-outline"></span></a>
+          <a class="remove-row" data-row="{{@index}}"><span class="ion-ios-close-outline"></span></a>
         </td>
       </tr>
     {{/each}}
       <tr class="total">
         <td>Итого:</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{summColumn table 'count'}}</td>
+        <td>{{summColumn table 'resultP'}}</td>
+        <td>{{summColumn table 'resultV'}}</td>
         <td></td>
       </tr>
     </tbody>
