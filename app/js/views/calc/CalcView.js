@@ -10,7 +10,9 @@ app.views.CalcView = Mn.View.extend({
     tsdc: '#tolshina, #shirina, #dlina, #count',
     count: '#count',
     addBtn: '.add-to-table',
-    removeRow: '.remove-row'
+    removeRow: '.remove-row',
+    printTable: '.print',
+    clearTable: '.clear',
   },
 
   events: {
@@ -18,7 +20,11 @@ app.views.CalcView = Mn.View.extend({
     'click @ui.addBtn': function() {
       this.model.addToTable();
     },
-    'click @ui.removeRow': 'removingRow'
+    'click @ui.removeRow': 'removingRow',
+    'click @ui.clearTable': 'removingTable',
+    'click @ui.printTable': function() {
+      window.print()
+    },
   },
 
   modelEvents: {
@@ -47,12 +53,14 @@ app.views.CalcView = Mn.View.extend({
 
   removingRow: function(event) {
     let rowNumber = $(event.target).closest('a').data('row');
-    let table = this.model.get('table');
+    let table = this.model.deepClone(this.model.get('table'));
 
     table.splice(rowNumber, 1);
     this.model.set({table});
-    this.render();
+  },
 
+  removingTable: function() {
+    this.model.set({table: []});
   },
 
 

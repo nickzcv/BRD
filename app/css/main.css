@@ -1597,6 +1597,16 @@ nav.navigation .user .logout:hover {
   border-top-color: #f3f3f3;
   border-width: 15px; }
 
+@media print {
+  header,
+  footer {
+    display: none; }
+  .calc h2,
+  .calc .tri-down,
+  .calc .add-to-table,
+  .calc .actions {
+    display: none; } }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {

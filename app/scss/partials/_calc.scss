@@ -149,3 +149,20 @@
   border-top-color: #f3f3f3;
   border-width: 15px;
 }
+
+
+
+@media print {
+  header,
+  footer {
+    display: none;
+  }
+  .calc {
+    h2,
+    .tri-down,
+    .add-to-table,
+    .actions {
+      display: none;
+    }
+  }
+}
