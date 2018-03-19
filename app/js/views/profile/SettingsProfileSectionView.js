@@ -27,16 +27,21 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
     'click @ui.photo': 'showAddAvatarView',
   },
 
+  modelEvents: {
+    'change': 'render'
+  },
+
   initialize: function() {
-    let thisView = this;
     // Get user data from server
-    thisView.model.fetch().then(() => {
-      thisView.render();
-      // Show countries picker
-      thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({model: thisView.model.get('countriesModel')}));
+    this.model.fetch().then(() => {
+
     },() => {
       console.log('FAIL: Get user data from server');
     });
+  },
+
+  onRender: function() {
+    this.showChildView('countriesPicker', new app.views.CountriesPickerView({model: this.model.get('countriesModel')}));
   },
 
   showAddAvatarView: function() {
@@ -63,7 +68,8 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
       },
       success: () => {
         app.user.fetch();
-        brd.router.navigateToRoute('profile', 'dashboard');
+        //brd.router.navigateToRoute('profile', 'settings');
+        this.render()
       }
     });
 
