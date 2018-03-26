@@ -34,7 +34,8 @@ app.views.adView = Mn.View.extend({
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
       this.ui.table.removeClass('hidden');
-    }
+    },
+    'click @ui.editAdIcon': 'editAd'
   },
 
   initialize: function(options) {

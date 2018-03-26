@@ -67,7 +67,12 @@ app.router = Marionette.AppRouter.extend({
             case 'ads':
               if (page3 && page3 === 'new') {
                 // Add new ad form
-                brd.regions.bodyRegion.show(new app.views.AddAdView({model: new app.models.AdModel()}));
+                brd.regions.bodyRegion.show(new app.views.AddAdView({model: new app.models.AdsModel()}));
+              } else if (page3 && page3 === 'edit' && page4) {
+                // Main ads page
+                brd.regions.bodyRegion.show(new app.views.EditAdView({
+                  model: new app.models.AdModel({idAd: page4}),
+                }));
               } else {
                 // Main ads page
                 brd.regions.bodyRegion.show(new app.views.AdsView());

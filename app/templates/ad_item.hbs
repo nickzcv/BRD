@@ -18,7 +18,7 @@
         {{title}}
         {{#if isLoggedIn}}
           {{#compare currentUserId '===' userId}}
-            <a class="edit-ad"><span class="ion-edit"></span></a>
+            <a class="edit-ad" href="#profile/ads/edit/{{_id}}"><span class="ion-edit"></span></a>
             <a class="delete-ad"><span class="ion-trash-b"></span></a>
           {{/compare}}
         {{/if}}

@@ -230,7 +230,12 @@ app.router = Marionette.AppRouter.extend({
               case 'ads':
                 if (page3 && page3 === 'new') {
                   // Add new ad form
-                  brd.regions.bodyRegion.show(new app.views.AddAdView({ model: new app.models.AdModel() }));
+                  brd.regions.bodyRegion.show(new app.views.AddAdView({ model: new app.models.AdsModel() }));
+                } else if (page3 && page3 === 'edit' && page4) {
+                  // Main ads page
+                  brd.regions.bodyRegion.show(new app.views.EditAdView({
+                    model: new app.models.AdModel({ idAd: page4 })
+                  }));
                 } else {
                   // Main ads page
                   brd.regions.bodyRegion.show(new app.views.AdsView());
@@ -464,6 +469,44 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
 
 app.models.AdModel = Backbone.Model.extend({
 
+  urlRoot: function urlRoot() {
+    var id = this.get('idAd');
+    return 'api/ad/' + id;
+  },
+
+  initialize: function initialize() {}
+
+});
+'use strict';
+
+app.models.AdsHomeModel = Backbone.Model.extend({
+
+  defaults: {},
+
+  initialize: function initialize() {
+    console.log('initialize adsHomeModel');
+  }
+
+});
+"use strict";
+
+app.models.AdsListModel = Backbone.Model.extend({
+
+  defaults: {
+    isItemsExist: false
+  },
+
+  initialize: function initialize() {
+    //console.log('initialize AdsListModel');
+    //console.log(this.attributes);
+
+  }
+
+});
+'use strict';
+
+app.models.AdsModel = Backbone.Model.extend({
+
   urlRoot: 'api/ads',
 
   defaults: {
@@ -519,32 +562,6 @@ app.models.AdModel = Backbone.Model.extend({
   setCategoryObject: function setCategoryObject() {
     var category = _.findWhere(this.get('categories'), { id: this.get('selectedCategoryId') });
     this.set({ category: category });
-  }
-
-});
-'use strict';
-
-app.models.AdsHomeModel = Backbone.Model.extend({
-
-  defaults: {},
-
-  initialize: function initialize() {
-    console.log('initialize adsHomeModel');
-  }
-
-});
-"use strict";
-
-app.models.AdsListModel = Backbone.Model.extend({
-
-  defaults: {
-    isItemsExist: false
-  },
-
-  initialize: function initialize() {
-    //console.log('initialize AdsListModel');
-    //console.log(this.attributes);
-
   }
 
 });
@@ -1599,7 +1616,8 @@ app.views.adView = Mn.View.extend({
       this.getRegion('message').empty();
       this.ui.message.addClass('hidden');
       this.ui.table.removeClass('hidden');
-    }
+    },
+    'click @ui.editAdIcon': 'editAd'
   },
 
   initialize: function initialize(options) {
@@ -2882,6 +2900,27 @@ app.views.DashboardView = Mn.View.extend({
   initialize: function initialize() {
     // Initialize left navigation region
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+  }
+
+});
+'use strict';
+
+app.views.EditAdView = app.views.AddAdView.extend({
+
+  template: tpl.templates.edit_ad,
+
+  initialize: async function initialize() {
+    brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+    try {
+      await this.model.fetch();
+      this.render();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  onRender: function onRender() {
+    this.showChildView('leftNavRegion', new app.views.LeftNavigation({ page: 'ads' }));
   }
 
 });
