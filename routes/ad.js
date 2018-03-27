@@ -105,7 +105,7 @@ router.route('/ad/:ad_id')
 	.get(function(req, res) {
 		Ad.findById(req.params.ad_id, function(err, ad) {
 			if (err)
-				res.json(err);
+				res.json({'error': true});
 
 			res.json(ad);
 		});

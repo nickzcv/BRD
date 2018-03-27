@@ -1,6 +1,6 @@
 /* Ads styles
 -------------------------------------------------- */
-.new-ad {
+.new-ad, .edit-ad {
 
   .typeError, .objectError {
     margin: 5px 0 0;
@@ -67,6 +67,10 @@
         width: 5rem;
       }
     }
+  }
+  .exp-date {
+    position: relative;
+    float: right;
   }
   .btn.add-size {
     vertical-align: top;

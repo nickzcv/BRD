@@ -1260,91 +1260,95 @@ nav.navigation .user .logout:hover {
 
 /* Ads styles
 -------------------------------------------------- */
-.new-ad {
+.new-ad, .edit-ad {
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
 
-.new-ad .typeError, .new-ad .objectError {
+.new-ad .typeError, .new-ad .objectError, .edit-ad .typeError, .edit-ad .objectError {
   margin: 5px 0 0; }
 
-.new-ad .image-error-message {
+.new-ad .image-error-message, .edit-ad .image-error-message {
   color: #a80200;
   margin-top: 10px; }
 
-.new-ad .form-divider {
+.new-ad .form-divider, .edit-ad .form-divider {
   margin: 1rem 2rem 1rem 0;
   border-top: 1px solid #eee; }
 
-.new-ad .lbl {
+.new-ad .lbl, .edit-ad .lbl {
   margin-bottom: 5px; }
 
-.new-ad .add-company {
+.new-ad .add-company, .edit-ad .add-company {
   font-size: 0.8rem; }
 
-.new-ad .marker {
+.new-ad .marker, .edit-ad .marker {
   position: absolute;
   top: 25px;
   padding: 5px;
   color: #fff; }
 
-.new-ad .marker.buy {
+.new-ad .marker.buy, .edit-ad .marker.buy {
   background: darkgreen; }
 
-.new-ad .marker.sell {
+.new-ad .marker.sell, .edit-ad .marker.sell {
   background: darkred; }
 
-.new-ad .ad-photo {
+.new-ad .ad-photo, .edit-ad .ad-photo {
   margin: 0;
   width: 10rem;
   height: 10rem;
   background: #f0eedf;
   cursor: cell; }
 
-.new-ad .ad-photo:hover {
+.new-ad .ad-photo:hover, .edit-ad .ad-photo:hover {
   border: 1px solid orange; }
 
-.new-ad .ad-photo span {
+.new-ad .ad-photo span, .edit-ad .ad-photo span {
   font-size: 6rem;
   color: #fff; }
 
-.new-ad .back {
+.new-ad .back, .edit-ad .back {
   color: goldenrod;
   float: right; }
 
-.new-ad .child-filters {
+.new-ad .child-filters, .edit-ad .child-filters {
   margin-left: 1rem; }
 
-.new-ad .input-label {
+.new-ad .input-label, .edit-ad .input-label {
   margin: 0.5rem 0; }
 
-.new-ad .from-to-inline .input-filter {
+.new-ad .from-to-inline .input-filter, .edit-ad .from-to-inline .input-filter {
   display: inline-block; }
 
-.new-ad .from-to-inline .input-filter label {
+.new-ad .from-to-inline .input-filter label, .edit-ad .from-to-inline .input-filter label {
   font-weight: normal; }
 
-.new-ad .from-to-inline .input-filter input {
+.new-ad .from-to-inline .input-filter input, .edit-ad .from-to-inline .input-filter input {
   display: inline-block;
   width: 5rem; }
 
-.new-ad .btn.add-size {
+.new-ad .exp-date, .edit-ad .exp-date {
+  position: relative;
+  float: right; }
+
+.new-ad .btn.add-size, .edit-ad .btn.add-size {
   vertical-align: top; }
 
-.new-ad .btn.add-size:hover {
+.new-ad .btn.add-size:hover, .edit-ad .btn.add-size:hover {
   background: #559797;
   color: #fff; }
 
-.new-ad .btn.remove-size {
+.new-ad .btn.remove-size, .edit-ad .btn.remove-size {
   vertical-align: top;
   margin-left: .5rem; }
 
-.new-ad .btn.remove-size:hover {
+.new-ad .btn.remove-size:hover, .edit-ad .btn.remove-size:hover {
   background: goldenrod;
   color: #fff; }
 
 @media only screen and (min-width: 1200px) {
-  .new-ad .page {
+  .new-ad .page, .edit-ad .page {
     max-width: 50rem; } }
 
 /* Content

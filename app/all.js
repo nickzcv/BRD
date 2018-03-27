@@ -469,12 +469,47 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
 
 app.models.AdModel = Backbone.Model.extend({
 
+  defaults: {
+    errorMessage: null,
+    isError: false,
+    loading: true
+  },
+
   urlRoot: function urlRoot() {
     var id = this.get('idAd');
     return 'api/ad/' + id;
   },
 
-  initialize: function initialize() {}
+  initialize: function initialize() {
+    var _this = this;
+
+    var thisModel = this;
+    // when a model has been successfully synced with the server.
+    thisModel.on('sync', function () {
+      // Init countries model
+      thisModel.set({ countriesModel: new app.models.CountriesPickerModel({
+          country: thisModel.get('country'),
+          city: thisModel.get('city')
+        }) });
+      // get countries Model
+      var countriesModel = thisModel.get('countriesModel');
+      // Listen to country change
+      countriesModel.on('change:country', function () {
+        thisModel.set({ country: countriesModel.get('country') });
+      });
+      // Listen to city change
+      countriesModel.on('change:city', function () {
+        thisModel.set({ city: countriesModel.get('city') });
+      });
+
+      var category = thisModel.get('category');
+      // Init child Filters model under categories
+      thisModel.set({ categoryModel: new app.models.FiltersModel({ 'category': category }) });
+      var categoryModel = thisModel.get('categoryModel');
+      thisModel.set({ categories: categoryModel.attributes.categories });
+      console.log(_this);
+    });
+  }
 
 });
 'use strict';
@@ -1521,10 +1556,12 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   showFilters: function showFilters() {
     var catId = this.get('catId');
-    var categories = this.get('categories');
-    var category = _.findWhere(categories, { id: catId });
-    // Selected filters category
-    this.set({ category: category });
+    if (catId) {
+      var categories = this.get('categories');
+      var category = _.findWhere(categories, { id: catId });
+      // Selected filters category
+      this.set({ category: category });
+    }
   },
 
   addSize: function addSize() {
@@ -2909,17 +2946,57 @@ app.views.EditAdView = app.views.AddAdView.extend({
 
   template: tpl.templates.edit_ad,
 
+  /**
+   * @see Mn.View#modelEvents
+   * @instance
+   * @memberOf app.views.EditAdView
+   */
+  modelEvents: {
+    //'change': 'render'
+  },
+
   initialize: async function initialize() {
+    var userId = brd.controllers.getUserId();
+
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
     try {
-      await this.model.fetch();
+      var response = await Promise.all([this.model.fetch()]);
+
+      if (response[0].error) {
+        this.model.set({
+          loading: false,
+          isError: true,
+          errorMessage: 'Wrong id.'
+        });
+      } else if (userId != response[0].userId) {
+        this.model.set({
+          loading: false,
+          isError: true,
+          errorMessage: 'You can not edit this item.'
+        });
+      } else {
+        this.model.set({
+          loading: false
+        });
+      }
       this.render();
+      // Show filters in child view
+      this.showChildView('filters', new app.views.FiltersView({
+        model: this.model.get('categoryModel')
+      }));
+
+      this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
     } catch (error) {
-      console.log(error);
+      this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Service error.'
+      });
     }
   },
 
   onRender: function onRender() {
+
     this.showChildView('leftNavRegion', new app.views.LeftNavigation({ page: 'ads' }));
   }
 

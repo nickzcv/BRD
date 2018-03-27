@@ -816,10 +816,12 @@ app.models.FiltersModel = Backbone.Model.extend({
 
   showFilters: function() {
     let catId = this.get('catId');
-    let categories = this.get('categories');
-    let category = _.findWhere(categories, {id: catId});
-    // Selected filters category
-    this.set({category});
+    if (catId) {
+      let categories = this.get('categories');
+      let category = _.findWhere(categories, {id: catId});
+      // Selected filters category
+      this.set({category});
+    }
   },
 
   addSize: function() {
