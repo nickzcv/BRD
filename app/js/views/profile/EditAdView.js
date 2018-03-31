@@ -8,13 +8,17 @@ app.views.EditAdView = app.views.AddAdView.extend({
    * @memberOf app.views.EditAdView
    */
   modelEvents: {
-    //'change': 'render'
+    'change': function() {
+      console.log(this.model.attributes)
+
+    }
   },
 
   initialize: async function() {
     let userId = brd.controllers.getUserId();
 
     brd.regions.leftNavRegion = this.getRegion('leftNavRegion');
+
     try {
       let response = await Promise.all([this.model.fetch()]);
 
@@ -53,11 +57,17 @@ app.views.EditAdView = app.views.AddAdView.extend({
   },
 
   onRender: function() {
-
+    this.formAddValidation();
     this.showChildView('leftNavRegion', new app.views.LeftNavigation({page: 'ads'}));
-
 
   },
 
+  /*
+   * Save Ad
+   *
+   */
+  saveAd: function() {
+    console.log('test')
+  },
 
 });

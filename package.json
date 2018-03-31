@@ -31,7 +31,7 @@
     "gulp-clean-css": "",
     "gulp-concat": "",
     "gulp-declare": "",
-    "gulp-handlebars": "",
+    "gulp-handlebars": "4.0.5",
     "gulp-rename": "",
     "gulp-sass": "",
     "gulp-util": "",
