@@ -481,8 +481,6 @@ app.models.AdModel = Backbone.Model.extend({
   },
 
   initialize: function initialize() {
-    var _this = this;
-
     var thisModel = this;
     // when a model has been successfully synced with the server.
     thisModel.on('sync', function () {
@@ -507,7 +505,6 @@ app.models.AdModel = Backbone.Model.extend({
       thisModel.set({ categoryModel: new app.models.FiltersModel({ 'category': category }) });
       var categoryModel = thisModel.get('categoryModel');
       thisModel.set({ categories: categoryModel.attributes.categories });
-      console.log(_this);
     });
   }
 
@@ -3008,7 +3005,76 @@ app.views.EditAdView = app.views.AddAdView.extend({
    *
    */
   saveAd: function saveAd() {
-    console.log('test');
+    var contacts = this.model.get('contacts');
+    contacts.phones = [];
+    // Set model to save it to the server
+    this.model.set({
+      title: this.ui.title.val().trim(),
+      description: this.ui.description.val().trim(),
+      price: this.ui.price.val().trim(),
+      expirationDate: this.returnExpirationDate(this.ui.expirationDate.val())
+    });
+    // Check if filters has been changed
+    var selectedCat = this.model.get('selectedCategoryId');
+    if (selectedCat) {
+      // Set selected filters
+      var category = _.findWhere(this.model.get('categories'), { id: selectedCat });
+      this.model.set({ category: category });
+    }
+    // Check if image uploaded
+    if (brd.controllers.imageName) {
+      this.model.set({
+        photo: brd.controllers.imageName + '.png'
+      });
+    }
+    // Set name if exist
+    if (app.user.get('name') || app.user.get('lastName') || app.user.get('middleName')) {
+      this.model.set({
+        userName: {
+          name: app.user.get('name'),
+          lastName: app.user.get('lastName'),
+          middleName: app.user.get('middleName')
+        }
+      });
+    } else {
+      this.model.set({
+        userName: null
+      });
+    }
+    // Set contacts
+    switch (contacts.takeFrom) {
+      case 'profile':
+        var phone1 = app.user.get('phone1'),
+            phone2 = app.user.get('phone2');
+        // check if profile phones are exist
+        if (phone1 || phone2) {
+          contacts.phones.push(phone1, phone2);
+          // Set contacts to the model
+          this.model.set({ contacts: contacts });
+        }
+        break;
+      case 'other':
+        contacts.phones.push(this.ui.otherPhone.val().trim());
+        // Set contacts to the model
+        this.model.set({ contacts: contacts });
+        break;
+      default:
+        console.log('default');
+    }
+    // Save the model into database
+    this.model.save(null, {
+      headers: {
+        'Authorization': 'Bearer ' + brd.controllers.getToken()
+      },
+      method: 'PUT',
+      success: function success() {
+        // Redirect to Ads profile page
+        brd.router.navigateToRoute('profile', 'ads');
+      },
+      error: function error() {
+        console.log('error');
+      }
+    });
   }
 
 });

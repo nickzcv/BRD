@@ -112,7 +112,7 @@ router.route('/ad/:ad_id')
 	})
 	// update
 	.put(auth, function(req, res) {
-		User.findById(req.params.ad_id, function(err, ad) {
+    Ad.findById(req.params.ad_id, function(err, ad) {
 
       if (err)
         res.json(err);
@@ -130,14 +130,14 @@ router.route('/ad/:ad_id')
       ad.contacts = req.body.contacts;
       ad.updated_at = new Date();
       ad.status = 'UPDATED';
-      //ad.isActive = req.body.isActive;
-      //ad.userId = req.body.userId;
 
 			ad.save(function(err) {
-				if (err)
-					res.json(err);
+				if (err) {
+          res.json(err);
+        } else {
+          res.json({ message: 'Ad updated!' });
+        }
 
-				res.json({ message: 'Ad updated!' });
 			});
 
 		});

@@ -248,7 +248,6 @@ app.views.AddAdView = Mn.View.extend({
       this.getRegion('filters').empty();
       this.model.set({selectedCategoryId: null})
     }
-
   },
 
   /*
