@@ -79,6 +79,19 @@ app.router = Marionette.AppRouter.extend({
               }
               brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
               break;
+            // Companies
+            case 'company':
+              if (page3 && page3 === 'new') {
+                // Add new company
+                brd.regions.bodyRegion.show(new app.views.AddCompanyView({
+                  model: new app.models.CompanyModel()
+                }));
+              } else {
+                // Main company page
+                brd.regions.bodyRegion.show(new app.views.CompaniesView());
+              }
+              brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
+              break;
             // Default redirect to home
             default:
               this.navigateToRoute('home');

@@ -242,6 +242,19 @@ app.router = Marionette.AppRouter.extend({
                 }
                 brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
                 break;
+              // Companies
+              case 'company':
+                if (page3 && page3 === 'new') {
+                  // Add new company
+                  brd.regions.bodyRegion.show(new app.views.AddCompanyView({
+                    model: new app.models.CompanyModel()
+                  }));
+                } else {
+                  // Main company page
+                  brd.regions.bodyRegion.show(new app.views.CompaniesView());
+                }
+                brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
+                break;
               // Default redirect to home
               default:
                 this.navigateToRoute('home');
@@ -852,6 +865,34 @@ app.models.CalcModel = Backbone.Model.extend({
       resultV: 0,
       resultP: 0,
       table: table
+    });
+  }
+
+});
+'use strict';
+
+app.models.CompanyModel = Backbone.Model.extend({
+
+  // urlRoot: 'api/companies',
+
+  defaults: {
+    countriesModel: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
     });
   }
 
@@ -2842,6 +2883,43 @@ app.views.AddAdView = Mn.View.extend({
 });
 'use strict';
 
+app.views.AddCompanyView = Mn.View.extend({
+
+  template: tpl.templates.add_company,
+
+  regions: {
+    leftNavRegion: '.left-navigation',
+    countriesPicker: '.country-picker',
+    filters: '.filters'
+  },
+
+  ui: {},
+
+  events: {},
+
+  initialize: function initialize() {
+    var thisView = this;
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
+    // Show country picker
+    /*    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
+          model: thisView.model.get('countriesModel')
+        }));*/
+  },
+
+  onRender: function onRender() {
+    this.formAddValidation();
+  },
+
+  /*
+   * Validation rules for the add company form.
+   *
+   */
+  formAddValidation: function formAddValidation() {}
+
+});
+'use strict';
+
 app.views.AdsCollectionView = Mn.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
@@ -2914,6 +2992,41 @@ app.views.AdsView = Mn.View.extend({
     this.showChildView('adsList', new app.views.AdsCollectionView({
       model: new app.models.AdsListModel()
     }));
+  }
+
+});
+'use strict';
+
+app.views.CompaniesView = Mn.View.extend({
+
+  template: tpl.templates.companies,
+
+  ui: {
+    leftNavRegion: '.left-navigation',
+    listRegion: '.companies-list',
+    addButton: '.add-button'
+  },
+
+  regions: {
+    leftNav: '@ui.leftNavRegion',
+    adsList: '@ui.listRegion'
+  },
+
+  events: {
+    'click @ui.addButton': function clickUiAddButton() {
+      brd.router.navigateToRoute('profile', 'company', 'new');
+    }
+  },
+
+  initialize: function initialize() {
+    // Initialize left navigation region
+    brd.regions.leftNavRegion = this.getRegion('leftNav');
+  },
+
+  onRender: function onRender() {
+    /*    this.showChildView('adsList', new app.views.AdsCollectionView({
+          model: new app.models.AdsListModel()
+        }));*/
   }
 
 });
