@@ -2,17 +2,6 @@ app.views.EditAdView = app.views.AddAdView.extend({
 
   template: tpl.templates.edit_ad,
 
-  /**
-   * @see Mn.View#modelEvents
-   * @instance
-   * @memberOf app.views.EditAdView
-   */
-  modelEvents: {
-    'change': function() {
-      console.log(this.model.attributes)
-    }
-  },
-
   initialize: async function() {
     let userId = brd.controllers.getUserId();
 
@@ -43,7 +32,8 @@ app.views.EditAdView = app.views.AddAdView.extend({
       this.showChildView('filters', new app.views.FiltersView({
         model: this.model.get('categoryModel')
       }));
-
+      // Show or hide radio btns
+      this.manageContacts();
       this.showChildView('countriesPicker', new app.views.CountriesPickerView({model: this.model.get('countriesModel')}));
     } catch (error) {
       this.model.set({
@@ -58,7 +48,15 @@ app.views.EditAdView = app.views.AddAdView.extend({
   onRender: function() {
     this.formAddValidation();
     this.showChildView('leftNavRegion', new app.views.LeftNavigation({page: 'ads'}));
+  },
 
+  manageContacts: function() {
+    let contacts = this.model.get('contacts');
+
+    this.ui.companyRadio.prop('disabled', true);
+    if (contacts.takeFrom !== 'other') {
+      this.ui.otherPhoneWrapper.hide();
+    }
   },
 
   /*

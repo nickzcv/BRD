@@ -655,6 +655,67 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
     + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias2).call(alias1,(depth0 != null ? depth0.updated_at : depth0),"LLLL",{"name":"formatDate","hash":{},"data":data}))
     + "</p>\r\n    </div>\r\n  </div>\r\n\r\n</form>";
 },"useData":true});
+this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n      <tr>\r\n        <th>ТxШxД (мм)</th>\r\n        <th>Кол-во (шт.)</th>\r\n        <th>Погонная длина (м)</th>\r\n        <th>Объем (м<sup><small>3</small></sup>)</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.table : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      <tr class=\"total\">\r\n        <td>Итого:</td>\r\n        <td>"
+    + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"count",{"name":"summColumn","hash":{},"data":data}))
+    + "</td>\r\n        <td>"
+    + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultP",{"name":"summColumn","hash":{},"data":data}))
+    + "</td>\r\n        <td>"
+    + alias3((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultV",{"name":"summColumn","hash":{},"data":data}),6,{"name":"cutFloat","hash":{},"data":data}))
+    + "</td>\r\n        <td></td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n  <div class=\"actions\">\r\n    <!--<button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>-->\r\n    <button type=\"button\" class=\"btn btn-success print\"><span class=\"ion-printer\"></span> Печать</button>\r\n    <button type=\"button\" class=\"btn btn-danger pull-right clear\">Удалить таблицу</button>\r\n  </div>\r\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "      <tr>\r\n        <td>"
+    + alias4(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tolshina","hash":{},"data":data}) : helper)))
+    + "<b class=\"iks\">☓</b>"
+    + alias4(((helper = (helper = helpers.shirina || (depth0 != null ? depth0.shirina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"shirina","hash":{},"data":data}) : helper)))
+    + "<b class=\"iks\">☓</b>"
+    + alias4(((helper = (helper = helpers.dlina || (depth0 != null ? depth0.dlina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dlina","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>"
+    + alias4(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"count","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>"
+    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
+    + "</td>\r\n        <td>"
+    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.resultV : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
+    + "</td>\r\n        <td>\r\n          <a class=\"remove-row\" data-row=\""
+    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
+    + "\"><span class=\"ion-ios-close-outline\"></span></a>\r\n        </td>\r\n      </tr>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<div class=\"container calc\">\r\n  <h2><span class=\"icon ion-ios-calculator\"></span> Калькулятор</h2>\r\n\r\n  <div class=\"tri-down\">\r\n    <form>\r\n      <div class=\"row\">\r\n        <div class=\"col-xs-12 col-sm-6 col-md-4\">\r\n          <div class=\"form-group\">\r\n            <label class=\"sr-only\" for=\"tolshina\">Толщина</label>\r\n            <div class=\"input-group size-field\">\r\n              <div class=\"input-group-addon\">Т</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"tolshina\" name=\"tolshina\" placeholder=\"Толщина\" value=\""
+    + alias4(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tolshina","hash":{},"data":data}) : helper)))
+    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label class=\"sr-only\" for=\"shirina\">Ширина</label>\r\n            <div class=\"input-group size-field\">\r\n              <div class=\"input-group-addon\">Ш</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"shirina\" name=\"shirina\" placeholder=\"Ширина\" value=\""
+    + alias4(((helper = (helper = helpers.shirina || (depth0 != null ? depth0.shirina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"shirina","hash":{},"data":data}) : helper)))
+    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group size-field\">\r\n            <label class=\"sr-only\" for=\"dlina\">Длина</label>\r\n            <div class=\"input-group\">\r\n              <div class=\"input-group-addon\">Д</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"dlina\" name=\"dlina\" placeholder=\"Длина\" value=\""
+    + alias4(((helper = (helper = helpers.dlina || (depth0 != null ? depth0.dlina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dlina","hash":{},"data":data}) : helper)))
+    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-xs-12 col-sm-6 col-md-8\">\r\n          <!-- "
+    + alias4(((helper = (helper = helpers.volume || (depth0 != null ? depth0.volume : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"volume","hash":{},"data":data}) : helper)))
+    + " -->\r\n          <div class=\"result-one\"><span>V</span> = <span id=\"volume\">"
+    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.volume : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
+    + "</span> м<sup><small>3</small></sup></div>\r\n          <!-- "
+    + alias4(((helper = (helper = helpers.square || (depth0 != null ? depth0.square : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"square","hash":{},"data":data}) : helper)))
+    + " -->\r\n          <div class=\"result-one\"><span>S</span> = <span id=\"square\">"
+    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.square : depth0),3,{"name":"cutFloat","hash":{},"data":data}))
+    + "</span> м<sup><small>2</small></sup></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"count-block\">\r\n        <div class=\"form-group count-field\">\r\n          <label class=\"sr-only\" for=\"count\">Количество</label>\r\n          <div class=\"input-group\">\r\n            <input type=\"number\" min=\"0\" class=\"form-control\" id=\"count\" name=\"count\" placeholder=\"Количество\" value=\""
+    + alias4(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"count","hash":{},"data":data}) : helper)))
+    + "\">\r\n            <div class=\"input-group-addon\">шт</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- "
+    + alias4(((helper = (helper = helpers.resultV || (depth0 != null ? depth0.resultV : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultV","hash":{},"data":data}) : helper)))
+    + " -->\r\n      <div class=\"result\">Общий объем = <span class=\"result-v\">"
+    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.resultV : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
+    + "</span> м<sup><small>3</small></sup></div>\r\n      <!-- "
+    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
+    + " -->\r\n      <div class=\"result\">Погонная длина = <span class=\"result-p\">"
+    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
+    + "</span> м</div>\r\n    </form>\r\n  </div>\r\n  <!-- Add to table button-->\r\n  <button type=\"button\" class=\"btn add-to-table\" disabled><span class=\"ion-clipboard\"></span> Вставить в таблицу</button>\r\n\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.table : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\r\n";
+},"useData":true});
 this["tpl"]["templates"]["avatar"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<!-- Forgot modal -->\r\n<div class=\"modal fade\" id=\"avatar\"  tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"avatarModalLabel\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n        <h4 class=\"modal-title\" id=\"avatarModalLabel\">Загрузка личного аватара</h4>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <form id=\"form\">\r\n          <input id=\"upload\" type=\"file\" name=\"upload\">\r\n          <div id=\"upload-preview\"></div>\r\n      </form>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default btn-danger pull-left\" data-dismiss=\"modal\">Отмена</button>\r\n        <button type=\"button\" class=\"btn btn-default upload-avatar\">Загрузить</button>\r\n      </div>\r\n    </div><!-- /.modal-content -->\r\n  </div><!-- /.modal-dialog -->\r\n</div><!-- /.modal -->";
 },"useData":true});
@@ -763,65 +824,4 @@ this["tpl"]["templates"]["send_message_form"] = Handlebars.template({"compiler":
 },"useData":true});
 this["tpl"]["templates"]["spinner"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"loader-wrapper\">\r\n  <div class=\"loader\"></div>\r\n</div>";
-},"useData":true});
-this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3=container.escapeExpression;
-
-  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n      <tr>\r\n        <th>ТxШxД (мм)</th>\r\n        <th>Кол-во (шт.)</th>\r\n        <th>Погонная длина (м)</th>\r\n        <th>Объем (м<sup><small>3</small></sup>)</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.table : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "      <tr class=\"total\">\r\n        <td>Итого:</td>\r\n        <td>"
-    + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"count",{"name":"summColumn","hash":{},"data":data}))
-    + "</td>\r\n        <td>"
-    + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultP",{"name":"summColumn","hash":{},"data":data}))
-    + "</td>\r\n        <td>"
-    + alias3((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultV",{"name":"summColumn","hash":{},"data":data}),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</td>\r\n        <td></td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n  <div class=\"actions\">\r\n    <!--<button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>-->\r\n    <button type=\"button\" class=\"btn btn-success print\"><span class=\"ion-printer\"></span> Печать</button>\r\n    <button type=\"button\" class=\"btn btn-danger pull-right clear\">Удалить таблицу</button>\r\n  </div>\r\n";
-},"2":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-  return "      <tr>\r\n        <td>"
-    + alias4(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tolshina","hash":{},"data":data}) : helper)))
-    + "<b class=\"iks\">☓</b>"
-    + alias4(((helper = (helper = helpers.shirina || (depth0 != null ? depth0.shirina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"shirina","hash":{},"data":data}) : helper)))
-    + "<b class=\"iks\">☓</b>"
-    + alias4(((helper = (helper = helpers.dlina || (depth0 != null ? depth0.dlina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dlina","hash":{},"data":data}) : helper)))
-    + "</td>\r\n        <td>"
-    + alias4(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"count","hash":{},"data":data}) : helper)))
-    + "</td>\r\n        <td>"
-    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
-    + "</td>\r\n        <td>"
-    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.resultV : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</td>\r\n        <td>\r\n          <a class=\"remove-row\" data-row=\""
-    + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
-    + "\"><span class=\"ion-ios-close-outline\"></span></a>\r\n        </td>\r\n      </tr>\r\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-  return "<div class=\"container calc\">\r\n  <h2><span class=\"icon ion-ios-calculator\"></span> Калькулятор</h2>\r\n\r\n  <div class=\"tri-down\">\r\n    <form>\r\n      <div class=\"row\">\r\n        <div class=\"col-xs-12 col-sm-6 col-md-4\">\r\n          <div class=\"form-group\">\r\n            <label class=\"sr-only\" for=\"tolshina\">Толщина</label>\r\n            <div class=\"input-group size-field\">\r\n              <div class=\"input-group-addon\">Т</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"tolshina\" name=\"tolshina\" placeholder=\"Толщина\" value=\""
-    + alias4(((helper = (helper = helpers.tolshina || (depth0 != null ? depth0.tolshina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tolshina","hash":{},"data":data}) : helper)))
-    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group\">\r\n            <label class=\"sr-only\" for=\"shirina\">Ширина</label>\r\n            <div class=\"input-group size-field\">\r\n              <div class=\"input-group-addon\">Ш</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"shirina\" name=\"shirina\" placeholder=\"Ширина\" value=\""
-    + alias4(((helper = (helper = helpers.shirina || (depth0 != null ? depth0.shirina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"shirina","hash":{},"data":data}) : helper)))
-    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n          <div class=\"form-group size-field\">\r\n            <label class=\"sr-only\" for=\"dlina\">Длина</label>\r\n            <div class=\"input-group\">\r\n              <div class=\"input-group-addon\">Д</div>\r\n              <input type=\"number\" min=\"0\" class=\"form-control\" id=\"dlina\" name=\"dlina\" placeholder=\"Длина\" value=\""
-    + alias4(((helper = (helper = helpers.dlina || (depth0 != null ? depth0.dlina : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dlina","hash":{},"data":data}) : helper)))
-    + "\">\r\n              <div class=\"input-group-addon\">мм</div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-xs-12 col-sm-6 col-md-8\">\r\n          <!-- "
-    + alias4(((helper = (helper = helpers.volume || (depth0 != null ? depth0.volume : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"volume","hash":{},"data":data}) : helper)))
-    + " -->\r\n          <div class=\"result-one\"><span>V</span> = <span id=\"volume\">"
-    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.volume : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</span> м<sup><small>3</small></sup></div>\r\n          <!-- "
-    + alias4(((helper = (helper = helpers.square || (depth0 != null ? depth0.square : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"square","hash":{},"data":data}) : helper)))
-    + " -->\r\n          <div class=\"result-one\"><span>S</span> = <span id=\"square\">"
-    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.square : depth0),3,{"name":"cutFloat","hash":{},"data":data}))
-    + "</span> м<sup><small>2</small></sup></div>\r\n        </div>\r\n      </div>\r\n      <div class=\"count-block\">\r\n        <div class=\"form-group count-field\">\r\n          <label class=\"sr-only\" for=\"count\">Количество</label>\r\n          <div class=\"input-group\">\r\n            <input type=\"number\" min=\"0\" class=\"form-control\" id=\"count\" name=\"count\" placeholder=\"Количество\" value=\""
-    + alias4(((helper = (helper = helpers.count || (depth0 != null ? depth0.count : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"count","hash":{},"data":data}) : helper)))
-    + "\">\r\n            <div class=\"input-group-addon\">шт</div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <!-- "
-    + alias4(((helper = (helper = helpers.resultV || (depth0 != null ? depth0.resultV : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultV","hash":{},"data":data}) : helper)))
-    + " -->\r\n      <div class=\"result\">Общий объем = <span class=\"result-v\">"
-    + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.resultV : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</span> м<sup><small>3</small></sup></div>\r\n      <!-- "
-    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
-    + " -->\r\n      <div class=\"result\">Погонная длина = <span class=\"result-p\">"
-    + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
-    + "</span> м</div>\r\n    </form>\r\n  </div>\r\n  <!-- Add to table button-->\r\n  <button type=\"button\" class=\"btn add-to-table\" disabled><span class=\"ion-clipboard\"></span> Вставить в таблицу</button>\r\n\r\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.table : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\r\n";
 },"useData":true});
