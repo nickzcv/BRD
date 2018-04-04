@@ -13,6 +13,8 @@ var companySchema = new mongoose.Schema({
   count: String,
   category: {type: Object},
   employees: {type: Object},
+  created_at: Date,
+  updated_at: Date,
 });
 
 
