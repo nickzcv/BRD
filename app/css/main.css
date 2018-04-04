@@ -1616,8 +1616,13 @@ nav.navigation .user .logout:hover {
   .calc h2,
   .calc .tri-down,
   .calc .add-to-table,
-  .calc .actions {
-    display: none; } }
+  .calc .actions,
+  .calc .remove-col {
+    display: none; }
+  .calc table {
+    border-collapse: collapse; }
+  .calc table, .calc th, .calc td {
+    border: 1px solid #888; } }
 
 /* Modal styles
 -------------------------------------------------- */

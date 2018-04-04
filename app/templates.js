@@ -655,7 +655,7 @@ this["tpl"]["templates"]["settings_profile_section"] = Handlebars.template({"1":
 this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3=container.escapeExpression;
 
-  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n      <tr>\r\n        <th>ТxШxД (мм)</th>\r\n        <th>Кол-во (шт.)</th>\r\n        <th>Погонная длина (м)</th>\r\n        <th>Объем (м<sup><small>3</small></sup>)</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n"
+  return "  <table class=\"table table-hover table-responsive\">\r\n    <thead>\r\n      <tr>\r\n        <th>ТxШxД (мм)</th>\r\n        <th>Кол-во (шт.)</th>\r\n        <th>Погонная длина (м)</th>\r\n        <th>Объем (м<sup><small>3</small></sup>)</th>\r\n        <th class=\"remove-col\"></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.table : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      <tr class=\"total\">\r\n        <td>Итого:</td>\r\n        <td>"
     + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"count",{"name":"summColumn","hash":{},"data":data}))
@@ -663,7 +663,7 @@ this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,d
     + alias3((helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultP",{"name":"summColumn","hash":{},"data":data}))
     + "</td>\r\n        <td>"
     + alias3((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(helpers.summColumn || (depth0 && depth0.summColumn) || alias2).call(alias1,(depth0 != null ? depth0.table : depth0),"resultV",{"name":"summColumn","hash":{},"data":data}),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</td>\r\n        <td></td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n  <div class=\"actions\">\r\n    <!--<button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>-->\r\n    <button type=\"button\" class=\"btn btn-success print\"><span class=\"ion-printer\"></span> Печать</button>\r\n    <button type=\"button\" class=\"btn btn-danger pull-right clear\">Удалить таблицу</button>\r\n  </div>\r\n";
+    + "</td>\r\n        <td class=\"remove-col\"></td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n  <div class=\"actions\">\r\n    <!--<button type=\"button\" class=\"btn btn-success\"><span class=\"ion-help\"></span> Узнать цены</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-success\">Сохранить</button>-->\r\n    <!--<button type=\"button\" class=\"btn btn-info\"><span class=\"ion-paper-airplane\"></span> Отправить на e-mail</button>-->\r\n    <button type=\"button\" class=\"btn btn-success print\"><span class=\"ion-printer\"></span> Печать</button>\r\n    <button type=\"button\" class=\"btn btn-danger pull-right clear\">Удалить таблицу</button>\r\n  </div>\r\n";
 },"2":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -679,7 +679,7 @@ this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,d
     + alias4(((helper = (helper = helpers.resultP || (depth0 != null ? depth0.resultP : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"resultP","hash":{},"data":data}) : helper)))
     + "</td>\r\n        <td>"
     + alias4((helpers.cutFloat || (depth0 && depth0.cutFloat) || alias2).call(alias1,(depth0 != null ? depth0.resultV : depth0),6,{"name":"cutFloat","hash":{},"data":data}))
-    + "</td>\r\n        <td>\r\n          <a class=\"remove-row\" data-row=\""
+    + "</td>\r\n        <td class=\"remove-col\">\r\n          <a class=\"remove-row\" data-row=\""
     + alias4(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"index","hash":{},"data":data}) : helper)))
     + "\"><span class=\"ion-ios-close-outline\"></span></a>\r\n        </td>\r\n      </tr>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -714,7 +714,7 @@ this["tpl"]["templates"]["calc"] = Handlebars.template({"1":function(container,d
     + "</div>\r\n";
 },"useData":true});
 this["tpl"]["templates"]["add_company"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile new-ad\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-clipboard\"></span>\r\n    <span class=\"title-text\">Новая компания</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <!--  Add new company form -->\r\n    TEST\r\n    <!-- /end form-->\r\n  </div>\r\n\r\n\r\n</div>";
+    return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile new-ad\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-person-stalker\"></span>\r\n    <span class=\"title-text\">Новая компания</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <!--  Add new company form -->\r\n    TEST\r\n    <!-- /end form-->\r\n  </div>\r\n\r\n\r\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["companies"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<!--  left-navigation -->\r\n<div class=\"left-navigation\"></div>\r\n<!-- /end  left-navigation -->\r\n\r\n<div class=\"profile companies\">\r\n  <div class=\"title\">\r\n    <span class=\"icon ion-person-stalker\"></span>\r\n    <span class=\"title-text\">Мои компании</span>\r\n  </div>\r\n  <div class=\"page\">\r\n    <div class=\"btns-section\">\r\n      <button type=\"button\" class=\"btn btn-default pull-left add-button\">Добавить компанию <span class=\"ion-ios-plus-outline\"></span></button>\r\n    </div>\r\n\r\n    <div class=\"companies-list\"></div>\r\n\r\n\r\n  </div>\r\n</div>\r\n";

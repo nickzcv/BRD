@@ -63,7 +63,7 @@
         <th>Кол-во (шт.)</th>
         <th>Погонная длина (м)</th>
         <th>Объем (м<sup><small>3</small></sup>)</th>
-        <th></th>
+        <th class="remove-col"></th>
       </tr>
     </thead>
     <tbody>
@@ -73,7 +73,7 @@
         <td>{{count}}</td>
         <td>{{resultP}}</td>
         <td>{{cutFloat resultV 6}}</td>
-        <td>
+        <td class="remove-col">
           <a class="remove-row" data-row="{{@index}}"><span class="ion-ios-close-outline"></span></a>
         </td>
       </tr>
@@ -83,7 +83,7 @@
         <td>{{summColumn table 'count'}}</td>
         <td>{{summColumn table 'resultP'}}</td>
         <td>{{cutFloat (summColumn table 'resultV') 6}}</td>
-        <td></td>
+        <td class="remove-col"></td>
       </tr>
     </tbody>
   </table>

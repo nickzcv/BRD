@@ -161,8 +161,15 @@
     h2,
     .tri-down,
     .add-to-table,
-    .actions {
+    .actions,
+    .remove-col {
       display: none;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid $gray-dark3;
     }
   }
 }
