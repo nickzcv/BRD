@@ -28,6 +28,8 @@ app.use(passport.initialize());
 database.connect();
 
 // API
+var company = require(path.join(__dirname, 'routes/company'));
+app.use('/api', company);
 var user = require(path.join(__dirname, 'routes/user'));
 app.use('/api', user);
 var ad = require(path.join(__dirname, 'routes/ad'));
