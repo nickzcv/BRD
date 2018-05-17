@@ -21,6 +21,15 @@ gulp.task('sass', function(){
   .pipe(gulp.dest('app/css'));
 });
 
+gulp.task('sass_pr', function(){
+  gulp.src('pr/sass/main.scss')
+  .pipe(sass({ style: 'expanded' }))
+  .pipe(gulp.dest('pr/styles'))
+  .pipe(rename({suffix: '.min'}))
+  .pipe(minifycss())
+  .pipe(gulp.dest('pr/styles'));
+});
+
 gulp.task('templates', function(){
   gulp.src('app/templates/**/*.hbs')
   .pipe(handlebars())
@@ -59,4 +68,7 @@ gulp.task('watch', function(){
   gulp.watch('app/templates/**/*.hbs', {interval: 1000}, ['templates']);
   // Watch for JS changes
   gulp.watch('app/js/**/*.js', {interval: 1000}, ['js']);
+
+  // PR
+  gulp.watch('pr/sass/*.scss', {interval: 1000}, ['sass_pr']);
 });
