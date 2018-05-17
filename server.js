@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Root directory from which the static assets are to be served.
 app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static('pr'));
 
 
 
@@ -40,6 +41,10 @@ var uploader = require(path.join(__dirname, 'routes/upload'));
 app.use('/api', uploader);
 var home = require(path.join(__dirname, 'routes/home'));
 app.use('/api', home);
+
+app.get('/pr', function (req, res) {
+  res.sendFile(path.join(__dirname, 'pr/index.html'));
+});
 
 // Otherwise render the index.html page for the Backbone SPA
 // This means we don't have to map all of the SPA routes in Express
