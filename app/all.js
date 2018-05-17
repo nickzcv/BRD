@@ -806,6 +806,34 @@ app.models.UserModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.CompanyModel = Backbone.Model.extend({
+
+  // urlRoot: 'api/companies',
+
+  defaults: {
+    countriesModel: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
+    });
+  }
+
+});
+'use strict';
+
 app.models.CalcModel = Backbone.Model.extend({
 
   defaults: {
@@ -871,34 +899,6 @@ app.models.CalcModel = Backbone.Model.extend({
 });
 'use strict';
 
-app.models.CompanyModel = Backbone.Model.extend({
-
-  // urlRoot: 'api/companies',
-
-  defaults: {
-    countriesModel: null
-  },
-
-  initialize: function initialize() {
-    var _this = this;
-
-    // Init child Countries model
-    this.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // get countries Model
-    var countriesModel = this.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      _this.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      _this.set({ city: countriesModel.get('city') });
-    });
-  }
-
-});
-'use strict';
-
 app.models.CountriesPickerModel = Backbone.Model.extend({
 
   defaults: {
@@ -922,7 +922,7 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'http://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300'
+      url: 'https://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
     });
   },
 
@@ -930,7 +930,7 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'http://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString
+      url: 'https://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString + '&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
     });
   },
 
