@@ -33,8 +33,11 @@ body {
   color: #fff;
   text-transform: uppercase;
   border-radius: 2px;
+  z-index: 11;
   &:hover {
-    border: 5px #ffffff52 solid;
+    border: 4px #ffffff solid;
+    color: #fff;
+    text-decoration: none;
   }
 }
 .sawmill {

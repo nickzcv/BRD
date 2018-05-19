@@ -31,10 +31,13 @@ body {
   font-size: 2rem;
   color: #fff;
   text-transform: uppercase;
-  border-radius: 2px; }
+  border-radius: 2px;
+  z-index: 11; }
 
 .logo:hover {
-  border: 5px #ffffff52 solid; }
+  border: 4px #ffffff solid;
+  color: #fff;
+  text-decoration: none; }
 
 .sawmill {
   position: absolute;
