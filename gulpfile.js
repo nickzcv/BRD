@@ -23,6 +23,7 @@ gulp.task('sass', function(){
 
 gulp.task('sass_pr', function(){
   gulp.src('pr/sass/main.scss')
+  .pipe(sass({ includePaths : ['_/partials/'] }))
   .pipe(sass({ style: 'expanded' }))
   .pipe(gulp.dest('pr/styles'))
   .pipe(rename({suffix: '.min'}))
@@ -70,5 +71,5 @@ gulp.task('watch', function(){
   gulp.watch('app/js/**/*.js', {interval: 1000}, ['js']);
 
   // PR
-  gulp.watch('pr/sass/*.scss', {interval: 1000}, ['sass_pr']);
+  gulp.watch('pr/sass/**/*.scss', {interval: 1000}, ['sass_pr']);
 });
