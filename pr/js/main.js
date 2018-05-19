@@ -6,7 +6,6 @@ $(document).ready(function() {
 
   $('nav a').on('click', function(event) {
     event.preventDefault();
-
     // Hide all
     $('section').addClass('hidden');
 
@@ -19,6 +18,12 @@ $(document).ready(function() {
       $(this).removeClass('active');
     }
  
+  });
+
+  $('.close').on('click', function(event) {
+    event.preventDefault();
+    $('section').addClass('hidden');
+    $('nav a').removeClass('active');
   });
 
 });

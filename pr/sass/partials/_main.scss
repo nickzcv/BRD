@@ -25,8 +25,8 @@ body {
 .logo {
   font-family: 'Jura', sans-serif;
   position: absolute;
-  top: 2rem;
-  left: 2rem;
+  top: 1rem;
+  left: 1rem;
   border: 4px rgba(255, 255, 255, 0.3215686274509804) solid;
   padding: 1rem;
   font-size: 2rem;
@@ -51,16 +51,16 @@ body {
 nav {
   position: absolute;
   top: 8rem;
-  left: 2rem;
+  left: 1rem;
   font-family: 'Jura', sans-serif;
 
   a {
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: #fff;
-    margin: 2rem 0;
+    margin: .5rem 0;
     border-radius: 2px;
-    padding: 5px 15px;
+    padding: 5px 10px;
 
     &:hover,
     &:visited {
@@ -85,11 +85,28 @@ nav {
     width: 100%;
     height: 100%;
   }
+  nav {
+    a {
+      font-size: 1.6rem;
+      margin: 1rem 0;
+    }
+
+  }
 }
 
 /* Desktop */
 @media only screen and (min-width: 992px) {
+  .logo {
+    top: 2rem;
+    left: 2rem;
+  }
+  nav {
+    a {
+      margin: 2rem 0;
+      padding: 5px 15px;
+    }
 
+  }
 }
 
 /* Large screens */
@@ -100,6 +117,10 @@ nav {
   nav {
     left: 10%;
     top: 10rem;
+    a {
+      margin: 2rem 0;
+      padding: 5px 15px;
+    }
   }
 }
 

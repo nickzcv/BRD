@@ -1,15 +1,47 @@
 section {
   background: rgba(255, 255, 255, 0.9);
-  width: 70%;
+  width: auto;
 
   &.page {
-    position: absolute;
-    left: 25%;
-    top: 10rem;
+    position: relative;
+    left: 1rem;
+    right: 1rem;
+    top: 8rem;
     padding: 1rem;
     font-size: 1rem;
     max-width: 1200px;
   }
 
+  .close{
+
+    color: #000;
+    font-size: 2.5rem;
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+  }
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+    width: 70%;
+
+    &.page {
+      left: 25%;
+      top: 10rem;
+    }
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1200px) {
+
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1400px) {
+
+  }
 
 }
