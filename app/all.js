@@ -424,6 +424,7 @@ Handlebars.registerHelper('summColumn', function (value, column) {
     return 0;
   }
 });
+"use strict";
 'use strict';
 
 app.collections.AdsCollection = Backbone.Collection.extend({
@@ -2462,7 +2463,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
           minlength: 5
         },
         confirm: {
-          required: true
+          required: false
         }
       },
       messages: {

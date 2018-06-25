@@ -55,7 +55,7 @@ app.views.RegistrationView = app.views.HeaderView.extend({
           minlength: 5
         },
         confirm: {
-          required: true
+          required: false
         }
       },
       messages: {

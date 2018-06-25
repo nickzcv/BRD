@@ -186,7 +186,8 @@ header .registration, header .login {
   width: 100%;
   height: 3rem;
   /* Set the fixed height of the footer here */
-  background-color: #fcfcf4;
+  background: #fcfcf4 url("../img/wood_texture.jpg") repeat-x;
+  opacity: 0.1;
   /* SmartPhones */
   /* Tablets */
   /* Desktop and larger */ }

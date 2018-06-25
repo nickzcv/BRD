@@ -49,6 +49,7 @@ gulp.task('js', function() {
     'app/js/brd.js',
     'app/js/router.js',
     'app/js/helpers.js',
+    'app/js/common.js',
     'app/js/collections/*.js',
     'app/js/models/**/*.js',
     'app/js/routers/*.js',
@@ -71,5 +72,5 @@ gulp.task('watch', function(){
   gulp.watch('app/js/**/*.js', {interval: 1000}, ['js']);
 
   // PR
-  gulp.watch('pr/sass/**/*.scss', {interval: 1000}, ['sass_pr']);
+  // gulp.watch('pr/sass/**/*.scss', {interval: 1000}, ['sass_pr']);
 });
