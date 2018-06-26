@@ -417,6 +417,7 @@
         width: 7rem;
         height: 7rem;
         background-color: #f0eedf;
+
         span {
           color: $gray-dark;
           font-size: 5rem;
@@ -427,6 +428,9 @@
            position: absolute;
            padding: 1px 4px;
            font-size: 0.7rem;
+           border: 1px solid white;
+           border-top: none;
+           border-left: none;
 
             &.buy {
               background: $buy;

@@ -1081,7 +1081,10 @@ nav.navigation .user .logout:hover {
     color: #edebdc;
     position: absolute;
     padding: 1px 4px;
-    font-size: 0.7rem; }
+    font-size: 0.7rem;
+    border: 1px solid white;
+    border-top: none;
+    border-left: none; }
   .ads .ad-item .photo .type.buy {
     background: darkgreen;
     left: 0; }
