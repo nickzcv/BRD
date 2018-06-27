@@ -1082,7 +1082,7 @@ nav.navigation .user .logout:hover {
     position: absolute;
     padding: 1px 4px;
     font-size: 0.7rem;
-    border: 1px solid white;
+    border: 1px solid #edebdc;
     border-top: none;
     border-left: none; }
   .ads .ad-item .photo .type.buy {

@@ -807,34 +807,6 @@ app.models.UserModel = Backbone.Model.extend({
 });
 'use strict';
 
-app.models.CompanyModel = Backbone.Model.extend({
-
-  // urlRoot: 'api/companies',
-
-  defaults: {
-    countriesModel: null
-  },
-
-  initialize: function initialize() {
-    var _this = this;
-
-    // Init child Countries model
-    this.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // get countries Model
-    var countriesModel = this.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      _this.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      _this.set({ city: countriesModel.get('city') });
-    });
-  }
-
-});
-'use strict';
-
 app.models.CalcModel = Backbone.Model.extend({
 
   defaults: {
@@ -894,6 +866,34 @@ app.models.CalcModel = Backbone.Model.extend({
       resultV: 0,
       resultP: 0,
       table: table
+    });
+  }
+
+});
+'use strict';
+
+app.models.CompanyModel = Backbone.Model.extend({
+
+  // urlRoot: 'api/companies',
+
+  defaults: {
+    countriesModel: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
     });
   }
 
@@ -1770,10 +1770,6 @@ app.views.ForbiddenView = Mn.View.extend({
 
   template: tpl.templates.forbidden,
 
-  regions: {
-    modalSection: '.modal-section'
-  },
-
   ui: {
     'login': '.login',
     'register': '.register'
@@ -1784,15 +1780,15 @@ app.views.ForbiddenView = Mn.View.extend({
     'click @ui.register': 'showRegistrationView'
   },
 
-  showLoginView: function showLoginView() {
-    this.showChildView('modalSection', new app.views.LoginView({
-      model: new app.models.LoginModel()
+  showRegistrationView: function showRegistrationView() {
+    brd.regions.modalSection.show(new app.views.RegistrationView({
+      model: new app.models.RegistrationModel()
     }));
   },
 
-  showRegistrationView: function showRegistrationView() {
-    this.showChildView('modalSection', new app.views.RegistrationView({
-      model: new app.models.RegistrationModel()
+  showLoginView: function showLoginView() {
+    brd.regions.modalSection.show(new app.views.LoginView({
+      model: new app.models.LoginModel()
     }));
   }
 
@@ -1802,10 +1798,6 @@ app.views.ForbiddenView = Mn.View.extend({
 app.views.HeaderView = Mn.View.extend({
 
   template: tpl.templates.header,
-
-  regions: {
-    modalSection: '.modal-section'
-  },
 
   ui: {
     hamburger: '.hamburger',
@@ -1840,13 +1832,13 @@ app.views.HeaderView = Mn.View.extend({
   },
 
   showRegistrationView: function showRegistrationView() {
-    this.showChildView('modalSection', new app.views.RegistrationView({
+    brd.regions.modalSection.show(new app.views.RegistrationView({
       model: new app.models.RegistrationModel()
     }));
   },
 
   showLoginView: function showLoginView() {
-    this.showChildView('modalSection', new app.views.LoginView({
+    brd.regions.modalSection.show(new app.views.LoginView({
       model: new app.models.LoginModel()
     }));
   },
@@ -1870,12 +1862,15 @@ app.views.MainView = Mn.View.extend({
   regions: {
     headerRegion: 'header',
     bodyRegion: '.content',
-    footerRegion: 'footer'
+    footerRegion: 'footer',
+    modalSection: '.modal-section'
   },
 
   initialize: function initialize() {
     // Initialize main content region
     brd.regions.bodyRegion = this.getRegion('bodyRegion');
+    // Initialize modals region
+    brd.regions.modalSection = this.getRegion('modalSection');
   },
 
   onRender: function onRender() {

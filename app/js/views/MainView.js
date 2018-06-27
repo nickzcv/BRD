@@ -5,12 +5,15 @@ app.views.MainView = Mn.View.extend({
   regions: {
     headerRegion: 'header',
     bodyRegion: '.content',
-    footerRegion: 'footer'
+    footerRegion: 'footer',
+    modalSection: '.modal-section'
   },
 
   initialize: function() {
     // Initialize main content region
     brd.regions.bodyRegion = this.getRegion('bodyRegion');
+    // Initialize modals region
+    brd.regions.modalSection = this.getRegion('modalSection');
   },
 
   onRender: function() {

@@ -2,10 +2,6 @@ app.views.HeaderView = Mn.View.extend({
 
   template: tpl.templates.header,
 
-  regions: {
-    modalSection: '.modal-section'
-  },
-
   ui: {
     hamburger: '.hamburger',
     navigation: '.navigation',
@@ -39,13 +35,13 @@ app.views.HeaderView = Mn.View.extend({
   },
 
   showRegistrationView: function() {
-    this.showChildView('modalSection', new app.views.RegistrationView({
+    brd.regions.modalSection.show(new app.views.RegistrationView({
       model: new app.models.RegistrationModel()
     }));
   },
 
   showLoginView: function() {
-    this.showChildView('modalSection', new app.views.LoginView({
+    brd.regions.modalSection.show(new app.views.LoginView({
       model: new app.models.LoginModel()
     }));
   },
