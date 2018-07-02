@@ -29,7 +29,7 @@ router.route('/ads')
     ad.updated_at = new Date();
     ad.notes = null;
     ad.status = null;
-    ad.isActive = false;
+    ad.isActive = true;
     ad.userId = req.body.userId;
     ad.userName = req.body.userName;
     ad.company = null;

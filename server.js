@@ -5,7 +5,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const winston = require('winston');
+const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session');
 const database = require('./config/database');
@@ -27,6 +27,8 @@ app.use(passport.initialize());
 
 // DB connect
 database.connect();
+
+app.use(morgan('tiny'));
 
 // API
 var company = require(path.join(__dirname, 'routes/company'));
@@ -60,8 +62,6 @@ app.use(function (err, req, res, next) {
     res.json({"message" : err.name + ": " + err.message});
   }
 });
-
-
 
 
 app.listen(port);

@@ -15,7 +15,7 @@ var companySchema = new mongoose.Schema({
   employees: {type: Object},
   created_at: Date,
   updated_at: Date,
-  isActive: {type: Boolean, default: false},
+  isActive: {type: Boolean, default: true},
   createdBy: {type: mongoose.Schema.ObjectId},
 });
 

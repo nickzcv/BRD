@@ -7,8 +7,7 @@ const gulp = require('gulp'),
       wrap = require('gulp-wrap'),
       declare = require('gulp-declare'),
       concat = require('gulp-concat'),
-      util = require('gulp-util'),
-      log = util.log;
+      log = require('fancy-log');
 
 
 gulp.task('sass', function(){

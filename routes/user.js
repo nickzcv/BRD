@@ -34,7 +34,7 @@ router.route('/users')
     user.updated_at = new Date();
     user.notes = null;
     user.status = 'NEW';
-    user.isActive = false;
+    user.isActive = true;
 
 		// save the user and check for errors
 		user.save(function(err) {

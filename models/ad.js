@@ -16,7 +16,7 @@ var adSchema = new mongoose.Schema({
   updated_at: Date,
   notes: String,
   status: String,
-  isActive: {type: Boolean, default: false},
+  isActive: {type: Boolean, default: true},
   userId: {type: mongoose.Schema.ObjectId},
   userName: {type: Object},
   company: String,

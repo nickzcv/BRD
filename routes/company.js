@@ -14,29 +14,24 @@ router.route('/company')
 	.post(auth, function(req, res) {
 		var company = new Company();
 
-    ad.type = req.body.type;
-    ad.object = req.body.object;
-    ad.category = req.body.category;
-    ad.title = req.body.title;
-    ad.description = req.body.description;
-    ad.country = req.body.country;
-    ad.city = req.body.city;
-    ad.price = req.body.price;
-    ad.photo = req.body.photo;
-    ad.expirationDate = req.body.expirationDate;
-    ad.contacts = req.body.contacts;
-    ad.created_at = new Date();
-    ad.updated_at = new Date();
-    ad.notes = null;
-    ad.status = null;
-    ad.isActive = false;
-    ad.userId = req.body.userId;
-    ad.userName = req.body.userName;
-    ad.company = null;
-    ad.favorites = [];
+    company.name = req.body.name;
+    company.country = req.body.country;
+    company.city = req.body.city;
+    company.phones = req.body.phones;
+    company.website = req.body.website;
+    company.logo = req.body.logo;
+    company.description = req.body.description;
+    company.year = req.body.year;
+    company.count = req.body.count;
+    company.category = req.body.category;
+    company.employees = req.body.employees;
+    company.created_at = new Date();
+    company.updated_at = new Date();
+    company.isActive = false;
+    company.createdBy = req.body.createdBy;
 
 		// save the company and check for the errors
-    ad.save(function(err) {
+    company.save(function(err) {
 			if (err)
 				res.json({
 				  error: true,

@@ -18,7 +18,7 @@ var userSchema = new mongoose.Schema({
   updated_at: Date,
   notes: String,
   status: String,
-  isActive: {type: Boolean, default: false}
+  isActive: {type: Boolean, default: true}
 });
 
 // Check password (not secure)
