@@ -20,15 +20,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'app')));
 app.use(express.static('pr'));
 
-
-
-
 app.use(passport.initialize());
 
 // DB connect
 database.connect();
 
-app.use(morgan('tiny'));
+// logger
+app.use(morgan('common'));
 
 // API
 var company = require(path.join(__dirname, 'routes/company'));
