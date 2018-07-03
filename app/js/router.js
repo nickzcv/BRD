@@ -80,7 +80,7 @@ app.router = Marionette.AppRouter.extend({
               brd.regions.leftNavRegion.show(new app.views.LeftNavigation({page: page2}));
               break;
             // Companies
-            case 'company':
+            case 'companies':
               if (page3 && page3 === 'new') {
                 // Add new company
                 brd.regions.bodyRegion.show(new app.views.AddCompanyView({

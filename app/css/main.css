@@ -1661,6 +1661,17 @@ nav.navigation .user .logout:hover {
   .calc table, .calc th, .calc td {
     border: 2px solid #888; } }
 
+/* Company styles
+-------------------------------------------------- */
+.new-company {
+  /* Tablets */
+  /* Desktop */
+  /* Desktop and larger */ }
+
+@media only screen and (min-width: 1200px) {
+  .new-company .page {
+    max-width: 50rem; } }
+
 /* Modal styles
 -------------------------------------------------- */
 .modal {

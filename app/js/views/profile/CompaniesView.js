@@ -5,7 +5,7 @@ app.views.CompaniesView = Mn.View.extend({
   ui: {
     leftNavRegion: '.left-navigation',
     listRegion: '.companies-list',
-    addButton: '.add-button',
+    addButton: '.add-company',
   },
 
   regions: {
@@ -15,7 +15,7 @@ app.views.CompaniesView = Mn.View.extend({
 
   events: {
     'click @ui.addButton': function() {
-      brd.router.navigateToRoute('profile', 'company', 'new');
+      brd.router.navigateToRoute('profile', 'companies', 'new');
     }
   },
 
@@ -29,5 +29,6 @@ app.views.CompaniesView = Mn.View.extend({
       model: new app.models.AdsListModel()
     }));*/
   }
+
 
 });

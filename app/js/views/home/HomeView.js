@@ -7,6 +7,7 @@ app.views.HomeView = Mn.View.extend({
     closeFilter: 'a.close-btn',
     homeContent: '.home-content',
     upBtn: '.up',
+    addCompany: '.add-company',
     companies: '.companies-home',
   },
 
@@ -26,6 +27,9 @@ app.views.HomeView = Mn.View.extend({
     },
     'click @ui.upBtn': function() {
       $('html, body').animate({scrollTop: 0}, 'slow');
+    },
+    'click @ui.addCompany': function() {
+      brd.router.navigateToRoute('profile', 'companies', 'new');
     }
   },
 

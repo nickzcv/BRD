@@ -244,7 +244,7 @@ app.router = Marionette.AppRouter.extend({
                 brd.regions.leftNavRegion.show(new app.views.LeftNavigation({ page: page2 }));
                 break;
               // Companies
-              case 'company':
+              case 'companies':
                 if (page3 && page3 === 'new') {
                   // Add new company
                   brd.regions.bodyRegion.show(new app.views.AddCompanyView({
@@ -2150,6 +2150,7 @@ app.views.HomeView = Mn.View.extend({
     closeFilter: 'a.close-btn',
     homeContent: '.home-content',
     upBtn: '.up',
+    addCompany: '.add-company',
     companies: '.companies-home'
   },
 
@@ -2169,6 +2170,9 @@ app.views.HomeView = Mn.View.extend({
     },
     'click @ui.upBtn': function clickUiUpBtn() {
       $('html, body').animate({ scrollTop: 0 }, 'slow');
+    },
+    'click @ui.addCompany': function clickUiAddCompany() {
+      brd.router.navigateToRoute('profile', 'companies', 'new');
     }
   },
 
@@ -3001,7 +3005,7 @@ app.views.CompaniesView = Mn.View.extend({
   ui: {
     leftNavRegion: '.left-navigation',
     listRegion: '.companies-list',
-    addButton: '.add-button'
+    addButton: '.add-company'
   },
 
   regions: {
@@ -3011,7 +3015,7 @@ app.views.CompaniesView = Mn.View.extend({
 
   events: {
     'click @ui.addButton': function clickUiAddButton() {
-      brd.router.navigateToRoute('profile', 'company', 'new');
+      brd.router.navigateToRoute('profile', 'companies', 'new');
     }
   },
 
