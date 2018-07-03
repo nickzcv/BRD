@@ -7,6 +7,7 @@
  * Declare the application object
  *
  * @class app
+ *
  */
 moment.locale('ru');
 
@@ -213,7 +214,7 @@ app.router = Marionette.AppRouter.extend({
       // Profile routing
       case 'profile':
         {
-          // Check if user logged in
+          // Check if user has logged in
           if (brd.controllers.isLoggedIn()) {
             switch (page2) {
               // Dashboard

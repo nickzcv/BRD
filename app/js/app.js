@@ -5,6 +5,7 @@
  * Declare the application object
  *
  * @class app
+ *
  */
 moment.locale('ru');
 

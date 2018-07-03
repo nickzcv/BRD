@@ -122,6 +122,9 @@ label.error {
 .p-l-0 {
   padding-left: 0; }
 
+.btn {
+  border-radius: 0 !important; }
+
 /* Header styles
 -------------------------------------------------- */
 header {
@@ -316,6 +319,36 @@ nav.navigation .user .logout:hover {
     top: -7px; }
   nav.navigation .user .profile-photo {
     top: -1px; } }
+
+/* Content
+-------------------------------------------------- */
+.main-content {
+  /* SmartPhones */
+  /* Tablets */
+  /* Desktop and larger */ }
+
+.main-content .title {
+  border-top: 6px solid #559797;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #CECCC0;
+  line-height: 4rem; }
+
+.main-content .title .icon {
+  padding: 0 1rem 0 2rem;
+  color: #777; }
+
+.main-content .page {
+  margin: 1rem 1rem 0 5rem; }
+
+@media only screen and (min-width: 768px) {
+  .main-content .page .lead {
+    font-weight: normal; } }
+
+@media only screen and (min-width: 992px) {
+  .main-content .page {
+    margin: 1.5rem 2rem 0 18rem; }
+  .main-content .page .lead {
+    margin: 0; } }
 
 /* Sections styles
 -------------------------------------------------- */
@@ -1513,7 +1546,7 @@ nav.navigation .user .logout:hover {
 .calc form .result .result-p {
   padding: 0.3rem .5rem;
   background-color: #fcfcf4;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 1.2rem;
   border: 1px solid #f7d257; }
 

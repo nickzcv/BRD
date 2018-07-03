@@ -2,14 +2,115 @@
 <div class="left-navigation"></div>
 <!-- /end  left-navigation -->
 
-<div class="profile new-ad">
+<div class="main-content new-company">
   <div class="title">
     <span class="icon ion-person-stalker"></span>
     <span class="title-text">Новая компания</span>
   </div>
   <div class="page">
     <!--  Add new company form -->
-    TEST
+    <form id="add-company-form">
+
+      <div class="col-xs-12 col-sm-6 m-t-1 p-l-0">
+        <div class="form-group">
+          <label class="radio-inline"><input type="radio" name="type" value="buy">Куплю</label>
+          <label class="radio-inline"><input type="radio" name="type" value="sell">Продам</label>
+          <div class="typeError"></div>
+        </div>
+        <div class="form-divider"></div>
+        <div class="form-group">
+          <label class="radio-inline"><input type="radio" name="object" value="product">Товар</label>
+          <label class="radio-inline"><input type="radio" name="object" value="service">Услуга</label>
+          <div class="objectError"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 m-b-1">
+        <p class="lbl">Фото:</p>
+
+        <label class="btn ad-photo" id="preview">
+          <span class="ion-image"></span>
+          <input type="file" name="photo" id="photo" class="hidden photo-input" >
+        </label>
+        <div class="marker buy hidden">Куплю</div>
+        <div class="marker sell hidden">Продам</div>
+        <div class="image-error-message hidden"></div>
+      </div>
+      <div class="form-group">
+        <p class="lbl">Раздел</p>
+        <select class="form-control" id="category" name="category">
+          <option value="">&mdash;</option>
+          {{#each categories}}
+            <option value="{{id}}">{{title}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="filters m-b-2"></div>
+      <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Заголовок объявления">
+      </div>
+      <div class="form-group">
+        <label for="description">Текст объявления</label>
+        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Текст объявления"></textarea>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="text" class="form-control" id="price" placeholder="0 BYR">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p class="lbl">Срок размещения</p>
+          <div class="form-group">
+            <select class="form-control" id="expirationDate">
+              <option value="5">5 дней</option>
+              <option value="10">10 дней</option>
+              <option value="30">30 дней</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="lbl">Местоположение</p>
+      <div class="country-picker"></div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="contacts">Контактные данные:</label>
+            <input type="text" class="form-control" id="contacts" placeholder="Введите название компании" disabled="disabled">
+            <span class="add-company">Нет вашей компании? <a>Создать</a></span>
+          </div>
+          <div class="form-group">
+            <div class="radio">
+              <label><input type="radio" id="profileRadio" name="getContacts" value="profile" checked>Использовать контактные телефоны профиля</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" id="companyRadio" name="getContacts" value="company">Использовать контактные телефоны компании</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" id="otherRadio" name="getContacts" value="other" >Ввести другой контактный телефон</label>
+            </div>
+            <div class="form-group otherPhoneWrapper">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="ion-android-call"></i></span>
+                <input type="text" class="form-control" id="otherPhone" name="otherPhone" {{#if otherPhone}}value="{{otherPhone}}"{{else}} placeholder="+375 00 0000000"{{/if}}>
+              </div>
+              <div class="otherPhoneError"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-default">Опубликовать</button>
+      <button type="button" class="btn btn-default back">Отмена</button>
+    </form>
     <!-- /end form-->
   </div>
 

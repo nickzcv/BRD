@@ -1,0 +1,26 @@
+/* Company styles
+-------------------------------------------------- */
+.new-company, .edit-ad {
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+
+  }
+
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+
+  /* Desktop and larger */
+  @media only screen and (min-width: 1200px) {
+    .page {
+      max-width: 50rem;
+    }
+  }
+
+
+}

@@ -2,7 +2,7 @@
 <div class="left-navigation"></div>
 <!-- /end  left-navigation -->
 
-<div class="profile new-ad edit-ad">
+<div class="main-content new-ad edit-ad">
   <div class="title">
     <span class="icon ion-clipboard"></span>
     <span class="title-text">Редактировать объявление</span>
@@ -33,7 +33,7 @@
       </div>
       <div class="col-xs-12 col-sm-6 m-b-1">
         <p class="lbl">Фото:</p>
-        <label class="btn ad-photo" id="preview"  style="background: url('img/ads/{{photo}}') 0% 0% / cover">
+        <label class="btn ad-photo" id="preview"  style="background: url('img/{{#if photo}}ads/{{photo}}{{else}}image_placeholder.png{{/if}}') 0% 0% / cover">
           <input type="file" name="photo" id="photo" class="hidden photo-input" >
         </label>
         <div class="marker buy {{#compare type '!==' 'buy'}}hidden{{/compare}}">Куплю</div>

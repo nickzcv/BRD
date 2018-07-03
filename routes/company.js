@@ -11,7 +11,7 @@ var auth = jwt({
 
 router.route('/companies')
 	// create Company
-	.post(/*auth,*/ function(req, res) {
+	.post(auth, function(req, res) {
 		var company = new Company();
 
     company.name = req.body.name;
@@ -45,7 +45,7 @@ router.route('/companies')
 
 	})
   // get all the users (accessed at GET /api/users)
-  .get(/*auth,*/ function(req, res) {
+  .get(function(req, res) {
     Company.find({}, function(err, companies) {
       if (err)
         res.json({
