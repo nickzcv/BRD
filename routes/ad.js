@@ -18,20 +18,20 @@ router.route('/ads')
     ad.object = req.body.object;
     ad.category = req.body.category;
     ad.title = req.body.title;
-    ad.description = req.body.description;
+    ad.description = req.body.description || null;
     ad.country = req.body.country;
     ad.city = req.body.city;
-    ad.price = req.body.price;
-    ad.photo = req.body.photo;
+    ad.price = req.body.price || null;
+    ad.photo = req.body.photo || null;
     ad.expirationDate = req.body.expirationDate;
-    ad.contacts = req.body.contacts;
+    ad.contacts = req.body.contacts || null;
     ad.created_at = new Date();
     ad.updated_at = new Date();
     ad.notes = null;
     ad.status = null;
     ad.isActive = true;
     ad.userId = req.body.userId;
-    ad.userName = req.body.userName;
+    ad.userName = req.body.userName || null;
     ad.company = null;
     ad.favorites = [];
 

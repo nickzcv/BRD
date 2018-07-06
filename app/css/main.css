@@ -850,13 +850,6 @@ nav.navigation .user .logout:hover {
 .ads .ad-item .section1 {
   overflow: hidden; }
 
-.ads .ad-item .tab-button {
-  padding: .5rem;
-  text-align: center; }
-
-.ads .ad-item .tab-button:hover {
-  color: #000; }
-
 .ads .ad-item.expanded {
   max-height: none;
   border-color: #e1d1c4;
@@ -883,28 +876,28 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .info-filter-icon:hover {
   opacity: .7; }
 
-.ads .ad-item.expanded .section2 .ad-info {
-  position: absolute;
-  right: 0;
-  top: 1rem;
-  z-index: 2; }
+.ads .ad-item.expanded .section2 .ad-tabs .tab-button {
+  display: inline-block; }
 
-.ads .ad-item.expanded .section2 .ad-info .send-form {
-  font-size: 2rem;
-  padding: .5rem;
-  cursor: pointer;
-  color: #b6b6b6; }
-
-.ads .ad-item.expanded .section2 .ad-info .send-form:hover {
+.ads .ad-item.expanded .section2 .ad-tabs .tab-button:hover {
   color: #000; }
 
-.ads .ad-item.expanded .section2 .ad-info .star {
+.ads .ad-item.expanded .section2 .ad-tabs .send-form {
   font-size: 2rem;
   padding: .5rem;
   cursor: pointer;
   color: #b6b6b6; }
 
-.ads .ad-item.expanded .section2 .ad-info .star:hover {
+.ads .ad-item.expanded .section2 .ad-tabs .send-form:hover {
+  color: #000; }
+
+.ads .ad-item.expanded .section2 .ad-tabs .star {
+  font-size: 2rem;
+  padding: .5rem;
+  cursor: pointer;
+  color: #b6b6b6; }
+
+.ads .ad-item.expanded .section2 .ad-tabs .star:hover {
   color: gold; }
 
 .ads .ad-item.expanded .section2 .category {
@@ -1173,14 +1166,6 @@ nav.navigation .user .logout:hover {
     position: relative;
     height: auto;
     padding-bottom: 2rem; }
-  .ads .ad-item.expanded .section2 .ad-info {
-    position: relative;
-    right: auto;
-    top: auto;
-    float: left;
-    width: 7rem;
-    text-align: center;
-    padding-top: 1rem; }
   .ads .ad-item.expanded .section2 .category {
     position: relative;
     float: left;

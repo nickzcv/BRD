@@ -144,13 +144,6 @@
     .section1 {
       overflow: hidden;
     }
-    .tab-button {
-      padding: .5rem;
-      text-align: center;
-      &:hover {
-        color: #000;
-      }
-    }
 
     &.expanded {
       max-height: none;
@@ -180,11 +173,14 @@
             opacity: .7;
           }
         }
-        .ad-info {
-          position: absolute;
-          right: 0;
-          top: 1rem;
-          z-index: 2;
+        .ad-tabs {
+          .tab-button {
+            display: inline-block;
+
+            &:hover {
+              color: #000;
+            }
+          }
 
           .send-form {
             font-size: 2rem;
@@ -512,16 +508,6 @@
           height: auto;
           padding-bottom: 2rem;
 
-
-          .ad-info {
-            position: relative;
-            right: auto;
-            top: auto;
-            float: left;
-            width: 7rem;
-            text-align: center;
-            padding-top: 1rem;
-          }
           .category {
             position: relative;
             float: left;

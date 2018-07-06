@@ -18,6 +18,7 @@ app.views.adView = Mn.View.extend({
     star: '.star',
     adDescription: '.ad-description',
     backBtn: '.back',
+    price: '.price'
   },
 
   events: {
@@ -60,6 +61,7 @@ app.views.adView = Mn.View.extend({
   showMessageForm: function() {
     this.ui.table.addClass('hidden');
     this.ui.message.removeClass('hidden');
+    this.ui.price.removeClass('hidden');
     this.showChildView('message', new app.views.SendMessageFormView({userId: this.model.get('userId')}));
   },
 

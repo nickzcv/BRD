@@ -426,6 +426,19 @@ Handlebars.registerHelper('summColumn', function (value, column) {
   }
 });
 "use strict";
+
+/**
+ * Backbone extension. Return promise, that will be resolved from received time
+ * to necessary route according to it
+ *
+ * @param {int} ms Number of milliseconds to wait
+ * @function external:"Backbone"#defTimeout
+ */
+Backbone.defTimeout = function (ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+};
 'use strict';
 
 app.collections.AdsCollection = Backbone.Collection.extend({
@@ -1676,7 +1689,8 @@ app.views.adView = Mn.View.extend({
     tab: '.tab',
     star: '.star',
     adDescription: '.ad-description',
-    backBtn: '.back'
+    backBtn: '.back',
+    price: '.price'
   },
 
   events: {
@@ -1719,6 +1733,7 @@ app.views.adView = Mn.View.extend({
   showMessageForm: function showMessageForm() {
     this.ui.table.addClass('hidden');
     this.ui.message.removeClass('hidden');
+    this.ui.price.removeClass('hidden');
     this.showChildView('message', new app.views.SendMessageFormView({ userId: this.model.get('userId') }));
   },
 

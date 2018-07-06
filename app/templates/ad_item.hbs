@@ -10,7 +10,7 @@
       </div>
       {{#if photo}}
       {{else}}
-        <img class="photo-filter-icon" src="img/filter-icons/{{category.id}}.svg"></img>
+        <img class="photo-filter-icon" src="img/filter-icons/{{category.id}}.svg" />
       {{/if}}
     </div>
     <div class="content">
@@ -27,9 +27,9 @@
     </div>
   </div>
   <div class="section2">
-    <div class="ad-info">
+    <div class="ad-tabs">
       <div class="tab-button active back">
-        <img class="info-filter-icon back" src="img/filter-icons/{{category.id}}-no-border.svg"></img>
+        <span>{{category.title}}</span>
       </div>
       {{#if isLoggedIn}}
         <div class="tab-button">
@@ -44,81 +44,83 @@
 
     <div class="category">
     {{#if category}}
-      <div class="left-border">
-        <table class="filters-table">
-          <tr class="table-header">
-            <th class="category-title">{{category.title}}</th>
-          </tr>
-          {{#each category.filters}}
-            {{#compare level '===' 'parent'}}
-              <tr class="filter-row">
-                {{#if title}}
-                  <td>
-                    <span class="filter-title">{{title}}</span>
-                  </td>
-                {{/if}}
-                <td class="parent-col"><span class="dash">-</span>
-                  {{#each items}}
+
+      <table class="filters-table">
+        <tr class="table-header">
+          <th class="category-title">{{category.title}}</th>
+        </tr>
+        {{#each category.filters}}
+          {{#compare level '===' 'parent'}}
+            <tr class="filter-row">
+              {{#if title}}
+                <td>
+                  <span class="filter-title">{{title}}</span>
+                </td>
+              {{/if}}
+              <td class="parent-col"><span class="dash">-</span>
+                {{#each items}}
+                  {{#if selected}}
+                    <div class="parent">
+                      <span class="parent-title">{{title}}</span>
+                      {{#each items}}
+                        {{#if selected}}
+                          <i>{{value}}</i>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </td>
+            </tr>
+          {{else}}
+            <tr class="filter-row">
+              {{#if title}}
+                <td><span class="filter-title">{{title}}</span></td>
+              {{/if}}
+              <td class="first-level">
+                {{#each items}}
+                  {{#compare type '===' 'input'}}
                     {{#if selected}}
-                      <div class="parent">
-                        <span class="parent-title">{{title}}</span>
-                        {{#each items}}
-                          {{#if selected}}
-                            <i>{{value}}</i>
-                          {{/if}}
-                        {{/each}}
+                      <div class="overlay">
+                        {{#if label}}
+                          <i>{{label}}</i>:
+                        {{/if}}
+                        {{#if from}}от {{from}}{{/if}}
+                        {{#if to}}до {{to}}{{/if}}
                       </div>
                     {{/if}}
-                  {{/each}}
-                </td>
-              </tr>
-            {{else}}
-              <tr class="filter-row">
-                {{#if title}}
-                  <td><span class="filter-title">{{title}}</span></td>
-                {{/if}}
-                <td class="first-level">
-                  {{#each items}}
-                    {{#compare type '===' 'input'}}
-                      {{#if selected}}
-                        <div class="overlay">
-                          {{#if label}}
-                            <i>{{label}}</i>:
-                          {{/if}}
-                          {{#if from}}от {{from}}{{/if}}
-                          {{#if to}}до {{to}}{{/if}}
-                        </div>
-                      {{/if}}
-                    {{else compare type '===' 'input-sizes'}}
-                      {{#each values}}
-                        {{#if t}}
-                          {{#if s}}
-                            {{#if d}}
-                              <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
-                            {{/if}}
+                  {{else compare type '===' 'input-sizes'}}
+                    {{#each values}}
+                      {{#if t}}
+                        {{#if s}}
+                          {{#if d}}
+                            <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
                           {{/if}}
                         {{/if}}
-
-                      {{/each}}
-                    {{else}}
-                      {{#if selected}}
-                        <span>{{value}}</span>
                       {{/if}}
-                    {{/compare}}
-                  {{/each}}
-                </td>
-              </tr>
-            {{/compare}}
-          {{/each}}
-          <tr>
-            <td>
-              {{#if price}}
-                <div class="price"><i>Цена:</i> {{price}}</div>
-              {{/if}}
-            </td>
-          </tr>
-        </table>
-      </div>
+
+                    {{/each}}
+                  {{else}}
+                    {{#if selected}}
+                      <span>{{value}}</span>
+                    {{/if}}
+                  {{/compare}}
+                {{/each}}
+              </td>
+            </tr>
+          {{/compare}}
+        {{/each}}
+        <tr>
+          <td>
+
+          </td>
+        </tr>
+      </table>
+
+
+      {{#if price}}
+        <div class="price"><i>Цена:</i> {{price}}</div>
+      {{/if}}
 
     {{/if}}
       <div class="message hidden"></div>
@@ -142,7 +144,7 @@
         <span class="m-l-05">{{userName.lastName}} {{userName.name}} {{userName.middleName}}</span>
       </span>
     {{/if}}
-    <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{city.title}}, {{country.title}}</span></span>
+    <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{#if city.title}}{{city.title}},{{/if}} {{country.title}}</span></span>
   </div>
   <div class="icon ion-ios-browsers-outline tab"></div>
   <div class="icon ion-chevron-down arrow"></div>

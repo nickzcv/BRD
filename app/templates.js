@@ -39,7 +39,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 
   return "        <img class=\"photo-filter-icon\" src=\"img/filter-icons/"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
-    + ".svg\"></img>\r\n";
+    + ".svg\" />\r\n";
 },"9":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -55,13 +55,13 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"14":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "      <div class=\"left-border\">\r\n        <table class=\"filters-table\">\r\n          <tr class=\"table-header\">\r\n            <th class=\"category-title\">"
+  return "\r\n      <table class=\"filters-table\">\r\n        <tr class=\"table-header\">\r\n          <th class=\"category-title\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</th>\r\n          </tr>\r\n"
+    + "</th>\r\n        </tr>\r\n"
     + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":container.program(15, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "          <tr>\r\n            <td>\r\n"
+    + "        <tr>\r\n          <td>\r\n\r\n          </td>\r\n        </tr>\r\n      </table>\r\n\r\n\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":container.program(46, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            </td>\r\n          </tr>\r\n        </table>\r\n      </div>\r\n\r\n";
+    + "\r\n";
 },"15":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -69,17 +69,17 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"16":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "              <tr class=\"filter-row\">\r\n"
+  return "            <tr class=\"filter-row\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                <td class=\"parent-col\"><span class=\"dash\">-</span>\r\n"
+    + "              <td class=\"parent-col\"><span class=\"dash\">-</span>\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                </td>\r\n              </tr>\r\n";
+    + "              </td>\r\n            </tr>\r\n";
 },"17":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                  <td>\r\n                    <span class=\"filter-title\">"
+  return "                <td>\r\n                  <span class=\"filter-title\">"
     + container.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"title","hash":{},"data":data}) : helper)))
-    + "</span>\r\n                  </td>\r\n";
+    + "</span>\r\n                </td>\r\n";
 },"19":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -87,11 +87,11 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"20":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "                      <div class=\"parent\">\r\n                        <span class=\"parent-title\">"
+  return "                    <div class=\"parent\">\r\n                      <span class=\"parent-title\">"
     + container.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</span>\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                      </div>\r\n";
+    + "                    </div>\r\n";
 },"21":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -99,21 +99,21 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"22":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                            <i>"
+  return "                          <i>"
     + container.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"value","hash":{},"data":data}) : helper)))
     + "</i>\r\n";
 },"24":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "              <tr class=\"filter-row\">\r\n"
+  return "            <tr class=\"filter-row\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.title : depth0),{"name":"if","hash":{},"fn":container.program(25, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                <td class=\"first-level\">\r\n"
+    + "              <td class=\"first-level\">\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.items : depth0),{"name":"each","hash":{},"fn":container.program(27, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                </td>\r\n              </tr>\r\n";
+    + "              </td>\r\n            </tr>\r\n";
 },"25":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                  <td><span class=\"filter-title\">"
+  return "                <td><span class=\"filter-title\">"
     + container.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"title","hash":{},"data":data}) : helper)))
     + "</span></td>\r\n";
 },"27":function(container,depth0,helpers,partials,data) {
@@ -127,17 +127,17 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"29":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "                        <div class=\"overlay\">\r\n"
+  return "                      <div class=\"overlay\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":container.program(30, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                          "
+    + "                        "
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.from : depth0),{"name":"if","hash":{},"fn":container.program(32, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n                          "
+    + "\r\n                        "
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.to : depth0),{"name":"if","hash":{},"fn":container.program(34, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n                        </div>\r\n";
+    + "\r\n                      </div>\r\n";
 },"30":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                            <i>"
+  return "                          <i>"
     + container.escapeExpression(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"label","hash":{},"data":data}) : helper)))
     + "</i>:\r\n";
 },"32":function(container,depth0,helpers,partials,data) {
@@ -174,7 +174,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"41":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "                              <div class=\"size-row\">"
+  return "                            <div class=\"size-row\">"
     + alias4(((helper = (helper = helpers.t || (depth0 != null ? depth0.t : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"t","hash":{},"data":data}) : helper)))
     + "<b class=\"iks\">&#9747;</b>"
     + alias4(((helper = (helper = helpers.s || (depth0 != null ? depth0.s : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"s","hash":{},"data":data}) : helper)))
@@ -185,17 +185,17 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     var stack1;
 
   return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.selected : depth0),{"name":"if","hash":{},"fn":container.program(44, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                    ";
+    + "                  ";
 },"44":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                        <span>"
+  return "                      <span>"
     + container.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
 },"46":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "                <div class=\"price\"><i>Цена:</i> "
+  return "        <div class=\"price\"><i>Цена:</i> "
     + container.escapeExpression(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"price","hash":{},"data":data}) : helper)))
     + "</div>\r\n";
 },"48":function(container,depth0,helpers,partials,data) {
@@ -228,6 +228,11 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + " "
     + alias1(alias2(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
     + "</span>\r\n      </span>\r\n    ";
+},"56":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
+    + ",";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
 
@@ -245,9 +250,9 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(9, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\r\n      <div class=\"ad-description hidden-xs\">"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-info\">\r\n      <div class=\"tab-button active back\">\r\n        <img class=\"info-filter-icon back\" src=\"img/filter-icons/"
-    + alias4(alias5(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
-    + "-no-border.svg\"></img>\r\n      </div>\r\n"
+    + "</div>\r\n    </div>\r\n  </div>\r\n  <div class=\"section2\">\r\n    <div class=\"ad-tabs\">\r\n      <div class=\"tab-button active back\">\r\n        <span>"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
+    + "</span>\r\n      </div>\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n\r\n\r\n    <div class=\"category\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(14, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -258,8 +263,8 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + "</span></span>\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":container.program(51, data, 0),"inverse":container.program(53, data, 0),"data":data})) != null ? stack1 : "")
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
-    + alias4(alias5(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
-    + ", "
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1),{"name":"if","hash":{},"fn":container.program(56, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + " "
     + alias4(alias5(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
     + "</span></span>\r\n  </div>\r\n  <div class=\"icon ion-ios-browsers-outline tab\"></div>\r\n  <div class=\"icon ion-chevron-down arrow\"></div>\r\n</div>";
 },"useData":true});
