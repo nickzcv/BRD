@@ -1,13 +1,13 @@
 <div class="ad-item">
   <div class="section1">
     <div class="photo" style="background-image: url('img/ads/{{photo}}')">
-      <div class="type {{type}}">
+      <span class="label label-{{#compare type '===' 'buy'}}success{{else}}danger{{/compare}}">
         {{#compare type '===' 'buy'}}
           Куплю
         {{else}}
           Продам
         {{/compare}}
-      </div>
+      </span>
       {{#if photo}}
       {{else}}
         <img class="photo-filter-icon" src="img/filter-icons/{{category.id}}.svg" />
