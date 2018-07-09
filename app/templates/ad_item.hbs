@@ -27,19 +27,36 @@
     </div>
   </div>
   <div class="section2">
-    <div class="ad-tabs">
-      <div class="tab-button active back">
-        <span>{{category.title}}</span>
-      </div>
-      {{#if isLoggedIn}}
-        <div class="tab-button">
-          <span class="ion-ios-email-outline send-form"></span>
-        </div>
-        <div class="tab-button">
-          <span class="ion-ios-star-outline star"></span>
-        </div>
-      {{/if}}
-    </div>
+
+
+
+    <nav class="brd-nav-tabs">
+      <ul>
+        <li>
+          <a class="nav-tab-item active" data-state="roles">
+            Подробнее
+          </a>
+        </li>
+        <li>
+          <a class="nav-tab-item" data-state="groups">
+            test
+          </a>
+        </li>
+        {{#if isLoggedIn}}
+        <li>
+          <a class="nav-tab-item" data-state="send-form">
+            Groups
+          </a>
+        </li>
+        <li>
+          <a class="nav-tab-item" data-state="star">
+            User Access
+          </a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+
     <!-- Tabs content -->
     <div class="tab-region">
 

@@ -172,3 +172,10 @@ label.error {
 .btn {
   border-radius: 0!important;
 }
+
+@mixin transition($string: $transition--default) {
+  -webkit-transition: $string;
+  -moz-transition: $string;
+  -o-transition: $string;
+  transition: $string;
+}

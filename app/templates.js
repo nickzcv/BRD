@@ -55,7 +55,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + container.escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"_id","hash":{},"data":data}) : helper)))
     + "\"><span class=\"ion-edit\"></span></a>\n            <a class=\"delete-ad\"><span class=\"ion-trash-b\"></span></a>\n";
 },"16":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"tab-button\">\n          <span class=\"ion-ios-email-outline send-form\"></span>\n        </div>\n        <div class=\"tab-button\">\n          <span class=\"ion-ios-star-outline star\"></span>\n        </div>\n";
+    return "        <li>\n          <a class=\"nav-tab-item\" data-state=\"send-form\">\n            Groups\n          </a>\n        </li>\n        <li>\n          <a class=\"nav-tab-item\" data-state=\"star\">\n            User Access\n          </a>\n        </li>\n";
 },"18":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -236,7 +236,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
   return container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
     + ",";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<div class=\"ad-item\">\n  <div class=\"section1\">\n    <div class=\"photo\" style=\"background-image: url('img/ads/"
     + alias4(((helper = (helper = helpers.photo || (depth0 != null ? depth0.photo : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photo","hash":{},"data":data}) : helper)))
@@ -252,11 +252,9 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\n      <div class=\"ad-description hidden-xs\">"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\n    </div>\n  </div>\n  <div class=\"section2\">\n    <div class=\"ad-tabs\">\n      <div class=\"tab-button active back\">\n        <span>"
-    + alias4(alias5(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</span>\n      </div>\n"
+    + "</div>\n    </div>\n  </div>\n  <div class=\"section2\">\n\n\n\n    <nav class=\"brd-nav-tabs\">\n      <ul>\n        <li>\n          <a class=\"nav-tab-item active\" data-state=\"roles\">\n            Подробнее\n          </a>\n        </li>\n        <li>\n          <a class=\"nav-tab-item\" data-state=\"groups\">\n            test\n          </a>\n        </li>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n    <!-- Tabs content -->\n    <div class=\"tab-region\">\n\n      <div class=\"category\">\n"
+    + "      </ul>\n    </nav>\n\n    <!-- Tabs content -->\n    <div class=\"tab-region\">\n\n      <div class=\"category\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(18, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <div class=\"message hidden\"></div>\n\n      </div>\n\n    </div>\n    <!-- end of Tabs content -->\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":container.program(50, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -269,7 +267,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
     + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1),{"name":"if","hash":{},"fn":container.program(60, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + " "
-    + alias4(alias5(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
+    + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
     + "</span></span>\n  </div>\n  <div class=\"icon ion-ios-browsers-outline tab\"></div>\n  <div class=\"icon ion-chevron-down arrow\"></div>\n</div>";
 },"useData":true});
 this["tpl"]["templates"]["dashboard"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {

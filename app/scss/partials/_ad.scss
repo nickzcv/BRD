@@ -68,8 +68,8 @@
       line-height: 1.5rem;
       width: 100%;
       min-height: 4rem;
-      background: $white;
-      color: $gray-from-hell;
+      background: $gray;
+      color: #555;
       i {
         float: left;
         position: relative;
@@ -114,6 +114,8 @@
         bottom: -0.3rem;
         font-size: 1.5rem;
         color: $gray-dark;
+        background: $gray;
+
         &:hover {
           color: $blue-dark;
         }
@@ -185,10 +187,6 @@
               color: gold;
             }
           }
-        }
-        .tab-region {
-          overflow: hidden;
-          margin-bottom: 1rem;
         }
         .category {
           position: relative;
@@ -421,8 +419,6 @@
         font-size: 0.9rem;
         line-height: 2rem;
         max-height: 2rem;
-        background: $white;
-        color: $gray-from-hell;
         min-height: 0;
         i {
           float: none;
