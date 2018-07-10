@@ -188,6 +188,9 @@
             }
           }
         }
+        .tab-region {
+          overflow: hidden;
+        }
         .category {
           position: relative;
           float: left;
@@ -286,7 +289,7 @@
         }
         .phones {
           background: #fff;
-          padding: 0.5rem 0;
+
           margin: 0.5rem;
           font-size: 1rem;
           span {
@@ -298,7 +301,7 @@
           }
         }
         .price {
-          padding-top: 0.5rem;
+          padding: 0.5rem;
           i {
             font-weight: bold;
           }
@@ -567,11 +570,6 @@
             }
           }
           .phones {
-            position: absolute;
-            top: 3rem;
-            right: 0;
-            background: #fff;
-            z-index: 1;
             font-size: 1rem;
             span {
               padding-right: 1rem;
@@ -579,14 +577,6 @@
               &:before {
                 padding-right: 3px;
               }
-            }
-          }
-          .price {
-            position: absolute;
-            right: 0;
-            top: 1rem;
-            i {
-              font-weight: bold;
             }
           }
           .message {

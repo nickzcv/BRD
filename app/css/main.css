@@ -890,6 +890,9 @@ nav.navigation .user .logout:hover {
 .ads .ad-item.expanded .section2 .ad-tabs .star:hover {
   color: gold; }
 
+.ads .ad-item.expanded .section2 .tab-region {
+  overflow: hidden; }
+
 .ads .ad-item.expanded .section2 .category {
   position: relative;
   float: left;
@@ -987,7 +990,6 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item.expanded .section2 .phones {
   background: #fff;
-  padding: 0.5rem 0;
   margin: 0.5rem;
   font-size: 1rem; }
 
@@ -999,7 +1001,7 @@ nav.navigation .user .logout:hover {
   padding-right: 3px; }
 
 .ads .ad-item.expanded .section2 .price {
-  padding-top: 0.5rem; }
+  padding: 0.5rem; }
 
 .ads .ad-item.expanded .section2 .price i {
   font-weight: bold; }
@@ -1208,23 +1210,12 @@ nav.navigation .user .logout:hover {
   .ads .ad-item.expanded .section2 .category .table-header {
     padding-bottom: 1rem; }
   .ads .ad-item.expanded .section2 .phones {
-    position: absolute;
-    top: 3rem;
-    right: 0;
-    background: #fff;
-    z-index: 1;
     font-size: 1rem; }
   .ads .ad-item.expanded .section2 .phones span {
     padding-right: 1rem;
     white-space: nowrap; }
   .ads .ad-item.expanded .section2 .phones span:before {
     padding-right: 3px; }
-  .ads .ad-item.expanded .section2 .price {
-    position: absolute;
-    right: 0;
-    top: 1rem; }
-  .ads .ad-item.expanded .section2 .price i {
-    font-weight: bold; }
   .ads .ad-item.expanded .section2 .message {
     width: 100%;
     z-index: 2;
