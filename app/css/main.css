@@ -1004,6 +1004,7 @@ nav.navigation .user .logout:hover {
   padding: .3rem 1rem .3rem .5rem;
   margin: .3rem 0;
   display: inline-block;
+  font-size: 1rem;
   background: #ffe976; }
 
 .ads .ad-item.expanded .section2 .message {
@@ -1273,7 +1274,7 @@ nav.navigation .user .logout:hover {
 .new-ad .lbl, .edit-ad .lbl {
   margin-bottom: 5px; }
 
-.new-ad .add-company, .edit-ad .add-company {
+.new-ad .add-company-search, .edit-ad .add-company-search {
   font-size: 0.8rem; }
 
 .new-ad .marker, .edit-ad .marker {
