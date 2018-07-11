@@ -55,7 +55,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + container.escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"_id","hash":{},"data":data}) : helper)))
     + "\"><span class=\"ion-edit\"></span></a>\n            <a class=\"delete-ad\"><span class=\"ion-trash-b\"></span></a>\n";
 },"16":function(container,depth0,helpers,partials,data) {
-    return "        <li>\n          <a class=\"nav-tab-item\" data-state=\"send-form\">\n            Сообщен\n          </a>\n        </li>\n        <li>\n          <a class=\"nav-tab-item\" data-state=\"star\">\n            User Access\n          </a>\n        </li>\n";
+    return "        <li>\n          <a class=\"nav-tab-item\" data-state=\"send-form\">\n            Сообщения\n          </a>\n        </li>\n";
 },"18":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -252,7 +252,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(13, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </div>\n      <div class=\"ad-description hidden-xs\">"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</div>\n    </div>\n  </div>\n  <div class=\"section2\">\n\n\n    <nav class=\"brd-nav-tabs\">\n      <ul>\n        <li>\n          <a class=\"nav-tab-item active\" data-state=\"roles\">\n            Подробнее\n          </a>\n        </li>\n        <li>\n          <a class=\"nav-tab-item\" data-state=\"groups\">\n            test\n          </a>\n        </li>\n"
+    + "</div>\n    </div>\n  </div>\n  <div class=\"section2\">\n\n\n    <nav class=\"brd-nav-tabs\">\n      <ul>\n        <li>\n          <a class=\"nav-tab-item active\" data-state=\"roles\">\n            Подробнее\n          </a>\n        </li>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(16, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </ul>\n    </nav>\n\n    <!-- Tabs content -->\n    <div class=\"tab-region\">\n\n      <div class=\"category\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(18, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

@@ -1675,6 +1675,7 @@ app.views.adView = Mn.View.extend({
   template: tpl.templates.ad_item,
 
   regions: {
+    tabRegion: '.tab-region',
     message: '.message'
   },
 
@@ -1740,8 +1741,7 @@ app.views.adView = Mn.View.extend({
   /*
    *  Go to full page view
    */
-  newTab: function newTab() {
-    //console.log('newTab');
+  fullPage: function fullPage() {
     //console.log(this.model.get('_id'));
   },
 
