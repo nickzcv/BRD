@@ -9,7 +9,7 @@
     border: 1px solid $gray;
     text-align: center;
 
-    .add-new {
+    .add-company {
       overflow: hidden;
       width: 60%;
       padding: 6px 12px;
@@ -24,7 +24,6 @@
       }
     }
   }
-
 
   /* Tablets */
   @media only screen and (min-width: 768px) {

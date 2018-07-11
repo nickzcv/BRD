@@ -1210,7 +1210,7 @@ app.models.FiltersModel = Backbone.Model.extend({
       }, {
         label: null,
         subtitle: 'Размеры',
-        title: 'Толщина(диаметр)',
+        title: 'Толщина (диаметр)',
         level: 'child',
         type: 'checkbox',
         items: [{
