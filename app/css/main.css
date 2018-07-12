@@ -541,17 +541,17 @@ nav.navigation .user .logout:hover {
   border: 1px solid #edebdc;
   text-align: center; }
 
-.companies-home .actions .add-new {
+.companies-home .actions .add-company {
   overflow: hidden;
   width: 60%;
   padding: 6px 12px;
   border-color: goldenrod; }
 
-.companies-home .actions .add-new:hover {
+.companies-home .actions .add-company:hover {
   border-color: #777;
   background: gold; }
 
-.companies-home .actions .add-new:hover span:before {
+.companies-home .actions .add-company:hover span:before {
   color: white; }
 
 @media only screen and (min-width: 768px) {
@@ -1001,10 +1001,11 @@ nav.navigation .user .logout:hover {
   padding-right: 3px; }
 
 .ads .ad-item.expanded .section2 .price {
-  padding: 0.5rem; }
-
-.ads .ad-item.expanded .section2 .price i {
-  font-weight: bold; }
+  padding: .3rem 1rem .3rem .5rem;
+  margin: .3rem 0;
+  display: inline-block;
+  font-size: 1rem;
+  background: #ffe976; }
 
 .ads .ad-item.expanded .section2 .message {
   width: 100%;
@@ -1075,6 +1076,7 @@ nav.navigation .user .logout:hover {
 
 @media only screen and (min-width: 768px) {
   .ads .ad-item {
+    margin: 1.5rem 0;
     max-height: 8.5rem; }
   .ads .ad-item .photo-filter-icon {
     display: block;
@@ -1272,7 +1274,7 @@ nav.navigation .user .logout:hover {
 .new-ad .lbl, .edit-ad .lbl {
   margin-bottom: 5px; }
 
-.new-ad .add-company, .edit-ad .add-company {
+.new-ad .add-company-search, .edit-ad .add-company-search {
   font-size: 0.8rem; }
 
 .new-ad .marker, .edit-ad .marker {

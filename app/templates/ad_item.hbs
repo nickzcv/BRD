@@ -36,20 +36,10 @@
             Подробнее
           </a>
         </li>
-        <li>
-          <a class="nav-tab-item" data-state="groups">
-            test
-          </a>
-        </li>
         {{#if isLoggedIn}}
         <li>
           <a class="nav-tab-item" data-state="send-form">
-            Сообщен
-          </a>
-        </li>
-        <li>
-          <a class="nav-tab-item" data-state="star">
-            User Access
+            Сообщения
           </a>
         </li>
         {{/if}}
@@ -146,7 +136,7 @@
     <!-- end of Tabs content -->
 
     {{#if price}}
-      <div class="price"><i>Цена:</i> {{price}}</div>
+      <div class="price">Цена: {{price}}</div>
     {{/if}}
     <div class="phones">
       {{#each contacts.phones}}

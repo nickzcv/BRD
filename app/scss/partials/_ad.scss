@@ -301,10 +301,11 @@
           }
         }
         .price {
-          padding: 0.5rem;
-          i {
-            font-weight: bold;
-          }
+          padding: .3rem 1rem .3rem .5rem;
+          margin: .3rem 0;
+          display: inline-block;
+          font-size: 1rem;
+          background: #ffe976;
         }
         .message {
           width: 100%;
@@ -384,6 +385,7 @@
   /* Tablets */
   @media only screen and (min-width: 768px) {
     .ad-item {
+      margin: 1.5rem 0;
       max-height: 8.5rem;
 
       .photo-filter-icon {
