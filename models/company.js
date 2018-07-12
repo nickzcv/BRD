@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var companySchema = new mongoose.Schema({
-  name: String,
+  companyName: String,
   country: {type: Object},
   city: {type: Object},
   address: String,

@@ -12,7 +12,8 @@ html {
 body {
   margin-bottom: 3rem;
   /* Margin bottom by footer height */
-  background: #fcfbf7; }
+  background: #fcfbf7;
+  color: #000; }
 
 a {
   text-decoration: underline; }
@@ -27,8 +28,32 @@ input.form-control, select.form-control, textarea.form-control {
 input.error, select.error, textarea.error {
   border: 1px solid #a80200; }
 
+label {
+  text-transform: uppercase;
+  font-weight: normal; }
+
 label.error {
-  color: #a80200; }
+  color: #a80200;
+  text-transform: lowercase; }
+
+label.error::first-letter {
+  text-transform: uppercase; }
+
+.filters label {
+  text-transform: lowercase; }
+
+.filters label::first-letter {
+  text-transform: uppercase; }
+
+.lbl {
+  text-transform: uppercase;
+  font-size: 0.9rem; }
+
+.radio label {
+  text-transform: lowercase; }
+
+.radio label::first-letter {
+  text-transform: uppercase; }
 
 .btn-default {
   line-height: 2rem;
@@ -488,7 +513,7 @@ nav.navigation .user .logout:hover {
   margin: 1rem 0; }
 
 .filter-home .filters-wrapper .country-picker-label {
-  font-weight: bold;
+  text-transform: uppercase;
   margin-bottom: 5px; }
 
 .filter-home .filters-wrapper .drop-filter {
@@ -656,10 +681,6 @@ nav.navigation .user .logout:hover {
 
 .profile .page {
   margin: 1rem 1rem 0 5rem; }
-
-.profile .page .lbl {
-  font-weight: bold;
-  font-size: 0.9rem; }
 
 .profile .page .lead {
   margin: 2rem 0 0;
@@ -1617,6 +1638,16 @@ nav.navigation .user .logout:hover {
   /* Tablets */
   /* Desktop */
   /* Desktop and larger */ }
+
+.new-company #companyName {
+  max-width: 40rem; }
+
+.new-company input[type="number"] {
+  max-width: 20rem; }
+
+.new-company .back {
+  color: goldenrod;
+  float: right; }
 
 @media only screen and (min-width: 1200px) {
   .new-company .page {

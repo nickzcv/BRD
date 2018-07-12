@@ -1,7 +1,16 @@
 /* Company styles
 -------------------------------------------------- */
 .new-company {
-
+  #companyName {
+    max-width: 40rem;
+  }
+  input[type="number"] {
+    max-width: 20rem;
+  }
+  .back {
+    color: goldenrod;
+    float: right;
+  }
 
   /* Tablets */
   @media only screen and (min-width: 768px) {

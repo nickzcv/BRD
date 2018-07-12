@@ -14,9 +14,10 @@ router.route('/companies')
 	.post(auth, function(req, res) {
 		var company = new Company();
 
-    company.name = req.body.name;
+    company.companyName = req.body.companyName;
     company.country = req.body.country;
     company.city = req.body.city;
+    company.address = req.body.address;
     company.phones = req.body.phones;
     company.website = req.body.website;
     company.logo = req.body.logo;

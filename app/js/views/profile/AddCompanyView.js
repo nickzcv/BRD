@@ -21,9 +21,9 @@ app.views.AddCompanyView = Mn.View.extend({
     // Initialize left navigation region
     brd.regions.leftNavRegion = thisView.getRegion('leftNavRegion');
     // Show country picker
-/*    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
+    thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
       model: thisView.model.get('countriesModel')
-    }));*/
+    }));
   },
 
   onRender: function() {
