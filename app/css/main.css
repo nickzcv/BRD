@@ -23,7 +23,8 @@ a:hover {
   text-decoration: none; }
 
 input.form-control, select.form-control, textarea.form-control {
-  border-radius: 0; }
+  border-radius: 0;
+  font-size: .9rem; }
 
 input.error, select.error, textarea.error {
   border: 1px solid #a80200; }
@@ -1640,7 +1641,26 @@ nav.navigation .user .logout:hover {
   /* Desktop and larger */ }
 
 .new-company #companyName {
-  max-width: 40rem; }
+  max-width: 30rem; }
+
+.new-company .logo {
+  position: relative;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  height: 130px;
+  max-width: 300px;
+  background-size: cover;
+  background-position-y: -40px; }
+
+.new-company .logo:hover {
+  border: 1px solid #b6b6b6; }
+
+.new-company .logo:hover:after {
+  content: "\002b";
+  position: absolute;
+  left: 1rem;
+  font-size: 3rem;
+  color: #b6b6b6; }
 
 .new-company input[type="number"] {
   max-width: 20rem; }

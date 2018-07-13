@@ -54,6 +54,7 @@ a {
 input, select, textarea {
   &.form-control {
     border-radius: 0;
+    font-size: .9rem;
   }
   &.error {
     border: 1px solid $error;

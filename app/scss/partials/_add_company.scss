@@ -2,7 +2,27 @@
 -------------------------------------------------- */
 .new-company {
   #companyName {
-    max-width: 40rem;
+    max-width: 30rem;
+  }
+  .logo {
+    position: relative;
+    cursor: pointer;
+    margin: 1.5rem 0;
+    height: 130px;
+    max-width: 300px;
+    background-size: cover;
+    background-position-y: -40px;
+
+    &:hover {
+      border: 1px solid $gray-dark;
+      &:after {
+        content: "\002b";
+        position: absolute;
+        left: 1rem;
+        font-size: 3rem;
+        color: $gray-dark;
+      }
+    }
   }
   input[type="number"] {
     max-width: 20rem;

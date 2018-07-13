@@ -13,11 +13,18 @@
 
       <div class="form-group">
         <label for="companyName">Название</label>
-        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Заголовок объявления">
+        <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Название компании">
       </div>
 
-      <p class="lbl">Местоположение</p>
-      <div class="country-picker"></div>
+      <div class="form-group">
+        <div class="logo" style="background-image: url('img/avatar/{{_id}}.png'), url('../img/logo-placeholder.jpg')"></div>
+        <div class="modal-logo-section"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Деятельность компании</label>
+        <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+      </div>
 
       <div class="form-group">
         <p class="lbl">Раздел</p>
@@ -28,6 +35,9 @@
           {{/each}}
         </select>
       </div>
+
+      <p class="lbl">Местоположение</p>
+      <div class="country-picker"></div>
 
       <div class="form-group">
         <label for="address">Адрес</label>
@@ -44,11 +54,6 @@
         <input type="text" class="form-control" id="website" name="website">
       </div>
 
-      <div class="form-group">
-        <label for="description">Деятельность компании</label>
-        <textarea class="form-control" rows="3" id="description" name="description" placeholder="Текст объявления"></textarea>
-      </div>
-
       <div class="form-group row">
         <div class="col-md-6">
           <div class="form-group">
@@ -62,7 +67,7 @@
         </div>
       </div>
 
-
+      <br>
       <button type="submit" class="btn btn-default">Добавить</button>
       <button type="button" class="btn btn-default back">Отмена</button>
     </form>
