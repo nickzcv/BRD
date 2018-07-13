@@ -715,6 +715,70 @@ app.models.FiltersModel = Backbone.Model.extend({
             ]
           },
         ],
+      },
+      {
+        id: 5,
+        title: 'Оборудование, техника, инструмент',
+        filters: [
+          {
+            label: null,
+            title: '',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: 'lestehnika',
+                value: 'Лесозаготовительная техника',
+              },
+              {
+                label: 'dobroborudovanie',
+                value: 'Деревообрабатывающее оборудование',
+              },
+              {
+                label: 'instrument',
+                value: 'Инструмент',
+              },
+              {
+                label: 'drugoe',
+                value: 'Другое',
+              }
+            ]
+          }
+        ],
+      },
+      {
+        id: 6,
+        title: 'Работа и услуги',
+        filters: [
+          {
+            label: null,
+            title: '',
+            level: 'child',
+            type: 'checkbox',
+            items: [
+              {
+                label: 'lesozagotovka',
+                value: 'Лесозаготовка',
+              },
+              {
+                label: 'derevoobrabotka',
+                value: 'Деревообработка',
+              },
+              {
+                label: 'tran_uslugi',
+                value: 'Транспортные услуги',
+              },
+              {
+                label: 'rabota',
+                value: 'Работа',
+              },
+              {
+                label: 'drugie_uslugi',
+                value: 'Другие Услуги',
+              }
+            ]
+          }
+        ],
       }
     ],
 

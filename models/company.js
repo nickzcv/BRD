@@ -12,7 +12,7 @@ var companySchema = new mongoose.Schema({
   website: String,
   year: String,
   count: String,
-  employees: {type: Object},
+  employees: {type: Object, default: {}},
   created_at: Date,
   updated_at: Date,
   isActive: {type: Boolean, default: true},

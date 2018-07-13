@@ -18,18 +18,20 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
   },
 
   loadCountries: function() {
+    let lang = 0; // ru (0) , en (3)
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'https://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
+      url: `https://api.vk.com/method/database.getCountries?v=5.5&lang=${lang}&need_all=1&count=300&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75`
     });
   },
 
   searchCities: function(countryId, searchString) {
+    let lang = 0; // ru (0) , en (3)
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: `https://api.vk.com/method/database.getCities?v=5.5&country_id=${countryId}&need_all=1&count=10&q=${searchString}&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75`
+      url: `https://api.vk.com/method/database.getCities?v=5.5&lang=${lang}&country_id=${countryId}&need_all=1&count=10&q=${searchString}&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75`
     });
   },
 

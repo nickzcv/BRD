@@ -15,17 +15,16 @@ router.route('/companies')
 		var company = new Company();
 
     company.companyName = req.body.companyName;
+    company.logo = req.body.logo;
+    company.description = req.body.description;
+    company.category = req.body.category;
     company.country = req.body.country;
     company.city = req.body.city;
     company.address = req.body.address;
     company.phones = req.body.phones;
     company.website = req.body.website;
-    company.logo = req.body.logo;
-    company.description = req.body.description;
     company.year = req.body.year;
     company.count = req.body.count;
-    company.category = req.body.category;
-    company.employees = req.body.employees;
     company.created_at = new Date();
     company.updated_at = new Date();
     company.isActive = false;
@@ -45,7 +44,7 @@ router.route('/companies')
 		});
 
 	})
-  // get all the users (accessed at GET /api/users)
+  // get all the users (accessed at GET /api/companies)
   .get(function(req, res) {
     Company.find({}, function(err, companies) {
       if (err)

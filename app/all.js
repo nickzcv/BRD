@@ -821,6 +821,34 @@ app.models.UserModel = Backbone.Model.extend({
 });
 'use strict';
 
+app.models.CompanyModel = Backbone.Model.extend({
+
+  // urlRoot: 'api/companies',
+
+  defaults: {
+    countriesModel: null
+  },
+
+  initialize: function initialize() {
+    var _this = this;
+
+    // Init child Countries model
+    this.set({ countriesModel: new app.models.CountriesPickerModel() });
+    // get countries Model
+    var countriesModel = this.get('countriesModel');
+    // Listen to country change
+    countriesModel.on('change:country', function () {
+      _this.set({ country: countriesModel.get('country') });
+    });
+    // Listen to city change
+    countriesModel.on('change:city', function () {
+      _this.set({ city: countriesModel.get('city') });
+    });
+  }
+
+});
+'use strict';
+
 app.models.CalcModel = Backbone.Model.extend({
 
   defaults: {
@@ -886,34 +914,6 @@ app.models.CalcModel = Backbone.Model.extend({
 });
 'use strict';
 
-app.models.CompanyModel = Backbone.Model.extend({
-
-  // urlRoot: 'api/companies',
-
-  defaults: {
-    countriesModel: null
-  },
-
-  initialize: function initialize() {
-    var _this = this;
-
-    // Init child Countries model
-    this.set({ countriesModel: new app.models.CountriesPickerModel() });
-    // get countries Model
-    var countriesModel = this.get('countriesModel');
-    // Listen to country change
-    countriesModel.on('change:country', function () {
-      _this.set({ country: countriesModel.get('country') });
-    });
-    // Listen to city change
-    countriesModel.on('change:city', function () {
-      _this.set({ city: countriesModel.get('city') });
-    });
-  }
-
-});
-'use strict';
-
 app.models.CountriesPickerModel = Backbone.Model.extend({
 
   defaults: {
@@ -934,18 +934,20 @@ app.models.CountriesPickerModel = Backbone.Model.extend({
   },
 
   loadCountries: function loadCountries() {
+    var lang = 0; // ru (0) , en (3)
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'https://api.vk.com/method/database.getCountries?v=5.5&need_all=1&count=300&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
+      url: 'https://api.vk.com/method/database.getCountries?v=5.5&lang=' + lang + '&need_all=1&count=300&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
     });
   },
 
   searchCities: function searchCities(countryId, searchString) {
+    var lang = 0; // ru (0) , en (3)
     return $.ajax({
       method: 'GET',
       dataType: 'jsonp',
-      url: 'https://api.vk.com/method/database.getCities?v=5.5&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString + '&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
+      url: 'https://api.vk.com/method/database.getCities?v=5.5&lang=' + lang + '&country_id=' + countryId + '&need_all=1&count=10&q=' + searchString + '&access_token=afdfe2b1afdfe2b1afdfe2b165afbd0461aafdfafdfe2b1f522c5ce6e574292e49f7b4e&v=5.75'
     });
   },
 
@@ -1509,6 +1511,53 @@ app.models.FiltersModel = Backbone.Model.extend({
             label: 'yasen',
             value: 'Ясень'
           }]
+        }]
+      }]
+    }, {
+      id: 5,
+      title: 'Оборудование, техника, инструмент',
+      filters: [{
+        label: null,
+        title: '',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'lestehnika',
+          value: 'Лесозаготовительная техника'
+        }, {
+          label: 'dobroborudovanie',
+          value: 'Деревообрабатывающее оборудование'
+        }, {
+          label: 'instrument',
+          value: 'Инструмент'
+        }, {
+          label: 'drugoe',
+          value: 'Другое'
+        }]
+      }]
+    }, {
+      id: 6,
+      title: 'Работа и услуги',
+      filters: [{
+        label: null,
+        title: '',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'lesozagotovka',
+          value: 'Лесозаготовка'
+        }, {
+          label: 'derevoobrabotka',
+          value: 'Деревообработка'
+        }, {
+          label: 'tran_uslugi',
+          value: 'Транспортные услуги'
+        }, {
+          label: 'rabota',
+          value: 'Работа'
+        }, {
+          label: 'drugie_uslugi',
+          value: 'Другие Услуги'
         }]
       }]
     }]
@@ -2566,6 +2615,233 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
+app.views.CountriesPickerView = Mn.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    } else if (isVisible && !city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val('');
+    }
+  }
+
+});
+"use strict";
+
+/**
+ *
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.EmptyView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.EmptyView
+   */
+  template: tpl.templates.empty
+});
+'use strict';
+
+app.views.FiltersView = Mn.View.extend({
+
+  template: tpl.templates.filters,
+
+  ui: {
+    parent: '.parent',
+    sizes: '.subtitle',
+    checkbox: 'input[type="checkbox"]',
+    number: 'input[type="number"]',
+    addSize: '.add-size',
+    removeSize: '.remove-size'
+  },
+
+  events: {
+    // Handle parent checkbox
+    'change @ui.parent': function changeUiParent(event) {
+      var $element = $(event.target);
+      // Toggle hidden class
+      if ($element.prop('checked')) {
+        $element.parent().parent().next().removeClass('hidden');
+      } else {
+        $element.parent().parent().next().addClass('hidden');
+      }
+    },
+    'change #delovaya': function changeDelovaya(event) {
+      var $element = $(event.target);
+      if ($element.prop('checked')) {
+        this.ui.sizes.removeClass('hidden');
+      } else {
+        this.ui.sizes.addClass('hidden');
+      }
+    },
+    'change @ui.checkbox': 'changeFilter',
+    'change @ui.number': 'changeFilter',
+    'click @ui.addSize': 'addSize',
+    'click @ui.removeSize': 'removeSize'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  addSize: function addSize() {
+    this.model.addSize();
+  },
+
+  removeSize: function removeSize(event) {
+    this.model.removeSize(event.target.dataset.id);
+  },
+
+  changeFilter: function changeFilter(event) {
+    var type = event.target.type,
+        label = event.target.value,
+        value = label;
+    // Checkboxes
+    if (type === 'checkbox') {
+      value = event.target.checked;
+    } else {
+      // Inputs
+      label = event.target.id;
+      value = event.target.value;
+      // Add additional param for sizes input
+      if (event.target.dataset.id) {
+        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
+        return;
+      }
+    }
+    this.model.setFilter(label, type, value);
+  },
+
+  initialize: function initialize() {
+    this.model.showFilters();
+  }
+
+});
+'use strict';
+
+app.views.MessageView = Marionette.View.extend({
+
+  template: tpl.templates.message,
+
+  templateContext: function templateContext() {
+    return {
+      message: this.getOption('message'),
+      placeholder: this.getOption('placeholder')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SendMessageFormView = Mn.View.extend({
+
+  template: tpl.templates.send_message_form,
+
+  initialize: function initialize() {},
+
+  templateContext: function templateContext() {
+    return {
+      userId: this.getOption('userId')
+    };
+  }
+
+});
+"use strict";
+
+/**
+ * Spinner view
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.SpinnerView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.SpinnerView
+   */
+  template: tpl.templates.spinner
+});
+'use strict';
+
 app.views.AddAdView = Mn.View.extend({
 
   template: tpl.templates.add_ad,
@@ -3359,231 +3635,4 @@ app.views.SettingsView = Mn.View.extend({
     this.ui.accountSettings.removeClass('active');
   }
 
-});
-'use strict';
-
-app.views.CountriesPickerView = Mn.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    } else if (isVisible && !city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val('');
-    }
-  }
-
-});
-"use strict";
-
-/**
- *
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.EmptyView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.EmptyView
-   */
-  template: tpl.templates.empty
-});
-'use strict';
-
-app.views.FiltersView = Mn.View.extend({
-
-  template: tpl.templates.filters,
-
-  ui: {
-    parent: '.parent',
-    sizes: '.subtitle',
-    checkbox: 'input[type="checkbox"]',
-    number: 'input[type="number"]',
-    addSize: '.add-size',
-    removeSize: '.remove-size'
-  },
-
-  events: {
-    // Handle parent checkbox
-    'change @ui.parent': function changeUiParent(event) {
-      var $element = $(event.target);
-      // Toggle hidden class
-      if ($element.prop('checked')) {
-        $element.parent().parent().next().removeClass('hidden');
-      } else {
-        $element.parent().parent().next().addClass('hidden');
-      }
-    },
-    'change #delovaya': function changeDelovaya(event) {
-      var $element = $(event.target);
-      if ($element.prop('checked')) {
-        this.ui.sizes.removeClass('hidden');
-      } else {
-        this.ui.sizes.addClass('hidden');
-      }
-    },
-    'change @ui.checkbox': 'changeFilter',
-    'change @ui.number': 'changeFilter',
-    'click @ui.addSize': 'addSize',
-    'click @ui.removeSize': 'removeSize'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  addSize: function addSize() {
-    this.model.addSize();
-  },
-
-  removeSize: function removeSize(event) {
-    this.model.removeSize(event.target.dataset.id);
-  },
-
-  changeFilter: function changeFilter(event) {
-    var type = event.target.type,
-        label = event.target.value,
-        value = label;
-    // Checkboxes
-    if (type === 'checkbox') {
-      value = event.target.checked;
-    } else {
-      // Inputs
-      label = event.target.id;
-      value = event.target.value;
-      // Add additional param for sizes input
-      if (event.target.dataset.id) {
-        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
-        return;
-      }
-    }
-    this.model.setFilter(label, type, value);
-  },
-
-  initialize: function initialize() {
-    this.model.showFilters();
-  }
-
-});
-'use strict';
-
-app.views.MessageView = Marionette.View.extend({
-
-  template: tpl.templates.message,
-
-  templateContext: function templateContext() {
-    return {
-      message: this.getOption('message'),
-      placeholder: this.getOption('placeholder')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SendMessageFormView = Mn.View.extend({
-
-  template: tpl.templates.send_message_form,
-
-  initialize: function initialize() {},
-
-  templateContext: function templateContext() {
-    return {
-      userId: this.getOption('userId')
-    };
-  }
-
-});
-"use strict";
-
-/**
- * Spinner view
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.SpinnerView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.SpinnerView
-   */
-  template: tpl.templates.spinner
 });
