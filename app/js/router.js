@@ -48,6 +48,15 @@ app.router = Marionette.AppRouter.extend({
           model: new app.models.CalcModel()
         }));
         break;
+      // Ad full view
+      case 'ad': {
+        if (page2) {
+          brd.regions.bodyRegion.show(new app.views.AdFullPageView({
+            // model: new app.models.CalcModel()
+          }));
+        }
+        break;
+      }
       // Profile routing
       case 'profile': {
         // Check if user has logged in

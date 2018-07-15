@@ -2,7 +2,7 @@ app.views.AdsCollectionView = Mn.CollectionView.extend({
 
   collection: new app.collections.AdsCollection(),
 
-  childView: app.views.adView,
+  childView: app.views.AdView,
 
   initialize: function() {
     this.childViewOptions = {

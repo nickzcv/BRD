@@ -1,4 +1,4 @@
-app.views.adView = Mn.View.extend({
+app.views.AdView = Mn.View.extend({
 
   template: tpl.templates.ad_item,
 
@@ -10,33 +10,18 @@ app.views.adView = Mn.View.extend({
   ui: {
     arrow: '.arrow',
     item: '.ad-item',
-    sendMessage: '.send-form',
     categoryBlock: '.category',
     message: '.message',
-    close: '.close',
     table: '.left-border',
-    tab: '.tab',
     star: '.star',
     adDescription: '.ad-description',
-    backBtn: '.back',
     price: '.price'
   },
 
   events: {
     'click @ui.arrow': 'changeAdView',
-    'click @ui.tab': 'newTab',
+    'click @ui.fullPageIcon': 'fullPage',
     'click @ui.star': 'addStar',
-    'click @ui.sendMessage': 'showMessageForm',
-    'click @ui.close': function() {
-      this.getRegion('message').empty();
-      this.ui.message.addClass('hidden');
-      this.ui.table.removeClass('hidden');
-    },
-    'click @ui.backBtn': function() {
-      this.getRegion('message').empty();
-      this.ui.message.addClass('hidden');
-      this.ui.table.removeClass('hidden');
-    },
     'click @ui.editAdIcon': 'editAd'
   },
 
@@ -57,20 +42,10 @@ app.views.adView = Mn.View.extend({
   },
 
   /*
-   *  Show send message form
-   */
-  showMessageForm: function() {
-    this.ui.table.addClass('hidden');
-    this.ui.message.removeClass('hidden');
-    this.ui.price.removeClass('hidden');
-    this.showChildView('message', new app.views.SendMessageFormView({userId: this.model.get('userId')}));
-  },
-
-  /*
    *  Go to full page view
    */
   fullPage: function() {
-    //console.log(this.model.get('_id'));
+    console.log(this.model.get('_id'));
   },
 
   addStar: function() {

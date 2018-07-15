@@ -103,7 +103,7 @@
       font-size: 1.7rem;
       cursor: pointer;
       background: $white;
-      &.tab {
+      &.full-page-view {
         top: 0;
         color: $gray-dark;
         &:hover {
@@ -454,7 +454,7 @@
         }
       }
       .icon {
-        &.tab {
+        &.full-page-view {
           top: 0;
         }
       }

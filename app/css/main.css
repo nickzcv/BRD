@@ -834,11 +834,11 @@ nav.navigation .user .logout:hover {
   cursor: pointer;
   background: #FFFFFF; }
 
-.ads .ad-item .icon.tab {
+.ads .ad-item .icon.full-page-view {
   top: 0;
   color: #b6b6b6; }
 
-.ads .ad-item .icon.tab:hover {
+.ads .ad-item .icon.full-page-view:hover {
   color: #777; }
 
 .ads .ad-item .icon.arrow {
@@ -1148,7 +1148,7 @@ nav.navigation .user .logout:hover {
     left: 2px;
     height: 1.5rem;
     width: 1.5rem; }
-  .ads .ad-item .icon.tab {
+  .ads .ad-item .icon.full-page-view {
     top: 0; }
   .ads .ad-item.expanded {
     max-height: none;

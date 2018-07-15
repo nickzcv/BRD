@@ -1,6 +1,6 @@
 app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
 
-  childView: app.views.adView,
+  childView: app.views.AdView,
 
   initialize: async function(options) {
     let parameters = null;
