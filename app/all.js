@@ -435,6 +435,10 @@ Handlebars.registerHelper('summColumn', function (value, column) {
     return 0;
   }
 });
+
+Handlebars.registerHelper('getTimeStamp', function (context, options) {
+  return Date.now();
+});
 "use strict";
 
 /**
@@ -901,7 +905,8 @@ app.models.CompanyModel = Backbone.Model.extend({
   // urlRoot: 'api/companies',
 
   defaults: {
-    countriesModel: null
+    countriesModel: null,
+    logo: brd.controllers.getUserId() + '_logo'
   },
 
   initialize: function initialize() {
@@ -2360,6 +2365,96 @@ app.views.AddAvatarView = Mn.View.extend({
 });
 'use strict';
 
+app.views.AddLogoView = Mn.View.extend({
+
+  template: tpl.templates.logo,
+
+  logoName: '',
+
+  ui: {
+    logoModal: '#logo',
+    uploader: '#upload',
+    uploadPreview: '#upload-preview'
+  },
+
+  events: {
+    'hide.bs.modal': function hideBsModal() {
+      this.destroy();
+    },
+    'change @ui.uploader': 'uploadImage'
+  },
+
+  initialize: function initialize(options) {
+    this.logoName = options.logo;
+  },
+
+  onAttach: function onAttach() {
+    this.ui.logoModal.modal('show');
+  },
+
+  uploadImage: function uploadImage(event) {
+    var _this = this;
+
+    // Clear preview div
+    this.ui.uploadPreview.empty();
+    // Init croppie
+    var $uploadCrop = this.ui.uploadPreview.croppie({
+      viewport: {
+        width: 300,
+        height: 130
+      },
+      boundary: {
+        width: 400,
+        height: 300
+      },
+      mouseWheelZoom: true
+    });
+    // Preview image
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        $uploadCrop.croppie('bind', {
+          url: event.target.result
+        }).then(function () {
+          // console.log('jQuery bind complete');
+        });
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    } else {
+      console.log("Sorry - you're browser doesn't support the FileReader API");
+    }
+
+    var fileName = this.logoName;
+
+    // Bind upload event action
+    $('.upload-logo').on('click', function () {
+      $uploadCrop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+      }).then(function (resp) {
+        $.ajax({
+          url: 'api/upload/logo',
+          method: 'POST',
+          contentType: 'application/json',
+          dataType: 'json',
+          data: JSON.stringify({
+            'logoName': fileName,
+            'image': resp
+          })
+        }).done(function () {
+          $("[data-dismiss=modal]").trigger({ type: "click" });
+          _this.triggerMethod('select:item');
+        }).fail(function () {
+          $("[data-dismiss=modal]").trigger({ type: "click" });
+          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show();
+        });
+      });
+    });
+  }
+
+});
+'use strict';
+
 app.views.LoginView = Mn.View.extend({
 
   template: tpl.templates.login,
@@ -2960,12 +3055,9 @@ app.views.AddCompanyView = Mn.View.extend({
   regions: {
     leftNavRegion: '.left-navigation',
     countriesPicker: '.country-picker',
-    filters: '.filters'
+    filters: '.filters',
+    companyLogo: '.company-logo'
   },
-
-  ui: {},
-
-  events: {},
 
   initialize: function initialize() {
     var thisView = this;
@@ -2974,6 +3066,10 @@ app.views.AddCompanyView = Mn.View.extend({
     // Show country picker
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
       model: thisView.model.get('countriesModel')
+    }));
+
+    thisView.showChildView('companyLogo', new app.views.CompanyLogoView({
+      model: this.model
     }));
   },
 
@@ -3097,6 +3193,38 @@ app.views.CompaniesView = Mn.View.extend({
     /*    this.showChildView('adsList', new app.views.AdsCollectionView({
           model: new app.models.AdsListModel()
         }));*/
+  }
+
+});
+'use strict';
+
+app.views.CompanyLogoView = Mn.View.extend({
+
+  template: tpl.templates.company_logo,
+
+  regions: {
+    logoModal: '.modal-logo-section'
+  },
+
+  ui: {
+    logo: '.logo'
+  },
+
+  events: {
+    'click @ui.logo': 'showAddLogoView'
+  },
+
+  childViewEvents: {
+    'select:item': 'itemSelected'
+  },
+
+  itemSelected: function itemSelected() {
+    console.log('itemSelected');
+    this.render();
+  },
+
+  showAddLogoView: function showAddLogoView() {
+    this.showChildView('logoModal', new app.views.AddLogoView({ logo: this.model.get('logo') }));
   }
 
 });

@@ -1,9 +1,11 @@
-app.views.AddAvatarView = Mn.View.extend({
+app.views.AddLogoView = Mn.View.extend({
 
-  template: tpl.templates.avatar,
+  template: tpl.templates.logo,
+
+  logoName: '',
 
   ui: {
-    avatarModal: '#avatar',
+    logoModal: '#logo',
     uploader: '#upload',
     uploadPreview: '#upload-preview',
   },
@@ -15,8 +17,12 @@ app.views.AddAvatarView = Mn.View.extend({
     'change @ui.uploader': 'uploadImage',
   },
 
-  onRender: function() {
-    this.ui.avatarModal.modal('show');
+  initialize: function(options) {
+    this.logoName = options.logo;
+  },
+
+  onAttach: function() {
+    this.ui.logoModal.modal('show');
   },
 
   uploadImage: function(event) {
@@ -25,12 +31,11 @@ app.views.AddAvatarView = Mn.View.extend({
     // Init croppie
     let $uploadCrop = this.ui.uploadPreview.croppie({
       viewport: {
-        width: 200,
-        height: 200,
-        type: 'circle'
+        width: 300,
+        height: 130
       },
       boundary: {
-        width: 300,
+        width: 400,
         height: 300
       },
       mouseWheelZoom: true
@@ -50,26 +55,28 @@ app.views.AddAvatarView = Mn.View.extend({
       console.log("Sorry - you're browser doesn't support the FileReader API");
     }
 
+    let fileName = this.logoName;
+
+
     // Bind upload event action
-    $('.upload-avatar').on('click', function() {
+    $('.upload-logo').on('click', () => {
       $uploadCrop.croppie('result', {
         type: 'canvas',
         size: 'viewport'
       }).then((resp) => {
         $.ajax({
-          url: 'api/upload/profile',
+          url: 'api/upload/logo',
           method: 'POST',
           contentType: 'application/json',
           dataType: 'json',
           data: JSON.stringify({
-            'user': brd.controllers.getUserId(),
+            'logoName': fileName,
             'image': resp
           })
-        }).done(function() {
+        }).done(() => {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          let message = `Фото загружено. Сохраните изменения и обновите страницу чтобы увидеть результат.`;
-          $('.alert').addClass('alert-success').text(message).show()
-        }).fail(function() {
+          this.triggerMethod('select:item');
+        }).fail(() => {
           $("[data-dismiss=modal]").trigger({ type: "click" });
           $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show()
         });

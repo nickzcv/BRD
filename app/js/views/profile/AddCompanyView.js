@@ -5,15 +5,8 @@ app.views.AddCompanyView = Mn.View.extend({
   regions: {
     leftNavRegion: '.left-navigation',
     countriesPicker: '.country-picker',
-    filters: '.filters'
-  },
-
-  ui: {
-
-  },
-
-  events: {
-
+    filters: '.filters',
+    companyLogo: '.company-logo'
   },
 
   initialize: function() {
@@ -23,6 +16,10 @@ app.views.AddCompanyView = Mn.View.extend({
     // Show country picker
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
       model: thisView.model.get('countriesModel')
+    }));
+
+    thisView.showChildView('companyLogo', new app.views.CompanyLogoView({
+      model: this.model
     }));
   },
 

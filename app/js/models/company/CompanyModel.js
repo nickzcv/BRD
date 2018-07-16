@@ -4,6 +4,7 @@ app.models.CompanyModel = Backbone.Model.extend({
 
   defaults: {
     countriesModel: null,
+    logo: brd.controllers.getUserId()+'_logo'
   },
 
   initialize: function() {

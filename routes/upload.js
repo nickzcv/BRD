@@ -5,14 +5,30 @@ const path = require('path');
 const multer = require('multer');
 
 
+// Upload company logo
+router.route('/upload/logo')
+.post(function(req, res) {
+  // Get base64 string from json request
+  var logoName = req.body.logoName;
+  var base64Data = req.body.image.replace(/^data:image\/png;base64,/, "");
+  // Save image
+  fs.writeFile('./app/img/logo/'+logoName+'.png', base64Data, 'base64', function(err) {
+    if (err) {
+      console.log(err)
+    }
+  });
+  res.json({ success: true });
+});
+
+
 // Upload profile avatar
 router.route('/upload/profile')
 	.post(function(req, res) {
     // Get base64 string from json request
-    var userId = req.body.user;
+    var logoName = req.body.filename;
     var base64Data = req.body.image.replace(/^data:image\/png;base64,/, "");
     // Save image
-    fs.writeFile('./app/img/avatar/'+userId+'.png', base64Data, 'base64', function(err) {
+    fs.writeFile('./app/img/avatar/'+logoName+'.png', base64Data, 'base64', function(err) {
       if (err) {
         console.log(err)
       }

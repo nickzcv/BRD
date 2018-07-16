@@ -1649,8 +1649,7 @@ nav.navigation .user .logout:hover {
   margin: 1.5rem 0;
   height: 130px;
   max-width: 300px;
-  background-size: cover;
-  background-position-y: -40px; }
+  background-size: cover; }
 
 .new-company .logo:hover {
   border: 1px solid #b6b6b6; }

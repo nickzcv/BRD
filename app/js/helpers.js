@@ -110,3 +110,8 @@ Handlebars.registerHelper('summColumn', function(value, column) {
     return 0;
   }
 });
+
+
+Handlebars.registerHelper('getTimeStamp', function(context, options) {
+  return Date.now();
+});
