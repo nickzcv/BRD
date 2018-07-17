@@ -5,7 +5,7 @@ app.models.CompanyModel = Backbone.Model.extend({
   defaults: {
     countriesModel: null,
     companyName: null,
-    logo: brd.controllers.getUserId()+'_logo',
+    logo: brd.controllers.getUserId()+'_'+Date.now()+'_logo',
     categoryId: null,
     country: null,
     city: null,
