@@ -1,10 +1,19 @@
 app.models.CompanyModel = Backbone.Model.extend({
 
-  // urlRoot: 'api/companies',
+  urlRoot: 'api/companies',
 
   defaults: {
     countriesModel: null,
-    logo: brd.controllers.getUserId()+'_logo'
+    companyName: null,
+    logo: brd.controllers.getUserId()+'_logo',
+    categoryId: null,
+    country: null,
+    city: null,
+    phones: null,
+    address: null,
+    website: null,
+    year: null,
+    count: null,
   },
 
   initialize: function() {
@@ -20,6 +29,11 @@ app.models.CompanyModel = Backbone.Model.extend({
     countriesModel.on('change:city', () => {
       this.set({city: countriesModel.get('city')});
     });
+
+    // Init child Filters model under categories
+    this.set({categoryModel: new app.models.FiltersModel()});
+    let categoryModel = this.get('categoryModel');
+    this.set({categories: categoryModel.attributes.categories});
 
   },
 

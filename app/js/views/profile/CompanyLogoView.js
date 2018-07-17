@@ -15,14 +15,8 @@ app.views.CompanyLogoView = Mn.View.extend({
   },
 
   childViewEvents: {
-    'select:item': 'itemSelected'
+    'select:item': 'render'
   },
-
-  itemSelected: function() {
-    console.log('itemSelected');
-    this.render();
-  },
-
 
   showAddLogoView: function() {
     this.showChildView('logoModal', new app.views.AddLogoView({logo: this.model.get('logo')}));

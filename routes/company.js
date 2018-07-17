@@ -17,7 +17,7 @@ router.route('/companies')
     company.companyName = req.body.companyName;
     company.logo = req.body.logo;
     company.description = req.body.description;
-    company.category = req.body.category;
+    company.categoryId = req.body.categoryId;
     company.country = req.body.country;
     company.city = req.body.city;
     company.address = req.body.address;
@@ -27,7 +27,7 @@ router.route('/companies')
     company.count = req.body.count;
     company.created_at = new Date();
     company.updated_at = new Date();
-    company.isActive = false;
+    company.isActive = true;
     company.createdBy = req.body.createdBy;
 
 		// save the company and check for the errors

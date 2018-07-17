@@ -9,6 +9,25 @@ app.views.AddCompanyView = Mn.View.extend({
     companyLogo: '.company-logo'
   },
 
+  ui: {
+    addCompanyForm: '#add-company-form',
+    companyName: '#companyName',
+    description: '#description',
+    category: '#category',
+    address: '#address',
+    phones: '#phones',
+    website: '#website',
+    year: '#year',
+    count: '#count',
+    backBtn: '.back'
+  },
+
+  events: {
+    'click @ui.backBtn': function() {
+      brd.router.navigateToRoute('profile', 'companies');
+    }
+  },
+
   initialize: function() {
     let thisView = this;
     // Initialize left navigation region
@@ -17,7 +36,7 @@ app.views.AddCompanyView = Mn.View.extend({
     thisView.showChildView('countriesPicker', new app.views.CountriesPickerView({
       model: thisView.model.get('countriesModel')
     }));
-
+    // Show logo section
     thisView.showChildView('companyLogo', new app.views.CompanyLogoView({
       model: this.model
     }));
@@ -32,7 +51,76 @@ app.views.AddCompanyView = Mn.View.extend({
    *
    */
   formAddValidation: function() {
+    this.ui.addCompanyForm.validate({
+      rules: {
+        companyName: {
+          required: true,
+        },
+        description: {
+          required: true,
+        },
+        category: {
+          required: true,
+        },
+        country: {
+          required: true
+        },
+        city: {
+          required: true
+        }
+      },
+      messages: {
+        companyName: {
+          required: 'Укажите название компании'
+        },
+        description: {
+          required: 'Опишите деятельность вашей компании'
+        },
+        category: {
+          required: 'Выберите раздел'
+        },
+        country: {
+          required: 'Выберите страну'
+        },
+        city: {
+          required: 'Укажите город'
+        },
+      },
 
+      submitHandler: () => {
+        this.saveCompany();
+      }
+    });
   },
+
+  saveCompany: function() {
+    // Set model to save it to the server
+    this.model.set({
+      companyName: this.ui.companyName.val().trim(),
+      description: this.ui.description.val().trim(),
+      categoryId: this.ui.category.val(),
+      address: this.ui.address.val().trim(),
+      phones: this.ui.phones.val().trim(),
+      website: this.ui.website.val().trim(),
+      year: this.ui.year.val(),
+      count: this.ui.count.val(),
+      createdBy: brd.controllers.getUserId()
+    });
+
+    // Save the model into database
+    this.model.save(null, {
+      headers: {
+        'Authorization':'Bearer ' + brd.controllers.getToken()
+      },
+      success: function() {
+        // Redirect to Ads profile page
+        brd.router.navigateToRoute('profile', 'companies');
+      },
+      error: function() {
+        console.log('error')
+      }
+    });
+  }
+
 
 });
