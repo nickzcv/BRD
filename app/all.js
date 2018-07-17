@@ -2457,7 +2457,7 @@ app.views.AddLogoView = Mn.View.extend({
           })
         }).done(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          _this.triggerMethod('select:item');
+          _this.triggerMethod('logo:added');
         }).fail(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
           $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show();
@@ -3547,7 +3547,7 @@ app.views.CompanyLogoView = Mn.View.extend({
   },
 
   childViewEvents: {
-    'select:item': 'render'
+    'logo:added': 'render'
   },
 
   showAddLogoView: function showAddLogoView() {

@@ -15,7 +15,7 @@ app.views.CompanyLogoView = Mn.View.extend({
   },
 
   childViewEvents: {
-    'select:item': 'render'
+    'logo:added': 'render'
   },
 
   showAddLogoView: function() {

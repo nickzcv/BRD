@@ -75,7 +75,7 @@ app.views.AddLogoView = Mn.View.extend({
           })
         }).done(() => {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          this.triggerMethod('select:item');
+          this.triggerMethod('logo:added');
         }).fail(() => {
           $("[data-dismiss=modal]").trigger({ type: "click" });
           $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show()

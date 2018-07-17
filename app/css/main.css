@@ -1663,7 +1663,7 @@ nav.navigation .user .logout:hover {
 
 .new-company #upload-preview {
   width: 350px;
-  height: 250px;
+  min-height: 250px;
   margin: 0 auto; }
 
 .new-company input[type="number"] {
