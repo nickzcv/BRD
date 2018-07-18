@@ -1812,6 +1812,8 @@ app.views.AdFullPageView = Mn.View.extend({
         errorMessage: 'Service error from.'
       });
     }
+
+    console.log(this.model);
   }
 
 });

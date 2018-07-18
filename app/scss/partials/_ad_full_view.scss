@@ -1,0 +1,85 @@
+/* companies profile styles
+-------------------------------------------------- */
+.ad-full-view {
+
+  .subheader {
+    position: relative;
+    padding: 1rem 2rem;
+    height: 9rem;
+    background: $subheader-dark;
+    color: $gray-light;
+
+    .photo-filter-icon {
+      display: block;
+      position: absolute;
+      width: 4rem;
+      left: 3.5rem;
+      top: 2.5rem;
+      opacity: .3;
+    }
+    .photo {
+      position: relative;
+      float: left;
+      width: 7rem;
+      height: 7rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: $photo-bg;
+      border: 1px solid $photo-bg;
+    }
+  }
+  .status-details {
+    padding: .5rem 2.5rem;
+    background: $gray;
+
+    .type {
+      display: inline-block;
+      background: $success;
+      padding: 2px 15px;
+      border-radius: 3px;
+      color: $white;
+    }
+  }
+
+
+  /* Tablets */
+  @media only screen and (min-width: 768px) {
+    .subheader {
+      padding: 1.5rem 4rem;
+      height: 10rem;
+
+      .photo-filter-icon {
+        left: 5.5rem;
+        top: 3rem;
+      }
+    }
+    .status-details {
+      padding: .5rem 5rem;
+
+      .type {
+        padding: 2px 15px;
+        font-size: 1rem;
+      }
+    }
+
+  }
+
+
+  /* Desktop */
+  @media only screen and (min-width: 992px) {
+
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1200px) {
+
+  }
+
+  /* Large screens */
+  @media only screen and (min-width: 1400px) {
+
+  }
+
+
+
+}

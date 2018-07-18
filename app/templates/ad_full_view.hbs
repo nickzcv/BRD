@@ -7,7 +7,18 @@
     {{errorMessage}}
   {{else}}
 
-    DONE.
+    <div class="subheader">
+      <div class="photo" style="background-image: url('img/ads/{{photo}}')"></div>
+      {{#if photo}}
+      {{else}}
+        <img class="photo-filter-icon" src="img/filter-icons/{{category.id}}.svg" />
+      {{/if}}
+    </div>
+
+    <div class="status-details">
+      <span class="type">Куплю</span>
+
+    </div>
 
   {{/if}}
 </div>

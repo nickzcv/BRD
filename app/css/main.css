@@ -1320,6 +1320,63 @@ nav.navigation .user .logout:hover {
   .ads .ad-item.expanded .section2 .close:hover {
     opacity: 1; } }
 
+/* companies profile styles
+-------------------------------------------------- */
+.ad-full-view {
+  /* Tablets */
+  /* Desktop */
+  /* Large screens */
+  /* Large screens */ }
+
+.ad-full-view .subheader {
+  position: relative;
+  padding: 1rem 2rem;
+  height: 9rem;
+  background: #323C3C;
+  color: #fcfcf4; }
+
+.ad-full-view .subheader .photo-filter-icon {
+  display: block;
+  position: absolute;
+  width: 4rem;
+  left: 3.5rem;
+  top: 2.5rem;
+  opacity: .3; }
+
+.ad-full-view .subheader .photo {
+  position: relative;
+  float: left;
+  width: 7rem;
+  height: 7rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #f0eedf;
+  border: 1px solid #f0eedf; }
+
+.ad-full-view .status-details {
+  padding: .5rem 2.5rem;
+  background: #edebdc; }
+
+.ad-full-view .status-details .type {
+  display: inline-block;
+  background: #5cb85c;
+  padding: 2px 15px;
+  border-radius: 3px;
+  color: #FFFFFF; }
+
+@media only screen and (min-width: 768px) {
+  .ad-full-view .subheader {
+    padding: 1.5rem 4rem;
+    height: 10rem; }
+  .ad-full-view .subheader .photo-filter-icon {
+    left: 5.5rem;
+    top: 3rem; }
+  .ad-full-view .status-details {
+    padding: .5rem 5rem; }
+  .ad-full-view .status-details .type {
+    padding: 2px 15px;
+    font-size: 1rem; } }
+
 /* Ads styles
 -------------------------------------------------- */
 .new-ad, .edit-ad {
@@ -1768,7 +1825,7 @@ nav.navigation .user .logout:hover {
 
 .modal .checkmark {
   display: none;
-  color: #008023;
+  color: #5cb85c;
   font-size: 5rem;
   text-align: center;
   cursor: pointer; }
