@@ -1330,6 +1330,7 @@ nav.navigation .user .logout:hover {
 
 .ad-full-view .subheader {
   position: relative;
+  overflow: hidden;
   padding: 1rem 2rem;
   height: 9rem;
   background: #323C3C;
@@ -1353,6 +1354,11 @@ nav.navigation .user .logout:hover {
   background-color: #f0eedf;
   border: 1px solid #f0eedf; }
 
+.ad-full-view .subheader h2 {
+  margin-left: 8rem;
+  margin-top: 0;
+  font-size: 1.2rem; }
+
 .ad-full-view .status-details {
   padding: .5rem 2.5rem;
   background: #edebdc; }
@@ -1371,6 +1377,10 @@ nav.navigation .user .logout:hover {
   .ad-full-view .subheader .photo-filter-icon {
     left: 5.5rem;
     top: 3rem; }
+  .ad-full-view .subheader h2 {
+    margin-left: 9rem;
+    margin-top: 0;
+    font-size: 1.6rem; }
   .ad-full-view .status-details {
     padding: .5rem 5rem; }
   .ad-full-view .status-details .type {
