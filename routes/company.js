@@ -68,13 +68,14 @@ router.route('/companies/:userId')
     Company.find({
       'userId': req.params.userId
       }, function(err, companies) {
-      if (err)
+      if (err) {
         res.json({
           error: true,
           errorDescription: err,
         });
-
-      res.json(companies);
+      } else {
+        res.json(companies);
+      }
     });
   });
 
