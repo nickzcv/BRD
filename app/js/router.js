@@ -52,7 +52,7 @@ app.router = Marionette.AppRouter.extend({
       case 'ad': {
         if (page2) {
           brd.regions.bodyRegion.show(new app.views.AdFullPageView({
-            // model: new app.models.CalcModel()
+            model: new app.models.AdModel({idAd: page2}),
           }));
         }
         break;

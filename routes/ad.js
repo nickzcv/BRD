@@ -104,41 +104,44 @@ router.route('/ad/:ad_id')
 // get the ad with :ad_id
 	.get(function(req, res) {
 		Ad.findById(req.params.ad_id, function(err, ad) {
-			if (err)
-				res.json({'error': true});
+			if (err) {
+        res.json({'error': true});
+      } else {
+        res.json(ad);
+      }
 
-			res.json(ad);
 		});
 	})
 	// update
 	.put(auth, function(req, res) {
     Ad.findById(req.params.ad_id, function(err, ad) {
 
-      if (err)
+      if (err) {
         res.json(err);
+      } else {
+        ad.type = req.body.type;
+        ad.object = req.body.object;
+        ad.category = req.body.category;
+        ad.title = req.body.title;
+        ad.description = req.body.description;
+        ad.country = req.body.country;
+        ad.city = req.body.city;
+        ad.price = req.body.price;
+        ad.photo = req.body.photo;
+        ad.expirationDate = req.body.expirationDate;
+        ad.contacts = req.body.contacts;
+        ad.updated_at = new Date();
+        ad.status = 'UPDATED';
 
-      ad.type = req.body.type;
-      ad.object = req.body.object;
-      ad.category = req.body.category;
-      ad.title = req.body.title;
-      ad.description = req.body.description;
-      ad.country = req.body.country;
-      ad.city = req.body.city;
-      ad.price = req.body.price;
-      ad.photo = req.body.photo;
-      ad.expirationDate = req.body.expirationDate;
-      ad.contacts = req.body.contacts;
-      ad.updated_at = new Date();
-      ad.status = 'UPDATED';
+        ad.save(function(err) {
+          if (err) {
+            res.json(err);
+          } else {
+            res.json({ message: 'Ad updated!' });
+          }
 
-			ad.save(function(err) {
-				if (err) {
-          res.json(err);
-        } else {
-          res.json({ message: 'Ad updated!' });
-        }
-
-			});
+        });
+      }
 
 		});
 	})

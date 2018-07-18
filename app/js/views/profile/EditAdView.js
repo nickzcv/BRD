@@ -2,6 +2,10 @@ app.views.EditAdView = app.views.AddAdView.extend({
 
   template: tpl.templates.edit_ad,
 
+  modelEvents: {
+    'change': 'render'
+  },
+
   initialize: async function() {
     let userId = brd.controllers.getUserId();
 
@@ -27,7 +31,6 @@ app.views.EditAdView = app.views.AddAdView.extend({
           loading: false
         });
       }
-      this.render();
       // Show filters in child view
       this.showChildView('filters', new app.views.FiltersView({
         model: this.model.get('categoryModel')

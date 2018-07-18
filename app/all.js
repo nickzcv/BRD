@@ -216,7 +216,7 @@ app.router = Marionette.AppRouter.extend({
         {
           if (page2) {
             brd.regions.bodyRegion.show(new app.views.AdFullPageView({
-              // model: new app.models.CalcModel()
+              model: new app.models.AdModel({ idAd: page2 })
             }));
           }
           break;
@@ -1772,7 +1772,7 @@ app.models.FiltersModel = Backbone.Model.extend({
   }
 
 });
-"use strict";
+'use strict';
 
 app.views.AdFullPageView = Mn.View.extend({
 
@@ -1782,13 +1782,34 @@ app.views.AdFullPageView = Mn.View.extend({
 
   ui: {},
 
-  events: {},
+  modelEvents: {
+    'change': 'render'
+  },
 
-  initialize: function initialize(options) {
-    /*    this.model.set({
-          isLoggedIn: options.isLoggedIn,
-          currentUserId: options.currentUserId,
-        }, {silent: true});*/
+  initialize: async function initialize() {
+    // Start fetching model data
+    try {
+      var response = await this.model.fetch();
+
+      if (response.error) {
+        this.model.set({
+          loading: false,
+          isError: true,
+          errorMessage: 'Такого объявления не существует'
+        });
+      } else {
+        this.model.set({
+          loading: false,
+          isError: false
+        });
+      }
+    } catch (error) {
+      this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Service error from catch.'
+      });
+    }
   }
 
 });
@@ -2797,233 +2818,6 @@ app.views.RegistrationView = app.views.HeaderView.extend({
 });
 'use strict';
 
-app.views.CountriesPickerView = Mn.View.extend({
-
-  template: tpl.templates.countries_picker,
-
-  ui: {
-    country: '#country',
-    city: '#city',
-    cityDropdown: '.cityDropdown',
-    cityDropdownElement: '.city'
-  },
-
-  events: {
-    'change @ui.country': 'selectCountry',
-    'input @ui.city': 'searchCity',
-    'click @ui.cityDropdownElement': 'selectCity',
-    'change @ui.city': 'checkCity'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  selectCountry: function selectCountry(event) {
-    var thisView = this,
-        countryId = event.target.value;
-    // Check if county selected
-    if (countryId) {
-      // Save country object into the model
-      thisView.model.setCountry(countryId);
-      thisView.model.set({ city: null });
-    } else {
-      thisView.model.set({
-        country: null,
-        city: null
-      });
-    }
-  },
-
-  searchCity: function searchCity() {
-    var thisView = this,
-        country = thisView.model.get('country'),
-        value = thisView.ui.city.val();
-    // Get cities by country id
-    thisView.model.searchCities(country.id, value).then(function (cities) {
-      // Display dropdown
-      thisView.model.set({ cities: cities.response.items });
-      thisView.ui.cityDropdown.addClass('show');
-      // return focus and value after render
-      thisView.ui.city.val(value);
-      thisView.ui.city.focus();
-    });
-  },
-
-  selectCity: function selectCity(event) {
-    var thisView = this,
-        cityId = event.currentTarget.getAttribute('data-id');
-
-    if (cityId) {
-      this.model.setCity(cityId);
-    }
-  },
-
-  // Check if city exist
-  // Do not allow enter random text
-  checkCity: function checkCity() {
-    var thisView = this,
-        isVisible = thisView.ui.cityDropdown.is(":visible"),
-        city = thisView.model.get('city'),
-        inputValue = thisView.ui.city.val();
-    // If cities dropdown visible
-    if (isVisible && city && !inputValue) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.model.set({ city: null });
-    } else if (isVisible && city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val(city.title);
-    } else if (isVisible && !city) {
-      thisView.ui.cityDropdown.removeClass('show');
-      thisView.ui.city.val('');
-    }
-  }
-
-});
-"use strict";
-
-/**
- *
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.EmptyView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.EmptyView
-   */
-  template: tpl.templates.empty
-});
-'use strict';
-
-app.views.FiltersView = Mn.View.extend({
-
-  template: tpl.templates.filters,
-
-  ui: {
-    parent: '.parent',
-    sizes: '.subtitle',
-    checkbox: 'input[type="checkbox"]',
-    number: 'input[type="number"]',
-    addSize: '.add-size',
-    removeSize: '.remove-size'
-  },
-
-  events: {
-    // Handle parent checkbox
-    'change @ui.parent': function changeUiParent(event) {
-      var $element = $(event.target);
-      // Toggle hidden class
-      if ($element.prop('checked')) {
-        $element.parent().parent().next().removeClass('hidden');
-      } else {
-        $element.parent().parent().next().addClass('hidden');
-      }
-    },
-    'change #delovaya': function changeDelovaya(event) {
-      var $element = $(event.target);
-      if ($element.prop('checked')) {
-        this.ui.sizes.removeClass('hidden');
-      } else {
-        this.ui.sizes.addClass('hidden');
-      }
-    },
-    'change @ui.checkbox': 'changeFilter',
-    'change @ui.number': 'changeFilter',
-    'click @ui.addSize': 'addSize',
-    'click @ui.removeSize': 'removeSize'
-  },
-
-  modelEvents: {
-    'change': 'render'
-  },
-
-  addSize: function addSize() {
-    this.model.addSize();
-  },
-
-  removeSize: function removeSize(event) {
-    this.model.removeSize(event.target.dataset.id);
-  },
-
-  changeFilter: function changeFilter(event) {
-    var type = event.target.type,
-        label = event.target.value,
-        value = label;
-    // Checkboxes
-    if (type === 'checkbox') {
-      value = event.target.checked;
-    } else {
-      // Inputs
-      label = event.target.id;
-      value = event.target.value;
-      // Add additional param for sizes input
-      if (event.target.dataset.id) {
-        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
-        return;
-      }
-    }
-    this.model.setFilter(label, type, value);
-  },
-
-  initialize: function initialize() {
-    this.model.showFilters();
-  }
-
-});
-'use strict';
-
-app.views.MessageView = Marionette.View.extend({
-
-  template: tpl.templates.message,
-
-  templateContext: function templateContext() {
-    return {
-      message: this.getOption('message'),
-      placeholder: this.getOption('placeholder')
-    };
-  }
-
-});
-'use strict';
-
-app.views.SendMessageFormView = Mn.View.extend({
-
-  template: tpl.templates.send_message_form,
-
-  initialize: function initialize() {},
-
-  templateContext: function templateContext() {
-    return {
-      userId: this.getOption('userId')
-    };
-  }
-
-});
-"use strict";
-
-/**
- * Spinner view
- *
- *
- * @extends Marionette.View
- * @memberOf app.views
- */
-app.views.SpinnerView = Marionette.View.extend({
-
-  /**
-   * @see Marionette.View#template
-   * @instance
-   * @memberOf app.views.SpinnerView
-   */
-  template: tpl.templates.spinner
-});
-'use strict';
-
 app.views.AddAdView = Mn.View.extend({
 
   template: tpl.templates.add_ad,
@@ -3647,6 +3441,10 @@ app.views.EditAdView = app.views.AddAdView.extend({
 
   template: tpl.templates.edit_ad,
 
+  modelEvents: {
+    'change': 'render'
+  },
+
   initialize: async function initialize() {
     var userId = brd.controllers.getUserId();
 
@@ -3672,7 +3470,6 @@ app.views.EditAdView = app.views.AddAdView.extend({
           loading: false
         });
       }
-      this.render();
       // Show filters in child view
       this.showChildView('filters', new app.views.FiltersView({
         model: this.model.get('categoryModel')
@@ -3934,4 +3731,231 @@ app.views.SettingsView = Mn.View.extend({
     this.ui.accountSettings.removeClass('active');
   }
 
+});
+'use strict';
+
+app.views.CountriesPickerView = Mn.View.extend({
+
+  template: tpl.templates.countries_picker,
+
+  ui: {
+    country: '#country',
+    city: '#city',
+    cityDropdown: '.cityDropdown',
+    cityDropdownElement: '.city'
+  },
+
+  events: {
+    'change @ui.country': 'selectCountry',
+    'input @ui.city': 'searchCity',
+    'click @ui.cityDropdownElement': 'selectCity',
+    'change @ui.city': 'checkCity'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  selectCountry: function selectCountry(event) {
+    var thisView = this,
+        countryId = event.target.value;
+    // Check if county selected
+    if (countryId) {
+      // Save country object into the model
+      thisView.model.setCountry(countryId);
+      thisView.model.set({ city: null });
+    } else {
+      thisView.model.set({
+        country: null,
+        city: null
+      });
+    }
+  },
+
+  searchCity: function searchCity() {
+    var thisView = this,
+        country = thisView.model.get('country'),
+        value = thisView.ui.city.val();
+    // Get cities by country id
+    thisView.model.searchCities(country.id, value).then(function (cities) {
+      // Display dropdown
+      thisView.model.set({ cities: cities.response.items });
+      thisView.ui.cityDropdown.addClass('show');
+      // return focus and value after render
+      thisView.ui.city.val(value);
+      thisView.ui.city.focus();
+    });
+  },
+
+  selectCity: function selectCity(event) {
+    var thisView = this,
+        cityId = event.currentTarget.getAttribute('data-id');
+
+    if (cityId) {
+      this.model.setCity(cityId);
+    }
+  },
+
+  // Check if city exist
+  // Do not allow enter random text
+  checkCity: function checkCity() {
+    var thisView = this,
+        isVisible = thisView.ui.cityDropdown.is(":visible"),
+        city = thisView.model.get('city'),
+        inputValue = thisView.ui.city.val();
+    // If cities dropdown visible
+    if (isVisible && city && !inputValue) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.model.set({ city: null });
+    } else if (isVisible && city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val(city.title);
+    } else if (isVisible && !city) {
+      thisView.ui.cityDropdown.removeClass('show');
+      thisView.ui.city.val('');
+    }
+  }
+
+});
+"use strict";
+
+/**
+ *
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.EmptyView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.EmptyView
+   */
+  template: tpl.templates.empty
+});
+'use strict';
+
+app.views.FiltersView = Mn.View.extend({
+
+  template: tpl.templates.filters,
+
+  ui: {
+    parent: '.parent',
+    sizes: '.subtitle',
+    checkbox: 'input[type="checkbox"]',
+    number: 'input[type="number"]',
+    addSize: '.add-size',
+    removeSize: '.remove-size'
+  },
+
+  events: {
+    // Handle parent checkbox
+    'change @ui.parent': function changeUiParent(event) {
+      var $element = $(event.target);
+      // Toggle hidden class
+      if ($element.prop('checked')) {
+        $element.parent().parent().next().removeClass('hidden');
+      } else {
+        $element.parent().parent().next().addClass('hidden');
+      }
+    },
+    'change #delovaya': function changeDelovaya(event) {
+      var $element = $(event.target);
+      if ($element.prop('checked')) {
+        this.ui.sizes.removeClass('hidden');
+      } else {
+        this.ui.sizes.addClass('hidden');
+      }
+    },
+    'change @ui.checkbox': 'changeFilter',
+    'change @ui.number': 'changeFilter',
+    'click @ui.addSize': 'addSize',
+    'click @ui.removeSize': 'removeSize'
+  },
+
+  modelEvents: {
+    'change': 'render'
+  },
+
+  addSize: function addSize() {
+    this.model.addSize();
+  },
+
+  removeSize: function removeSize(event) {
+    this.model.removeSize(event.target.dataset.id);
+  },
+
+  changeFilter: function changeFilter(event) {
+    var type = event.target.type,
+        label = event.target.value,
+        value = label;
+    // Checkboxes
+    if (type === 'checkbox') {
+      value = event.target.checked;
+    } else {
+      // Inputs
+      label = event.target.id;
+      value = event.target.value;
+      // Add additional param for sizes input
+      if (event.target.dataset.id) {
+        this.model.setFilter(label, 'input-sizes', value, event.target.dataset.id);
+        return;
+      }
+    }
+    this.model.setFilter(label, type, value);
+  },
+
+  initialize: function initialize() {
+    this.model.showFilters();
+  }
+
+});
+'use strict';
+
+app.views.MessageView = Marionette.View.extend({
+
+  template: tpl.templates.message,
+
+  templateContext: function templateContext() {
+    return {
+      message: this.getOption('message'),
+      placeholder: this.getOption('placeholder')
+    };
+  }
+
+});
+'use strict';
+
+app.views.SendMessageFormView = Mn.View.extend({
+
+  template: tpl.templates.send_message_form,
+
+  initialize: function initialize() {},
+
+  templateContext: function templateContext() {
+    return {
+      userId: this.getOption('userId')
+    };
+  }
+
+});
+"use strict";
+
+/**
+ * Spinner view
+ *
+ *
+ * @extends Marionette.View
+ * @memberOf app.views
+ */
+app.views.SpinnerView = Marionette.View.extend({
+
+  /**
+   * @see Marionette.View#template
+   * @instance
+   * @memberOf app.views.SpinnerView
+   */
+  template: tpl.templates.spinner
 });

@@ -10,15 +10,35 @@ app.views.AdFullPageView = Mn.View.extend({
 
   },
 
-  events: {
-
+  modelEvents: {
+    'change': 'render'
   },
 
-  initialize: function(options) {
-/*    this.model.set({
-      isLoggedIn: options.isLoggedIn,
-      currentUserId: options.currentUserId,
-    }, {silent: true});*/
+  initialize: async function() {
+    // Start fetching model data
+    try {
+      let response = await this.model.fetch();
+
+      if (response.error) {
+        this.model.set({
+          loading: false,
+          isError: true,
+          errorMessage: 'Такого объявления не существует',
+        });
+      } else {
+        this.model.set({
+          loading: false,
+          isError: false,
+        });
+      }
+
+    } catch (error) {
+      this.model.set({
+        loading: false,
+        isError: true,
+        errorMessage: 'Service error from catch.',
+      });
+    }
   },
 
 });

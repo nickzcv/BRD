@@ -28,8 +28,26 @@ this["tpl"]["templates"]["add_ad"] = Handlebars.template({"1":function(container
 this["tpl"]["templates"]["ads"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<!--  left-navigation -->\n<div class=\"left-navigation\"></div>\n<!-- /end  left-navigation -->\n\n<div class=\"main-content ads\">\n  <div class=\"title\">\n    <span class=\"icon ion-clipboard\"></span>\n    <span class=\"title-text\">Мои объявления</span>\n  </div>\n  <div class=\"page\">\n    <div class=\"btns-section\">\n      <button type=\"button\" class=\"btn btn-default pull-left add-button\">Добавить объявление <span class=\"ion-ios-plus-outline\"></span></button>\n      <button type=\"button\" class=\"btn btn-default\" disabled>Избранное <span class=\"icon ion-ios-star-outline star\"></span></button>\n      <button type=\"button\" class=\"btn btn-default go-to-archive\" disabled>Архив <span class=\"ion-filing\"></span></button>\n    </div>\n\n    <div class=\"ads-list\"></div>\n\n  </div>\n</div>\n";
 },"useData":true});
-this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"ad-full-view\">\n  test\n</div>\n";
+this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    return "    <div class=\"loader-wrapper\">\n      <div class=\"loader\"></div>\n    </div>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.isError : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.program(6, data, 0),"data":data})) != null ? stack1 : "");
+},"4":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "    "
+    + container.escapeExpression(((helper = (helper = helpers.errorMessage || (depth0 != null ? depth0.errorMessage : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"errorMessage","hash":{},"data":data}) : helper)))
+    + "\n";
+},"6":function(container,depth0,helpers,partials,data) {
+    return "\n    DONE.\n\n  ";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"ad-full-view\">\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.loading : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "</div>\n\n";
 },"useData":true});
 this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     return "success";
