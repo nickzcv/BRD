@@ -509,6 +509,19 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
 });
 'use strict';
 
+app.collections.CompaniesCollection = Backbone.Collection.extend({
+
+  url: function url() {
+    return 'api/companies';
+  },
+
+  comparator: function comparator(m) {
+    return -Date.parse(m.get('created_at'));
+  }
+
+});
+'use strict';
+
 app.models.AdModel = Backbone.Model.extend({
 
   defaults: {
@@ -1839,6 +1852,17 @@ app.views.AdView = Mn.View.extend({
 });
 "use strict";
 
+app.views.CompanyShortView = Mn.View.extend({
+
+  template: tpl.templates.company_short_item,
+
+  ui: {},
+
+  initialize: function initialize() {}
+
+});
+"use strict";
+
 app.views.FaqView = Mn.View.extend({
 
   template: tpl.templates.faq,
@@ -2032,6 +2056,301 @@ app.views.CalcView = Mn.View.extend({
 
   removingTable: function removingTable() {
     this.model.set({ table: [] });
+  }
+
+});
+"use strict";
+
+app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
+
+  childView: app.views.AdView,
+
+  initialize: async function initialize(options) {
+    var parameters = null;
+
+    if (options.filters) {
+      parameters = options.filters;
+      // After changing filter model will exist
+      this.collection = new app.collections.AdsHomeCollection({ parameters: parameters });
+    } else {
+      this.collection = new app.collections.AdsHomeCollection();
+    }
+    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
+    // Reset collection to show spinner when filtering
+    this.collection.reset();
+    this.emptyView = app.views.SpinnerView;
+
+    // Start fetching collection data
+    try {
+      await this.collection.fetch();
+      // If nothing found
+      if (!this.collection.length) {
+        this.emptyView = app.views.EmptyView;
+        this.render();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+"use strict";
+
+app.views.CompaniesHomeCollectionView = Mn.CollectionView.extend({
+
+  childView: app.views.CompanyShortView,
+
+  initialize: async function initialize() {
+    this.collection = new app.collections.CompaniesCollection();
+    // Reset collection to show spinner when filtering
+    this.collection.reset();
+    this.emptyView = app.views.SpinnerView;
+
+    // Start fetching collection data
+    try {
+      await this.collection.fetch();
+      // If nothing found
+      if (!this.collection.length) {
+        this.emptyView = app.views.EmptyView;
+        this.render();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+});
+'use strict';
+
+app.views.CompaniesHomeView = Mn.View.extend({
+
+  template: tpl.templates.companies_home,
+
+  ui: {
+    listRegion: '.companies-list'
+  },
+
+  regions: {
+    companiesList: '@ui.listRegion'
+  },
+
+  onRender: function onRender() {
+    // Home companies section
+    this.showChildView('companiesList', new app.views.CompaniesHomeCollectionView());
+  }
+
+});
+'use strict';
+
+app.views.FiltersHomeView = Mn.View.extend({
+
+  template: tpl.templates.filter_home,
+
+  regions: {
+    countriesPicker: '.country-picker'
+  },
+
+  ui: {
+    addNewBtn: '.add-new',
+    toggleMobileFilters: '.show-mobile-filters',
+    filters: '.filters-wrapper',
+    closeFiltersBtn: '.close-btn',
+    categorySelect: '#category',
+    type: 'input[name=type]',
+    object: 'input[name=object]',
+    dropFilter: '.drop-filter'
+  },
+
+  events: {
+    'click @ui.addNewBtn': 'addNew',
+    'click @ui.toggleMobileFilters': 'toggleFilters',
+    'click @ui.closeFiltersBtn': 'toggleFilters'
+  },
+
+  modelEvents: {
+    'change:country': function changeCountry() {
+      this.triggerMethod('select:country', this);
+    },
+    'change:city': function changeCity() {
+      this.triggerMethod('select:city', this);
+    }
+  },
+
+  triggers: {
+    'change @ui.categorySelect': 'select:category',
+    'change @ui.type': 'select:type',
+    'change @ui.object': 'select:object',
+    'click @ui.dropFilter': 'clear:filter'
+  },
+
+  onSelectCategory: function onSelectCategory(view, event) {
+    var selectedCategoryId = parseInt(event.target.value);
+    this.model.set({ selectedCategoryId: selectedCategoryId });
+  },
+
+  onSelectType: function onSelectType(view, event) {
+    var type = this.model.get('type');
+    var arr = [];
+    // copy existed array into new one
+    if (type && type.length) {
+      arr = type.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      var index = arr.indexOf(event.target.value);
+      arr.splice(index, 1);
+    }
+    // set type to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save type
+    this.model.set({
+      type: arr
+    });
+  },
+
+  onSelectObject: function onSelectObject(view, event) {
+    var object = this.model.get('object');
+    var arr = [];
+    // copy existed array into new one
+    if (object && object.length) {
+      arr = object.slice(0);
+    }
+    // on select checkbox
+    if (event.target.checked) {
+      arr.push(event.target.value);
+    } else {
+      // on deselect checkbox
+      var index = arr.indexOf(event.target.value);
+      arr.splice(index, 1);
+    }
+    // set object to NULL if empty array
+    arr = arr.length ? arr : null;
+    // Save object
+    this.model.set({
+      object: arr
+    });
+  },
+
+  addNew: function addNew() {
+    // Check is user logged in
+    if (brd.controllers.isLoggedIn()) {
+      // Redirect to add view
+      brd.router.navigateToRoute('profile', 'ads', 'new');
+    } else {
+      // Show forbidden view
+      brd.router.navigateToRoute('forbidden');
+    }
+  },
+
+  toggleFilters: function toggleFilters() {
+    this.ui.toggleMobileFilters.toggleClass('opened');
+    this.ui.filters.toggleClass('visible');
+  },
+
+  initialize: function initialize() {
+    // Show country picker
+    this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
+  }
+
+});
+'use strict';
+
+app.views.HomeContentView = Mn.View.extend({
+
+  template: tpl.templates.home_content,
+
+  ui: {
+    listRegion: '.ads-list'
+  },
+
+  regions: {
+    adsList: '@ui.listRegion'
+  },
+
+  onRender: function onRender() {
+    // Main ads section
+    if (this.model.get('filters')) {
+      this.reRenderCollection();
+    } else {
+      this.showChildView('adsList', new app.views.AdsHomeCollectionView({}));
+    }
+  },
+
+  reRenderCollection: function reRenderCollection() {
+    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
+      filters: this.model.get('filters')
+    }));
+  }
+
+});
+'use strict';
+
+app.views.HomeView = Mn.View.extend({
+
+  template: tpl.templates.home,
+
+  ui: {
+    mobileFilterBtn: '.mobile-filter-btn .btn',
+    closeFilter: 'a.close-btn',
+    homeContent: '.home-content',
+    upBtn: '.up',
+    addCompany: '.add-company',
+    companies: '.companies-home'
+  },
+
+  regions: {
+    filter: '.filter-home',
+    adsFilter: '.content-filter',
+    homeContentRegion: '@ui.homeContent',
+    companiesList: '@ui.companies'
+  },
+
+  events: {
+    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
+      $('.filters').toggleClass('visible');
+    },
+    'click @ui.closeFilter': function clickUiCloseFilter() {
+      $('.filters').removeClass('visible');
+    },
+    'click @ui.upBtn': function clickUiUpBtn() {
+      $('html, body').animate({ scrollTop: 0 }, 'slow');
+    },
+    'click @ui.addCompany': function clickUiAddCompany() {
+      brd.router.navigateToRoute('profile', 'companies', 'new');
+    }
+  },
+
+  childViewEvents: {
+    'select:category': 'reRenderCollection',
+    'select:country': 'reRenderCollection',
+    'select:city': 'reRenderCollection',
+    'select:type': 'reRenderCollection',
+    'select:object': 'reRenderCollection',
+    'clear:filter': 'render'
+  },
+
+  onRender: function onRender() {
+    // Filter section
+    this.showChildView('filter', new app.views.FiltersHomeView({
+      model: new app.models.FiltersHomeModel()
+    }));
+    // Content
+    this.showChildView('homeContentRegion', new app.views.HomeContentView({
+      model: new app.models.HomeContentModel({ filters: null })
+    }));
+    // Companies on home
+    this.showChildView('companiesList', new app.views.CompaniesHomeView());
+  },
+
+  reRenderCollection: function reRenderCollection(childView) {
+    var filtersModel = childView.model.attributes;
+    // Re-render content view if filters has been selected
+    this.showChildView('homeContentRegion', new app.views.HomeContentView({
+      model: new app.models.HomeContentModel({ filters: filtersModel })
+    }));
   }
 
 });
@@ -3608,264 +3927,4 @@ app.views.SpinnerView = Marionette.View.extend({
    * @memberOf app.views.SpinnerView
    */
   template: tpl.templates.spinner
-});
-"use strict";
-
-app.views.AdsHomeCollectionView = Mn.CollectionView.extend({
-
-  childView: app.views.AdView,
-
-  initialize: async function initialize(options) {
-    var parameters = null;
-
-    if (options.filters) {
-      parameters = options.filters;
-      // After changing filter model will exist
-      this.collection = new app.collections.AdsHomeCollection({ parameters: parameters });
-    } else {
-      this.collection = new app.collections.AdsHomeCollection();
-    }
-    this.childViewOptions = { isLoggedIn: brd.controllers.isLoggedIn() };
-    // Reset collection to show spinner when filtering
-    this.collection.reset();
-    this.emptyView = app.views.SpinnerView;
-
-    // Start fetching collection data
-    try {
-      await this.collection.fetch();
-      // If nothing found
-      if (!this.collection.length) {
-        this.emptyView = app.views.EmptyView;
-        this.render();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-});
-'use strict';
-
-app.views.CompaniesHomeView = Mn.View.extend({
-
-  template: tpl.templates.companies_home,
-
-  initialize: function initialize() {
-    console.log('initialize - CompaniesHomeView');
-  }
-
-});
-'use strict';
-
-app.views.FiltersHomeView = Mn.View.extend({
-
-  template: tpl.templates.filter_home,
-
-  regions: {
-    countriesPicker: '.country-picker'
-  },
-
-  ui: {
-    addNewBtn: '.add-new',
-    toggleMobileFilters: '.show-mobile-filters',
-    filters: '.filters-wrapper',
-    closeFiltersBtn: '.close-btn',
-    categorySelect: '#category',
-    type: 'input[name=type]',
-    object: 'input[name=object]',
-    dropFilter: '.drop-filter'
-  },
-
-  events: {
-    'click @ui.addNewBtn': 'addNew',
-    'click @ui.toggleMobileFilters': 'toggleFilters',
-    'click @ui.closeFiltersBtn': 'toggleFilters'
-  },
-
-  modelEvents: {
-    'change:country': function changeCountry() {
-      this.triggerMethod('select:country', this);
-    },
-    'change:city': function changeCity() {
-      this.triggerMethod('select:city', this);
-    }
-  },
-
-  triggers: {
-    'change @ui.categorySelect': 'select:category',
-    'change @ui.type': 'select:type',
-    'change @ui.object': 'select:object',
-    'click @ui.dropFilter': 'clear:filter'
-  },
-
-  onSelectCategory: function onSelectCategory(view, event) {
-    var selectedCategoryId = parseInt(event.target.value);
-    this.model.set({ selectedCategoryId: selectedCategoryId });
-  },
-
-  onSelectType: function onSelectType(view, event) {
-    var type = this.model.get('type');
-    var arr = [];
-    // copy existed array into new one
-    if (type && type.length) {
-      arr = type.slice(0);
-    }
-    // on select checkbox
-    if (event.target.checked) {
-      arr.push(event.target.value);
-    } else {
-      // on deselect checkbox
-      var index = arr.indexOf(event.target.value);
-      arr.splice(index, 1);
-    }
-    // set type to NULL if empty array
-    arr = arr.length ? arr : null;
-    // Save type
-    this.model.set({
-      type: arr
-    });
-  },
-
-  onSelectObject: function onSelectObject(view, event) {
-    var object = this.model.get('object');
-    var arr = [];
-    // copy existed array into new one
-    if (object && object.length) {
-      arr = object.slice(0);
-    }
-    // on select checkbox
-    if (event.target.checked) {
-      arr.push(event.target.value);
-    } else {
-      // on deselect checkbox
-      var index = arr.indexOf(event.target.value);
-      arr.splice(index, 1);
-    }
-    // set object to NULL if empty array
-    arr = arr.length ? arr : null;
-    // Save object
-    this.model.set({
-      object: arr
-    });
-  },
-
-  addNew: function addNew() {
-    // Check is user logged in
-    if (brd.controllers.isLoggedIn()) {
-      // Redirect to add view
-      brd.router.navigateToRoute('profile', 'ads', 'new');
-    } else {
-      // Show forbidden view
-      brd.router.navigateToRoute('forbidden');
-    }
-  },
-
-  toggleFilters: function toggleFilters() {
-    this.ui.toggleMobileFilters.toggleClass('opened');
-    this.ui.filters.toggleClass('visible');
-  },
-
-  initialize: function initialize() {
-    // Show country picker
-    this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
-  }
-
-});
-'use strict';
-
-app.views.HomeContentView = Mn.View.extend({
-
-  template: tpl.templates.home_content,
-
-  ui: {
-    listRegion: '.ads-list'
-  },
-
-  regions: {
-    adsList: '@ui.listRegion'
-  },
-
-  onRender: function onRender() {
-    // Main ads section
-    if (this.model.get('filters')) {
-      this.reRenderCollection();
-    } else {
-      this.showChildView('adsList', new app.views.AdsHomeCollectionView({}));
-    }
-  },
-
-  reRenderCollection: function reRenderCollection() {
-    this.showChildView('adsList', new app.views.AdsHomeCollectionView({
-      filters: this.model.get('filters')
-    }));
-  }
-
-});
-'use strict';
-
-app.views.HomeView = Mn.View.extend({
-
-  template: tpl.templates.home,
-
-  ui: {
-    mobileFilterBtn: '.mobile-filter-btn .btn',
-    closeFilter: 'a.close-btn',
-    homeContent: '.home-content',
-    upBtn: '.up',
-    addCompany: '.add-company',
-    companies: '.companies-home'
-  },
-
-  regions: {
-    filter: '.filter-home',
-    adsFilter: '.content-filter',
-    homeContentRegion: '@ui.homeContent',
-    companiesList: '@ui.companies'
-  },
-
-  events: {
-    'click @ui.mobileFilterBtn': function clickUiMobileFilterBtn() {
-      $('.filters').toggleClass('visible');
-    },
-    'click @ui.closeFilter': function clickUiCloseFilter() {
-      $('.filters').removeClass('visible');
-    },
-    'click @ui.upBtn': function clickUiUpBtn() {
-      $('html, body').animate({ scrollTop: 0 }, 'slow');
-    },
-    'click @ui.addCompany': function clickUiAddCompany() {
-      brd.router.navigateToRoute('profile', 'companies', 'new');
-    }
-  },
-
-  childViewEvents: {
-    'select:category': 'reRenderCollection',
-    'select:country': 'reRenderCollection',
-    'select:city': 'reRenderCollection',
-    'select:type': 'reRenderCollection',
-    'select:object': 'reRenderCollection',
-    'clear:filter': 'render'
-  },
-
-  onRender: function onRender() {
-    // Filter section
-    this.showChildView('filter', new app.views.FiltersHomeView({
-      model: new app.models.FiltersHomeModel()
-    }));
-    // Content
-    this.showChildView('homeContentRegion', new app.views.HomeContentView({
-      model: new app.models.HomeContentModel({ filters: null })
-    }));
-    // Companies on home
-    this.showChildView('companiesList', new app.views.CompaniesHomeView());
-  },
-
-  reRenderCollection: function reRenderCollection(childView) {
-    var filtersModel = childView.model.attributes;
-    // Re-render content view if filters has been selected
-    this.showChildView('homeContentRegion', new app.views.HomeContentView({
-      model: new app.models.HomeContentModel({ filters: filtersModel })
-    }));
-  }
-
 });

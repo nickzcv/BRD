@@ -580,6 +580,24 @@ nav.navigation .user .logout:hover {
 .companies-home .actions .add-company:hover span:before {
   color: white; }
 
+.companies-home .companies-list {
+  padding: 1rem; }
+
+.companies-home .companies-list .company-short-item {
+  position: relative;
+  margin: 1.5rem auto;
+  height: 130px;
+  max-width: 300px;
+  background-size: cover; }
+
+.companies-home .companies-list .company-short-item .company-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #202124;
+  color: #edebdc;
+  text-align: center; }
+
 @media only screen and (min-width: 768px) {
   .companies-home .actions .add-new {
     width: 50%; } }
@@ -777,7 +795,7 @@ nav.navigation .user .logout:hover {
   min-height: 4rem; }
 
 .ads .ad-item .content .edit-ad {
-  padding: 0 .5rem 0 1rem;
+  padding: 0 1rem;
   color: #559797; }
 
 .ads .ad-item .content .edit-ad:hover {

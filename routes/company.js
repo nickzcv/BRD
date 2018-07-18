@@ -32,28 +32,29 @@ router.route('/companies')
 
 		// save the company and check for the errors
     company.save(function(err) {
-			if (err)
-				res.json({
-				  error: true,
-				  errorDescription: err,
-				});
-
-			res.json({
-			  message: 'Company created!'
-			});
-		});
-
-	})
-  // get all the users (accessed at GET /api/companies)
-  .get(function(req, res) {
-    Company.find({}, function(err, companies) {
-      if (err)
+			if (err) {
         res.json({
           error: true,
           errorDescription: err,
         });
-
-      res.json(companies);
+      } else {
+        res.json({
+          message: 'Company created!'
+        });
+      }
+		});
+	})
+  // get all the users (accessed at GET /api/companies)
+  .get(function(req, res) {
+    Company.find({}, function(err, companies) {
+      if (err) {
+        res.json({
+          error: true,
+          errorDescription: err,
+        });
+      } else {
+        res.json(companies);
+      }
     });
   });
 

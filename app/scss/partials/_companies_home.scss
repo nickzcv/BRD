@@ -25,6 +25,29 @@
     }
   }
 
+  .companies-list {
+    padding: 1rem;
+
+    .company-short-item {
+      position: relative;
+      margin: 1.5rem auto;
+      height: 130px;
+      max-width: 300px;
+      background-size: cover;
+
+      .company-name {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: $main-dark;
+        color: $gray;
+        text-align: center;
+
+      }
+    }
+
+  }
+
   /* Tablets */
   @media only screen and (min-width: 768px) {
 
