@@ -1790,7 +1790,7 @@ app.views.AdFullPageView = Mn.View.extend({
     // Start fetching model data
     try {
       var response = await this.model.fetch();
-
+      // Known error from server
       if (response.error) {
         this.model.set({
           loading: false,
@@ -1798,16 +1798,18 @@ app.views.AdFullPageView = Mn.View.extend({
           errorMessage: 'Такого объявления не существует'
         });
       } else {
+        // All is fine
         this.model.set({
           loading: false,
           isError: false
         });
       }
+      // Unknown error
     } catch (error) {
       this.model.set({
         loading: false,
         isError: true,
-        errorMessage: 'Service error from catch.'
+        errorMessage: 'Service error from.'
       });
     }
   }
