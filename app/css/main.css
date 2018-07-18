@@ -590,6 +590,10 @@ nav.navigation .user .logout:hover {
   max-width: 300px;
   background-size: cover; }
 
+.companies-home .companies-list .company-short-item:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1); }
+
 .companies-home .companies-list .company-short-item .company-name {
   position: absolute;
   bottom: 0;

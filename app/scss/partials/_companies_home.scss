@@ -35,6 +35,11 @@
       max-width: 300px;
       background-size: cover;
 
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+      }
+
       .company-name {
         position: absolute;
         bottom: 0;
@@ -42,7 +47,6 @@
         background: $main-dark;
         color: $gray;
         text-align: center;
-
       }
     }
 
