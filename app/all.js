@@ -1854,11 +1854,7 @@ app.views.AdView = Mn.View.extend({
 
 app.views.CompanyShortView = Mn.View.extend({
 
-  template: tpl.templates.company_short_item,
-
-  ui: {},
-
-  initialize: function initialize() {}
+  template: tpl.templates.company_short_item
 
 });
 "use strict";
@@ -3339,7 +3335,7 @@ app.views.CompaniesView = Mn.View.extend({
 
   regions: {
     leftNav: '@ui.leftNavRegion',
-    adsList: '@ui.listRegion'
+    companiesList: '@ui.listRegion'
   },
 
   events: {
@@ -3354,9 +3350,7 @@ app.views.CompaniesView = Mn.View.extend({
   },
 
   onRender: function onRender() {
-    /*    this.showChildView('adsList', new app.views.AdsCollectionView({
-          model: new app.models.AdsListModel()
-        }));*/
+    this.showChildView('companiesList', new app.views.CompaniesHomeCollectionView());
   }
 
 });

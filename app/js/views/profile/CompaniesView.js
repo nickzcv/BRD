@@ -10,7 +10,7 @@ app.views.CompaniesView = Mn.View.extend({
 
   regions: {
     leftNav: '@ui.leftNavRegion',
-    adsList: '@ui.listRegion'
+    companiesList: '@ui.listRegion'
   },
 
   events: {
@@ -25,9 +25,7 @@ app.views.CompaniesView = Mn.View.extend({
   },
 
   onRender: function() {
-/*    this.showChildView('adsList', new app.views.AdsCollectionView({
-      model: new app.models.AdsListModel()
-    }));*/
+    this.showChildView('companiesList', new app.views.CompaniesHomeCollectionView());
   }
 
 
