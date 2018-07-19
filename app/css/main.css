@@ -1365,10 +1365,18 @@ nav.navigation .user .logout:hover {
 
 .ad-full-view .status-details .type {
   display: inline-block;
-  background: #5cb85c;
   padding: 2px 15px;
-  border-radius: 3px;
+  border-radius: 2px;
   color: #FFFFFF; }
+
+.ad-full-view .status-details .type.success {
+  background: #5cb85c; }
+
+.ad-full-view .status-details .type.fail {
+  background: #d9534f; }
+
+.ad-full-view .status-details .date {
+  margin-left: 2rem; }
 
 @media only screen and (min-width: 768px) {
   .ad-full-view .subheader {
@@ -1384,8 +1392,7 @@ nav.navigation .user .logout:hover {
   .ad-full-view .status-details {
     padding: .5rem 5rem; }
   .ad-full-view .status-details .type {
-    padding: 2px 15px;
-    font-size: 1rem; } }
+    padding: 2px 15px; } }
 
 /* Ads styles
 -------------------------------------------------- */

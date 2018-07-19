@@ -40,10 +40,19 @@
 
     .type {
       display: inline-block;
-      background: $success;
       padding: 2px 15px;
-      border-radius: 3px;
+      border-radius: 2px;
       color: $white;
+
+      &.success {
+        background: $success;
+      }
+      &.fail {
+        background: $fail;
+      }
+    }
+    .date {
+      margin-left: 2rem;
     }
   }
 
@@ -69,7 +78,6 @@
 
       .type {
         padding: 2px 15px;
-        font-size: 1rem;
       }
     }
 

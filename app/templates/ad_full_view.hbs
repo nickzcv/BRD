@@ -17,7 +17,17 @@
     </div>
 
     <div class="status-details">
-      <span class="type">Куплю</span>
+      <span class="type {{#compare type '===' 'buy'}}success{{else}}fail{{/compare}}">
+        {{#compare type '===' 'buy'}}
+          Куплю
+        {{else}}
+          Продам
+        {{/compare}}
+      </span>
+
+      <span class="date">
+        Добавлено: {{formatDate created_at 'LL'}}
+      </span>
 
     </div>
 
