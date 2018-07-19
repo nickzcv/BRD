@@ -62,9 +62,6 @@
       font-size: 1.1rem;
     }
     .category {
-      position: relative;
-      float: left;
-      width: 100%;
       font-size: .9rem;
 
       .category-title {
@@ -140,6 +137,17 @@
         }
       }
 
+    }
+    .description {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    .price {
+      padding: .3rem 1rem .3rem .5rem;
+      margin: .3rem 0;
+      display: inline-block;
+      font-size: 1rem;
+      background: #ffe976;
     }
   }
 

@@ -1359,9 +1359,6 @@ nav.navigation .user .logout:hover {
   font-size: 1.1rem; }
 
 .ad-full-view .content .category {
-  position: relative;
-  float: left;
-  width: 100%;
   font-size: .9rem; }
 
 .ad-full-view .content .category .category-title {
@@ -1434,6 +1431,17 @@ nav.navigation .user .logout:hover {
   background: #fcfbf7;
   position: relative;
   z-index: 2; }
+
+.ad-full-view .content .description {
+  font-size: 1rem;
+  margin: 1rem 0; }
+
+.ad-full-view .content .price {
+  padding: .3rem 1rem .3rem .5rem;
+  margin: .3rem 0;
+  display: inline-block;
+  font-size: 1rem;
+  background: #ffe976; }
 
 @media only screen and (min-width: 768px) {
   .ad-full-view .subheader {

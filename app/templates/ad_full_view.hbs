@@ -31,6 +31,7 @@
     </div>
 
     <div class="row content">
+      <!-- content section -->
       <div class="col-sm-9">
         <nav class="brd-nav-tabs">
           <ul>
@@ -51,12 +52,10 @@
 
         <!-- Tabs content -->
         <div class="tab-region">
-
+          <!-- Category -->
           <div class="category">
             {{#if category}}
-
               <h3 class="category-title">{{category.title}}</h3>
-
               <table class="filters-table">
                 {{#each category.filters}}
                   {{#compare level '===' 'parent'}}
@@ -127,13 +126,19 @@
               </table>
             {{/if}}
             <div class="message hidden"></div>
-
           </div>
+          <!-- end of Category -->
 
+          {{#if description}}
+            <div class="description">{{description}}</div>
+          {{/if}}
+          {{#if price}}
+            <div class="price">Цена: {{price}}</div>
+          {{/if}}
         </div>
         <!-- end of Tabs content -->
-
       </div>
+      <!-- end of content section -->
       <div class="col-sm-3">
 
       </div>

@@ -55,11 +55,14 @@ this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(con
     + ((stack1 = (helpers.compare || (depth0 && depth0.compare) || alias2).call(alias1,(depth0 != null ? depth0.type : depth0),"===","buy",{"name":"compare","hash":{},"fn":container.program(15, data, 0),"inverse":container.program(17, data, 0),"data":data})) != null ? stack1 : "")
     + "      </span>\r\n\r\n      <span class=\"date\">\r\n        Добавлено: "
     + alias4((helpers.formatDate || (depth0 && depth0.formatDate) || alias2).call(alias1,(depth0 != null ? depth0.created_at : depth0),"LL",{"name":"formatDate","hash":{},"data":data}))
-    + "\r\n      </span>\r\n    </div>\r\n\r\n    <div class=\"row content\">\r\n      <div class=\"col-sm-9\">\r\n        <nav class=\"brd-nav-tabs\">\r\n          <ul>\r\n            <li>\r\n              <a class=\"nav-tab-item active\" data-state=\"main\">\r\n                Подробнее\r\n              </a>\r\n            </li>\r\n"
+    + "\r\n      </span>\r\n    </div>\r\n\r\n    <div class=\"row content\">\r\n      <!-- content section -->\r\n      <div class=\"col-sm-9\">\r\n        <nav class=\"brd-nav-tabs\">\r\n          <ul>\r\n            <li>\r\n              <a class=\"nav-tab-item active\" data-state=\"main\">\r\n                Подробнее\r\n              </a>\r\n            </li>\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "          </ul>\r\n        </nav>\r\n\r\n        <!-- Tabs content -->\r\n        <div class=\"tab-region\">\r\n\r\n          <div class=\"category\">\r\n"
+    + "          </ul>\r\n        </nav>\r\n\r\n        <!-- Tabs content -->\r\n        <div class=\"tab-region\">\r\n          <!-- Category -->\r\n          <div class=\"category\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            <div class=\"message hidden\"></div>\r\n\r\n          </div>\r\n\r\n        </div>\r\n        <!-- end of Tabs content -->\r\n\r\n      </div>\r\n      <div class=\"col-sm-3\">\r\n\r\n      </div>\r\n    </div>\r\n\r\n  ";
+    + "            <div class=\"message hidden\"></div>\r\n          </div>\r\n          <!-- end of Category -->\r\n\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.description : depth0),{"name":"if","hash":{},"fn":container.program(53, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.price : depth0),{"name":"if","hash":{},"fn":container.program(55, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </div>\r\n        <!-- end of Tabs content -->\r\n      </div>\r\n      <!-- end of content section -->\r\n      <div class=\"col-sm-3\">\r\n\r\n      </div>\r\n    </div>\r\n\r\n  ";
 },"7":function(container,depth0,helpers,partials,data) {
     return "";
 },"9":function(container,depth0,helpers,partials,data) {
@@ -81,9 +84,9 @@ this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(con
 },"21":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "\r\n              <h3 class=\"category-title\">"
+  return "              <h3 class=\"category-title\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</h3>\r\n\r\n              <table class=\"filters-table\">\r\n"
+    + "</h3>\r\n              <table class=\"filters-table\">\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "                <tr>\r\n                  <td>\r\n\r\n                  </td>\r\n                </tr>\r\n              </table>\r\n";
 },"22":function(container,depth0,helpers,partials,data) {
@@ -216,6 +219,18 @@ this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(con
   return "                              <span>"
     + container.escapeExpression(((helper = (helper = helpers.value || (depth0 != null ? depth0.value : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"value","hash":{},"data":data}) : helper)))
     + "</span>\r\n";
+},"53":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "            <div class=\"description\">"
+    + container.escapeExpression(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"description","hash":{},"data":data}) : helper)))
+    + "</div>\r\n";
+},"55":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "            <div class=\"price\">Цена: "
+    + container.escapeExpression(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : (container.nullContext || {}),{"name":"price","hash":{},"data":data}) : helper)))
+    + "</div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
