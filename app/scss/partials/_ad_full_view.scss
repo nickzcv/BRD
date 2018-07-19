@@ -52,10 +52,111 @@
       }
     }
     .date {
-      margin-left: 2rem;
+      margin-left: 1rem;
     }
   }
+  .content {
+    margin: 1rem 2rem;
 
+    .brd-nav-tabs {
+      font-size: 1.1rem;
+    }
+    .category {
+      position: relative;
+      float: left;
+      margin: 0 1rem 0 0;
+      padding-top: 1rem;
+      padding-right: 0;
+      width: 80%;
+
+      .left-border {
+        border-left: 1px solid $gray;
+        border-right: none;
+        &:before {
+          content: '';
+          position: absolute;
+          border-top: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+          border-right: 10px solid #f0eedf;
+          left: -10px;
+          top: 30px;
+          border-left: none;
+          right: auto;
+        }
+      }
+
+      table {
+        margin-left: .5rem;
+      }
+
+      .category-title {
+        color: $gray-dark2;
+        font-size: 1.1rem;
+        font-weight: normal;
+      }
+      .filter-row {
+        line-height: 1.5rem;
+
+        td {
+          vertical-align: text-top;
+        }
+        .filter-title {
+          color: $main-dark;
+          font-weight: bold;
+          padding-right: 1rem;
+        }
+        .parent i:nth-child(1n):after {
+          content: ', ';
+        }
+        .parent i:last-child:after {
+          content: '';
+        }
+        .parent-title {
+          color: $main-dark;
+          font-weight: bold;
+          font-style: italic;
+        }
+        .first-level {
+          position: relative;
+        }
+        .first-level:after {
+          content: '-';
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        .first-level span {
+          display: inline-block;
+          background: #fff;
+          position: relative;
+          z-index: 2;
+        }
+        .first-level .overlay {
+          background: #fff;
+          position: relative;
+          z-index: 2;
+        }
+        .first-level span:nth-child(1n):after {
+          content: ', ';
+        }
+        .first-level span:last-child:after {
+          content: '';
+        }
+        .iks {
+          color: $gray-dark3;
+          font-weight: normal;
+        }
+        .size-row {
+          background: #fff;
+          position: relative;
+          z-index: 2;
+        }
+      }
+      .table-header {
+        padding-bottom: 1rem;
+      }
+    }
+  }
 
   /* Tablets */
   @media only screen and (min-width: 768px) {

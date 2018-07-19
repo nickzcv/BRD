@@ -28,7 +28,118 @@
       <span class="date">
         Добавлено: {{formatDate created_at 'LL'}}
       </span>
+    </div>
 
+    <div class="row content">
+      <div class="col-sm-9">
+        <nav class="brd-nav-tabs">
+          <ul>
+            <li>
+              <a class="nav-tab-item active" data-state="main">
+                Подробнее
+              </a>
+            </li>
+            {{#if isLoggedIn}}
+              <li>
+                <a class="nav-tab-item" data-state="messages">
+                  Сообщения
+                </a>
+              </li>
+            {{/if}}
+          </ul>
+        </nav>
+
+        <!-- Tabs content -->
+        <div class="tab-region">
+
+          <div class="category">
+            {{#if category}}
+
+              <table class="filters-table">
+                <tr class="table-header">
+                  <th class="category-title">{{category.title}}</th>
+                </tr>
+                {{#each category.filters}}
+                  {{#compare level '===' 'parent'}}
+                    <tr class="filter-row">
+                      {{#if title}}
+                        <td>
+                          <span class="filter-title">{{title}}</span>
+                        </td>
+                      {{/if}}
+                      <td class="parent-col"><span class="dash">-</span>
+                        {{#each items}}
+                          {{#if selected}}
+                            <div class="parent">
+                              <span class="parent-title">{{title}}</span>
+                              {{#each items}}
+                                {{#if selected}}
+                                  <i>{{value}}</i>
+                                {{/if}}
+                              {{/each}}
+                            </div>
+                          {{/if}}
+                        {{/each}}
+                      </td>
+                    </tr>
+                  {{else}}
+                    <tr class="filter-row">
+                      {{#if title}}
+                        <td><span class="filter-title">{{title}}</span></td>
+                      {{/if}}
+                      <td class="first-level">
+                        {{#each items}}
+                          {{#compare type '===' 'input'}}
+                            {{#if selected}}
+                              <div class="overlay">
+                                {{#if label}}
+                                  <i>{{label}}</i>:
+                                {{/if}}
+                                {{#if from}}от {{from}}{{/if}}
+                                {{#if to}}до {{to}}{{/if}}
+                              </div>
+                            {{/if}}
+                          {{else compare type '===' 'input-sizes'}}
+                            {{#each values}}
+                              {{#if t}}
+                                {{#if s}}
+                                  {{#if d}}
+                                    <div class="size-row">{{t}}<b class="iks">&#9747;</b>{{s}}<b class="iks">&#9747;</b>{{d}}</div>
+                                  {{/if}}
+                                {{/if}}
+                              {{/if}}
+
+                            {{/each}}
+                          {{else}}
+                            {{#if selected}}
+                              <span>{{value}}</span>
+                            {{/if}}
+                          {{/compare}}
+                        {{/each}}
+                      </td>
+                    </tr>
+                  {{/compare}}
+                {{/each}}
+                <tr>
+                  <td>
+
+                  </td>
+                </tr>
+              </table>
+
+
+
+
+            {{/if}}
+            <div class="message hidden"></div>
+
+          </div>
+
+        </div>
+        <!-- end of Tabs content -->
+
+      </div>
+      <div class="col-sm-3">.col-msfsfsf</div>
     </div>
 
   {{/if}}

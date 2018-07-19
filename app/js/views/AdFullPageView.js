@@ -28,6 +28,7 @@ app.views.AdFullPageView = Mn.View.extend({
       } else {
         // All is fine
         this.model.set({
+          isLoggedIn: brd.controllers.isLoggedIn(),
           loading: false,
           isError: false,
         });
