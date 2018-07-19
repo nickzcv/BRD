@@ -59,7 +59,7 @@ this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(con
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(19, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "          </ul>\r\n        </nav>\r\n\r\n        <!-- Tabs content -->\r\n        <div class=\"tab-region\">\r\n\r\n          <div class=\"category\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.category : depth0),{"name":"if","hash":{},"fn":container.program(21, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            <div class=\"message hidden\"></div>\r\n\r\n          </div>\r\n\r\n        </div>\r\n        <!-- end of Tabs content -->\r\n\r\n      </div>\r\n      <div class=\"col-sm-3\">.col-msfsfsf</div>\r\n    </div>\r\n\r\n  ";
+    + "            <div class=\"message hidden\"></div>\r\n\r\n          </div>\r\n\r\n        </div>\r\n        <!-- end of Tabs content -->\r\n\r\n      </div>\r\n      <div class=\"col-sm-3\">\r\n\r\n      </div>\r\n    </div>\r\n\r\n  ";
 },"7":function(container,depth0,helpers,partials,data) {
     return "";
 },"9":function(container,depth0,helpers,partials,data) {
@@ -81,11 +81,11 @@ this["tpl"]["templates"]["ad_full_view"] = Handlebars.template({"1":function(con
 },"21":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "\r\n              <table class=\"filters-table\">\r\n                <tr class=\"table-header\">\r\n                  <th class=\"category-title\">"
+  return "\r\n              <h3 class=\"category-title\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</th>\r\n                </tr>\r\n"
+    + "</h3>\r\n\r\n              <table class=\"filters-table\">\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                <tr>\r\n                  <td>\r\n\r\n                  </td>\r\n                </tr>\r\n              </table>\r\n\r\n\r\n\r\n\r\n";
+    + "                <tr>\r\n                  <td>\r\n\r\n                  </td>\r\n                </tr>\r\n              </table>\r\n";
 },"22":function(container,depth0,helpers,partials,data) {
     var stack1;
 

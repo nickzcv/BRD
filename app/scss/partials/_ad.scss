@@ -197,19 +197,6 @@
           padding-top: 1rem;
           padding-right: 90px;
           width: 100%;
-          .left-border {
-            border-right: 1px solid $gray;
-            &:before {
-              content: '';
-              position: absolute;
-              border-top: 10px solid transparent;
-              border-bottom: 10px solid transparent;
-              border-left: 10px solid #f0eedf;
-              right: 80px;
-              top: 30px;
-              border-right: none;
-            }
-          }
           .category-title {
             color: $gray-dark2;
             font-size: 1.1rem;
@@ -482,22 +469,6 @@
             padding-top: 1rem;
             padding-right: 0;
             width: 80%;
-
-            .left-border {
-              border-left: 1px solid $gray;
-              border-right: none;
-              &:before {
-                content: '';
-                position: absolute;
-                border-top: 10px solid transparent;
-                border-bottom: 10px solid transparent;
-                border-right: 10px solid #f0eedf;
-                left: -10px;
-                top: 30px;
-                border-left: none;
-                right: auto;
-              }
-            }
 
             table {
               margin-left: .5rem;

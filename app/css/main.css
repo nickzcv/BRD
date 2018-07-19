@@ -968,19 +968,6 @@ nav.navigation .user .logout:hover {
   padding-right: 90px;
   width: 100%; }
 
-.ads .ad-item.expanded .section2 .category .left-border {
-  border-right: 1px solid #edebdc; }
-
-.ads .ad-item.expanded .section2 .category .left-border:before {
-  content: '';
-  position: absolute;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid #f0eedf;
-  right: 80px;
-  top: 30px;
-  border-right: none; }
-
 .ads .ad-item.expanded .section2 .category .category-title {
   color: #777;
   font-size: 1.1rem;
@@ -1214,19 +1201,6 @@ nav.navigation .user .logout:hover {
     padding-top: 1rem;
     padding-right: 0;
     width: 80%; }
-  .ads .ad-item.expanded .section2 .category .left-border {
-    border-left: 1px solid #edebdc;
-    border-right: none; }
-  .ads .ad-item.expanded .section2 .category .left-border:before {
-    content: '';
-    position: absolute;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid #f0eedf;
-    left: -10px;
-    top: 30px;
-    border-left: none;
-    right: auto; }
   .ads .ad-item.expanded .section2 .category table {
     margin-left: .5rem; }
   .ads .ad-item.expanded .section2 .category .category-title {
@@ -1387,44 +1361,29 @@ nav.navigation .user .logout:hover {
 .ad-full-view .content .category {
   position: relative;
   float: left;
-  margin: 0 1rem 0 0;
-  padding-top: 1rem;
-  padding-right: 0;
-  width: 80%; }
-
-.ad-full-view .content .category .left-border {
-  border-left: 1px solid #edebdc;
-  border-right: none; }
-
-.ad-full-view .content .category .left-border:before {
-  content: '';
-  position: absolute;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 10px solid #f0eedf;
-  left: -10px;
-  top: 30px;
-  border-left: none;
-  right: auto; }
-
-.ad-full-view .content .category table {
-  margin-left: .5rem; }
+  width: 100%;
+  font-size: .9rem; }
 
 .ad-full-view .content .category .category-title {
-  color: #777;
-  font-size: 1.1rem;
-  font-weight: normal; }
+  font-size: 1.3rem; }
 
 .ad-full-view .content .category .filter-row {
-  line-height: 1.5rem; }
+  line-height: 2.2rem;
+  border-bottom: 1px solid #edebdc; }
 
 .ad-full-view .content .category .filter-row td {
   vertical-align: text-top; }
 
 .ad-full-view .content .category .filter-row .filter-title {
+  position: relative;
+  background: #fcfbf7;
   color: #202124;
   font-weight: bold;
   padding-right: 1rem; }
+
+.ad-full-view .content .category .filter-row .parent {
+  position: relative;
+  background: #fcfbf7; }
 
 .ad-full-view .content .category .filter-row .parent i:nth-child(1n):after {
   content: ', '; }
@@ -1437,8 +1396,16 @@ nav.navigation .user .logout:hover {
   font-weight: bold;
   font-style: italic; }
 
-.ad-full-view .content .category .filter-row .first-level {
+.ad-full-view .content .category .filter-row .parent-col {
   position: relative; }
+
+.ad-full-view .content .category .filter-row .parent-col .dash {
+  display: inline-block;
+  position: absolute; }
+
+.ad-full-view .content .category .filter-row .first-level {
+  position: relative;
+  font-size: 1rem; }
 
 .ad-full-view .content .category .filter-row .first-level:after {
   content: '-';
@@ -1448,12 +1415,12 @@ nav.navigation .user .logout:hover {
 
 .ad-full-view .content .category .filter-row .first-level span {
   display: inline-block;
-  background: #fff;
+  background: #fcfbf7;
   position: relative;
   z-index: 2; }
 
 .ad-full-view .content .category .filter-row .first-level .overlay {
-  background: #fff;
+  background: #fcfbf7;
   position: relative;
   z-index: 2; }
 
@@ -1463,17 +1430,10 @@ nav.navigation .user .logout:hover {
 .ad-full-view .content .category .filter-row .first-level span:last-child:after {
   content: ''; }
 
-.ad-full-view .content .category .filter-row .iks {
-  color: #888;
-  font-weight: normal; }
-
 .ad-full-view .content .category .filter-row .size-row {
-  background: #fff;
+  background: #fcfbf7;
   position: relative;
   z-index: 2; }
-
-.ad-full-view .content .category .table-header {
-  padding-bottom: 1rem; }
 
 @media only screen and (min-width: 768px) {
   .ad-full-view .subheader {

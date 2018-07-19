@@ -55,10 +55,9 @@
           <div class="category">
             {{#if category}}
 
+              <h3 class="category-title">{{category.title}}</h3>
+
               <table class="filters-table">
-                <tr class="table-header">
-                  <th class="category-title">{{category.title}}</th>
-                </tr>
                 {{#each category.filters}}
                   {{#compare level '===' 'parent'}}
                     <tr class="filter-row">
@@ -126,10 +125,6 @@
                   </td>
                 </tr>
               </table>
-
-
-
-
             {{/if}}
             <div class="message hidden"></div>
 
@@ -139,7 +134,9 @@
         <!-- end of Tabs content -->
 
       </div>
-      <div class="col-sm-3">.col-msfsfsf</div>
+      <div class="col-sm-3">
+
+      </div>
     </div>
 
   {{/if}}
