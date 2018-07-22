@@ -478,7 +478,7 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1),{"name":"if","hash":{},"fn":container.program(60, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + " "
     + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</span></span>\r\n  </div>\r\n  <a class=\"icon ion-ios-browsers-outline full-page-view\" href=\"#ad/"
+    + "</span></span>\r\n  </div>\r\n  <a class=\"icon ion-ios-browsers-outline full-page-view\" href=\"#view/"
     + alias4(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"_id","hash":{},"data":data}) : helper)))
     + "\" target=\"_blank\"></a>\r\n  <div class=\"icon ion-chevron-down arrow\"></div>\r\n</div>";
 },"useData":true});

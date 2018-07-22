@@ -49,7 +49,7 @@ app.router = Marionette.AppRouter.extend({
         }));
         break;
       // Ad full view
-      case 'ad': {
+      case 'view': {
         if (page2) {
           brd.regions.bodyRegion.show(new app.views.AdFullPageView({
             model: new app.models.AdModel({idAd: page2}),
