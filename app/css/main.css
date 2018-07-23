@@ -821,19 +821,6 @@ nav.navigation .user .logout:hover {
   padding: 0.9rem 0.5rem 0.5rem;
   min-height: 4rem; }
 
-.ads .ad-item .content .edit-ad {
-  padding: 0 1rem;
-  color: #559797; }
-
-.ads .ad-item .content .edit-ad:hover {
-  color: #74BDC1; }
-
-.ads .ad-item .content .delete-ad {
-  color: darkred; }
-
-.ads .ad-item .content .delete-ad:hover {
-  color: red; }
-
 .ads .ad-item .content .ad-description {
   padding: 0.2rem 0.5rem;
   min-height: 1rem; }
@@ -897,6 +884,25 @@ nav.navigation .user .logout:hover {
 
 .ads .ad-item .icon.arrow:before {
   content: "\f123"; }
+
+.ads .ad-item .icon.edit-ad {
+  color: #559797;
+  top: 0;
+  right: 2.2rem;
+  font-size: 1.5rem; }
+
+.ads .ad-item .icon.edit-ad:hover {
+  color: #74BDC1; }
+
+.ads .ad-item .icon.delete-ad {
+  color: #d9534f;
+  top: 0;
+  right: 4.2rem;
+  font-size: 1.5rem;
+  margin: 0 3px; }
+
+.ads .ad-item .icon.delete-ad:hover {
+  color: #a80200; }
 
 .ads .ad-item .section2 {
   height: 0; }
@@ -1182,6 +1188,12 @@ nav.navigation .user .logout:hover {
     width: 1.5rem; }
   .ads .ad-item .icon.full-page-view {
     top: 0; }
+  .ads .ad-item .icon.edit-ad {
+    top: 2.2rem;
+    right: 0; }
+  .ads .ad-item .icon.delete-ad {
+    top: 4.2rem;
+    right: 0; }
   .ads .ad-item.expanded {
     max-height: none;
     border-color: #e1d1c4; }

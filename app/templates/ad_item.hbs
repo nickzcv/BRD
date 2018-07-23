@@ -14,15 +14,7 @@
       {{/if}}
     </div>
     <div class="content">
-      <div class="ad-title">
-        {{title}}
-        {{#if isLoggedIn}}
-          {{#compare currentUserId '===' userId}}
-            <a class="edit-ad" href="#profile/ads/edit/{{_id}}"><span class="ion-edit"></span></a>
-            <a class="delete-ad"><span class="ion-trash-b"></span></a>
-          {{/compare}}
-        {{/if}}
-      </div>
+      <div class="ad-title">{{title}}</div>
       <div class="ad-description hidden-xs">{{description}}</div>
     </div>
   </div>
@@ -160,5 +152,11 @@
     <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{#if city.title}}{{city.title}},{{/if}} {{country.title}}</span></span>
   </div>
   <a class="icon ion-ios-browsers-outline full-page-view" href="#view/{{_id}}" target="_blank"></a>
+  {{#if isLoggedIn}}
+    {{#compare currentUserId '===' userId}}
+      <a class="icon ion-edit edit-ad" href="#profile/ads/edit/{{_id}}"></a>
+      <a class="icon ion-trash-b delete-ad"></a>
+    {{/compare}}
+  {{/if}}
   <div class="icon ion-chevron-down arrow"></div>
 </div>
