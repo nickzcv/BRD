@@ -1570,15 +1570,15 @@ app.models.FiltersModel = Backbone.Model.extend({
       }]
     }, {
       id: 5,
-      title: 'Оборудование, техника, инструмент',
+      title: 'Оборудование и инструмент',
       filters: [{
         label: null,
         title: '',
         level: 'child',
         type: 'checkbox',
         items: [{
-          label: 'lestehnika',
-          value: 'Лесозаготовительная техника'
+          label: 'lesinstrument',
+          value: 'Лесозаготовительный инструмент'
         }, {
           label: 'dobroborudovanie',
           value: 'Деревообрабатывающее оборудование'
@@ -1586,12 +1586,88 @@ app.models.FiltersModel = Backbone.Model.extend({
           label: 'instrument',
           value: 'Инструмент'
         }, {
-          label: 'drugoe',
-          value: 'Другое'
+          label: 'oborudovanie',
+          value: 'Оборудование'
         }]
       }]
     }, {
       id: 6,
+      title: 'Специальная техника',
+      filters: [{
+        label: null,
+        title: '',
+        level: 'parent',
+        separator: true,
+        items: [{
+          label: 'tehnika_zagotovka',
+          title: 'Техника для заготовки леса',
+          level: 'child',
+          type: 'checkbox',
+          items: [{
+            label: 'les_teh_1',
+            value: 'Трелевочные щиты с лебедками'
+          }, {
+            label: 'les_teh_2',
+            value: 'Тракторные прицепы-сортиментовозы'
+          }, {
+            label: 'les_teh_3',
+            value: 'Комби-машины'
+          }, {
+            label: 'les_teh_4',
+            value: 'Скиддеры'
+          }, {
+            label: 'les_teh_5',
+            value: 'Валочно-пакетирующие машины'
+          }, {
+            label: 'forvarder',
+            value: 'Форвардеры'
+          }, {
+            label: 'harves_golovki',
+            value: 'Харвестерные головки'
+          }, {
+            label: 'harvastery',
+            value: 'Харвестеры'
+          }, {
+            label: 'gidromanipuliator',
+            value: 'Гидроманипуляторы лесные'
+          }]
+        }, {
+          label: 'transp_tehnika',
+          title: 'Техника для транспортировки и перегрузки леса',
+          level: 'child',
+          type: 'checkbox',
+          items: [{
+            label: 'peregruzhateli',
+            value: 'Перегружатели'
+          }, {
+            label: 'les_pricep',
+            value: 'Лесовозные прицепы'
+          }]
+        }, {
+          label: 'tehnika_uhod',
+          title: 'Техника для ухода и восстановления леса',
+          level: 'child',
+          type: 'checkbox',
+          items: [{
+            label: 'tehnika_uhod_1',
+            value: 'Мульчеры'
+          }, {
+            label: 'tehnika_uhod_2',
+            value: 'Ротоваторы'
+          }, {
+            label: 'tehnika_uhod_3',
+            value: 'Измельчители пней'
+          }, {
+            label: 'tehnika_uhod_4',
+            value: 'Измельчители'
+          }, {
+            label: 'tehnika_uhod_5',
+            value: 'Рубильные машины'
+          }]
+        }]
+      }]
+    }, {
+      id: 7,
       title: 'Работа и услуги',
       filters: [{
         label: null,

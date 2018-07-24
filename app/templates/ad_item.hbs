@@ -140,6 +140,7 @@
   </div>
   <div class="i-bottom">
     <span class="date"><i class="ion-ios-calendar-outline"></i><span class="m-l-05">{{formatDate updated_at 'll'}}</span></span>
+    <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{#if city.title}}{{city.title}},{{/if}} {{country.title}}</span></span>
     {{#if company}}
       <span class="name"><i class="ion-person-stalker"></i><span class="m-l-05">{{userName.name}}</span></span>
     {{else if userName}}
@@ -149,7 +150,6 @@
         <span class="m-l-05">{{userName.lastName}} {{userName.name}} {{userName.middleName}}</span>
       </span>
     {{/if}}
-    <span class="location"><i class="ion-ios-location-outline"></i><span class="m-l-05">{{#if city.title}}{{city.title}},{{/if}} {{country.title}}</span></span>
   </div>
   <a class="icon ion-ios-browsers-outline full-page-view" href="#view/{{_id}}" target="_blank"></a>
   {{#if isLoggedIn}}

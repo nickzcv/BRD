@@ -889,7 +889,8 @@ nav.navigation .user .logout:hover {
   color: #559797;
   top: 0;
   right: 2.2rem;
-  font-size: 1.5rem; }
+  font-size: 1.3rem;
+  opacity: .6; }
 
 .ads .ad-item .icon.edit-ad:hover {
   color: #74BDC1; }
@@ -898,8 +899,9 @@ nav.navigation .user .logout:hover {
   color: #d9534f;
   top: 0;
   right: 4.2rem;
-  font-size: 1.5rem;
-  margin: 0 3px; }
+  font-size: 1.3rem;
+  margin: 0 3px;
+  opacity: .6; }
 
 .ads .ad-item .icon.delete-ad:hover {
   color: #a80200; }
@@ -1190,10 +1192,12 @@ nav.navigation .user .logout:hover {
     top: 0; }
   .ads .ad-item .icon.edit-ad {
     top: 2.2rem;
-    right: 0; }
+    right: 0;
+    opacity: 1; }
   .ads .ad-item .icon.delete-ad {
     top: 4.2rem;
-    right: 0; }
+    right: 0;
+    opacity: 1; }
   .ads .ad-item.expanded {
     max-height: none;
     border-color: #e1d1c4; }

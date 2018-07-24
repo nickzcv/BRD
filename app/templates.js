@@ -411,14 +411,19 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
 },"52":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "      <span class=\"name\"><i class=\"ion-person-stalker\"></i><span class=\"m-l-05\">"
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
-    + "</span></span>\n";
+  return container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
+    + ",";
 },"54":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":container.program(55, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"55":function(container,depth0,helpers,partials,data) {
+  return "      <span class=\"name\"><i class=\"ion-person-stalker\"></i><span class=\"m-l-05\">"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.name : stack1), depth0))
+    + "</span></span>\n";
+},"56":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.userName : depth0),{"name":"if","hash":{},"fn":container.program(57, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"57":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=container.escapeExpression, alias2=container.lambda;
 
   return "      <span class=\"name\">\n        <span class=\"user-avatar\" style=\"background-image: url('img/avatar/"
@@ -430,11 +435,6 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + " "
     + alias1(alias2(((stack1 = (depth0 != null ? depth0.userName : depth0)) != null ? stack1.middleName : stack1), depth0))
     + "</span>\n      </span>\n    ";
-},"57":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1), depth0))
-    + ",";
 },"59":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -470,13 +470,13 @@ this["tpl"]["templates"]["ad_item"] = Handlebars.template({"1":function(containe
     + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.contacts : depth0)) != null ? stack1.phones : stack1),{"name":"each","hash":{},"fn":container.program(49, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n  </div>\n  <div class=\"i-bottom\">\n    <span class=\"date\"><i class=\"ion-ios-calendar-outline\"></i><span class=\"m-l-05\">"
     + alias4((helpers.formatDate || (depth0 && depth0.formatDate) || alias2).call(alias1,(depth0 != null ? depth0.updated_at : depth0),"ll",{"name":"formatDate","hash":{},"data":data}))
-    + "</span></span>\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":container.program(52, data, 0),"inverse":container.program(54, data, 0),"data":data})) != null ? stack1 : "")
-    + "    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
-    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1),{"name":"if","hash":{},"fn":container.program(57, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</span></span>\n    <span class=\"location\"><i class=\"ion-ios-location-outline\"></i><span class=\"m-l-05\">"
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.city : depth0)) != null ? stack1.title : stack1),{"name":"if","hash":{},"fn":container.program(52, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + " "
     + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.country : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</span></span>\n  </div>\n  <a class=\"icon ion-ios-browsers-outline full-page-view\" href=\"#view/"
+    + "</span></span>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.company : depth0),{"name":"if","hash":{},"fn":container.program(54, data, 0),"inverse":container.program(56, data, 0),"data":data})) != null ? stack1 : "")
+    + "  </div>\n  <a class=\"icon ion-ios-browsers-outline full-page-view\" href=\"#view/"
     + alias4(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"_id","hash":{},"data":data}) : helper)))
     + "\" target=\"_blank\"></a>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isLoggedIn : depth0),{"name":"if","hash":{},"fn":container.program(59, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

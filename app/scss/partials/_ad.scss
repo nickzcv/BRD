@@ -113,7 +113,8 @@
         color: $blue-dark;
         top: 0;
         right: 2.2rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        opacity: .6;
         &:hover {
           color: $blue-light;
         }
@@ -122,8 +123,9 @@
         color: $fail;
         top: 0;
         right: 4.2rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         margin: 0 3px;
+        opacity: .6;
         &:hover {
           color: $error;
         }
@@ -452,10 +454,12 @@
         &.edit-ad {
           top: 2.2rem;
           right: 0;
+          opacity: 1;
         }
         &.delete-ad {
           top: 4.2rem;
           right: 0;
+          opacity: 1;
         }
       }
       &.expanded {
