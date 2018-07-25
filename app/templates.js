@@ -755,7 +755,9 @@ this["tpl"]["templates"]["filters"] = Handlebars.template({"1":function(containe
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
 
-  return "<div class=\"row\">\r\n  <div class=\"col-md-6\">\r\n"
+  return "<div class=\"row filter-bg\" style=\"background-image: url('img/filter-icons/"
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.id : stack1), depth0))
+    + ".svg')\">\r\n  <div class=\"col-md-6\">\r\n"
     + ((stack1 = helpers.each.call(alias1,((stack1 = (depth0 != null ? depth0.category : depth0)) != null ? stack1.filters : stack1),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.subtitle : depth0),{"name":"if","hash":{},"fn":container.program(36, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "  </div>\r\n</div>";

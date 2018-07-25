@@ -77,12 +77,20 @@ label {
     }
   }
 }
-.filters label{
-  text-transform: lowercase;
-  &::first-letter {
-    text-transform: uppercase;
+.filters {
+  label{
+    text-transform: lowercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+  .filter-bg {
+    background-size: 10%;
+    background-repeat: no-repeat;
+    background-position: 100% 0;
   }
 }
+
 .lbl {
   text-transform: uppercase;
   font-size: 0.9rem;
