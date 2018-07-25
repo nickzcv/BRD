@@ -55,9 +55,10 @@ app.views.AddCompanyView = Mn.View.extend({
       rules: {
         companyName: {
           required: true,
+          maxlength: 120
         },
         description: {
-          required: true,
+          maxlength: 500
         },
         category: {
           required: true,
@@ -71,10 +72,11 @@ app.views.AddCompanyView = Mn.View.extend({
       },
       messages: {
         companyName: {
-          required: 'Укажите название компании'
+          required: 'Укажите название компании',
+          maxlength: jQuery.validator.format('Максимум {0} символов')
         },
         description: {
-          required: 'Опишите деятельность вашей компании'
+          maxlength: jQuery.validator.format('Максимум {0} символов')
         },
         category: {
           required: 'Выберите раздел'

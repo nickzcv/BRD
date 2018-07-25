@@ -18,6 +18,7 @@ router.route('/companies')
     company.logo = req.body.logo;
     company.description = req.body.description;
     company.categoryId = req.body.categoryId;
+    company.companyFilters = req.body.companyFilters;
     company.country = req.body.country;
     company.city = req.body.city;
     company.address = req.body.address;

@@ -1848,6 +1848,9 @@ nav.navigation .user .logout:hover {
 .new-company #companyName {
   max-width: 30rem; }
 
+.new-company #category {
+  max-width: 19rem; }
+
 .new-company .logo {
   position: relative;
   cursor: pointer;

@@ -108,7 +108,7 @@ app.models.FiltersModel = Backbone.Model.extend({
                   {
                     label: 'yasen',
                     value: 'Ясень',
-                  },
+                  }
                 ]
               }
             ]
@@ -307,7 +307,7 @@ app.models.FiltersModel = Backbone.Model.extend({
                   {
                     label: 'yasen',
                     value: 'Ясень',
-                  },
+                  }
                 ]
               }
             ]
@@ -498,7 +498,7 @@ app.models.FiltersModel = Backbone.Model.extend({
                   {
                     label: 'yasen',
                     value: 'Ясень',
-                  },
+                  }
                 ]
               }
             ]
@@ -709,7 +709,7 @@ app.models.FiltersModel = Backbone.Model.extend({
                   {
                     label: 'yasen',
                     value: 'Ясень',
-                  },
+                  }
                 ]
               }
             ]

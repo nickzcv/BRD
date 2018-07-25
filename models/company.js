@@ -5,6 +5,7 @@ var companySchema = new mongoose.Schema({
   logo: String,
   description: String,
   categoryId: String,
+  companyFilters: {type: Object},
   country: {type: Object},
   city: {type: Object},
   address: String,

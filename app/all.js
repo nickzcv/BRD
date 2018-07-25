@@ -935,6 +935,72 @@ app.models.CompanyModel = Backbone.Model.extend({
     companyName: null,
     logo: brd.controllers.getUserId() + '_' + Date.now() + '_logo',
     categoryId: null,
+    companyFilters: {
+      items: [{
+        label: 'proizvodstvo_pilomaterialov',
+        title: 'Производство пиломатериалов',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }, {
+          label: 'Тест2',
+          value: 'test2'
+        }, {
+          label: 'Тест3',
+          value: 'test3'
+        }, {
+          label: 'Тест4',
+          value: 'test4'
+        }]
+      }, {
+        label: 'lesozagotovka',
+        title: 'Лесозаготовка',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }]
+      }, {
+        label: '',
+        title: 'Изделия из древесины',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }]
+      }, {
+        label: '',
+        title: 'Спец техника',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }]
+      }, {
+        label: '',
+        title: 'Транспортные услуги',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }]
+      }, {
+        label: '',
+        title: 'Оборудование и инструмент',
+        level: 'child',
+        type: 'checkbox',
+        items: [{
+          label: 'Тест1',
+          value: 'test1'
+        }]
+      }]
+    },
     country: null,
     city: null,
     phones: null,
@@ -3290,10 +3356,11 @@ app.views.AddCompanyView = Mn.View.extend({
     this.ui.addCompanyForm.validate({
       rules: {
         companyName: {
-          required: true
+          required: true,
+          maxlength: 120
         },
         description: {
-          required: true
+          maxlength: 500
         },
         category: {
           required: true
@@ -3307,10 +3374,11 @@ app.views.AddCompanyView = Mn.View.extend({
       },
       messages: {
         companyName: {
-          required: 'Укажите название компании'
+          required: 'Укажите название компании',
+          maxlength: jQuery.validator.format('Максимум {0} символов')
         },
         description: {
-          required: 'Опишите деятельность вашей компании'
+          maxlength: jQuery.validator.format('Максимум {0} символов')
         },
         category: {
           required: 'Выберите раздел'
