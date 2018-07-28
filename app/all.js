@@ -512,7 +512,7 @@ app.collections.AdsHomeCollection = Backbone.Collection.extend({
 app.collections.CompaniesByUserCollection = Backbone.Collection.extend({
 
   url: function url() {
-    return 'api/companies' + brd.controllers.getUserId();
+    return 'api/companies/' + brd.controllers.getUserId();
   },
 
   comparator: function comparator(m) {
