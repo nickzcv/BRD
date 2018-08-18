@@ -51,7 +51,7 @@ app.views.AddAvatarView = Mn.View.extend({
     }
 
     // Bind upload event action
-    $('.upload-avatar').on('click', function() {
+    $('.upload-avatar').on('click', () => {
       $uploadCrop.croppie('result', {
         type: 'canvas',
         size: 'viewport'
@@ -65,13 +65,12 @@ app.views.AddAvatarView = Mn.View.extend({
             'user': brd.controllers.getUserId(),
             'image': resp
           })
-        }).done(function() {
+        }).done(() =>  {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          let message = `Фото загружено. Сохраните изменения и обновите страницу чтобы увидеть результат.`;
-          $('.alert').addClass('alert-success').text(message).show()
-        }).fail(function() {
+          this.triggerMethod('avatar:added');
+        }).fail(() =>  {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show()
+          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения. Попробуйте еще раз.').show()
         });
 
       });

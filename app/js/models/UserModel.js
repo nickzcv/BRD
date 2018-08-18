@@ -22,11 +22,11 @@ app.models.UserModel = Backbone.Model.extend({
       let countriesModel = thisModel.get('countriesModel');
       // Listen to country change
       countriesModel.on('change:country', () => {
-        thisModel.set({country: countriesModel.get('country')});
+        thisModel.set({country: countriesModel.get('country')}, {silent: true});
       });
       // Listen to city change
       countriesModel.on('change:city', () => {
-        thisModel.set({city: countriesModel.get('city')});
+        thisModel.set({city: countriesModel.get('city')}, {silent: true});
       });
     });
 

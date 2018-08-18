@@ -849,11 +849,11 @@ app.models.UserModel = Backbone.Model.extend({
       var countriesModel = thisModel.get('countriesModel');
       // Listen to country change
       countriesModel.on('change:country', function () {
-        thisModel.set({ country: countriesModel.get('country') });
+        thisModel.set({ country: countriesModel.get('country') }, { silent: true });
       });
       // Listen to city change
       countriesModel.on('change:city', function () {
-        thisModel.set({ city: countriesModel.get('city') });
+        thisModel.set({ city: countriesModel.get('city') }, { silent: true });
       });
     });
   }
@@ -2555,6 +2555,8 @@ app.views.AddAvatarView = Mn.View.extend({
   },
 
   uploadImage: function uploadImage(event) {
+    var _this = this;
+
     // Clear preview div
     this.ui.uploadPreview.empty();
     // Init croppie
@@ -2602,11 +2604,10 @@ app.views.AddAvatarView = Mn.View.extend({
           })
         }).done(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          var message = '\u0424\u043E\u0442\u043E \u0437\u0430\u0433\u0440\u0443\u0436\u0435\u043D\u043E. \u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u0438 \u043E\u0431\u043D\u043E\u0432\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0443 \u0447\u0442\u043E\u0431\u044B \u0443\u0432\u0438\u0434\u0435\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.';
-          $('.alert').addClass('alert-success').text(message).show();
+          _this.triggerMethod('avatar:added');
         }).fail(function () {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show();
+          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения. Попробуйте еще раз.').show();
         });
       });
     });
@@ -3742,6 +3743,33 @@ app.views.LeftNavigation = Mn.View.extend({
 });
 'use strict';
 
+app.views.ProfileAvatarView = Mn.View.extend({
+
+  template: tpl.templates.profile_avatar,
+
+  regions: {
+    modalSection: '.modal-avatar-section'
+  },
+
+  ui: {
+    avatar: '.avatar'
+  },
+
+  events: {
+    'click @ui.avatar': 'showAddAvatarView'
+  },
+
+  childViewEvents: {
+    'avatar:added': 'render'
+  },
+
+  showAddAvatarView: function showAddAvatarView() {
+    this.showChildView('modalSection', new app.views.AddAvatarView());
+  }
+
+});
+'use strict';
+
 app.views.SettingsAccountSectionView = Mn.View.extend({
 
   template: tpl.templates.settings_account_section,
@@ -3767,13 +3795,12 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
 
   regions: {
     countriesPicker: '.countries-picker',
-    modalSection: '.modal-avatar-section'
+    avatarRegion: '.avatar-region'
   },
 
   ui: {
     alert: '.alert',
     form: 'form',
-    photo: '.avatar',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -3786,27 +3813,26 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
   },
 
   events: {
-    'click @ui.saveProfile': 'saveProfileData',
-    'click @ui.photo': 'showAddAvatarView'
+    'click @ui.saveProfile': 'saveProfileData'
   },
 
   modelEvents: {
     'change': 'render'
   },
 
-  initialize: function initialize() {
-    // Get user data from server
-    this.model.fetch().then(function () {}, function () {
-      console.log('FAIL: Get user data from server');
-    });
+  initialize: async function initialize() {
+    try {
+      await this.model.fetch();
+      // this.model.set({loading: false});
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   onRender: function onRender() {
     this.showChildView('countriesPicker', new app.views.CountriesPickerView({ model: this.model.get('countriesModel') }));
-  },
-
-  showAddAvatarView: function showAddAvatarView() {
-    this.showChildView('modalSection', new app.views.AddAvatarView());
+    // Show avatar section
+    this.showChildView('avatarRegion', new app.views.ProfileAvatarView({ model: this.model }));
   },
 
   saveProfileData: function saveProfileData(event) {
@@ -3831,7 +3857,6 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
       },
       success: function success() {
         app.user.fetch();
-        //brd.router.navigateToRoute('profile', 'settings');
         _this.render();
       }
     });

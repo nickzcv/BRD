@@ -4,13 +4,12 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
 
   regions: {
     countriesPicker: '.countries-picker',
-    modalSection: '.modal-avatar-section'
+    avatarRegion: '.avatar-region',
   },
 
   ui: {
     alert: '.alert',
     form: 'form',
-    photo: '.avatar',
     lastName: '#lastName',
     name: '#name',
     middleName: '#middleName',
@@ -24,28 +23,25 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
 
   events: {
     'click @ui.saveProfile': 'saveProfileData',
-    'click @ui.photo': 'showAddAvatarView',
   },
 
   modelEvents: {
     'change': 'render'
   },
 
-  initialize: function() {
-    // Get user data from server
-    this.model.fetch().then(() => {
-
-    },() => {
-      console.log('FAIL: Get user data from server');
-    });
+  initialize: async function() {
+    try {
+      await this.model.fetch();
+      // this.model.set({loading: false});
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   onRender: function() {
     this.showChildView('countriesPicker', new app.views.CountriesPickerView({model: this.model.get('countriesModel')}));
-  },
-
-  showAddAvatarView: function() {
-    this.showChildView('modalSection', new app.views.AddAvatarView());
+    // Show avatar section
+    this.showChildView('avatarRegion', new app.views.ProfileAvatarView({model: this.model}));
   },
 
   saveProfileData: function(event) {
@@ -68,7 +64,6 @@ app.views.SettingsProfileSectionView = Mn.View.extend({
       },
       success: () => {
         app.user.fetch();
-        //brd.router.navigateToRoute('profile', 'settings');
         this.render()
       }
     });
