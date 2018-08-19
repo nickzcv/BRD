@@ -69,16 +69,18 @@ app.views.AddLogoView = Mn.View.extend({
           method: 'POST',
           contentType: 'application/json',
           dataType: 'json',
+          timeout: 10000, // sets timeout to 10 seconds
           data: JSON.stringify({
             'logoName': fileName,
             'image': resp
           })
         }).done(() => {
+          $('.alert').hide();
           $("[data-dismiss=modal]").trigger({ type: "click" });
           this.triggerMethod('logo:added');
         }).fail(() => {
           $("[data-dismiss=modal]").trigger({ type: "click" });
-          $('.alert').addClass('alert-danger').text('Ошибка загрузки изображения.').show()
+          $('.alert').addClass('alert-danger').text('Произошла ошибка при попытке сохранить логотип. Попробуйте выбрать другое изображение.').show()
         });
 
       });

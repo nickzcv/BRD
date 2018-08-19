@@ -71,6 +71,10 @@
         line-height: 2.2rem;
         border-bottom: 1px solid $gray;
 
+        &:first-child {
+          border-bottom: none;
+        }
+
         td {
           vertical-align: text-top;
         }

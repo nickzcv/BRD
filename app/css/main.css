@@ -1389,6 +1389,9 @@ nav.navigation .user .logout:hover {
   line-height: 2.2rem;
   border-bottom: 1px solid #edebdc; }
 
+.ad-full-view .content .category .filter-row:first-child {
+  border-bottom: none; }
+
 .ad-full-view .content .category .filter-row td {
   vertical-align: text-top; }
 
