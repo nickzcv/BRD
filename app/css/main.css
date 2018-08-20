@@ -1523,7 +1523,7 @@ nav.navigation .user .logout:hover {
   margin: 0;
   width: 10rem;
   height: 10rem;
-  background: #f0eedf;
+  background: #F1F1F1;
   cursor: cell; }
 
 .new-ad .ad-photo:hover, .edit-ad .ad-photo:hover {
@@ -1531,7 +1531,8 @@ nav.navigation .user .logout:hover {
 
 .new-ad .ad-photo span, .edit-ad .ad-photo span {
   font-size: 6rem;
-  color: #fff; }
+  color: #BCBDC1;
+  line-height: 1.55; }
 
 .new-ad .back, .edit-ad .back {
   color: goldenrod;

@@ -35,7 +35,7 @@
     margin: 0;
     width: 10rem;
     height: 10rem;
-    background: #f0eedf;
+    background: #F1F1F1;
     cursor: cell;
 
     &:hover {
@@ -43,7 +43,8 @@
     }
     span {
       font-size: 6rem;
-      color: #fff;
+      color: #BCBDC1;
+      line-height: 1.55;
     }
   }
   .back {

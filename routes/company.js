@@ -45,7 +45,7 @@ router.route('/companies')
       }
 		});
 	})
-  // get all the users (accessed at GET /api/companies)
+  // get all companies (accessed at GET /api/companies)
   .get(function(req, res) {
     Company.find({}, function(err, companies) {
       if (err) {
@@ -67,7 +67,7 @@ router.route('/companies/:userId')
   .get(function(req, res) {
 
     Company.find({
-      'userId': req.params.userId
+      'createdBy': req.params.userId
       }, function(err, companies) {
       if (err) {
         res.json({
@@ -83,47 +83,60 @@ router.route('/companies/:userId')
 // on routes that end in /company/:company_id
 // ----------------------------------------------------
 router.route('/company/:company_id')
-// get the ad with :ad_id
+  // get the company with :company_id
 	.get(function(req, res) {
     Company.findById(req.params.company_id, function(err, company) {
-			if (err)
+			if (err) {
         res.json({
           error: true,
           errorDescription: err,
         });
-
-			res.json(company);
+      } else {
+        res.json(company);
+      }
 		});
 	})
+
 	// update
 	.put(auth, function(req, res) {
-    Ad.findById(req.params.ad_id, function(err, ad) {
+    Company.findById(req.params.company_id, function(err, company) {
 
-      if (err)
-        res.json(err);
+      if (err) {
+        res.json({
+          error: true,
+          errorDescription: err,
+        });
+      } else {
+        company.companyName = req.body.companyName;
+        company.logo = req.body.logo;
+        company.description = req.body.description;
+        company.categoryId = req.body.categoryId;
+        company.companyFilters = req.body.companyFilters;
+        company.country = req.body.country;
+        company.city = req.body.city;
+        company.address = req.body.address;
+        company.phones = req.body.phones;
+        company.website = req.body.website;
+        company.year = req.body.year;
+        company.count = req.body.count;
+        company.updated_at = new Date();
+        company.createdBy = req.body.createdBy;
 
-      ad.type = req.body.type;
-      ad.object = req.body.object;
-      ad.category = req.body.category;
-      ad.title = req.body.title;
-      ad.description = req.body.description;
-      ad.country = req.body.country;
-      ad.city = req.body.city;
-      ad.price = req.body.price;
-      ad.photo = req.body.photo;
-      ad.expirationDate = req.body.expirationDate;
-      ad.contacts = req.body.contacts;
-      ad.updated_at = new Date();
-      ad.status = 'UPDATED';
+        company.save(function(err) {
+          if (err) {
+            res.json({
+              error: true,
+              errorDescription: err,
+            });
+          } else {
+            res.json({
+              message: 'Ad updated!'
+            });
+          }
+        });
+      }
 
-			ad.save(function(err) {
-				if (err) {
-          res.json(err);
-        } else {
-          res.json({ message: 'Ad updated!' });
-        }
 
-			});
 
 		});
 	})
