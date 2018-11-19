@@ -10,13 +10,13 @@ header {
     a {
       display: inline-block;
       margin: 6px 0;
-      padding: 10px 0 0 50px;
+      padding: 6px 0 0 50px;
       width: 7rem;
       height: 40px;
       background: url('../img/logo-gray.svg') no-repeat;
       text-decoration: none;
       color: $gray;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
 
       &:hover {
         color: #fff
@@ -58,18 +58,7 @@ header {
 
   /* Desktop */
   @media only screen and (min-width: 992px) {
-    .header-wrapper {
-      height: 6rem;
-      padding-top: 1rem;
-    }
-    .logo {
-      a {
-        width: 10rem;
-        height: 55px;
-        padding: 13px 0 0 73px;
-        font-size: 1.5rem;
-      }
-    }
+
 
   }
 

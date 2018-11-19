@@ -26,21 +26,20 @@ app.views.HeaderView = Mn.View.extend({
     }
   },
 
-  initialize: function() {
-    let thisView = this;
-    thisView.listenTo(app.user, 'change', () => {
-      thisView.model.updateUser();
-      thisView.render();
+  initialize() {
+    this.listenTo(app.user, 'change', () => {
+      this.model.updateUser();
+      this.render();
     });
   },
 
-  showRegistrationView: function() {
+  showRegistrationView() {
     brd.regions.modalSection.show(new app.views.RegistrationView({
       model: new app.models.RegistrationModel()
     }));
   },
 
-  showLoginView: function() {
+  showLoginView() {
     brd.regions.modalSection.show(new app.views.LoginView({
       model: new app.models.LoginModel()
     }));
@@ -50,7 +49,7 @@ app.views.HeaderView = Mn.View.extend({
    * Mobile navigation handler (hamburger)
    *
    */
-  toggleMobileMenu: function() {
+  toggleMobileMenu() {
     this.ui.hamburger.toggleClass('closeBtn');
     this.ui.navigation.toggleClass('hidden');
   }

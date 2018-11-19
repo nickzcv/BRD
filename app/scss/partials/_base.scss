@@ -211,6 +211,7 @@ label {
 // Main content styles
 .btn {
   border-radius: 0!important;
+  border-width: 2px;
 }
 
 @mixin transition($string: $transition--default) {
